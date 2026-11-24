@@ -74,17 +74,19 @@
   function syncComponentPickers() {
     var cpu = hw(BCP.cpus.items, state.cpuId);
     var mobos = BCP.motherboards.items.filter(function (m) { return m.socket === cpu.socket; });
+    var wantUnknownMobo = state.moboId === UNKNOWN;
     state.moboId = fillComponentSelect($("#moboSelect"), mobos, state.moboId);
     addUnknownOption($("#moboSelect"), "I don't know my motherboard");
-    if (state.moboId === UNKNOWN || !hw(BCP.motherboards.items, state.moboId)) {
+    if (wantUnknownMobo) {
       $("#moboSelect").value = UNKNOWN;
       state.moboId = UNKNOWN;
     }
     var mobo = state.moboId === UNKNOWN ? null : hw(BCP.motherboards.items, state.moboId);
     var kits = BCP.memoryKits.items.filter(function (k) { return !mobo || k.type === mobo.ramType; });
+    var wantUnknownRam = state.ramId === UNKNOWN;
     state.ramId = fillComponentSelect($("#ramSelect"), kits, state.ramId);
     addUnknownOption($("#ramSelect"), "I don't know my memory");
-    if (state.ramId === UNKNOWN || !hw(BCP.memoryKits.items, state.ramId)) {
+    if (wantUnknownRam) {
       $("#ramSelect").value = UNKNOWN;
       state.ramId = UNKNOWN;
     }
