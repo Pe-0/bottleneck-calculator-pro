@@ -1,38 +1,62 @@
 /* ============================================================
  * AI ASSISTANT - "Ask about this build"
- * Bring-your-own-key: the user pastes a Groq API key, stored in
- * localStorage only (never sent anywhere except api.groq.com).
- * The page is static; there is no server and no key in the repo.
+ * Bring-your-own-key: the user pastes a Groq API key. It is sent
+ * directly from this browser to api.groq.com and nowhere else.
+ * Default handling is memory-only: the key lives in a JS variable
+ * and is gone when the tab closes. Persistence is opt-in via the
+ * "Remember on this device" checkbox (localStorage). There is no
+ * server and no key in the repo.
  * Answers come from an LLM grounded on the current selection,
  * not from the curated database - the UI says so.
  * ============================================================ */
 
 (function () {
   "use strict";
-  var KEY_LS = "bcp_groq_key";
+  var LS_REMEMBER = "bcp_groq_key_remember"; // opt-in persistence only
+  var LS_LEGACY = "bcp_groq_key";            // v1 key, always cleared on load
   var MODEL = "openai/gpt-oss-120b";
   var ENDPOINT = "https://api.groq.com/openai/v1/chat/completions";
 
+  var memKey = ""; // session-scoped, lost on tab close
+
   var $ = function (sel) { return document.querySelector(sel); };
 
-  function savedKey() {
-    try { return localStorage.getItem(KEY_LS) || ""; } catch (e) { return ""; }
+  // Migration: v1 persisted the key without asking. Never keep it.
+  try { localStorage.removeItem(LS_LEGACY); } catch (e) {}
+
+  function rememberedKey() {
+    try { return localStorage.getItem(LS_REMEMBER) || ""; } catch (e) { return ""; }
   }
-  function storeKey(k) {
-    try { localStorage.setItem(KEY_LS, k); } catch (e) {}
+  function activeKey() {
+    if (memKey) return memKey;
+    var r = rememberedKey();
+    if (r) memKey = r;
+    return r;
+  }
+  function isRemembered() { return !!rememberedKey(); }
+
+  function saveKey(v, remember) {
+    memKey = v;
+    try {
+      if (remember) localStorage.setItem(LS_REMEMBER, v);
+      else localStorage.removeItem(LS_REMEMBER);
+    } catch (e) {}
   }
   function clearKey() {
-    try { localStorage.removeItem(KEY_LS); } catch (e) {}
+    memKey = "";
+    try { localStorage.removeItem(LS_REMEMBER); } catch (e) {}
   }
 
   function renderKeyRow() {
     var row = $("#aiKeyRow");
     if (!row) return;
     row.innerHTML = "";
-    if (savedKey()) {
+    if (activeKey()) {
       var note = document.createElement("span");
       note.className = "muted ai-key-saved";
-      note.textContent = "API key saved in this browser.";
+      note.textContent = isRemembered()
+        ? "Key remembered on this device."
+        : "Key ready (this tab only).";
       var rm = document.createElement("button");
       rm.className = "gen-load";
       rm.type = "button";
@@ -54,11 +78,22 @@
       save.addEventListener("click", function () {
         var v = inp.value.trim();
         if (v.length < 10) { showMsg("That key looks too short. Paste the full key from console.groq.com."); return; }
-        storeKey(v);
+        var cb = $("#aiRemember");
+        saveKey(v, !!(cb && cb.checked));
         showMsg("");
         renderKeyRow();
       });
+      var remWrap = document.createElement("label");
+      remWrap.className = "ai-remember";
+      var rem = document.createElement("input");
+      rem.type = "checkbox";
+      rem.id = "aiRemember";
+      var remTxt = document.createElement("span");
+      remTxt.textContent = "Remember on this device";
+      remWrap.appendChild(rem);
+      remWrap.appendChild(remTxt);
       row.appendChild(inp);
+      row.appendChild(remWrap);
       row.appendChild(save);
     }
   }
@@ -95,8 +130,8 @@
   function ask() {
     var q = $("#aiQuestion").value.trim();
     if (!q) { showMsg("Type a question first."); return; }
-    var key = savedKey();
-    if (!key) { showMsg("Paste a free Groq API key above first (console.groq.com). It is stored only in this browser."); return; }
+    var key = activeKey();
+    if (!key) { showMsg("Paste a free Groq API key above first (console.groq.com). It is sent straight to Groq from this browser and kept only for this visit unless you opt in to remembering it."); return; }
     var btn = $("#aiAskBtn");
     btn.disabled = true;
     showMsg("Thinking...");

@@ -257,3 +257,5 @@ select:hover, select:focus { border-color: var(--accent); outline: none; }
 }
 .ai-answer:empty { display: none; }
 .ai-key-row button, .ai-ask-row button { white-space: nowrap; }
+.ai-remember { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--muted); white-space: nowrap; cursor: pointer; }
+.ai-remember input { accent-color: var(--accent); }
