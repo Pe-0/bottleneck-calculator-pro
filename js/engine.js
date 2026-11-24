@@ -35,10 +35,24 @@ window.BCP.engine = (function () {
 
   function clamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
 
-  function bottleneck(cpuBench, gpuScore, resKey, workloadKey) {
+  // Streaming encodes video alongside the game, so the CPU needs
+  // spare cores on top of raw per-core speed. Fewer threads => the
+  // CPU must be proportionally stronger to feed the same GPU.
+  function streamingThreadFactor(threads) {
+    if (!threads) return 1;
+    if (threads >= 16) return 1;
+    if (threads >= 12) return 1.08;
+    if (threads >= 8)  return 1.18;
+    return 1.32;
+  }
+
+  function bottleneck(cpuBench, gpuScore, resKey, workloadKey, cpuHw) {
     var wl = WORKLOADS[workloadKey] || WORKLOADS.gaming;
     var cpuScore = cpuBench[wl.cpuScoreKey];
     var feed = wl.feedMod === null ? PRODUCTIVITY_FEED : FEED_NEED[resKey] * wl.feedMod;
+    if (workloadKey === "streaming" && cpuHw) {
+      feed *= streamingThreadFactor(cpuHw.threads);
+    }
     var required = gpuScore * feed;
     var pct, limiter;
     if (cpuScore >= required) {

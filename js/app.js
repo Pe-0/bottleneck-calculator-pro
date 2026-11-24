@@ -83,7 +83,7 @@
     var cpuBench = BCP.benchmarks.cpu[state.cpuId];
     var gpuScore = BCP.benchmarks.gpu[state.gpuId];
 
-    var bn = eng.bottleneck(cpuBench, gpuScore, state.res, state.workload);
+    var bn = eng.bottleneck(cpuBench, gpuScore, state.res, state.workload, cpu);
     var bal = eng.balanceLabel(bn.pct, bn.limiter);
 
     // Gauge
@@ -110,7 +110,9 @@
     $("#gpuCeil").textContent = bn.gpuScore;
     var needEl = $("#needNote");
     if (state.workload === "productivity") {
-      needEl.textContent = "Render and compute work scales across cores — the CPU needs score ≥ " + bn.requiredCpuScore + " to match this GPU.";
+      needEl.textContent = "Render and compute work scales across all " + cpu.threads + " threads — the multi-core score needs to be ≥ " + bn.requiredCpuScore + " to match this GPU.";
+    } else if (state.workload === "streaming") {
+      needEl.textContent = "At " + resLabel() + ", this GPU needs a CPU score ≥ " + bn.requiredCpuScore + " while streaming (includes core-headroom for the " + cpu.threads + "-thread CPU).";
     } else {
       needEl.textContent = "At " + resLabel() + ", this GPU needs a CPU score ≥ " + bn.requiredCpuScore + " to stay fully fed.";
     }
@@ -187,6 +189,37 @@
     parts.forEach(function (p) { if (p) { total += p; } else { missing = true; } });
     $("#sumTotal").textContent = missing && total === 0 ? "—" : fmtUsd(total) + (missing ? "+" : "");
     $("#sumPsu").textContent = recPsu + "W";
+
+    // Spec sheets
+    var cpuRows = [
+      ["Architecture", cpu.arch || "—"],
+      ["Cores / Threads", cpu.cores + " / " + cpu.threads],
+      ["Base / Boost clock", (cpu.baseGHz ? cpu.baseGHz + " GHz / " : "— / ") + cpu.boostGHz + " GHz"],
+      ["L3 cache", cpu.l3MB ? cpu.l3MB + " MB" : "—"],
+      ["Socket", cpu.socket],
+      ["TDP", cpu.tdpW + "W"],
+      ["Launch year", cpu.launchYear]
+    ];
+    var gpuRows = [
+      ["Architecture", gpu.arch || "—"],
+      ["VRAM", gpu.vramGB + " GB"],
+      ["TDP", gpu.tdpW + "W"],
+      ["Launch year", gpu.launchYear]
+    ];
+    function fillSpec(id, rows) {
+      var el = $(id);
+      el.innerHTML = "";
+      rows.forEach(function (r) {
+        var d = document.createElement("div");
+        d.className = "spec-row";
+        var k = document.createElement("span"); k.textContent = r[0];
+        var v = document.createElement("span"); v.textContent = String(r[1]);
+        d.appendChild(k); d.appendChild(v);
+        el.appendChild(d);
+      });
+    }
+    fillSpec("#cpuSpecSheet", cpuRows);
+    fillSpec("#gpuSpecSheet", gpuRows);
   }
 
   function resLabel() {
