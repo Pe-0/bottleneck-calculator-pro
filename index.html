@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20261124f" />
+  <link rel="stylesheet" href="css/styles.css?v=20261124g" />
 </head>
 <body>
   <header class="site-header">
@@ -17,11 +17,15 @@
         <span class="brand-mark">◧</span>
         <span>Bottleneck Calculator <strong>Pro</strong></span>
       </div>
-      <nav class="header-note">Stage 1 · CPU + GPU balance</nav>
+      <nav class="tab-nav">
+        <button class="tab-btn active" data-view="calc" type="button">Calculator</button>
+        <button class="tab-btn" data-view="compare" type="button">Compare</button>
+      </nav>
     </div>
   </header>
 
   <main class="container">
+    <div id="viewCalc" class="view">
     <section class="hero">
       <h1>Find the weak link in your build.</h1>
       <p>Pick your CPU and GPU, choose a resolution and workload, and see exactly how balanced the pair is — with FPS estimates and compatibility checks.</p>
@@ -243,6 +247,62 @@
         </details>
       </section>
     </div>
+    </div><!-- /viewCalc -->
+
+    <!-- ============ COMPARISON CENTER ============ -->
+    <div id="viewCompare" class="view hidden">
+      <section class="hero">
+        <h1>Compare hardware side by side.</h1>
+        <p>Put up to three components next to each other - specs, scores, and value metrics - or check the value rankings across the whole database.</p>
+      </section>
+
+      <section class="panel">
+        <h2>Component comparison</h2>
+        <div class="cmp-controls">
+          <label class="field">
+            <span class="field-label">Category</span>
+            <select id="cmpCat"></select>
+          </label>
+          <label class="field">
+            <span class="field-label">First</span>
+            <select id="cmpPick0"></select>
+          </label>
+          <label class="field">
+            <span class="field-label">Second</span>
+            <select id="cmpPick1"></select>
+          </label>
+          <label class="field">
+            <span class="field-label">Third <span class="muted">(optional)</span></span>
+            <select id="cmpPick2"></select>
+          </label>
+        </div>
+        <div id="cmpTable" class="cmp-table"></div>
+        <p class="muted cmp-note">Green marks the stronger value in each row. "Per watt" figures use rated TDP, not measured draw. Scores are the same curated relative estimates used by the calculator.</p>
+      </section>
+
+      <section class="panel">
+        <h2>Value rankings <small class="h-sub">top 10 · priced items only</small></h2>
+        <div class="cmp-controls rank-controls">
+          <label class="field">
+            <span class="field-label">Component</span>
+            <select id="rankCat">
+              <option value="gpu" selected>Graphics cards</option>
+              <option value="cpu">Processors</option>
+            </select>
+          </label>
+          <label class="field">
+            <span class="field-label">Rank by</span>
+            <select id="rankMetric"></select>
+          </label>
+          <label class="field rank-legacy">
+            <input type="checkbox" id="rankLegacy" />
+            <span class="field-label-inline">Include legacy parts <span class="muted">(used-market prices, low confidence)</span></span>
+          </label>
+        </div>
+        <div id="rankList" class="rank-list"></div>
+        <p class="muted cmp-note">Value metrics divide estimated performance by the stored price snapshot - they shift as prices do, and unpriced items are left out rather than guessed.</p>
+      </section>
+    </div><!-- /viewCompare -->
   </main>
 
   <footer class="site-footer">
@@ -253,16 +313,17 @@
     </div>
   </footer>
 
-  <script src="js/data/hardware.js?v=20261124f"></script>
-  <script src="js/data/benchmarks.js?v=20261124f"></script>
-  <script src="js/data/prices.js?v=20261124f"></script>
-  <script src="js/data/games.js?v=20261124f"></script>
-  <script src="js/data/compat.js?v=20261124f"></script>
-  <script src="js/data/components.js?v=20261124f"></script>
-  <script src="js/data/cooling-cases.js?v=20261124f"></script>
-  <script src="js/data/storage.js?v=20261124f"></script>
-  <script src="js/engine.js?v=20261124f"></script>
-  <script src="js/app.js?v=20261124f"></script>
-  <script src="js/assistant.js?v=20261124f"></script>
+  <script src="js/data/hardware.js?v=20261124g"></script>
+  <script src="js/data/benchmarks.js?v=20261124g"></script>
+  <script src="js/data/prices.js?v=20261124g"></script>
+  <script src="js/data/games.js?v=20261124g"></script>
+  <script src="js/data/compat.js?v=20261124g"></script>
+  <script src="js/data/components.js?v=20261124g"></script>
+  <script src="js/data/cooling-cases.js?v=20261124g"></script>
+  <script src="js/data/storage.js?v=20261124g"></script>
+  <script src="js/engine.js?v=20261124g"></script>
+  <script src="js/app.js?v=20261124g"></script>
+  <script src="js/assistant.js?v=20261124g"></script>
+  <script src="js/compare.js?v=20261124g"></script>
 </body>
 </html>

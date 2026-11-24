@@ -259,3 +259,56 @@ select:hover, select:focus { border-color: var(--accent); outline: none; }
 .ai-key-row button, .ai-ask-row button { white-space: nowrap; }
 .ai-remember { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--muted); white-space: nowrap; cursor: pointer; }
 .ai-remember input { accent-color: var(--accent); }
+
+/* ============ Tab navigation ============ */
+.tab-nav { display: flex; gap: 8px; }
+.tab-btn {
+  background: var(--bg-soft); color: var(--muted); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 18px; font-size: 0.9rem; font-weight: 600;
+  cursor: pointer; font-family: inherit;
+}
+.tab-btn:hover { color: var(--text); border-color: var(--accent); }
+.tab-btn.active {
+  background: linear-gradient(135deg, var(--accent), #4169d8);
+  color: #fff; border-color: transparent;
+}
+.view.hidden { display: none; }
+
+/* ============ Comparison center ============ */
+.cmp-controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 18px; }
+.cmp-grid { display: flex; flex-direction: column; }
+.cmp-row { display: grid; gap: 10px; padding: 7px 0; border-bottom: 1px solid rgba(148,163,184,.1); align-items: center; }
+.cmp-grid.cols-2 .cmp-row { grid-template-columns: 1.1fr 1fr 1fr; }
+.cmp-grid.cols-3 .cmp-row { grid-template-columns: 1.1fr 1fr 1fr 1fr; }
+.cmp-head { border-bottom: 2px solid var(--border); padding-bottom: 12px; }
+.cmp-item strong { display: block; font-size: 0.95rem; color: var(--text); }
+.cmp-item .price { font-size: 0.85rem; }
+.cmp-label { color: var(--muted); font-size: 0.85rem; }
+.cmp-val { font-size: 0.9rem; color: var(--text); }
+.cmp-val .cmp-text { display: block; }
+.cmp-val.best .cmp-text { color: var(--accent-2); font-weight: 700; }
+.cmp-val.best .cmp-text::after { content: " ✓"; }
+.cmp-bar { display: block; margin-top: 4px; width: 100%; }
+.cmp-note { font-size: 0.82rem; margin-top: 14px; }
+.cmp-table { overflow-x: auto; }
+
+/* ============ Value rankings ============ */
+.rank-controls { max-width: 480px; }
+.rank-row {
+  display: grid; grid-template-columns: 28px 1.6fr 2fr auto auto;
+  gap: 12px; align-items: center; padding: 8px 0;
+  border-bottom: 1px solid rgba(148,163,184,.1); font-size: 0.9rem;
+}
+.rank-pos { color: var(--muted); font-weight: 700; text-align: center; }
+.rank-row:first-child .rank-pos { color: var(--accent-2); }
+.rank-name { color: var(--text); font-weight: 500; }
+.rank-val { color: var(--accent-2); font-weight: 700; white-space: nowrap; }
+.rank-price { color: var(--muted); white-space: nowrap; font-size: 0.85rem; }
+@media (max-width: 720px) {
+  .rank-row { grid-template-columns: 22px 1fr auto; }
+  .rank-bar, .rank-price { display: none; }
+  .cmp-grid.cols-3 .cmp-row { grid-template-columns: 0.9fr 1fr 1fr 1fr; font-size: 0.8rem; }
+}
+.rank-legacy { display: flex; align-items: center; gap: 8px; padding-top: 20px; }
+.rank-legacy input { accent-color: var(--accent); width: 16px; height: 16px; }
+.rank-legacy .field-label-inline { font-size: 0.85rem; color: var(--muted); }
