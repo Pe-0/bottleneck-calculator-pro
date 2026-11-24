@@ -13,7 +13,7 @@ window.BCP.prices = {
     currency: "USD",
     asOf: "2026-11 (current-gen GPUs) / 2025-Q3 (CPUs and older GPUs)",
     confidence: "medium for current-gen GPU (verified listings); low for the rest",
-    source: "Newegg listings Nov 23, 2026 via techfuelhq.com GPU street price index (current-gen GPUs); curated 2025-Q3 snapshots for CPUs and older cards. Live feeds planned for stage 2"
+    source: "Cheapest qualifying in-stock Newegg listing per model, Nov 23, 2026, via techfuelhq.com GPU street price index (current-gen GPUs; RTX 5090 excluded - its listings fall outside the index's accepted price band); curated 2025-Q3 snapshots for CPUs and older cards. Live feeds planned for stage 2"
   },
   cpu: {
     "r9-9950x": 649, "r9-9900x": 469, "r7-9800x3d": 479, "r7-9700x": 359,
@@ -28,7 +28,7 @@ window.BCP.prices = {
   },
   gpu: {
     // Verified Nov 23, 2026 (Newegg listings via techfuelhq GPU street price index)
-    "rtx-5090": 6450, "rtx-5080": 2200, "rtx-5070ti": 1440, "rtx-5070": 900,
+    "rtx-5080": 2200, "rtx-5070ti": 1440, "rtx-5070": 900,
     "rtx-5060ti": 800, "rx-9070xt": 980, "rx-9070": 935, "rx-9060xt": 750, "rx-9070gre": 730,
     // Older models: 2025-Q3 curated snapshots, likely higher now (2026 market runs well above MSRP)
     "rtx-4090": 1599, "rtx-4080s": 999, "rtx-4070tis": 789, "rtx-4070s": 589,

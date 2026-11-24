@@ -9,6 +9,9 @@
   var state = {
     cpuId: "r7-7800x3d",
     gpuId: "rtx-4070s",
+    moboId: null,
+    ramId: null,
+    psuId: "psu-750g",
     res: "p1440",
     workload: "gaming"
   };
@@ -40,6 +43,30 @@
   }
 
   function fmtUsd(n) { return "$" + n.toLocaleString("en-US"); }
+
+  function fillComponentSelect(el, items, currentId) {
+    el.innerHTML = "";
+    items.forEach(function (it) {
+      var o = document.createElement("option");
+      o.value = it.id;
+      o.textContent = it.name;
+      el.appendChild(o);
+    });
+    var valid = items.some(function (it) { return it.id === currentId; });
+    el.value = valid ? currentId : (items[0] ? items[0].id : "");
+    return el.value;
+  }
+
+  function syncComponentPickers() {
+    var cpu = hw(BCP.cpus.items, state.cpuId);
+    var mobos = BCP.motherboards.items.filter(function (m) { return m.socket === cpu.socket; });
+    state.moboId = fillComponentSelect($("#moboSelect"), mobos, state.moboId);
+    var mobo = hw(BCP.motherboards.items, state.moboId);
+    var kits = BCP.memoryKits.items.filter(function (k) { return !mobo || k.type === mobo.ramType; });
+    state.ramId = fillComponentSelect($("#ramSelect"), kits, state.ramId);
+    fillComponentSelect($("#psuSelect"), BCP.psus.items, state.psuId);
+    state.psuId = $("#psuSelect").value;
+  }
 
   function specLineCpu(c) {
     return c.cores + "C/" + c.threads + "T · up to " + c.boostGHz + " GHz · " + c.socket + " · " + c.tdpW + "W";
@@ -123,6 +150,9 @@
     });
 
     // Build summary
+    var mobo = hw(BCP.motherboards.items, state.moboId);
+    var ram = hw(BCP.memoryKits.items, state.ramId);
+    var psu = hw(BCP.psus.items, state.psuId);
     var cpuPrice = BCP.prices.cpu[state.cpuId];
     var gpuPrice = BCP.prices.gpu[state.gpuId];
     $("#sumCpuName").textContent = cpu.name;
@@ -131,8 +161,38 @@
     $("#sumGpuSpecs").textContent = specLineGpu(gpu);
     $("#sumCpuPrice").textContent = cpuPrice ? fmtUsd(cpuPrice) : "—";
     $("#sumGpuPrice").textContent = gpuPrice ? fmtUsd(gpuPrice) : "—";
-    $("#sumTotal").textContent = (cpuPrice && gpuPrice) ? fmtUsd(cpuPrice + gpuPrice) : "—";
-    $("#sumPsu").textContent = eng.recommendedPsuW(cpu.tdpW, gpu.tdpW) + "W";
+    if (mobo) {
+      $("#sumMoboName").textContent = mobo.name;
+      $("#sumMoboSpecs").textContent = mobo.socket + " · " + mobo.chipset + " · " + mobo.formFactor + " · " + mobo.ramType;
+      $("#sumMoboPrice").textContent = fmtUsd(mobo.priceUSD);
+    }
+    if (ram) {
+      $("#sumRamName").textContent = ram.name;
+      $("#sumRamSpecs").textContent = ram.type + "-" + ram.speedMTs + " CL" + ram.casLatency;
+      $("#sumRamPrice").textContent = fmtUsd(ram.priceUSD);
+    }
+    var recPsu = eng.recommendedPsuW(cpu.tdpW, gpu.tdpW);
+    if (psu) {
+      $("#sumPsuName").textContent = psu.name;
+      $("#sumPsuSpecs").textContent = psu.efficiency + " · " + psu.modular + " modular" + (psu.atx31 ? " · ATX 3.x" : "");
+      $("#sumPsuPrice").textContent = fmtUsd(psu.priceUSD);
+      if (psu.wattageW < recPsu) {
+        var pw = document.createElement("li");
+        pw.className = "warn bad";
+        pw.textContent = "Selected PSU (" + psu.wattageW + "W) is below the recommended " + recPsu + "W for this CPU + GPU pair.";
+        warnBox.appendChild(pw);
+      } else if (gpu.tdpW >= 300 && !psu.atx31) {
+        var pw2 = document.createElement("li");
+        pw2.className = "warn mid";
+        pw2.textContent = "This GPU draws " + gpu.tdpW + "W - an ATX 3.x PSU with a native 12V-2x6 cable is recommended over adapters.";
+        warnBox.appendChild(pw2);
+      }
+    }
+    var parts = [cpuPrice, gpuPrice, mobo && mobo.priceUSD, ram && ram.priceUSD, psu && psu.priceUSD];
+    var total = 0, missing = false;
+    parts.forEach(function (p) { if (p) { total += p; } else { missing = true; } });
+    $("#sumTotal").textContent = missing && total === 0 ? "—" : fmtUsd(total) + (missing ? "+" : "");
+    $("#sumPsu").textContent = recPsu + "W";
   }
 
   function resLabel() {
@@ -160,8 +220,12 @@
     fillSelect(gpuSel, BCP.gpus.items, function (g) { return g.brand; });
     cpuSel.value = state.cpuId;
     gpuSel.value = state.gpuId;
-    cpuSel.addEventListener("change", function () { state.cpuId = cpuSel.value; render(); });
+    cpuSel.addEventListener("change", function () { state.cpuId = cpuSel.value; syncComponentPickers(); render(); });
     gpuSel.addEventListener("change", function () { state.gpuId = gpuSel.value; render(); });
+    syncComponentPickers();
+    $("#moboSelect").addEventListener("change", function () { state.moboId = this.value; syncComponentPickers(); render(); });
+    $("#ramSelect").addEventListener("change", function () { state.ramId = this.value; render(); });
+    $("#psuSelect").addEventListener("change", function () { state.psuId = this.value; render(); });
     bindSegmented("resSeg", "res");
     bindSegmented("wlSeg", "workload");
 
@@ -172,7 +236,8 @@
     $("#dataMeta").textContent =
       "Specs " + BCP.cpus.meta.asOf + " (" + BCP.cpus.meta.confidence + " confidence) · " +
       "Benchmarks " + BCP.benchmarks.meta.asOf + " (" + BCP.benchmarks.meta.confidence + ") · " +
-      "Prices " + BCP.prices.meta.asOf + " " + BCP.prices.meta.currency + " (" + BCP.prices.meta.confidence + ")";
+      "Prices " + BCP.prices.meta.asOf + " " + BCP.prices.meta.currency + " (" + BCP.prices.meta.confidence + ") · " +
+      "Components " + BCP.motherboards.meta.asOf + " (curated)";
     render();
   }
 

@@ -42,6 +42,21 @@
           <select id="gpuSelect"></select>
         </label>
 
+        <label class="field">
+          <span class="field-label">Motherboard</span>
+          <select id="moboSelect"></select>
+        </label>
+
+        <label class="field">
+          <span class="field-label">Memory</span>
+          <select id="ramSelect"></select>
+        </label>
+
+        <label class="field">
+          <span class="field-label">Power supply</span>
+          <select id="psuSelect"></select>
+        </label>
+
         <div class="field">
           <span class="field-label">Resolution</span>
           <div class="segmented" id="resSeg">
@@ -76,12 +91,33 @@
             </div>
             <span class="price" id="sumGpuPrice"></span>
           </div>
+          <div class="sum-row">
+            <div>
+              <strong id="sumMoboName"></strong>
+              <small id="sumMoboSpecs"></small>
+            </div>
+            <span class="price" id="sumMoboPrice"></span>
+          </div>
+          <div class="sum-row">
+            <div>
+              <strong id="sumRamName"></strong>
+              <small id="sumRamSpecs"></small>
+            </div>
+            <span class="price" id="sumRamPrice"></span>
+          </div>
+          <div class="sum-row">
+            <div>
+              <strong id="sumPsuName"></strong>
+              <small id="sumPsuSpecs"></small>
+            </div>
+            <span class="price" id="sumPsuPrice"></span>
+          </div>
           <div class="sum-total">
             <span>Combined</span>
             <span class="price" id="sumTotal"></span>
           </div>
           <div class="sum-total muted-row">
-            <span>Suggested PSU</span>
+            <span>Recommended PSU</span>
             <span id="sumPsu"></span>
           </div>
         </div>
@@ -141,6 +177,7 @@
   <script src="js/data/prices.js"></script>
   <script src="js/data/games.js"></script>
   <script src="js/data/compat.js"></script>
+  <script src="js/data/components.js"></script>
   <script src="js/engine.js"></script>
   <script src="js/app.js"></script>
 </body>
