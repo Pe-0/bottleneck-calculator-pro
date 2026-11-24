@@ -15,6 +15,7 @@ window.BCP.games = {
     layer: "benchmarks.games",
     asOf: "2025-Q3",
     confidence: "medium",
+    source: "Curated from public benchmark suites (TechPowerUp, Tom's Hardware, Notebookcheck)",
     reference: "RTX 4090 + 7800X3D = 100/100, native resolution, highest preset, no upscaling"
   },
   items: [

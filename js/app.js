@@ -165,6 +165,9 @@
     bindSegmented("resSeg", "res");
     bindSegmented("wlSeg", "workload");
 
+    $("#dataNote").textContent =
+      "Bottleneck % is a model estimate. FPS are rough estimates, not measured benchmarks. Prices are seeded snapshots (as of " + BCP.prices.meta.asOf + ").";
+
     // Data confidence footer
     $("#dataMeta").textContent =
       "Specs " + BCP.cpus.meta.asOf + " (" + BCP.cpus.meta.confidence + " confidence) · " +
