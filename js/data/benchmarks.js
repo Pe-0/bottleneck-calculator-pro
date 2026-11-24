@@ -20,10 +20,18 @@ window.BCP.benchmarks = {
   meta: {
     layer: "benchmarks",
     asOf: "2026-11",
-    confidence: "high (Tom's Hardware tables, rescaled); medium for curated estimates",
+    confidence: "high (Tom's Hardware tables, rescaled); medium for curated estimates; LOW for legacy parts (RTX 20/GTX 16/GTX 10, RX 5000, Zen 2, 10th/11th-gen Intel) - absent from current suites, estimated from historical data",
     source: "Tom's Hardware GPU hierarchy 2026-11-18; Tom's Hardware CPU hierarchy 2026-10-05 (via techfuelhq.com, verdictbits.com)"
   },
   cpu: {
+    "r9-3900x": { gaming: 62, productivity: 44 },
+    "r7-3700x": { gaming: 55, productivity: 28 },
+    "r5-3600": { gaming: 50, productivity: 21 },
+    "i9-11900k": { gaming: 66, productivity: 30 },
+    "i5-11400f": { gaming: 55, productivity: 21 },
+    "i9-10900k": { gaming: 63, productivity: 36 },
+    "i7-10700k": { gaming: 60, productivity: 28 },
+    "i5-10400f": { gaming: 52, productivity: 19 },
     "r7-9850x3d": { gaming: 117, productivity: 59 },
     "r9-9950x3d": { gaming: 112, productivity: 103 },
     "r9-9950x3d2": { gaming: 112, productivity: 108 },
@@ -69,6 +77,10 @@ window.BCP.benchmarks = {
     "i5-12400f": { gaming: 63, productivity: 26 }
   },
   gpu: {
+    "rtx-3090ti": 72, "rtx-4070ti": 74, "rtx-3080ti": 65, "rtx-3070ti": 52, "rtx-3050": 24,
+    "rx-6950xt": 67, "rx-6750xt": 45, "rx-7600xt": 56, "rx-6600xt": 34, "rx-6650xt": 35,
+    "rtx-2080ti": 44, "rtx-2080s": 40, "rtx-2070s": 36, "rtx-2060": 28, "gtx-1660s": 21,
+    "gtx-1660ti": 22, "gtx-1080ti": 34, "rx-5700xt": 33, "rx-5600xt": 29, "rx-580": 16,
     "rtx-5090": 111,
     "rtx-5080": 91,
     "rtx-5070ti": 85,

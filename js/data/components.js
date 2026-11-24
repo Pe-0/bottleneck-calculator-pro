@@ -38,6 +38,10 @@ window.BCP.motherboards = {
     { id: "b860m",   name: "B860M (mATX)",        socket: "LGA1851", chipset: "B860",  formFactor: "mATX", ramType: "DDR5", ramSlots: 4, maxRamGB: 256, m2Slots: 2, pcie5Gpu: true,  priceUSD: 140 },
     { id: "b860",    name: "B860 (ATX)",          socket: "LGA1851", chipset: "B860",  formFactor: "ATX",  ramType: "DDR5", ramSlots: 4, maxRamGB: 256, m2Slots: 3, pcie5Gpu: true,  priceUSD: 170 },
     { id: "z890",    name: "Z890 (ATX)",          socket: "LGA1851", chipset: "Z890",  formFactor: "ATX",  ramType: "DDR5", ramSlots: 4, maxRamGB: 256, m2Slots: 4, pcie5Gpu: true,  priceUSD: 280 },
+    // ---- LGA1200 (DDR4) ----
+    { id: "h410m",   name: "H410M (mATX)",        socket: "LGA1200", chipset: "H410",  formFactor: "mATX", ramType: "DDR4", ramSlots: 2, maxRamGB: 64,  m2Slots: 1, pcie5Gpu: false, priceUSD: 65 },
+    { id: "b560m-1200", name: "B560M (mATX)",     socket: "LGA1200", chipset: "B560",  formFactor: "mATX", ramType: "DDR4", ramSlots: 4, maxRamGB: 128, m2Slots: 2, pcie5Gpu: false, priceUSD: 90 },
+    { id: "z490",    name: "Z490 (ATX)",          socket: "LGA1200", chipset: "Z490",  formFactor: "ATX",  ramType: "DDR4", ramSlots: 4, maxRamGB: 128, m2Slots: 2, pcie5Gpu: false, priceUSD: 140 },
     // ---- LGA1700 ----
     { id: "h610m",   name: "H610M DDR4 (mATX)",   socket: "LGA1700", chipset: "H610",  formFactor: "mATX", ramType: "DDR4", ramSlots: 2, maxRamGB: 64,  m2Slots: 1, pcie5Gpu: false, priceUSD: 75 },
     { id: "b660m",   name: "B660M DDR4 (mATX)",   socket: "LGA1700", chipset: "B660",  formFactor: "mATX", ramType: "DDR4", ramSlots: 4, maxRamGB: 128, m2Slots: 2, pcie5Gpu: false, priceUSD: 110 },
