@@ -142,7 +142,10 @@
     // Compatibility
     var warnBox = $("#warnList");
     warnBox.innerHTML = "";
-    eng.compatibility(cpu, gpu, bn).forEach(function (w) {
+    var mobo0 = hw(BCP.motherboards.items, state.moboId);
+    var ram0 = hw(BCP.memoryKits.items, state.ramId);
+    var psu0 = hw(BCP.psus.items, state.psuId);
+    eng.partCompatibility(cpu, gpu, mobo0, ram0, psu0, state.workload, bn).forEach(function (w) {
       var li = document.createElement("li");
       li.className = "warn " + w.level;
       li.textContent = w.text;
@@ -176,17 +179,6 @@
       $("#sumPsuName").textContent = psu.name;
       $("#sumPsuSpecs").textContent = psu.efficiency + " · " + psu.modular + " modular" + (psu.atx31 ? " · ATX 3.x" : "");
       $("#sumPsuPrice").textContent = fmtUsd(psu.priceUSD);
-      if (psu.wattageW < recPsu) {
-        var pw = document.createElement("li");
-        pw.className = "warn bad";
-        pw.textContent = "Selected PSU (" + psu.wattageW + "W) is below the recommended " + recPsu + "W for this CPU + GPU pair.";
-        warnBox.appendChild(pw);
-      } else if (gpu.tdpW >= 300 && !psu.atx31) {
-        var pw2 = document.createElement("li");
-        pw2.className = "warn mid";
-        pw2.textContent = "This GPU draws " + gpu.tdpW + "W - an ATX 3.x PSU with a native 12V-2x6 cable is recommended over adapters.";
-        warnBox.appendChild(pw2);
-      }
     }
     var parts = [cpuPrice, gpuPrice, mobo && mobo.priceUSD, ram && ram.priceUSD, psu && psu.priceUSD];
     var total = 0, missing = false;

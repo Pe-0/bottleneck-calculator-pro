@@ -10,9 +10,9 @@ window.BCP = window.BCP || {};
 window.BCP.compat = {
   meta: {
     layer: "compat",
-    asOf: "2025-Q3",
+    asOf: "2026-11",
     confidence: "high",
-    source: "Intel/AMD platform documentation"
+    source: "Intel/AMD platform documentation, board vendor specs"
   },
   sockets: {
     "AM5":     { ram: ["DDR5"],          chipsets: "AMD 600/800-series (A620, B650, X670, B850, X870)", note: "AM5 supports DDR5 only." },
@@ -25,5 +25,25 @@ window.BCP.compat = {
     headroomW: 150,
     gpuSpikeFactor: 1.15,
     minW: 450
+  },
+  // Board class by chipset: entry boards have modest VRMs and features.
+  boardTier: {
+    "A620": "entry", "A520": "entry", "H610": "entry",
+    "B450": "mid", "B550": "mid", "B650": "mid", "B650E": "mid", "B850": "mid",
+    "B660": "mid", "B760": "mid", "B860": "mid",
+    "X570": "high", "X670E": "high", "X870": "high", "X870E": "high",
+    "Z690": "high", "Z790": "high", "Z890": "high"
+  },
+  // GPUs with a PCIe 5.0 interface (rest are PCIe 4.0)
+  pcie5Gpus: ["rtx-5090","rtx-5080","rtx-5070ti","rtx-5070","rtx-5060ti","rtx-5060","rtx-5050",
+              "rx-9070xt","rx-9070","rx-9070gre","rx-9060xt"],
+  // Intel boards that allow CPU overclocking (AMD: all except A620)
+  intelOcChipsets: ["Z690", "Z790", "Z890"],
+  // Memory speed guidance per socket (MT/s)
+  memGuidance: {
+    "AM5":     { sweet: "DDR5-6000 CL30 is the AM5 sweet spot", low: 5600, high: 6400 },
+    "AM4":     { sweet: "DDR4-3600 is the AM4 sweet spot", low: 3200, high: 3600 },
+    "LGA1700": { sweet: null, low: 3200, high: 7200 },
+    "LGA1851": { sweet: null, low: 5600, high: 8000 }
   }
 };

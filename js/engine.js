@@ -78,6 +78,79 @@ window.BCP.engine = (function () {
     return Math.max(c.minW, Math.ceil(raw / 50) * 50);
   }
 
+  function partCompatibility(cpuHw, gpuHw, mobo, ram, psuSel, workloadKey, bn) {
+    var R = window.BCP.compat;
+    var out = compatibility(cpuHw, gpuHw, bn);
+    if (!mobo) return out;
+    // With a concrete board + kit chosen and matched, the generic
+    // "DDR4 or DDR5 variant" caution no longer applies.
+    if (ram && ram.type === mobo.ramType) {
+      out = out.filter(function (w) { return w.text.indexOf("come in DDR4 and DDR5 variants") === -1; });
+    }
+
+    if (mobo.socket !== cpuHw.socket) {
+      out.push({ level: "bad", text: mobo.name + " is a " + mobo.socket + " board - it does not fit the " + cpuHw.socket + " CPU." });
+    }
+    if (ram) {
+      if (ram.type !== mobo.ramType) {
+        out.push({ level: "bad", text: ram.name + " is " + ram.type + " but this board takes " + mobo.ramType + " only." });
+      }
+      if (ram.capacityGB > mobo.maxRamGB) {
+        out.push({ level: "bad", text: "This board supports up to " + mobo.maxRamGB + " GB - the selected " + ram.capacityGB + " GB kit exceeds that." });
+      }
+      var mg = R.memGuidance[cpuHw.socket];
+      if (mg && ram.type === mobo.ramType) {
+        if (ram.speedMTs < mg.low) {
+          out.push({ level: "info", text: ram.name + " runs below the usual " + cpuHw.socket + " range" + (mg.sweet ? " - " + mg.sweet + "." : ".") });
+        } else if (ram.speedMTs > mg.high) {
+          out.push({ level: "info", text: ram.name + " is above the practical " + cpuHw.socket + " range - expect diminishing returns and manual tuning." });
+        }
+      }
+      if (mobo.chipset === "H610" && ram.speedMTs > 3200) {
+        out.push({ level: "warn", text: "H610 boards run memory at JEDEC speeds - this " + ram.speedMTs + " MT/s kit would be capped near 3200." });
+      }
+      if (workloadKey === "streaming" && ram.capacityGB < 32) {
+        out.push({ level: "warn", text: "Streaming alongside games is memory-hungry - 32 GB or more is recommended." });
+      }
+      if (workloadKey === "productivity" && ram.capacityGB < 64) {
+        out.push({ level: "info", text: "Heavy content work (video, 3D, VMs) benefits from 64 GB." });
+      }
+      if (workloadKey === "gaming" && ram.capacityGB < 32) {
+        out.push({ level: "info", text: "16 GB still runs most games; 32 GB is the safer pick for new titles." });
+      }
+    }
+
+    var tier = R.boardTier[mobo.chipset] || "mid";
+    if (cpuHw.tdpW >= 170 && tier === "entry") {
+      out.push({ level: "warn", text: "A " + cpuHw.tdpW + "W CPU on an entry " + mobo.chipset + " board can hit VRM power limits - a B-series or better board is advised." });
+    }
+    if (cpuHw.brand === "Intel" && /k(p)?$/.test(cpuHw.id) && R.intelOcChipsets.indexOf(mobo.chipset) === -1) {
+      out.push({ level: "info", text: "This unlocked Intel CPU can only be overclocked on a Z-series board (Z790/Z890)." });
+    }
+    if (cpuHw.socket === "AM5" && mobo.chipset === "A620" && /x3d/.test(cpuHw.id) === false && cpuHw.tdpW > 105) {
+      out.push({ level: "info", text: "A620 boards have limited CPU power headroom for higher-TDP Ryzen chips." });
+    }
+    if (R.pcie5Gpus.indexOf(gpuHw.id) !== -1 && !mobo.pcie5Gpu) {
+      out.push({ level: "info", text: gpuHw.name + " is a PCIe 5.0 card on a PCIe 4.0 slot - fully compatible, typically 0-2% performance difference." });
+    }
+
+    if (psuSel) {
+      var rec = recommendedPsuW(cpuHw.tdpW, gpuHw.tdpW);
+      if (psuSel.wattageW < rec) {
+        out.push({ level: "bad", text: "Selected PSU (" + psuSel.wattageW + "W) is below the recommended " + rec + "W for this CPU + GPU pair." });
+      } else if (gpuHw.tdpW >= 300 && !psuSel.atx31) {
+        out.push({ level: "warn", text: "This GPU draws " + gpuHw.tdpW + "W - an ATX 3.x PSU with a native 12V-2x6 cable is recommended over adapters." });
+      }
+    }
+
+    var worst = out.some(function (w) { return w.level === "bad"; }) ? "bad"
+              : out.some(function (w) { return w.level === "warn"; }) ? "warn" : "ok";
+    if (worst === "ok") {
+      out.push({ level: "info", text: "All selected parts are compatible." });
+    }
+    return out;
+  }
+
   function compatibility(cpuHw, gpuHw, bn) {
     var out = [];
     var sock = window.BCP.compat.sockets[cpuHw.socket];
@@ -124,6 +197,7 @@ window.BCP.engine = (function () {
     gameFps: gameFps,
     recommendedPsuW: recommendedPsuW,
     compatibility: compatibility,
+    partCompatibility: partCompatibility,
     balanceLabel: balanceLabel
   };
 })();
