@@ -14,15 +14,15 @@ window.BCP.storage = {
     source: "Samsung, WD, Crucial, Kingston, Solidigm spec pages"
   },
   items: [
-    { id: "ssd-500-g3",  name: "500 GB NVMe Gen3",        capacityGB: 500,  interface: "NVMe PCIe 3.0", readMBs: 3500,  priceUSD: 40 },
-    { id: "ssd-1tb-g3",  name: "1 TB NVMe Gen3",          capacityGB: 1000, interface: "NVMe PCIe 3.0", readMBs: 3500,  priceUSD: 55 },
-    { id: "ssd-1tb-sata",name: "1 TB SATA SSD",           capacityGB: 1000, interface: "SATA",          readMBs: 560,   priceUSD: 55 },
-    { id: "ssd-1tb-g4",  name: "1 TB NVMe Gen4",          capacityGB: 1000, interface: "NVMe PCIe 4.0", readMBs: 7000,  priceUSD: 70 },
-    { id: "ssd-1tb-g4h", name: "1 TB NVMe Gen4 flagship", capacityGB: 1000, interface: "NVMe PCIe 4.0", readMBs: 7450,  priceUSD: 90 },
-    { id: "ssd-2tb-g4",  name: "2 TB NVMe Gen4",          capacityGB: 2000, interface: "NVMe PCIe 4.0", readMBs: 7000,  priceUSD: 120 },
-    { id: "ssd-2tb-g4h", name: "2 TB NVMe Gen4 flagship", capacityGB: 2000, interface: "NVMe PCIe 4.0", readMBs: 7450,  priceUSD: 150 },
-    { id: "ssd-4tb-g4",  name: "4 TB NVMe Gen4",          capacityGB: 4000, interface: "NVMe PCIe 4.0", readMBs: 7000,  priceUSD: 280 },
-    { id: "ssd-1tb-g5",  name: "1 TB NVMe Gen5",          capacityGB: 1000, interface: "NVMe PCIe 5.0", readMBs: 11700, priceUSD: 140 },
-    { id: "ssd-2tb-g5",  name: "2 TB NVMe Gen5",          capacityGB: 2000, interface: "NVMe PCIe 5.0", readMBs: 12400, priceUSD: 240 }
+    { id: "ssd-500-g3",  name: "500 GB M.2 NVMe Gen3 (up to 3,500 MB/s)",        capacityGB: 500,  interface: "NVMe PCIe 3.0", readMBs: 3500,  priceUSD: 40 },
+    { id: "ssd-1tb-g3",  name: "1 TB M.2 NVMe Gen3 (up to 3,500 MB/s)",          capacityGB: 1000, interface: "NVMe PCIe 3.0", readMBs: 3500,  priceUSD: 55 },
+    { id: "ssd-1tb-sata",name: "1 TB SATA SSD 2.5-inch (up to 560 MB/s)",           capacityGB: 1000, interface: "SATA",          readMBs: 560,   priceUSD: 55 },
+    { id: "ssd-1tb-g4",  name: "1 TB M.2 NVMe Gen4 (up to 7,000 MB/s)",          capacityGB: 1000, interface: "NVMe PCIe 4.0", readMBs: 7000,  priceUSD: 70 },
+    { id: "ssd-1tb-g4h", name: "1 TB M.2 NVMe Gen4 flagship (up to 7,450 MB/s)", capacityGB: 1000, interface: "NVMe PCIe 4.0", readMBs: 7450,  priceUSD: 90 },
+    { id: "ssd-2tb-g4",  name: "2 TB M.2 NVMe Gen4 (up to 7,000 MB/s)",          capacityGB: 2000, interface: "NVMe PCIe 4.0", readMBs: 7000,  priceUSD: 120 },
+    { id: "ssd-2tb-g4h", name: "2 TB M.2 NVMe Gen4 flagship (up to 7,450 MB/s)", capacityGB: 2000, interface: "NVMe PCIe 4.0", readMBs: 7450,  priceUSD: 150 },
+    { id: "ssd-4tb-g4",  name: "4 TB M.2 NVMe Gen4 (up to 7,000 MB/s)",          capacityGB: 4000, interface: "NVMe PCIe 4.0", readMBs: 7000,  priceUSD: 280 },
+    { id: "ssd-1tb-g5",  name: "1 TB M.2 NVMe Gen5 (up to 11,700 MB/s)",          capacityGB: 1000, interface: "NVMe PCIe 5.0", readMBs: 11700, priceUSD: 140 },
+    { id: "ssd-2tb-g5",  name: "2 TB M.2 NVMe Gen5 (up to 12,400 MB/s)",          capacityGB: 2000, interface: "NVMe PCIe 5.0", readMBs: 12400, priceUSD: 240 }
   ]
 };

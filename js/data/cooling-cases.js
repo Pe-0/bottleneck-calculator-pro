@@ -16,6 +16,7 @@ window.BCP.coolers = {
     source: "Cooler Master, Thermalright, Noctua, be quiet!, DeepCool, Arctic spec pages"
   },
   items: [
+    { id: "cl-stock",   name: "Stock cooler (bundled with CPU)",  type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851","LGA1200"], tdpRatingW: 65, heightMM: 60, priceUSD: 0 },
     { id: "cl-212",     name: "Hyper 212-class tower (air)",      type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 150, heightMM: 155, priceUSD: 30 },
     { id: "cl-ak400",   name: "DeepCool AK400 (air)",             type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 220, heightMM: 155, priceUSD: 30 },
     { id: "cl-pa120",   name: "Thermalright PA120 SE (air)",      type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 245, heightMM: 155, priceUSD: 35 },

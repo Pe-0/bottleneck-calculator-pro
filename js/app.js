@@ -62,19 +62,36 @@
     return el.value;
   }
 
+  var UNKNOWN = "unknown";
+
+  function addUnknownOption(el, label) {
+    var o = document.createElement("option");
+    o.value = UNKNOWN;
+    o.textContent = label;
+    el.appendChild(o);
+  }
+
   function syncComponentPickers() {
     var cpu = hw(BCP.cpus.items, state.cpuId);
     var mobos = BCP.motherboards.items.filter(function (m) { return m.socket === cpu.socket; });
     state.moboId = fillComponentSelect($("#moboSelect"), mobos, state.moboId);
-    var mobo = hw(BCP.motherboards.items, state.moboId);
+    addUnknownOption($("#moboSelect"), "I don't know my motherboard");
+    if (state.moboId === UNKNOWN || !hw(BCP.motherboards.items, state.moboId)) {
+      $("#moboSelect").value = UNKNOWN;
+      state.moboId = UNKNOWN;
+    }
+    var mobo = state.moboId === UNKNOWN ? null : hw(BCP.motherboards.items, state.moboId);
     var kits = BCP.memoryKits.items.filter(function (k) { return !mobo || k.type === mobo.ramType; });
     state.ramId = fillComponentSelect($("#ramSelect"), kits, state.ramId);
+    addUnknownOption($("#ramSelect"), "I don't know my memory");
+    if (state.ramId === UNKNOWN || !hw(BCP.memoryKits.items, state.ramId)) {
+      $("#ramSelect").value = UNKNOWN;
+      state.ramId = UNKNOWN;
+    }
     fillComponentSelect($("#psuSelect"), BCP.psus.items, state.psuId);
     state.psuId = $("#psuSelect").value;
     fillComponentSelect($("#coolerSelect"), BCP.coolers.items, state.coolerId);
     state.coolerId = $("#coolerSelect").value;
-    fillComponentSelect($("#caseSelect"), BCP.cases.items, state.caseId);
-    state.caseId = $("#caseSelect").value;
     fillComponentSelect($("#storageSelect"), BCP.storage.items, state.storageId);
     state.storageId = $("#storageSelect").value;
   }
@@ -182,8 +199,8 @@
     }
 
     // Build summary
-    var mobo = hw(BCP.motherboards.items, state.moboId);
-    var ram = hw(BCP.memoryKits.items, state.ramId);
+    var mobo = mobo0;
+    var ram = ram0;
     var psu = hw(BCP.psus.items, state.psuId);
     var cpuPrice = BCP.prices.cpu[state.cpuId];
     var gpuPrice = BCP.prices.gpu[state.gpuId];
@@ -197,11 +214,19 @@
       $("#sumMoboName").textContent = mobo.name;
       $("#sumMoboSpecs").textContent = mobo.socket + " · " + mobo.chipset + " · " + mobo.formFactor + " · " + mobo.ramType;
       $("#sumMoboPrice").textContent = fmtUsd(mobo.priceUSD);
+    } else {
+      $("#sumMoboName").textContent = "Motherboard not specified";
+      $("#sumMoboSpecs").textContent = "board-specific checks skipped";
+      $("#sumMoboPrice").textContent = "—";
     }
     if (ram) {
       $("#sumRamName").textContent = ram.name;
       $("#sumRamSpecs").textContent = ram.type + "-" + ram.speedMTs + " CL" + ram.casLatency;
       $("#sumRamPrice").textContent = fmtUsd(ram.priceUSD);
+    } else {
+      $("#sumRamName").textContent = "Memory not specified";
+      $("#sumRamSpecs").textContent = "memory checks skipped";
+      $("#sumRamPrice").textContent = "—";
     }
     var recPsu = eng.recommendedPsuW(cpu.tdpW, gpu.tdpW);
     if (psu) {
@@ -210,16 +235,10 @@
       $("#sumPsuPrice").textContent = fmtUsd(psu.priceUSD);
     }
     var cooler = hw(BCP.coolers.items, state.coolerId);
-    var pcCase = hw(BCP.cases.items, state.caseId);
     if (cooler) {
       $("#sumCoolerName").textContent = cooler.name;
-      $("#sumCoolerSpecs").textContent = cooler.type === "AIO" ? "AIO · " + cooler.radiatorMM + "mm radiator" : "Air · " + cooler.heightMM + "mm tall";
-      $("#sumCoolerPrice").textContent = fmtUsd(cooler.priceUSD);
-    }
-    if (pcCase) {
-      $("#sumCaseName").textContent = pcCase.name;
-      $("#sumCaseSpecs").textContent = "Fits " + pcCase.fits.join("/") + " · GPU to " + pcCase.maxGpuLengthMM + "mm";
-      $("#sumCasePrice").textContent = fmtUsd(pcCase.priceUSD);
+      $("#sumCoolerSpecs").textContent = cooler.type === "AIO" ? "AIO · " + cooler.radiatorMM + "mm radiator" : (cooler.id === "cl-stock" ? "included with many CPUs up to 65W" : "Air · " + cooler.heightMM + "mm tall");
+      $("#sumCoolerPrice").textContent = cooler.priceUSD ? fmtUsd(cooler.priceUSD) : "$0";
     }
     var storage = hw(BCP.storage.items, state.storageId);
     if (storage) {
@@ -227,9 +246,9 @@
       $("#sumStorageSpecs").textContent = storage.interface + " · up to " + storage.readMBs.toLocaleString("en-US") + " MB/s";
       $("#sumStoragePrice").textContent = fmtUsd(storage.priceUSD);
     }
-    var parts = [cpuPrice, gpuPrice, mobo && mobo.priceUSD, ram && ram.priceUSD, psu && psu.priceUSD, cooler && cooler.priceUSD, pcCase && pcCase.priceUSD, storage && storage.priceUSD];
+    var parts = [cpuPrice, gpuPrice, mobo && mobo.priceUSD, ram && ram.priceUSD, psu && psu.priceUSD, cooler && cooler.priceUSD, storage && storage.priceUSD];
     var total = 0, missing = false;
-    parts.forEach(function (p) { if (p) { total += p; } else { missing = true; } });
+    parts.forEach(function (p) { if (p !== undefined && p !== null) { total += p; } else { missing = true; } });
     $("#sumTotal").textContent = missing && total === 0 ? "—" : fmtUsd(total) + (missing ? "+" : "");
     $("#sumPsu").textContent = recPsu + "W";
 
@@ -298,7 +317,6 @@
     $("#ramSelect").addEventListener("change", function () { state.ramId = this.value; render(); });
     $("#psuSelect").addEventListener("change", function () { state.psuId = this.value; render(); });
     $("#coolerSelect").addEventListener("change", function () { state.coolerId = this.value; render(); });
-    $("#caseSelect").addEventListener("change", function () { state.caseId = this.value; render(); });
     $("#storageSelect").addEventListener("change", function () { state.storageId = this.value; render(); });
 
     // Shareable build link: encode the full build in the URL hash.
@@ -361,8 +379,7 @@
           [b.mobo.name, fmtUsd(b.mobo.priceUSD)],
           [b.ram.name, fmtUsd(b.ram.priceUSD)],
           [b.psu.name, fmtUsd(b.psu.priceUSD)],
-          [b.cooler.name, fmtUsd(b.cooler.priceUSD)],
-          [b.pcCase.name, fmtUsd(b.pcCase.priceUSD)],
+          [b.cooler.name, b.cooler.priceUSD ? fmtUsd(b.cooler.priceUSD) : "$0"],
           [b.storage.name, fmtUsd(b.storage.priceUSD)]
         ].map(function (r) { return "<li><span></span><span>" + r[1] + "</span></li>"; });
         card.innerHTML =
@@ -372,15 +389,15 @@
           '<button class="gen-load" type="button">Load this build</button>';
         card.querySelector("h4").textContent = b.cpu.name + " + " + b.gpu.name;
         var lis = card.querySelectorAll("li span:first-child");
-        [b.cpu.name, b.gpu.name, b.mobo.name, b.ram.name, b.psu.name, b.cooler.name, b.pcCase.name, b.storage.name].forEach(function (n, i) { lis[i].textContent = n; });
+        [b.cpu.name, b.gpu.name, b.mobo.name, b.ram.name, b.psu.name, b.cooler.name, b.storage.name].forEach(function (n, i) { lis[i].textContent = n; });
         card.querySelector(".gen-meta").innerHTML =
           'Total <span class="gen-total"></span> · bottleneck ' + b.pct + "% (" + b.limiter + "-limited) at " + resLabel() + " · " + eng.WORKLOADS[state.workload].label;
         card.querySelector(".gen-total").textContent = fmtUsd(b.total);
         card.querySelector(".gen-load").addEventListener("click", function () {
           state.cpuId = b.cpu.id; state.gpuId = b.gpu.id;
           state.moboId = b.mobo.id; state.ramId = b.ram.id; state.psuId = b.psu.id;
-          state.coolerId = b.cooler.id; state.caseId = b.pcCase.id; state.storageId = b.storage.id;
-          $("#coolerSelect").value = b.cooler.id; $("#caseSelect").value = b.pcCase.id; $("#storageSelect").value = b.storage.id;
+          state.coolerId = b.cooler.id; state.storageId = b.storage.id;
+          $("#coolerSelect").value = b.cooler.id; $("#storageSelect").value = b.storage.id;
           $("#cpuSelect").value = state.cpuId;
           $("#gpuSelect").value = state.gpuId;
           syncComponentPickers();

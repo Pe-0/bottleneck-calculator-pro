@@ -300,16 +300,16 @@ window.BCP.engine = (function () {
         var gpuScore = B.benchmarks.gpu[gpu.id];
         if (!gpuPrice || !gpuScore) return;
         var mobo = pickMobo(cpu), ram = mobo && pickRam(mobo, workloadKey), psu = pickPsu(cpu, gpu);
-        var cooler = pickCooler(cpu), pcCase = mobo && pickCase(mobo, gpu, cooler);
+        var cooler = pickCooler(cpu);
         var drive = pickStorage(workloadKey);
-        if (!mobo || !ram || !psu || !cooler || !pcCase || !drive) return;
-        var total = cpuPrice + gpuPrice + mobo.priceUSD + ram.priceUSD + psu.priceUSD + cooler.priceUSD + pcCase.priceUSD + drive.priceUSD;
+        if (!mobo || !ram || !psu || !cooler || !drive) return;
+        var total = cpuPrice + gpuPrice + mobo.priceUSD + ram.priceUSD + psu.priceUSD + cooler.priceUSD + drive.priceUSD;
         if (total > budgetUsd) return;
         var eff = workloadKey === "productivity"
           ? 0.7 * cpuBench.productivity + 0.3 * gpuScore
           : Math.min(gpuScore, cpuBench.gaming / feed);
         var bn = bottleneck(cpuBench, gpuScore, resKey, workloadKey);
-        out.push({ cpu: cpu, gpu: gpu, mobo: mobo, ram: ram, psu: psu, cooler: cooler, pcCase: pcCase, storage: drive, total: total, eff: eff, pct: bn.pct, limiter: bn.limiter });
+        out.push({ cpu: cpu, gpu: gpu, mobo: mobo, ram: ram, psu: psu, cooler: cooler, storage: drive, total: total, eff: eff, pct: bn.pct, limiter: bn.limiter });
       });
     });
 
