@@ -238,3 +238,4 @@ select:hover, select:focus { border-color: var(--accent); outline: none; }
 
 .spec-details summary { cursor: pointer; font-size: 14px; font-weight: 600; color: #cbd5e1; padding: 2px 0 10px; }
 .spec-details summary::marker { color: #2563eb; }
+.site-footer .copy { font-size: 0.78rem; opacity: 0.55; margin-top: 10px; letter-spacing: 0.02em; }
