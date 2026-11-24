@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bottleneck Calculator Pro — CPU & GPU Balance Checker</title>
+  <meta name="description" content="Check CPU/GPU bottleneck percentage by resolution and workload, estimate FPS in popular games, and get compatibility guidance." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="brand-mark">◧</span>
+        <span>Bottleneck Calculator <strong>Pro</strong></span>
+      </div>
+      <nav class="header-note">Stage 1 · CPU + GPU balance</nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Find the weak link in your build.</h1>
+      <p>Pick your CPU and GPU, choose a resolution and workload, and see exactly how balanced the pair is — with FPS estimates and compatibility checks.</p>
+    </section>
+
+    <div class="layout">
+      <!-- ============ CONFIGURATION ============ -->
+      <section class="panel config">
+        <h2>Your components</h2>
+
+        <label class="field">
+          <span class="field-label">Processor</span>
+          <select id="cpuSelect"></select>
+        </label>
+
+        <label class="field">
+          <span class="field-label">Graphics card</span>
+          <select id="gpuSelect"></select>
+        </label>
+
+        <div class="field">
+          <span class="field-label">Resolution</span>
+          <div class="segmented" id="resSeg">
+            <button data-val="p1080">1080p</button>
+            <button data-val="p1440" class="active">1440p</button>
+            <button data-val="p2160">4K</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="field-label">Workload</span>
+          <div class="segmented" id="wlSeg">
+            <button data-val="gaming" class="active">Gaming</button>
+            <button data-val="streaming">Streaming</button>
+            <button data-val="productivity">Productivity</button>
+          </div>
+        </div>
+
+        <div class="build-summary">
+          <h3>Build summary</h3>
+          <div class="sum-row">
+            <div>
+              <strong id="sumCpuName"></strong>
+              <small id="sumCpuSpecs"></small>
+            </div>
+            <span class="price" id="sumCpuPrice"></span>
+          </div>
+          <div class="sum-row">
+            <div>
+              <strong id="sumGpuName"></strong>
+              <small id="sumGpuSpecs"></small>
+            </div>
+            <span class="price" id="sumGpuPrice"></span>
+          </div>
+          <div class="sum-total">
+            <span>Combined</span>
+            <span class="price" id="sumTotal"></span>
+          </div>
+          <div class="sum-total muted-row">
+            <span>Suggested PSU</span>
+            <span id="sumPsu"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ RESULTS ============ -->
+      <section class="results">
+        <div class="panel gauge-panel">
+          <h2>Bottleneck analysis</h2>
+          <div class="gauge-wrap">
+            <svg viewBox="0 0 100 60" class="gauge" aria-hidden="true">
+              <path class="gauge-track" d="M 10 55 A 40 40 0 0 1 90 55" />
+              <path class="gauge-arc" id="gaugeArc" d="M 10 55 A 40 40 0 0 1 90 55" />
+            </svg>
+            <div class="gauge-center">
+              <span class="gauge-value" id="gaugeValue">–</span>
+              <span class="gauge-label" id="gaugeLabel"></span>
+            </div>
+          </div>
+          <p class="limiter-note" id="limiterNote"></p>
+          <div class="ceil-cards">
+            <div class="ceil">
+              <small id="cpuScoreLabel">CPU score</small>
+              <strong id="cpuCeil">–</strong>
+            </div>
+            <div class="ceil">
+              <small>GPU score</small>
+              <strong id="gpuCeil">–</strong>
+            </div>
+          </div>
+          <p class="need-note muted" id="needNote"></p>
+        </div>
+
+        <div class="panel">
+          <h2>Estimated FPS <small class="h-sub" id="fpsResNote">popular games · selected resolution</small></h2>
+          <div class="fps-list" id="fpsList"></div>
+        </div>
+
+        <div class="panel">
+          <h2>Compatibility &amp; advice</h2>
+          <ul class="warn-list" id="warnList"></ul>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>FPS figures are estimates from curated relative-performance data, not measured benchmarks. Treat prices as indicative.</p>
+      <p class="muted" id="dataMeta"></p>
+    </div>
+  </footer>
+
+  <script src="js/data/hardware.js"></script>
+  <script src="js/data/benchmarks.js"></script>
+  <script src="js/data/prices.js"></script>
+  <script src="js/data/games.js"></script>
+  <script src="js/data/compat.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
