@@ -67,6 +67,11 @@
           <select id="caseSelect"></select>
         </label>
 
+        <label class="field">
+          <span class="field-label">Storage</span>
+          <select id="storageSelect"></select>
+        </label>
+
         <div class="field">
           <span class="field-label">Resolution</span>
           <div class="segmented" id="resSeg">
@@ -136,6 +141,13 @@
             </div>
             <span class="price" id="sumCasePrice"></span>
           </div>
+          <div class="sum-row">
+            <div>
+              <strong id="sumStorageName"></strong>
+              <small id="sumStorageSpecs"></small>
+            </div>
+            <span class="price" id="sumStoragePrice"></span>
+          </div>
           <div class="sum-total">
             <span>Combined</span>
             <span class="price" id="sumTotal"></span>
@@ -144,6 +156,7 @@
             <span>Recommended PSU</span>
             <span id="sumPsu"></span>
           </div>
+          <button id="shareBtn" class="gen-load share-btn" type="button">Copy build link</button>
         </div>
       </section>
 
@@ -241,6 +254,7 @@
   <script src="js/data/compat.js"></script>
   <script src="js/data/components.js"></script>
   <script src="js/data/cooling-cases.js"></script>
+  <script src="js/data/storage.js"></script>
   <script src="js/engine.js"></script>
   <script src="js/app.js"></script>
 </body>

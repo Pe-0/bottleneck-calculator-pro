@@ -14,6 +14,7 @@
     psuId: "psu-750g",
     coolerId: "cl-pa120",
     caseId: "case-atx-value",
+    storageId: "ssd-1tb-g4",
     res: "p1440",
     workload: "gaming"
   };
@@ -74,6 +75,8 @@
     state.coolerId = $("#coolerSelect").value;
     fillComponentSelect($("#caseSelect"), BCP.cases.items, state.caseId);
     state.caseId = $("#caseSelect").value;
+    fillComponentSelect($("#storageSelect"), BCP.storage.items, state.storageId);
+    state.storageId = $("#storageSelect").value;
   }
 
   function specLineCpu(c) {
@@ -157,12 +160,26 @@
     var psu0 = hw(BCP.psus.items, state.psuId);
     var cooler0 = hw(BCP.coolers.items, state.coolerId);
     var case0 = hw(BCP.cases.items, state.caseId);
+    var storage0 = hw(BCP.storage.items, state.storageId);
     eng.partCompatibility(cpu, gpu, mobo0, ram0, psu0, state.workload, bn, cooler0, case0).forEach(function (w) {
       var li = document.createElement("li");
       li.className = "warn " + w.level;
       li.textContent = w.text;
       warnBox.appendChild(li);
     });
+    if (storage0) {
+      if (state.workload !== "productivity" && storage0.capacityGB < 1000) {
+        var sw = document.createElement("li");
+        sw.className = "warn mid";
+        sw.textContent = "Modern games routinely exceed 100 GB each - a 1 TB or larger drive is recommended.";
+        warnBox.appendChild(sw);
+      } else if (state.workload === "productivity" && storage0.capacityGB < 2000) {
+        var sw2 = document.createElement("li");
+        sw2.className = "warn mid";
+        sw2.textContent = "Video and 3D project files grow fast - 2 TB or more is recommended for content work.";
+        warnBox.appendChild(sw2);
+      }
+    }
 
     // Build summary
     var mobo = hw(BCP.motherboards.items, state.moboId);
@@ -204,7 +221,13 @@
       $("#sumCaseSpecs").textContent = "Fits " + pcCase.fits.join("/") + " · GPU to " + pcCase.maxGpuLengthMM + "mm";
       $("#sumCasePrice").textContent = fmtUsd(pcCase.priceUSD);
     }
-    var parts = [cpuPrice, gpuPrice, mobo && mobo.priceUSD, ram && ram.priceUSD, psu && psu.priceUSD, cooler && cooler.priceUSD, pcCase && pcCase.priceUSD];
+    var storage = hw(BCP.storage.items, state.storageId);
+    if (storage) {
+      $("#sumStorageName").textContent = storage.name;
+      $("#sumStorageSpecs").textContent = storage.interface + " · up to " + storage.readMBs.toLocaleString("en-US") + " MB/s";
+      $("#sumStoragePrice").textContent = fmtUsd(storage.priceUSD);
+    }
+    var parts = [cpuPrice, gpuPrice, mobo && mobo.priceUSD, ram && ram.priceUSD, psu && psu.priceUSD, cooler && cooler.priceUSD, pcCase && pcCase.priceUSD, storage && storage.priceUSD];
     var total = 0, missing = false;
     parts.forEach(function (p) { if (p) { total += p; } else { missing = true; } });
     $("#sumTotal").textContent = missing && total === 0 ? "—" : fmtUsd(total) + (missing ? "+" : "");
@@ -276,6 +299,44 @@
     $("#psuSelect").addEventListener("change", function () { state.psuId = this.value; render(); });
     $("#coolerSelect").addEventListener("change", function () { state.coolerId = this.value; render(); });
     $("#caseSelect").addEventListener("change", function () { state.caseId = this.value; render(); });
+    $("#storageSelect").addEventListener("change", function () { state.storageId = this.value; render(); });
+
+    // Shareable build link: encode the full build in the URL hash.
+    $("#shareBtn").addEventListener("click", function () {
+      var code = [state.cpuId, state.gpuId, state.moboId, state.ramId, state.psuId,
+                  state.coolerId, state.caseId, state.storageId, state.res, state.workload].join(",");
+      var url = location.origin + location.pathname + "#b=" + code;
+      var done = function () {
+        $("#shareBtn").textContent = "Link copied";
+        setTimeout(function () { $("#shareBtn").textContent = "Copy build link"; }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(done, function () { prompt("Copy this link:", url); });
+      } else {
+        prompt("Copy this link:", url);
+      }
+    });
+
+    // Restore a shared build from the URL hash.
+    if (location.hash.indexOf("#b=") === 0) {
+      var parts0 = location.hash.slice(3).split(",");
+      if (parts0.length === 10) {
+        state.cpuId = parts0[0]; state.gpuId = parts0[1]; state.moboId = parts0[2];
+        state.ramId = parts0[3]; state.psuId = parts0[4]; state.coolerId = parts0[5];
+        state.caseId = parts0[6]; state.storageId = parts0[7];
+        if ({p1080:1,p1440:1,p2160:1}[parts0[8]]) state.res = parts0[8];
+        if (eng.WORKLOADS[parts0[9]]) state.workload = parts0[9];
+        document.querySelectorAll("#resSeg button").forEach(function (b) {
+          b.classList.toggle("active", b.dataset.val === state.res);
+        });
+        document.querySelectorAll("#wlSeg button").forEach(function (b) {
+          b.classList.toggle("active", b.dataset.val === state.workload);
+        });
+        cpuSel.value = state.cpuId;
+        gpuSel.value = state.gpuId;
+        syncComponentPickers();
+      }
+    }
     bindSegmented("resSeg", "res");
     bindSegmented("wlSeg", "workload");
 
@@ -301,7 +362,8 @@
           [b.ram.name, fmtUsd(b.ram.priceUSD)],
           [b.psu.name, fmtUsd(b.psu.priceUSD)],
           [b.cooler.name, fmtUsd(b.cooler.priceUSD)],
-          [b.pcCase.name, fmtUsd(b.pcCase.priceUSD)]
+          [b.pcCase.name, fmtUsd(b.pcCase.priceUSD)],
+          [b.storage.name, fmtUsd(b.storage.priceUSD)]
         ].map(function (r) { return "<li><span></span><span>" + r[1] + "</span></li>"; });
         card.innerHTML =
           "<h4></h4>" +
@@ -310,15 +372,15 @@
           '<button class="gen-load" type="button">Load this build</button>';
         card.querySelector("h4").textContent = b.cpu.name + " + " + b.gpu.name;
         var lis = card.querySelectorAll("li span:first-child");
-        [b.cpu.name, b.gpu.name, b.mobo.name, b.ram.name, b.psu.name, b.cooler.name, b.pcCase.name].forEach(function (n, i) { lis[i].textContent = n; });
+        [b.cpu.name, b.gpu.name, b.mobo.name, b.ram.name, b.psu.name, b.cooler.name, b.pcCase.name, b.storage.name].forEach(function (n, i) { lis[i].textContent = n; });
         card.querySelector(".gen-meta").innerHTML =
           'Total <span class="gen-total"></span> · bottleneck ' + b.pct + "% (" + b.limiter + "-limited) at " + resLabel() + " · " + eng.WORKLOADS[state.workload].label;
         card.querySelector(".gen-total").textContent = fmtUsd(b.total);
         card.querySelector(".gen-load").addEventListener("click", function () {
           state.cpuId = b.cpu.id; state.gpuId = b.gpu.id;
           state.moboId = b.mobo.id; state.ramId = b.ram.id; state.psuId = b.psu.id;
-          state.coolerId = b.cooler.id; state.caseId = b.pcCase.id;
-          $("#coolerSelect").value = b.cooler.id; $("#caseSelect").value = b.pcCase.id;
+          state.coolerId = b.cooler.id; state.caseId = b.pcCase.id; state.storageId = b.storage.id;
+          $("#coolerSelect").value = b.cooler.id; $("#caseSelect").value = b.pcCase.id; $("#storageSelect").value = b.storage.id;
           $("#cpuSelect").value = state.cpuId;
           $("#gpuSelect").value = state.gpuId;
           syncComponentPickers();
