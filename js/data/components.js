@@ -23,6 +23,7 @@ window.BCP.motherboards = {
     { id: "b650",    name: "B650 (ATX)",          socket: "AM5",     chipset: "B650",  formFactor: "ATX",  ramType: "DDR5", ramSlots: 4, maxRamGB: 192, m2Slots: 3, pcie5Gpu: false, priceUSD: 160 },
     { id: "b650e",   name: "B650E (ATX)",         socket: "AM5",     chipset: "B650E", formFactor: "ATX",  ramType: "DDR5", ramSlots: 4, maxRamGB: 192, m2Slots: 3, pcie5Gpu: true,  priceUSD: 220 },
     { id: "x670e",   name: "X670E (ATX)",         socket: "AM5",     chipset: "X670E", formFactor: "ATX",  ramType: "DDR5", ramSlots: 4, maxRamGB: 192, m2Slots: 4, pcie5Gpu: true,  priceUSD: 300 },
+    { id: "x670",    name: "X670 (ATX)",          socket: "AM5",     chipset: "X670",  formFactor: "ATX",  ramType: "DDR5", ramSlots: 4, maxRamGB: 192, m2Slots: 4, pcie5Gpu: false, priceUSD: 240 },
     { id: "b650-itx",name: "B650 ITX (ITX)",      socket: "AM5",     chipset: "B650",  formFactor: "ITX",  ramType: "DDR5", ramSlots: 2, maxRamGB: 128, m2Slots: 2, pcie5Gpu: false, priceUSD: 180 },
     { id: "b850m",   name: "B850M (mATX)",        socket: "AM5",     chipset: "B850",  formFactor: "mATX", ramType: "DDR5", ramSlots: 4, maxRamGB: 256, m2Slots: 2, pcie5Gpu: false, priceUSD: 150 },
     { id: "b850",    name: "B850 (ATX)",          socket: "AM5",     chipset: "B850",  formFactor: "ATX",  ramType: "DDR5", ramSlots: 4, maxRamGB: 256, m2Slots: 3, pcie5Gpu: true,  priceUSD: 190 },
@@ -34,6 +35,7 @@ window.BCP.motherboards = {
     { id: "b550m",   name: "B550M (mATX)",        socket: "AM4",     chipset: "B550",  formFactor: "mATX", ramType: "DDR4", ramSlots: 4, maxRamGB: 128, m2Slots: 2, pcie5Gpu: false, priceUSD: 100 },
     { id: "b550",    name: "B550 (ATX)",          socket: "AM4",     chipset: "B550",  formFactor: "ATX",  ramType: "DDR4", ramSlots: 4, maxRamGB: 128, m2Slots: 2, pcie5Gpu: false, priceUSD: 120 },
     { id: "x570",    name: "X570 (ATX)",          socket: "AM4",     chipset: "X570",  formFactor: "ATX",  ramType: "DDR4", ramSlots: 4, maxRamGB: 128, m2Slots: 2, pcie5Gpu: false, priceUSD: 180 },
+    { id: "b550-itx",name: "B550 ITX (ITX)",      socket: "AM4",     chipset: "B550",  formFactor: "ITX",  ramType: "DDR4", ramSlots: 2, maxRamGB: 64,  m2Slots: 2, pcie5Gpu: false, priceUSD: 140 },
     // ---- LGA1851 (DDR5 only) ----
     { id: "b860m",   name: "B860M (mATX)",        socket: "LGA1851", chipset: "B860",  formFactor: "mATX", ramType: "DDR5", ramSlots: 4, maxRamGB: 256, m2Slots: 2, pcie5Gpu: true,  priceUSD: 140 },
     { id: "b860",    name: "B860 (ATX)",          socket: "LGA1851", chipset: "B860",  formFactor: "ATX",  ramType: "DDR5", ramSlots: 4, maxRamGB: 256, m2Slots: 3, pcie5Gpu: true,  priceUSD: 170 },
@@ -46,8 +48,10 @@ window.BCP.motherboards = {
     { id: "h610m",   name: "H610M DDR4 (mATX)",   socket: "LGA1700", chipset: "H610",  formFactor: "mATX", ramType: "DDR4", ramSlots: 2, maxRamGB: 64,  m2Slots: 1, pcie5Gpu: false, priceUSD: 75 },
     { id: "b660m",   name: "B660M DDR4 (mATX)",   socket: "LGA1700", chipset: "B660",  formFactor: "mATX", ramType: "DDR4", ramSlots: 4, maxRamGB: 128, m2Slots: 2, pcie5Gpu: false, priceUSD: 110 },
     { id: "b760m",   name: "B760M DDR4 (mATX)",   socket: "LGA1700", chipset: "B760",  formFactor: "mATX", ramType: "DDR4", ramSlots: 4, maxRamGB: 128, m2Slots: 2, pcie5Gpu: false, priceUSD: 120 },
+    { id: "b760m-d5",name: "B760M DDR5 (mATX)",   socket: "LGA1700", chipset: "B760",  formFactor: "mATX", ramType: "DDR5", ramSlots: 4, maxRamGB: 192, m2Slots: 2, pcie5Gpu: false, priceUSD: 140 },
     { id: "b760-d5", name: "B760 DDR5 (ATX)",     socket: "LGA1700", chipset: "B760",  formFactor: "ATX",  ramType: "DDR5", ramSlots: 4, maxRamGB: 192, m2Slots: 3, pcie5Gpu: false, priceUSD: 160 },
     { id: "b760i",   name: "B760I DDR5 (ITX)",    socket: "LGA1700", chipset: "B760",  formFactor: "ITX",  ramType: "DDR5", ramSlots: 2, maxRamGB: 96,  m2Slots: 2, pcie5Gpu: false, priceUSD: 170 },
+    { id: "z690-d4", name: "Z690 DDR4 (ATX)",     socket: "LGA1700", chipset: "Z690",  formFactor: "ATX",  ramType: "DDR4", ramSlots: 4, maxRamGB: 128, m2Slots: 3, pcie5Gpu: false, priceUSD: 190 },
     { id: "z790",    name: "Z790 DDR5 (ATX)",     socket: "LGA1700", chipset: "Z790",  formFactor: "ATX",  ramType: "DDR5", ramSlots: 4, maxRamGB: 192, m2Slots: 4, pcie5Gpu: true,  priceUSD: 240 }
   ]
 };
@@ -69,7 +73,13 @@ window.BCP.memoryKits = {
     { id: "d5-6000-64", name: "64 GB DDR5-6000 CL30 (2x32)",  type: "DDR5", speedMTs: 6000, capacityGB: 64, modules: 2, casLatency: 30, priceUSD: 190 },
     { id: "d5-6400-32", name: "32 GB DDR5-6400 CL32 (2x16)",  type: "DDR5", speedMTs: 6400, capacityGB: 32, modules: 2, casLatency: 32, priceUSD: 115 },
     { id: "d5-6800-32", name: "32 GB DDR5-6800 CL34 (2x16)",  type: "DDR5", speedMTs: 6800, capacityGB: 32, modules: 2, casLatency: 34, priceUSD: 140 },
-    { id: "d5-7200-32", name: "32 GB DDR5-7200 CL36 (2x16)",  type: "DDR5", speedMTs: 7200, capacityGB: 32, modules: 2, casLatency: 36, priceUSD: 190 }
+    { id: "d5-7200-32", name: "32 GB DDR5-7200 CL36 (2x16)",  type: "DDR5", speedMTs: 7200, capacityGB: 32, modules: 2, casLatency: 36, priceUSD: 190 },
+    { id: "d4-3200-64", name: "64 GB DDR4-3200 CL16 (2x32)",  type: "DDR4", speedMTs: 3200, capacityGB: 64, modules: 2, casLatency: 16, priceUSD: 120 },
+    { id: "d5-5200-16", name: "16 GB DDR5-5200 CL42 (2x8)",   type: "DDR5", speedMTs: 5200, capacityGB: 16, modules: 2, casLatency: 42, priceUSD: 55 },
+    { id: "d5-6000-16", name: "16 GB DDR5-6000 CL30 (2x8)",   type: "DDR5", speedMTs: 6000, capacityGB: 16, modules: 2, casLatency: 30, priceUSD: 62 },
+    { id: "d5-6400-48", name: "48 GB DDR5-6400 CL32 (2x24)",  type: "DDR5", speedMTs: 6400, capacityGB: 48, modules: 2, casLatency: 32, priceUSD: 140 },
+    { id: "d5-5600-96", name: "96 GB DDR5-5600 CL40 (2x48)",  type: "DDR5", speedMTs: 5600, capacityGB: 96, modules: 2, casLatency: 40, priceUSD: 280 },
+    { id: "d5-5600-128",name: "128 GB DDR5-5600 CL40 (4x32)", type: "DDR5", speedMTs: 5600, capacityGB: 128, modules: 4, casLatency: 40, priceUSD: 390 }
   ]
 };
 
@@ -89,6 +99,10 @@ window.BCP.psus = {
     { id: "psu-1000g", name: "1000W 80+ Gold ATX 3.1",     wattageW: 1000, efficiency: "Gold",     modular: "Full", atx31: true,  priceUSD: 160 },
     { id: "psu-1000p", name: "1000W 80+ Platinum ATX 3.1", wattageW: 1000, efficiency: "Platinum", modular: "Full", atx31: true,  priceUSD: 200 },
     { id: "psu-1200p", name: "1200W 80+ Platinum ATX 3.1", wattageW: 1200, efficiency: "Platinum", modular: "Full", atx31: true,  priceUSD: 260 },
-    { id: "psu-1500p", name: "1500W 80+ Platinum ATX 3.1", wattageW: 1500, efficiency: "Platinum", modular: "Full", atx31: true,  priceUSD: 330 }
+    { id: "psu-1500p", name: "1500W 80+ Platinum ATX 3.1", wattageW: 1500, efficiency: "Platinum", modular: "Full", atx31: true,  priceUSD: 330 },
+    { id: "psu-450b",  name: "450W 80+ Bronze",            wattageW: 450,  efficiency: "Bronze",   modular: "No",   atx31: false, priceUSD: 40 },
+    { id: "psu-550g",  name: "550W 80+ Gold",              wattageW: 550,  efficiency: "Gold",     modular: "Semi", atx31: false, priceUSD: 70 },
+    { id: "psu-750b",  name: "750W 80+ Bronze",            wattageW: 750,  efficiency: "Bronze",   modular: "No",   atx31: false, priceUSD: 70 },
+    { id: "psu-850p",  name: "850W 80+ Platinum ATX 3.1",  wattageW: 850,  efficiency: "Platinum", modular: "Full", atx31: true,  priceUSD: 170 }
   ]
 };

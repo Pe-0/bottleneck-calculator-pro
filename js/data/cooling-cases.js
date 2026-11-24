@@ -27,7 +27,10 @@ window.BCP.coolers = {
     { id: "cl-aio240",  name: "240mm AIO liquid cooler",          type: "AIO", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 250, radiatorMM: 240, priceUSD: 100 },
     { id: "cl-aio280",  name: "280mm AIO liquid cooler",          type: "AIO", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 300, radiatorMM: 280, priceUSD: 130 },
     { id: "cl-aio360",  name: "360mm AIO liquid cooler",          type: "AIO", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 350, radiatorMM: 360, priceUSD: 150 },
-    { id: "cl-aio420",  name: "420mm AIO liquid cooler",          type: "AIO", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 400, radiatorMM: 420, priceUSD: 200 }
+    { id: "cl-aio420",  name: "420mm AIO liquid cooler",          type: "AIO", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 400, radiatorMM: 420, priceUSD: 200 },
+    { id: "cl-ax120",   name: "Thermalright Assassin X 120 (air)", type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 180, heightMM: 148, priceUSD: 20 },
+    { id: "cl-l9",      name: "Noctua NH-L9-class low-profile (air)", type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 95, heightMM: 37, priceUSD: 50 },
+    { id: "cl-aio120",  name: "120mm AIO liquid cooler",          type: "AIO", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 200, radiatorMM: 120, priceUSD: 70 }
   ]
 };
 
