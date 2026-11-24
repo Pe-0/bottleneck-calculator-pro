@@ -158,6 +158,9 @@ window.BCP.engine = (function () {
     }
 
     if (cooler) {
+      if (cooler.id === "cl-stock" && !cpuHw.stockCooler) {
+        out.push({ level: "warn", text: "The " + cpuHw.name + " does not include a stock cooler - add an aftermarket cooler to the list." });
+      }
       if (cooler.sockets.indexOf(cpuHw.socket) === -1) {
         out.push({ level: "bad", text: cooler.name + " has no " + cpuHw.socket + " mounting kit." });
       }
@@ -257,8 +260,12 @@ window.BCP.engine = (function () {
       return pool[0] || null;
     }
     function pickCooler(cpu) {
+      if (cpu.stockCooler) {
+        var stock = B.coolers.items.find(function (cl) { return cl.id === "cl-stock"; });
+        if (stock && stock.tdpRatingW >= cpu.tdpW) return stock;
+      }
       var units = B.coolers.items.filter(function (cl) {
-        return cl.sockets.indexOf(cpu.socket) !== -1 && cl.tdpRatingW >= cpu.tdpW;
+        return cl.id !== "cl-stock" && cl.sockets.indexOf(cpu.socket) !== -1 && cl.tdpRatingW >= cpu.tdpW;
       });
       units.sort(function (a, b) { return a.priceUSD - b.priceUSD; });
       return units[0] || null;

@@ -37,17 +37,17 @@ window.BCP.cpus = {
     { id: "r7-7800x3d",brand: "AMD", name: "Ryzen 7 7800X3D",socket: "AM5", cores: 8,  threads: 16, boostGHz: 5.0, tdpW: 120, launchYear: 2023, baseGHz: 4.2, l3MB: 96, arch: "Zen 4" },
     { id: "r7-7700x",  brand: "AMD", name: "Ryzen 7 7700X",  socket: "AM5", cores: 8,  threads: 16, boostGHz: 5.4, tdpW: 105, launchYear: 2022, baseGHz: 4.5, l3MB: 32, arch: "Zen 4" },
     { id: "r5-7600x",  brand: "AMD", name: "Ryzen 5 7600X",  socket: "AM5", cores: 6,  threads: 12, boostGHz: 5.3, tdpW: 105, launchYear: 2022, baseGHz: 4.7, l3MB: 32, arch: "Zen 4" },
-    { id: "r5-7600",   brand: "AMD", name: "Ryzen 5 7600",   socket: "AM5", cores: 6,  threads: 12, boostGHz: 5.1, tdpW: 65,  launchYear: 2023, baseGHz: 3.8, l3MB: 32, arch: "Zen 4" },
+    { id: "r5-7600",   brand: "AMD", name: "Ryzen 5 7600",   socket: "AM5", cores: 6,  threads: 12, boostGHz: 5.1, tdpW: 65,  launchYear: 2023, baseGHz: 3.8, l3MB: 32, arch: "Zen 4", stockCooler: true },
     // ---- AMD AM4 (Zen 2) - legacy estimates ----
-    { id: "r9-3900x",  brand: "AMD", name: "Ryzen 9 3900X", socket: "AM4", cores: 12, threads: 24, boostGHz: 4.6, tdpW: 105, launchYear: 2019, baseGHz: 3.8, l3MB: 64, arch: "Zen 2" },
-    { id: "r7-3700x",  brand: "AMD", name: "Ryzen 7 3700X", socket: "AM4", cores: 8,  threads: 16, boostGHz: 4.4, tdpW: 65,  launchYear: 2019, baseGHz: 3.6, l3MB: 32, arch: "Zen 2" },
-    { id: "r5-3600",   brand: "AMD", name: "Ryzen 5 3600",  socket: "AM4", cores: 6,  threads: 12, boostGHz: 4.2, tdpW: 65,  launchYear: 2019, baseGHz: 3.6, l3MB: 32, arch: "Zen 2" },
+    { id: "r9-3900x",  brand: "AMD", name: "Ryzen 9 3900X", socket: "AM4", cores: 12, threads: 24, boostGHz: 4.6, tdpW: 105, launchYear: 2019, baseGHz: 3.8, l3MB: 64, arch: "Zen 2", stockCooler: true },
+    { id: "r7-3700x",  brand: "AMD", name: "Ryzen 7 3700X", socket: "AM4", cores: 8,  threads: 16, boostGHz: 4.4, tdpW: 65,  launchYear: 2019, baseGHz: 3.6, l3MB: 32, arch: "Zen 2", stockCooler: true },
+    { id: "r5-3600",   brand: "AMD", name: "Ryzen 5 3600",  socket: "AM4", cores: 6,  threads: 12, boostGHz: 4.2, tdpW: 65,  launchYear: 2019, baseGHz: 3.6, l3MB: 32, arch: "Zen 2", stockCooler: true },
     // ---- Intel LGA1200 (10th/11th gen) - legacy estimates ----
     { id: "i9-11900k", brand: "Intel", name: "Core i9-11900K", socket: "LGA1200", cores: 8,  threads: 16, boostGHz: 5.3, tdpW: 125, launchYear: 2021, baseGHz: 3.5, l3MB: 16, arch: "Rocket Lake" },
-    { id: "i5-11400f", brand: "Intel", name: "Core i5-11400F", socket: "LGA1200", cores: 6,  threads: 12, boostGHz: 4.4, tdpW: 65,  launchYear: 2021, baseGHz: 2.6, l3MB: 12, arch: "Rocket Lake" },
+    { id: "i5-11400f", brand: "Intel", name: "Core i5-11400F", socket: "LGA1200", cores: 6,  threads: 12, boostGHz: 4.4, tdpW: 65,  launchYear: 2021, baseGHz: 2.6, l3MB: 12, arch: "Rocket Lake", stockCooler: true },
     { id: "i9-10900k", brand: "Intel", name: "Core i9-10900K", socket: "LGA1200", cores: 10, threads: 20, boostGHz: 5.3, tdpW: 125, launchYear: 2020, baseGHz: 3.7, l3MB: 20, arch: "Comet Lake" },
     { id: "i7-10700k", brand: "Intel", name: "Core i7-10700K", socket: "LGA1200", cores: 8,  threads: 16, boostGHz: 5.1, tdpW: 125, launchYear: 2020, baseGHz: 3.8, l3MB: 16, arch: "Comet Lake" },
-    { id: "i5-10400f", brand: "Intel", name: "Core i5-10400F", socket: "LGA1200", cores: 6,  threads: 12, boostGHz: 4.3, tdpW: 65,  launchYear: 2020, baseGHz: 2.9, l3MB: 12, arch: "Comet Lake" },
+    { id: "i5-10400f", brand: "Intel", name: "Core i5-10400F", socket: "LGA1200", cores: 6,  threads: 12, boostGHz: 4.3, tdpW: 65,  launchYear: 2020, baseGHz: 2.9, l3MB: 12, arch: "Comet Lake", stockCooler: true },
     // ---- AMD AM4 (Zen 3) ----
     { id: "r9-5950x",  brand: "AMD", name: "Ryzen 9 5950X",  socket: "AM4", cores: 16, threads: 32, boostGHz: 4.9, tdpW: 105, launchYear: 2020, baseGHz: 3.4, l3MB: 64, arch: "Zen 3" },
     { id: "r9-5900x",  brand: "AMD", name: "Ryzen 9 5900X",  socket: "AM4", cores: 12, threads: 24, boostGHz: 4.8, tdpW: 105, launchYear: 2020, baseGHz: 3.7, l3MB: 64, arch: "Zen 3" },
@@ -55,7 +55,7 @@ window.BCP.cpus = {
     { id: "r7-5800x",  brand: "AMD", name: "Ryzen 7 5800X",  socket: "AM4", cores: 8,  threads: 16, boostGHz: 4.7, tdpW: 105, launchYear: 2020, baseGHz: 3.8, l3MB: 32, arch: "Zen 3" },
     { id: "r7-5700x3d",brand: "AMD", name: "Ryzen 7 5700X3D",socket: "AM4", cores: 8,  threads: 16, boostGHz: 4.1, tdpW: 105, launchYear: 2024, baseGHz: 3.0, l3MB: 96, arch: "Zen 3" },
     { id: "r5-5600x",  brand: "AMD", name: "Ryzen 5 5600X",  socket: "AM4", cores: 6,  threads: 12, boostGHz: 4.6, tdpW: 65,  launchYear: 2020, baseGHz: 3.7, l3MB: 32, arch: "Zen 3" },
-    { id: "r5-5600",   brand: "AMD", name: "Ryzen 5 5600",   socket: "AM4", cores: 6,  threads: 12, boostGHz: 4.4, tdpW: 65,  launchYear: 2022, baseGHz: 3.5, l3MB: 32, arch: "Zen 3" },
+    { id: "r5-5600",   brand: "AMD", name: "Ryzen 5 5600",   socket: "AM4", cores: 6,  threads: 12, boostGHz: 4.4, tdpW: 65,  launchYear: 2022, baseGHz: 3.5, l3MB: 32, arch: "Zen 3", stockCooler: true },
     // ---- Intel LGA1851 (Core Ultra 200S) ----
     { id: "u7-270kp",  brand: "Intel", name: "Core Ultra 7 270K Plus", socket: "LGA1851", cores: 24, threads: 24, boostGHz: 5.5, tdpW: 125, launchYear: 2026, baseGHz: 3.7, l3MB: 36, arch: "Arrow Lake Refresh" },
     { id: "u5-250kp",  brand: "Intel", name: "Core Ultra 5 250K Plus", socket: "LGA1851", cores: 18, threads: 18, boostGHz: 5.2, tdpW: 125, launchYear: 2026, baseGHz: 3.9, l3MB: 26, arch: "Arrow Lake Refresh" },
@@ -66,15 +66,15 @@ window.BCP.cpus = {
     { id: "i9-14900k", brand: "Intel", name: "Core i9-14900K", socket: "LGA1700", cores: 24, threads: 32, boostGHz: 6.0, tdpW: 125, launchYear: 2023, baseGHz: 3.2, l3MB: 36, arch: "Raptor Lake" },
     { id: "i7-14700k", brand: "Intel", name: "Core i7-14700K", socket: "LGA1700", cores: 20, threads: 28, boostGHz: 5.6, tdpW: 125, launchYear: 2023, baseGHz: 3.4, l3MB: 33, arch: "Raptor Lake" },
     { id: "i5-14600k", brand: "Intel", name: "Core i5-14600K", socket: "LGA1700", cores: 14, threads: 20, boostGHz: 5.3, tdpW: 125, launchYear: 2023, baseGHz: 3.5, l3MB: 24, arch: "Raptor Lake" },
-    { id: "i5-14400f", brand: "Intel", name: "Core i5-14400F", socket: "LGA1700", cores: 10, threads: 16, boostGHz: 4.7, tdpW: 65,  launchYear: 2024, baseGHz: 2.5, l3MB: 20, arch: "Raptor Lake" },
+    { id: "i5-14400f", brand: "Intel", name: "Core i5-14400F", socket: "LGA1700", cores: 10, threads: 16, boostGHz: 4.7, tdpW: 65,  launchYear: 2024, baseGHz: 2.5, l3MB: 20, arch: "Raptor Lake", stockCooler: true },
     { id: "i9-13900k", brand: "Intel", name: "Core i9-13900K", socket: "LGA1700", cores: 24, threads: 32, boostGHz: 5.8, tdpW: 125, launchYear: 2022, baseGHz: 3.0, l3MB: 36, arch: "Raptor Lake" },
     { id: "i7-13700k", brand: "Intel", name: "Core i7-13700K", socket: "LGA1700", cores: 16, threads: 24, boostGHz: 5.4, tdpW: 125, launchYear: 2022, baseGHz: 3.4, l3MB: 30, arch: "Raptor Lake" },
     { id: "i5-13600k", brand: "Intel", name: "Core i5-13600K", socket: "LGA1700", cores: 14, threads: 20, boostGHz: 5.1, tdpW: 125, launchYear: 2022, baseGHz: 3.5, l3MB: 24, arch: "Raptor Lake" },
-    { id: "i5-13400f", brand: "Intel", name: "Core i5-13400F", socket: "LGA1700", cores: 10, threads: 16, boostGHz: 4.6, tdpW: 65,  launchYear: 2023, baseGHz: 2.5, l3MB: 20, arch: "Raptor Lake" },
+    { id: "i5-13400f", brand: "Intel", name: "Core i5-13400F", socket: "LGA1700", cores: 10, threads: 16, boostGHz: 4.6, tdpW: 65,  launchYear: 2023, baseGHz: 2.5, l3MB: 20, arch: "Raptor Lake", stockCooler: true },
     { id: "i9-12900k", brand: "Intel", name: "Core i9-12900K", socket: "LGA1700", cores: 16, threads: 24, boostGHz: 5.2, tdpW: 125, launchYear: 2021, baseGHz: 3.2, l3MB: 30, arch: "Alder Lake" },
     { id: "i7-12700k", brand: "Intel", name: "Core i7-12700K", socket: "LGA1700", cores: 12, threads: 20, boostGHz: 5.0, tdpW: 125, launchYear: 2021, baseGHz: 3.6, l3MB: 25, arch: "Alder Lake" },
     { id: "i5-12600k", brand: "Intel", name: "Core i5-12600K", socket: "LGA1700", cores: 10, threads: 16, boostGHz: 4.9, tdpW: 125, launchYear: 2021, baseGHz: 3.7, l3MB: 20, arch: "Alder Lake" },
-    { id: "i5-12400f", brand: "Intel", name: "Core i5-12400F", socket: "LGA1700", cores: 6,  threads: 12, boostGHz: 4.4, tdpW: 65,  launchYear: 2022, baseGHz: 2.5, l3MB: 18, arch: "Alder Lake" }
+    { id: "i5-12400f", brand: "Intel", name: "Core i5-12400F", socket: "LGA1700", cores: 6,  threads: 12, boostGHz: 4.4, tdpW: 65,  launchYear: 2022, baseGHz: 2.5, l3MB: 18, arch: "Alder Lake", stockCooler: true }
   ]
 };
 
