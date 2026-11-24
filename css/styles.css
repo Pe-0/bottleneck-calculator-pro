@@ -239,3 +239,21 @@ select:hover, select:focus { border-color: var(--accent); outline: none; }
 .spec-details summary { cursor: pointer; font-size: 14px; font-weight: 600; color: #cbd5e1; padding: 2px 0 10px; }
 .spec-details summary::marker { color: #2563eb; }
 .site-footer .copy { font-size: 0.78rem; opacity: 0.55; margin-top: 10px; letter-spacing: 0.02em; }
+
+/* AI assistant */
+.ai-assistant { grid-column: 1 / -1; }
+.ai-note { margin: 10px 0 14px; font-size: 0.85rem; }
+.ai-key-row, .ai-ask-row { display: flex; gap: 10px; margin-bottom: 12px; }
+.ai-key-row input, .ai-ask-row input {
+  flex: 1; background: var(--bg-soft, #141a2e); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--text, #e8ecf5); padding: 10px 12px; font-size: 0.92rem;
+}
+.ai-key-row input:focus, .ai-ask-row input:focus { outline: none; border-color: var(--accent, #2f7bff); }
+.ai-key-saved { align-self: center; font-size: 0.88rem; }
+.ai-answer {
+  min-height: 20px; padding: 12px 14px; border: 1px solid var(--border);
+  border-radius: 8px; background: rgba(255,255,255,0.02);
+  font-size: 0.92rem; line-height: 1.55; white-space: pre-wrap;
+}
+.ai-answer:empty { display: none; }
+.ai-key-row button, .ai-ask-row button { white-space: nowrap; }

@@ -285,6 +285,23 @@
     }
     fillSpec("#cpuSpecSheet", cpuRows);
     fillSpec("#gpuSpecSheet", gpuRows);
+
+    // Context snapshot for the AI assistant panel
+    BCP.assistantContext = {
+      cpu: cpu.name,
+      gpu: gpu.name,
+      motherboard: mobo0 ? mobo0.name : "not specified",
+      memory: ram0 ? ram0.name : "not specified",
+      psu: psu ? psu.name : "not specified",
+      cooler: cooler ? cooler.name : "not specified",
+      storage: storage ? storage.name : "not specified",
+      resolution: resLabel(),
+      workload: eng.WORKLOADS[state.workload].label,
+      bottleneckPct: bn.pct,
+      limiter: bn.limiter,
+      totalPrice: $("#sumTotal").textContent,
+      advice: Array.prototype.map.call(warnBox.children, function (li) { return li.textContent; })
+    };
   }
 
   function resLabel() {
