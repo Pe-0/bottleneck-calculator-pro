@@ -312,3 +312,16 @@ select:hover, select:focus { border-color: var(--accent); outline: none; }
 .rank-legacy { display: flex; align-items: center; gap: 8px; padding-top: 20px; }
 .rank-legacy input { accent-color: var(--accent); width: 16px; height: 16px; }
 .rank-legacy .field-label-inline { font-size: 0.85rem; color: var(--muted); }
+
+/* ============ Upgrade advisor ============ */
+.up-current { margin-top: 14px; padding: 12px 14px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px; font-size: 0.92rem; }
+.up-current b { color: var(--accent-2); }
+.up-list { display: flex; flex-direction: column; gap: 12px; }
+.up-card { background: var(--bg-soft); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+.up-card:first-child { border-color: var(--accent-2); }
+.up-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+.up-head strong { font-size: 0.98rem; }
+.up-stats { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 0.85rem; color: var(--muted); }
+.up-stats b { color: var(--text); }
+.up-stats .up-value b { color: var(--accent-2); }
+.up-note { font-size: 0.82rem; margin-top: 8px; }
