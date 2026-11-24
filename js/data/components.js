@@ -23,6 +23,7 @@ window.BCP.motherboards = {
     { id: "b650",    name: "B650 (ATX)",          socket: "AM5",     chipset: "B650",  formFactor: "ATX",  ramType: "DDR5", ramSlots: 4, maxRamGB: 192, m2Slots: 3, pcie5Gpu: false, priceUSD: 160 },
     { id: "b650e",   name: "B650E (ATX)",         socket: "AM5",     chipset: "B650E", formFactor: "ATX",  ramType: "DDR5", ramSlots: 4, maxRamGB: 192, m2Slots: 3, pcie5Gpu: true,  priceUSD: 220 },
     { id: "x670e",   name: "X670E (ATX)",         socket: "AM5",     chipset: "X670E", formFactor: "ATX",  ramType: "DDR5", ramSlots: 4, maxRamGB: 192, m2Slots: 4, pcie5Gpu: true,  priceUSD: 300 },
+    { id: "b650-itx",name: "B650 ITX (ITX)",      socket: "AM5",     chipset: "B650",  formFactor: "ITX",  ramType: "DDR5", ramSlots: 2, maxRamGB: 128, m2Slots: 2, pcie5Gpu: false, priceUSD: 180 },
     { id: "b850m",   name: "B850M (mATX)",        socket: "AM5",     chipset: "B850",  formFactor: "mATX", ramType: "DDR5", ramSlots: 4, maxRamGB: 256, m2Slots: 2, pcie5Gpu: false, priceUSD: 150 },
     { id: "b850",    name: "B850 (ATX)",          socket: "AM5",     chipset: "B850",  formFactor: "ATX",  ramType: "DDR5", ramSlots: 4, maxRamGB: 256, m2Slots: 3, pcie5Gpu: true,  priceUSD: 190 },
     { id: "x870",    name: "X870 (ATX)",          socket: "AM5",     chipset: "X870",  formFactor: "ATX",  ramType: "DDR5", ramSlots: 4, maxRamGB: 256, m2Slots: 4, pcie5Gpu: true,  priceUSD: 250 },
@@ -42,6 +43,7 @@ window.BCP.motherboards = {
     { id: "b660m",   name: "B660M DDR4 (mATX)",   socket: "LGA1700", chipset: "B660",  formFactor: "mATX", ramType: "DDR4", ramSlots: 4, maxRamGB: 128, m2Slots: 2, pcie5Gpu: false, priceUSD: 110 },
     { id: "b760m",   name: "B760M DDR4 (mATX)",   socket: "LGA1700", chipset: "B760",  formFactor: "mATX", ramType: "DDR4", ramSlots: 4, maxRamGB: 128, m2Slots: 2, pcie5Gpu: false, priceUSD: 120 },
     { id: "b760-d5", name: "B760 DDR5 (ATX)",     socket: "LGA1700", chipset: "B760",  formFactor: "ATX",  ramType: "DDR5", ramSlots: 4, maxRamGB: 192, m2Slots: 3, pcie5Gpu: false, priceUSD: 160 },
+    { id: "b760i",   name: "B760I DDR5 (ITX)",    socket: "LGA1700", chipset: "B760",  formFactor: "ITX",  ramType: "DDR5", ramSlots: 2, maxRamGB: 96,  m2Slots: 2, pcie5Gpu: false, priceUSD: 170 },
     { id: "z790",    name: "Z790 DDR5 (ATX)",     socket: "LGA1700", chipset: "Z790",  formFactor: "ATX",  ramType: "DDR5", ramSlots: 4, maxRamGB: 192, m2Slots: 4, pcie5Gpu: true,  priceUSD: 240 }
   ]
 };

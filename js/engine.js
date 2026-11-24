@@ -92,7 +92,7 @@ window.BCP.engine = (function () {
     return Math.max(c.minW, Math.ceil(raw / 50) * 50);
   }
 
-  function partCompatibility(cpuHw, gpuHw, mobo, ram, psuSel, workloadKey, bn) {
+  function partCompatibility(cpuHw, gpuHw, mobo, ram, psuSel, workloadKey, bn, cooler, pcCase) {
     var R = window.BCP.compat;
     var out = compatibility(cpuHw, gpuHw, bn);
     if (!mobo) return out;
@@ -154,6 +154,29 @@ window.BCP.engine = (function () {
         out.push({ level: "bad", text: "Selected PSU (" + psuSel.wattageW + "W) is below the recommended " + rec + "W for this CPU + GPU pair." });
       } else if (gpuHw.tdpW >= 300 && !psuSel.atx31) {
         out.push({ level: "warn", text: "This GPU draws " + gpuHw.tdpW + "W - an ATX 3.x PSU with a native 12V-2x6 cable is recommended over adapters." });
+      }
+    }
+
+    if (cooler) {
+      if (cooler.sockets.indexOf(cpuHw.socket) === -1) {
+        out.push({ level: "bad", text: cooler.name + " has no " + cpuHw.socket + " mounting kit." });
+      }
+      if (cooler.tdpRatingW < cpuHw.tdpW) {
+        out.push({ level: "warn", text: cooler.name + " is rated ~" + cooler.tdpRatingW + "W but the CPU is a " + cpuHw.tdpW + "W part - expect thermal throttling under sustained load." });
+      }
+      if (pcCase && cooler.type === "Air" && cooler.heightMM > pcCase.maxCoolerHeightMM) {
+        out.push({ level: "bad", text: cooler.name + " (" + cooler.heightMM + "mm tall) does not fit this case (max " + pcCase.maxCoolerHeightMM + "mm cooler height)." });
+      }
+      if (pcCase && cooler.type === "AIO" && cooler.radiatorMM > pcCase.maxRadiatorMM) {
+        out.push({ level: "bad", text: "The " + cooler.radiatorMM + "mm radiator does not fit this case (max " + pcCase.maxRadiatorMM + "mm)." });
+      }
+    }
+    if (pcCase && mobo) {
+      if (pcCase.fits.indexOf(mobo.formFactor) === -1) {
+        out.push({ level: "bad", text: "This case takes " + pcCase.fits.join("/") + " boards - the " + mobo.formFactor + " board does not fit." });
+      }
+      if (gpuHw.lengthMM && gpuHw.lengthMM > pcCase.maxGpuLengthMM) {
+        out.push({ level: "bad", text: gpuHw.name + " (~" + gpuHw.lengthMM + "mm long) exceeds this case's " + pcCase.maxGpuLengthMM + "mm GPU clearance." });
       }
     }
 
@@ -233,6 +256,25 @@ window.BCP.engine = (function () {
       pool = pool.slice().sort(function (a, b) { return a.priceUSD - b.priceUSD; });
       return pool[0] || null;
     }
+    function pickCooler(cpu) {
+      var units = B.coolers.items.filter(function (cl) {
+        return cl.sockets.indexOf(cpu.socket) !== -1 && cl.tdpRatingW >= cpu.tdpW;
+      });
+      units.sort(function (a, b) { return a.priceUSD - b.priceUSD; });
+      return units[0] || null;
+    }
+    function pickCase(mobo, gpu, cooler) {
+      var needLen = gpu.lengthMM || 250;
+      var boxes = B.cases.items.filter(function (cs) {
+        if (cs.fits.indexOf(mobo.formFactor) === -1) return false;
+        if (cs.maxGpuLengthMM < needLen) return false;
+        if (cooler && cooler.type === "Air" && cs.maxCoolerHeightMM < cooler.heightMM) return false;
+        if (cooler && cooler.type === "AIO" && cs.maxRadiatorMM < cooler.radiatorMM) return false;
+        return true;
+      });
+      boxes.sort(function (a, b) { return a.priceUSD - b.priceUSD; });
+      return boxes[0] || null;
+    }
     function pickPsu(cpu, gpu) {
       var rec = recommendedPsuW(cpu.tdpW, gpu.tdpW);
       var needAtx31 = gpu.tdpW >= 300;
@@ -252,14 +294,15 @@ window.BCP.engine = (function () {
         var gpuScore = B.benchmarks.gpu[gpu.id];
         if (!gpuPrice || !gpuScore) return;
         var mobo = pickMobo(cpu), ram = mobo && pickRam(mobo, workloadKey), psu = pickPsu(cpu, gpu);
-        if (!mobo || !ram || !psu) return;
-        var total = cpuPrice + gpuPrice + mobo.priceUSD + ram.priceUSD + psu.priceUSD;
+        var cooler = pickCooler(cpu), pcCase = mobo && pickCase(mobo, gpu, cooler);
+        if (!mobo || !ram || !psu || !cooler || !pcCase) return;
+        var total = cpuPrice + gpuPrice + mobo.priceUSD + ram.priceUSD + psu.priceUSD + cooler.priceUSD + pcCase.priceUSD;
         if (total > budgetUsd) return;
         var eff = workloadKey === "productivity"
           ? 0.7 * cpuBench.productivity + 0.3 * gpuScore
           : Math.min(gpuScore, cpuBench.gaming / feed);
         var bn = bottleneck(cpuBench, gpuScore, resKey, workloadKey);
-        out.push({ cpu: cpu, gpu: gpu, mobo: mobo, ram: ram, psu: psu, total: total, eff: eff, pct: bn.pct, limiter: bn.limiter });
+        out.push({ cpu: cpu, gpu: gpu, mobo: mobo, ram: ram, psu: psu, cooler: cooler, pcCase: pcCase, total: total, eff: eff, pct: bn.pct, limiter: bn.limiter });
       });
     });
 

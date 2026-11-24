@@ -57,6 +57,16 @@
           <select id="psuSelect"></select>
         </label>
 
+        <label class="field">
+          <span class="field-label">CPU cooler</span>
+          <select id="coolerSelect"></select>
+        </label>
+
+        <label class="field">
+          <span class="field-label">Case</span>
+          <select id="caseSelect"></select>
+        </label>
+
         <div class="field">
           <span class="field-label">Resolution</span>
           <div class="segmented" id="resSeg">
@@ -111,6 +121,20 @@
               <small id="sumPsuSpecs"></small>
             </div>
             <span class="price" id="sumPsuPrice"></span>
+          </div>
+          <div class="sum-row">
+            <div>
+              <strong id="sumCoolerName"></strong>
+              <small id="sumCoolerSpecs"></small>
+            </div>
+            <span class="price" id="sumCoolerPrice"></span>
+          </div>
+          <div class="sum-row">
+            <div>
+              <strong id="sumCaseName"></strong>
+              <small id="sumCaseSpecs"></small>
+            </div>
+            <span class="price" id="sumCasePrice"></span>
           </div>
           <div class="sum-total">
             <span>Combined</span>
@@ -216,6 +240,7 @@
   <script src="js/data/games.js"></script>
   <script src="js/data/compat.js"></script>
   <script src="js/data/components.js"></script>
+  <script src="js/data/cooling-cases.js"></script>
   <script src="js/engine.js"></script>
   <script src="js/app.js"></script>
 </body>
