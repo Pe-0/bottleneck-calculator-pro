@@ -43,6 +43,8 @@
   }
 
   function fmtUsd(n) { return "$" + n.toLocaleString("en-US"); }
+  function cpuPriceText(id) { var p = BCP.prices.cpu[id]; return p ? fmtUsd(p) : "—"; }
+  function gpuPriceText(id) { var p = BCP.prices.gpu[id]; return p ? fmtUsd(p) : "—"; }
 
   function fillComponentSelect(el, items, currentId) {
     el.innerHTML = "";
@@ -220,6 +222,54 @@
     $("#psuSelect").addEventListener("change", function () { state.psuId = this.value; render(); });
     bindSegmented("resSeg", "res");
     bindSegmented("wlSeg", "workload");
+
+    $("#genBtn").addEventListener("click", function () {
+      var budget = parseInt($("#budgetSelect").value, 10);
+      var builds = eng.generateBuilds(budget, state.workload, state.res, 3);
+      var box = $("#genResults");
+      box.innerHTML = "";
+      if (!builds.length) {
+        var p = document.createElement("p");
+        p.className = "muted";
+        p.textContent = "No fully-priced build fits this budget yet - try a higher budget.";
+        box.appendChild(p);
+        return;
+      }
+      builds.forEach(function (b) {
+        var card = document.createElement("div");
+        card.className = "gen-card";
+        var rows = [
+          [b.cpu.name, cpuPriceText(b.cpu.id)],
+          [b.gpu.name, gpuPriceText(b.gpu.id)],
+          [b.mobo.name, fmtUsd(b.mobo.priceUSD)],
+          [b.ram.name, fmtUsd(b.ram.priceUSD)],
+          [b.psu.name, fmtUsd(b.psu.priceUSD)]
+        ].map(function (r) { return "<li><span></span><span>" + r[1] + "</span></li>"; });
+        card.innerHTML =
+          "<h4></h4>" +
+          '<div class="gen-meta"></div>' +
+          "<ul>" + rows.join("") + "</ul>" +
+          '<button class="gen-load" type="button">Load this build</button>';
+        card.querySelector("h4").textContent = b.cpu.name + " + " + b.gpu.name;
+        var lis = card.querySelectorAll("li span:first-child");
+        [b.cpu.name, b.gpu.name, b.mobo.name, b.ram.name, b.psu.name].forEach(function (n, i) { lis[i].textContent = n; });
+        card.querySelector(".gen-meta").innerHTML =
+          'Total <span class="gen-total"></span> · bottleneck ' + b.pct + "% (" + b.limiter + "-limited) at " + resLabel() + " · " + eng.WORKLOADS[state.workload].label;
+        card.querySelector(".gen-total").textContent = fmtUsd(b.total);
+        card.querySelector(".gen-load").addEventListener("click", function () {
+          state.cpuId = b.cpu.id; state.gpuId = b.gpu.id;
+          state.moboId = b.mobo.id; state.ramId = b.ram.id; state.psuId = b.psu.id;
+          $("#cpuSelect").value = state.cpuId;
+          $("#gpuSelect").value = state.gpuId;
+          syncComponentPickers();
+          state.moboId = b.mobo.id; state.ramId = b.ram.id;
+          $("#moboSelect").value = b.mobo.id; $("#ramSelect").value = b.ram.id; $("#psuSelect").value = b.psu.id;
+          render();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+        box.appendChild(card);
+      });
+    });
 
     $("#dataNote").textContent =
       "Bottleneck % is a model estimate. FPS are rough estimates, not measured benchmarks. Prices are snapshots, not live quotes: current-gen GPUs verified Nov 2026 (Newegg); CPUs and older cards last verified 2025-Q3 and likely higher now.";

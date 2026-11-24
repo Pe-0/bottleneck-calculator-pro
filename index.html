@@ -123,6 +123,27 @@
         </div>
       </section>
 
+      <!-- ============ BUILD GENERATOR ============ -->
+      <section class="panel generator">
+        <h2>Build generator</h2>
+        <p class="muted">Assembles the best-balanced build we can fully price within a budget, using the selected resolution and workload.</p>
+        <div class="gen-controls">
+          <label class="field">
+            <span class="field-label">Budget</span>
+            <select id="budgetSelect">
+              <option value="800">$800</option>
+              <option value="1200" selected>$1,200</option>
+              <option value="1600">$1,600</option>
+              <option value="2000">$2,000</option>
+              <option value="2500">$2,500</option>
+              <option value="3500">$3,500</option>
+            </select>
+          </label>
+          <button id="genBtn" class="gen-btn" type="button">Generate</button>
+        </div>
+        <div id="genResults" class="gen-results"></div>
+      </section>
+
       <!-- ============ RESULTS ============ -->
       <section class="results">
         <div class="panel gauge-panel">

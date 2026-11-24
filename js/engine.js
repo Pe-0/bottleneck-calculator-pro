@@ -191,6 +191,75 @@ window.BCP.engine = (function () {
     return { label: "Severe CPU bottleneck", cls: "bad" };
   }
 
+  // Assemble the best-balanced priced builds within a budget.
+  // Uses the separated layers: specs (hardware), scores (benchmarks),
+  // prices (prices + components). Parts without a verified price are
+  // skipped rather than estimated.
+  function generateBuilds(budgetUsd, workloadKey, resKey, maxResults) {
+    var B = window.BCP;
+    var wl = WORKLOADS[workloadKey] || WORKLOADS.gaming;
+    var feed = wl.feedMod === null ? PRODUCTIVITY_FEED : FEED_NEED[resKey] * wl.feedMod;
+    var tierOrder = { entry: 0, mid: 1, high: 2 };
+    var out = [];
+
+    function pickMobo(cpu) {
+      var unlocked = /k(f)?$|kp$/.test(cpu.id);
+      var minTier = (cpu.tdpW >= 170 || unlocked) ? "mid" : "entry";
+      var boards = B.motherboards.items.filter(function (m) {
+        return m.socket === cpu.socket && tierOrder[(B.compat.boardTier[m.chipset] || "mid")] >= tierOrder[minTier];
+      });
+      boards.sort(function (a, b) { return a.priceUSD - b.priceUSD; });
+      return boards[0] || null;
+    }
+    function pickRam(mobo, workload) {
+      var want64 = workload === "productivity";
+      var kits = B.memoryKits.items.filter(function (k) { return k.type === mobo.ramType; });
+      var exact = kits.filter(function (k) { return want64 ? k.capacityGB >= 64 : k.capacityGB === 32; });
+      var pool = exact.length ? exact : kits;
+      pool = pool.slice().sort(function (a, b) { return a.priceUSD - b.priceUSD; });
+      return pool[0] || null;
+    }
+    function pickPsu(cpu, gpu) {
+      var rec = recommendedPsuW(cpu.tdpW, gpu.tdpW);
+      var needAtx31 = gpu.tdpW >= 300;
+      var units = B.psus.items.filter(function (p) {
+        return p.wattageW >= rec && (!needAtx31 || p.atx31);
+      });
+      units.sort(function (a, b) { return a.priceUSD - b.priceUSD; });
+      return units[0] || null;
+    }
+
+    B.cpus.items.forEach(function (cpu) {
+      var cpuPrice = B.prices.cpu[cpu.id];
+      var cpuBench = B.benchmarks.cpu[cpu.id];
+      if (!cpuPrice || !cpuBench) return;
+      B.gpus.items.forEach(function (gpu) {
+        var gpuPrice = B.prices.gpu[gpu.id];
+        var gpuScore = B.benchmarks.gpu[gpu.id];
+        if (!gpuPrice || !gpuScore) return;
+        var mobo = pickMobo(cpu), ram = mobo && pickRam(mobo, workloadKey), psu = pickPsu(cpu, gpu);
+        if (!mobo || !ram || !psu) return;
+        var total = cpuPrice + gpuPrice + mobo.priceUSD + ram.priceUSD + psu.priceUSD;
+        if (total > budgetUsd) return;
+        var eff = workloadKey === "productivity"
+          ? 0.7 * cpuBench.productivity + 0.3 * gpuScore
+          : Math.min(gpuScore, cpuBench.gaming / feed);
+        var bn = bottleneck(cpuBench, gpuScore, resKey, workloadKey);
+        out.push({ cpu: cpu, gpu: gpu, mobo: mobo, ram: ram, psu: psu, total: total, eff: eff, pct: bn.pct, limiter: bn.limiter });
+      });
+    });
+
+    out.sort(function (a, b) { return b.eff - a.eff; });
+    // keep GPU diversity in the top picks
+    var seen = {}, picks = [];
+    for (var i = 0; i < out.length && picks.length < (maxResults || 3); i++) {
+      if (seen[out[i].gpu.id]) continue;
+      seen[out[i].gpu.id] = true;
+      picks.push(out[i]);
+    }
+    return picks;
+  }
+
   return {
     WORKLOADS: WORKLOADS,
     bottleneck: bottleneck,
@@ -198,6 +267,7 @@ window.BCP.engine = (function () {
     recommendedPsuW: recommendedPsuW,
     compatibility: compatibility,
     partCompatibility: partCompatibility,
+    generateBuilds: generateBuilds,
     balanceLabel: balanceLabel
   };
 })();

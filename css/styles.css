@@ -202,3 +202,28 @@ select:hover, select:focus { border-color: var(--accent); outline: none; }
   .fps-row { grid-template-columns: 104px 1fr 42px; gap: 8px; }
   .ceil-cards { grid-template-columns: 1fr; }
 }
+
+/* ---- Build generator ---- */
+.gen-controls { display: flex; gap: 12px; align-items: flex-end; margin-bottom: 14px; }
+.gen-controls .field { flex: 1; margin: 0; }
+.gen-btn {
+  background: linear-gradient(135deg, #2563eb, #14b8a6);
+  color: #fff; border: 0; border-radius: 10px;
+  padding: 10px 22px; font-weight: 600; cursor: pointer;
+}
+.gen-btn:hover { filter: brightness(1.1); }
+.gen-card {
+  border: 1px solid rgba(148,163,184,.18); border-radius: 12px;
+  padding: 12px 14px; margin-bottom: 10px; background: rgba(15,23,42,.4);
+}
+.gen-card h4 { margin: 0 0 4px; font-size: 14px; }
+.gen-card .gen-total { color: #34d399; font-weight: 700; }
+.gen-card ul { margin: 6px 0 10px; padding-left: 0; list-style: none; }
+.gen-card li { font-size: 12.5px; color: #94a3b8; display: flex; justify-content: space-between; gap: 8px; padding: 1px 0; }
+.gen-card li span:last-child { color: #cbd5e1; }
+.gen-load {
+  background: transparent; border: 1px solid #2563eb; color: #60a5fa;
+  border-radius: 8px; padding: 6px 14px; font-size: 12.5px; cursor: pointer;
+}
+.gen-load:hover { background: rgba(37,99,235,.15); }
+.gen-meta { font-size: 12px; color: #64748b; margin-top: 2px; }
