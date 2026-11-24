@@ -13,12 +13,20 @@ window.BCP = window.BCP || {};
 window.BCP.cpus = {
   meta: {
     layer: "hardware.cpu",
-    asOf: "2025-Q3",
+    asOf: "2026-11",
     confidence: "high",
-    source: "Intel ARK / AMD product pages (curated)"
+    source: "Intel ARK / AMD / NVIDIA product pages (curated); 2026 models (9850X3D, 9950X3D2, 7700X3D, 270K/250K Plus) partly estimated clocks"
   },
   items: [
     // ---- AMD AM5 (Zen 5 / Zen 4) ----
+    { id: "r7-9850x3d",brand: "AMD", name: "Ryzen 7 9850X3D",socket: "AM5", cores: 8,  threads: 16, boostGHz: 5.6, tdpW: 120, launchYear: 2026 },
+    { id: "r9-9950x3d",brand: "AMD", name: "Ryzen 9 9950X3D",socket: "AM5", cores: 16, threads: 32, boostGHz: 5.7, tdpW: 170, launchYear: 2025 },
+    { id: "r9-9950x3d2",brand: "AMD", name: "Ryzen 9 9950X3D2",socket: "AM5", cores: 16, threads: 32, boostGHz: 5.7, tdpW: 170, launchYear: 2026 },
+    { id: "r9-9900x3d",brand: "AMD", name: "Ryzen 9 9900X3D",socket: "AM5", cores: 12, threads: 24, boostGHz: 5.5, tdpW: 120, launchYear: 2025 },
+    { id: "r9-7950x3d",brand: "AMD", name: "Ryzen 9 7950X3D",socket: "AM5", cores: 16, threads: 32, boostGHz: 5.7, tdpW: 120, launchYear: 2023 },
+    { id: "r9-7900x3d",brand: "AMD", name: "Ryzen 9 7900X3D",socket: "AM5", cores: 12, threads: 24, boostGHz: 5.6, tdpW: 120, launchYear: 2023 },
+    { id: "r7-7700x3d",brand: "AMD", name: "Ryzen 7 7700X3D",socket: "AM5", cores: 8,  threads: 16, boostGHz: 5.0, tdpW: 120, launchYear: 2026 },
+    { id: "r5-7600x3d",brand: "AMD", name: "Ryzen 5 7600X3D",socket: "AM5", cores: 6,  threads: 12, boostGHz: 4.7, tdpW: 105, launchYear: 2024 },
     { id: "r9-9950x",  brand: "AMD", name: "Ryzen 9 9950X",  socket: "AM5", cores: 16, threads: 32, boostGHz: 5.7, tdpW: 170, launchYear: 2024 },
     { id: "r9-9900x",  brand: "AMD", name: "Ryzen 9 9900X",  socket: "AM5", cores: 12, threads: 24, boostGHz: 5.6, tdpW: 120, launchYear: 2024 },
     { id: "r7-9800x3d",brand: "AMD", name: "Ryzen 7 9800X3D",socket: "AM5", cores: 8,  threads: 16, boostGHz: 5.2, tdpW: 120, launchYear: 2024 },
@@ -39,6 +47,8 @@ window.BCP.cpus = {
     { id: "r5-5600x",  brand: "AMD", name: "Ryzen 5 5600X",  socket: "AM4", cores: 6,  threads: 12, boostGHz: 4.6, tdpW: 65,  launchYear: 2020 },
     { id: "r5-5600",   brand: "AMD", name: "Ryzen 5 5600",   socket: "AM4", cores: 6,  threads: 12, boostGHz: 4.4, tdpW: 65,  launchYear: 2022 },
     // ---- Intel LGA1851 (Core Ultra 200S) ----
+    { id: "u7-270kp",  brand: "Intel", name: "Core Ultra 7 270K Plus", socket: "LGA1851", cores: 24, threads: 24, boostGHz: 5.5, tdpW: 125, launchYear: 2026 },
+    { id: "u5-250kp",  brand: "Intel", name: "Core Ultra 5 250K Plus", socket: "LGA1851", cores: 18, threads: 18, boostGHz: 5.2, tdpW: 125, launchYear: 2026 },
     { id: "u9-285k",   brand: "Intel", name: "Core Ultra 9 285K", socket: "LGA1851", cores: 24, threads: 24, boostGHz: 5.7, tdpW: 125, launchYear: 2024 },
     { id: "u7-265k",   brand: "Intel", name: "Core Ultra 7 265K", socket: "LGA1851", cores: 20, threads: 20, boostGHz: 5.5, tdpW: 125, launchYear: 2024 },
     { id: "u5-245k",   brand: "Intel", name: "Core Ultra 5 245K", socket: "LGA1851", cores: 14, threads: 14, boostGHz: 5.2, tdpW: 125, launchYear: 2024 },
@@ -71,6 +81,9 @@ window.BCP.gpus = {
     { id: "rtx-5080",     brand: "NVIDIA", name: "GeForce RTX 5080",     vramGB: 16, tdpW: 360, launchYear: 2025 },
     { id: "rtx-5070ti",   brand: "NVIDIA", name: "GeForce RTX 5070 Ti",  vramGB: 16, tdpW: 300, launchYear: 2025 },
     { id: "rtx-5070",     brand: "NVIDIA", name: "GeForce RTX 5070",     vramGB: 12, tdpW: 250, launchYear: 2025 },
+    { id: "rtx-5060ti",   brand: "NVIDIA", name: "GeForce RTX 5060 Ti",  vramGB: 16, tdpW: 180, launchYear: 2025 },
+    { id: "rtx-5060",     brand: "NVIDIA", name: "GeForce RTX 5060",     vramGB: 8,  tdpW: 145, launchYear: 2025 },
+    { id: "rtx-5050",     brand: "NVIDIA", name: "GeForce RTX 5050",     vramGB: 8,  tdpW: 130, launchYear: 2025 },
     // ---- NVIDIA RTX 40 series ----
     { id: "rtx-4090",     brand: "NVIDIA", name: "GeForce RTX 4090",     vramGB: 24, tdpW: 450, launchYear: 2022 },
     { id: "rtx-4080s",    brand: "NVIDIA", name: "GeForce RTX 4080 Super", vramGB: 16, tdpW: 320, launchYear: 2024 },
@@ -86,6 +99,8 @@ window.BCP.gpus = {
     { id: "rtx-3060ti",   brand: "NVIDIA", name: "GeForce RTX 3060 Ti",  vramGB: 8,  tdpW: 200, launchYear: 2020 },
     { id: "rtx-3060",     brand: "NVIDIA", name: "GeForce RTX 3060",     vramGB: 12, tdpW: 170, launchYear: 2021 },
     // ---- AMD RX 9000 / 7000 / 6000 ----
+    { id: "rx-9070gre",   brand: "AMD", name: "Radeon RX 9070 GRE", vramGB: 12, tdpW: 220, launchYear: 2025 },
+    { id: "rx-9060xt",    brand: "AMD", name: "Radeon RX 9060 XT",  vramGB: 16, tdpW: 160, launchYear: 2025 },
     { id: "rx-9070xt",    brand: "AMD", name: "Radeon RX 9070 XT",  vramGB: 16, tdpW: 304, launchYear: 2025 },
     { id: "rx-9070",      brand: "AMD", name: "Radeon RX 9070",     vramGB: 16, tdpW: 220, launchYear: 2025 },
     { id: "rx-7900xtx",   brand: "AMD", name: "Radeon RX 7900 XTX", vramGB: 24, tdpW: 355, launchYear: 2022 },
@@ -98,6 +113,7 @@ window.BCP.gpus = {
     { id: "rx-6700xt",    brand: "AMD", name: "Radeon RX 6700 XT",  vramGB: 12, tdpW: 230, launchYear: 2021 },
     { id: "rx-6600",      brand: "AMD", name: "Radeon RX 6600",     vramGB: 8,  tdpW: 132, launchYear: 2021 },
     // ---- Intel Arc ----
+    { id: "arc-b570",     brand: "Intel", name: "Arc B570", vramGB: 10, tdpW: 150, launchYear: 2025 },
     { id: "arc-b580",     brand: "Intel", name: "Arc B580", vramGB: 12, tdpW: 190, launchYear: 2024 },
     { id: "arc-a770",     brand: "Intel", name: "Arc A770", vramGB: 16, tdpW: 225, launchYear: 2022 }
   ]

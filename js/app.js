@@ -166,7 +166,7 @@
     bindSegmented("wlSeg", "workload");
 
     $("#dataNote").textContent =
-      "Bottleneck % is a model estimate. FPS are rough estimates, not measured benchmarks. Prices are seeded snapshots (as of " + BCP.prices.meta.asOf + ").";
+      "Bottleneck % is a model estimate. FPS are rough estimates, not measured benchmarks. Prices are snapshots, not live quotes: current-gen GPUs verified Nov 2026 (Newegg); CPUs and older cards last verified 2025-Q3 and likely higher now.";
 
     // Data confidence footer
     $("#dataMeta").textContent =
