@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
   <link rel="apple-touch-icon" href="icons/icon-180.png" />
   <meta name="theme-color" content="#f5f3fc" />
-  <link rel="stylesheet" href="css/styles.css?v=20261125o" />
+  <link rel="stylesheet" href="css/styles.css?v=20261125p" />
   <script>
     // Apply the saved theme before first paint to avoid a flash.
     try {
@@ -547,7 +547,7 @@
           <li class="warn info"><strong>Power &amp; thermals.</strong> Rated TDPs plus rule-of-thumb draws for board, memory and storage. Transient GPU spikes are added for PSU sizing. Temperatures are derived from cooler TDP ratings assuming a 25C room - not sensor data.</li>
           <li class="warn info"><strong>Prices.</strong> Indicative US street/MSRP estimates in USD, updated manually in batches. Street prices swing week to week; always check a live retailer before buying.</li>
           <li class="warn info"><strong>Legacy parts.</strong> Older generations (RTX 20/GTX 16/RX 5000, Zen 2, 10th/11th-gen Intel) are estimated from historical data and flagged LOW confidence; they are excluded from rankings by default.</li>
-          <li class="warn info"><strong>Your data.</strong> Saved builds, theme, power-cost settings and the optional AI key live only in this browser's storage. Nothing is uploaded anywhere. The AI assistant sends your question and current build description straight from your browser to Groq when you ask it - that is the only outbound request other than fonts.</li>
+          <li class="warn info"><strong>Your data.</strong> Saved builds, theme, power-cost settings and the optional AI key live in this browser's storage by default. If you sign in and choose Save to cloud, that build is stored in your private Supabase space (only you can read it) - nothing else is uploaded. The AI assistant sends your question and current build description straight from your browser to Groq when you ask it; account sign-in goes to Supabase. Those are the only outbound requests other than fonts.</li>
         </ul>
       </section>
     </div><!-- /viewData -->
@@ -562,28 +562,28 @@
     </div>
   </footer>
 
-  <script src="js/data/hardware.js?v=20261125o"></script>
-  <script src="js/data/benchmarks.js?v=20261125o"></script>
-  <script src="js/data/prices.js?v=20261125o"></script>
-  <script src="js/data/games.js?v=20261125o"></script>
-  <script src="js/data/compat.js?v=20261125o"></script>
-  <script src="js/data/components.js?v=20261125o"></script>
-  <script src="js/data/cooling-cases.js?v=20261125o"></script>
-  <script src="js/data/storage.js?v=20261125o"></script>
-  <script src="js/data/monitors.js?v=20261125o"></script>
-  <script src="js/data/software.js?v=20261125o"></script>
-  <script src="js/engine.js?v=20261125o"></script>
-  <script src="js/app.js?v=20261125o"></script>
-  <script src="js/assistant.js?v=20261125o"></script>
-  <script src="js/compare.js?v=20261125o"></script>
-  <script src="js/upgrade.js?v=20261125o"></script>
-  <script src="js/power.js?v=20261125o"></script>
-  <script src="js/library.js?v=20261125o"></script>
-  <script src="js/dashboard.js?v=20261125o"></script>
-  <script src="js/monitors.js?v=20261125o"></script>
-  <script src="js/personal.js?v=20261125o"></script>
-  <script src="js/auth.js?v=20261125o"></script>
-  <script src="js/export.js?v=20261125o"></script>
+  <script src="js/data/hardware.js?v=20261125p"></script>
+  <script src="js/data/benchmarks.js?v=20261125p"></script>
+  <script src="js/data/prices.js?v=20261125p"></script>
+  <script src="js/data/games.js?v=20261125p"></script>
+  <script src="js/data/compat.js?v=20261125p"></script>
+  <script src="js/data/components.js?v=20261125p"></script>
+  <script src="js/data/cooling-cases.js?v=20261125p"></script>
+  <script src="js/data/storage.js?v=20261125p"></script>
+  <script src="js/data/monitors.js?v=20261125p"></script>
+  <script src="js/data/software.js?v=20261125p"></script>
+  <script src="js/engine.js?v=20261125p"></script>
+  <script src="js/app.js?v=20261125p"></script>
+  <script src="js/assistant.js?v=20261125p"></script>
+  <script src="js/compare.js?v=20261125p"></script>
+  <script src="js/upgrade.js?v=20261125p"></script>
+  <script src="js/power.js?v=20261125p"></script>
+  <script src="js/library.js?v=20261125p"></script>
+  <script src="js/dashboard.js?v=20261125p"></script>
+  <script src="js/monitors.js?v=20261125p"></script>
+  <script src="js/personal.js?v=20261125p"></script>
+  <script src="js/auth.js?v=20261125p"></script>
+  <script src="js/export.js?v=20261125p"></script>
   <script>
     // Data & methodology view (footer link) + service worker + mobile nav drawer.
     (function () {
