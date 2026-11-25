@@ -1,32 +1,32 @@
 /* Service worker: cache-first for the app's own static assets so the
  * tool works offline. Data is bundled in the JS files, so the whole
  * calculator keeps working without a connection. */
-var CACHE = "bcp-v20261125k";
+var CACHE = "bcp-v20261125l";
 var ASSETS = [
   "./",
   "index.html",
-  "css/styles.css?v=20261125k",
-  "js/data/hardware.js?v=20261125k",
-  "js/data/benchmarks.js?v=20261125k",
-  "js/data/prices.js?v=20261125k",
-  "js/data/games.js?v=20261125k",
-  "js/data/compat.js?v=20261125k",
-  "js/data/components.js?v=20261125k",
-  "js/data/cooling-cases.js?v=20261125k",
-  "js/data/storage.js?v=20261125k",
-  "js/data/software.js?v=20261125k",
-  "js/data/monitors.js?v=20261125k",
-  "js/engine.js?v=20261125k",
-  "js/app.js?v=20261125k",
-  "js/assistant.js?v=20261125k",
-  "js/compare.js?v=20261125k",
-  "js/upgrade.js?v=20261125k",
-  "js/power.js?v=20261125k",
-  "js/library.js?v=20261125k",
-  "js/monitors.js?v=20261125k",
-  "js/dashboard.js?v=20261125k",
-  "js/personal.js?v=20261125k",
-  "js/export.js?v=20261125k",
+  "css/styles.css?v=20261125l",
+  "js/data/hardware.js?v=20261125l",
+  "js/data/benchmarks.js?v=20261125l",
+  "js/data/prices.js?v=20261125l",
+  "js/data/games.js?v=20261125l",
+  "js/data/compat.js?v=20261125l",
+  "js/data/components.js?v=20261125l",
+  "js/data/cooling-cases.js?v=20261125l",
+  "js/data/storage.js?v=20261125l",
+  "js/data/software.js?v=20261125l",
+  "js/data/monitors.js?v=20261125l",
+  "js/engine.js?v=20261125l",
+  "js/app.js?v=20261125l",
+  "js/assistant.js?v=20261125l",
+  "js/compare.js?v=20261125l",
+  "js/upgrade.js?v=20261125l",
+  "js/power.js?v=20261125l",
+  "js/library.js?v=20261125l",
+  "js/monitors.js?v=20261125l",
+  "js/dashboard.js?v=20261125l",
+  "js/personal.js?v=20261125l",
+  "js/export.js?v=20261125l",
   "manifest.webmanifest",
   "icons/icon-192.png",
   "icons/icon-512.png"
@@ -47,6 +47,14 @@ self.addEventListener("activate", function (e) {
         if (k !== CACHE) return caches.delete(k);
       }));
     }).then(function () { return self.clients.claim(); })
+      .then(function () { return self.clients.matchAll({ type: "window" }); })
+      .then(function (wins) {
+        // A new worker means a new deploy: reload every open tab once so no
+        // page keeps running stale HTML against fresh CSS/JS.
+        return Promise.all(wins.map(function (w) {
+          return w.navigate(w.url).catch(function () {});
+        }));
+      })
   );
 });
 

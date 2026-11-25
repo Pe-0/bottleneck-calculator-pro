@@ -19,7 +19,7 @@
   function initTheme() {
     var saved = null;
     try { saved = localStorage.getItem(THEME_KEY); } catch (e) {}
-    applyTheme(saved === "light" ? "light" : "dark");
+    applyTheme(saved === "dark" ? "dark" : "light");
     var btn = $("#themeToggle");
     if (!btn) return;
     btn.addEventListener("click", function () {
