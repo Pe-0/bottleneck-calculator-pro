@@ -599,6 +599,6 @@ button, input, select, a { transition-timing-function: cubic-bezier(0.22, 1, 0.3
 .auth-user-meta { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .auth-user-meta strong { font-size: 0.98rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .auth-user-meta .muted { font-size: 0.8rem; }
-.auth-panel .saved-builds { margin-top: 18px; border-top: 1px solid var(--border); padding-top: 14px; }
+.auth-panel .saved-builds:not(:empty) { margin-top: 18px; border-top: 1px solid var(--border); padding-top: 14px; }
 .auth-panel .acct-status { min-height: 1.1em; font-size: 0.85rem; }
 
