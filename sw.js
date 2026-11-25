@@ -1,32 +1,32 @@
 /* Service worker: cache-first for the app's own static assets so the
  * tool works offline. Data is bundled in the JS files, so the whole
  * calculator keeps working without a connection. */
-var CACHE = "bcp-v20261125d";
+var CACHE = "bcp-v20261125e";
 var ASSETS = [
   "./",
   "index.html",
-  "css/styles.css?v=20261125d",
-  "js/data/hardware.js?v=20261125d",
-  "js/data/benchmarks.js?v=20261125d",
-  "js/data/prices.js?v=20261125d",
-  "js/data/games.js?v=20261125d",
-  "js/data/compat.js?v=20261125d",
-  "js/data/components.js?v=20261125d",
-  "js/data/cooling-cases.js?v=20261125d",
-  "js/data/storage.js?v=20261125d",
-  "js/data/software.js?v=20261125d",
-  "js/data/monitors.js?v=20261125d",
-  "js/engine.js?v=20261125d",
-  "js/app.js?v=20261125d",
-  "js/assistant.js?v=20261125d",
-  "js/compare.js?v=20261125d",
-  "js/upgrade.js?v=20261125d",
-  "js/power.js?v=20261125d",
-  "js/library.js?v=20261125d",
-  "js/monitors.js?v=20261125d",
-  "js/dashboard.js?v=20261125d",
-  "js/personal.js?v=20261125d",
-  "js/export.js?v=20261125d",
+  "css/styles.css?v=20261125e",
+  "js/data/hardware.js?v=20261125e",
+  "js/data/benchmarks.js?v=20261125e",
+  "js/data/prices.js?v=20261125e",
+  "js/data/games.js?v=20261125e",
+  "js/data/compat.js?v=20261125e",
+  "js/data/components.js?v=20261125e",
+  "js/data/cooling-cases.js?v=20261125e",
+  "js/data/storage.js?v=20261125e",
+  "js/data/software.js?v=20261125e",
+  "js/data/monitors.js?v=20261125e",
+  "js/engine.js?v=20261125e",
+  "js/app.js?v=20261125e",
+  "js/assistant.js?v=20261125e",
+  "js/compare.js?v=20261125e",
+  "js/upgrade.js?v=20261125e",
+  "js/power.js?v=20261125e",
+  "js/library.js?v=20261125e",
+  "js/monitors.js?v=20261125e",
+  "js/dashboard.js?v=20261125e",
+  "js/personal.js?v=20261125e",
+  "js/export.js?v=20261125e",
   "manifest.webmanifest",
   "icons/icon-192.png",
   "icons/icon-512.png"
@@ -56,16 +56,45 @@ self.addEventListener("fetch", function (e) {
   // Only handle same-origin requests; let the network handle the rest
   // (fonts, AI API calls).
   if (url.origin !== location.origin) return;
-  e.respondWith(
-    caches.match(e.request, { ignoreSearch: false }).then(function (hit) {
-      if (hit) return hit;
-      return fetch(e.request).then(function (resp) {
-        if (resp && resp.ok && url.pathname.indexOf("/bottleneck-calculator-pro/") === 0) {
+
+  // Page navigations: network-first so deploys show up immediately,
+  // falling back to the cached shell when offline.
+  if (e.request.mode === "navigate") {
+    e.respondWith(
+      fetch(e.request).then(function (resp) {
+        if (resp && resp.ok) {
           var copy = resp.clone();
           caches.open(CACHE).then(function (c) { c.put(e.request, copy); });
         }
         return resp;
-      });
-    })
+      }).catch(function () {
+        return caches.match(e.request).then(function (hit) {
+          return hit || caches.match("index.html");
+        });
+      })
+    );
+    return;
+  }
+
+  // Versioned static assets (?v=...): immutable per deploy, cache-first.
+  if (url.search.indexOf("v=") > -1) {
+    e.respondWith(
+      caches.match(e.request).then(function (hit) {
+        if (hit) return hit;
+        return fetch(e.request).then(function (resp) {
+          if (resp && resp.ok) {
+            var copy = resp.clone();
+            caches.open(CACHE).then(function (c) { c.put(e.request, copy); });
+          }
+          return resp;
+        });
+      })
+    );
+    return;
+  }
+
+  // Anything else same-origin: network with cache fallback.
+  e.respondWith(
+    fetch(e.request).catch(function () { return caches.match(e.request); })
   );
 });
