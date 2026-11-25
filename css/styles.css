@@ -347,3 +347,45 @@ select:hover, select:focus { border-color: var(--accent); outline: none; }
 .fill-bad { background: linear-gradient(90deg, #ef4444, #b91c1c) !important; }
 .warn.ok { border-left-color: var(--accent-2); }
 @media (max-width: 720px) { .pw-row { grid-template-columns: 1.2fr 1.4fr auto; } }
+
+/* ============ Global search ============ */
+.header-inner { flex-wrap: wrap; }
+.search-wrap { position: relative; flex: 1 1 200px; max-width: 320px; }
+#globalSearch {
+  width: 100%; background: var(--bg-soft); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--text); padding: 8px 12px; font-size: 0.88rem; font-family: inherit;
+}
+#globalSearch:focus { outline: none; border-color: var(--accent); }
+.search-results {
+  position: absolute; top: calc(100% + 6px); right: 0; left: 0; z-index: 50;
+  background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+  overflow: hidden; box-shadow: 0 12px 32px rgba(0,0,0,.45);
+}
+.search-results.hidden { display: none; }
+.sr-item { display: flex; gap: 10px; align-items: baseline; padding: 9px 12px; cursor: pointer; font-size: 0.88rem; }
+.sr-item:hover { background: var(--bg-soft); }
+.sr-kind { color: var(--accent-2); font-size: 0.72rem; text-transform: uppercase; letter-spacing: .06em; min-width: 86px; }
+.sr-name { color: var(--text); }
+
+/* ============ Games & software ============ */
+.gm-toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 18px; }
+#gmSearch {
+  background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px;
+  color: var(--text); padding: 9px 12px; font-size: 0.9rem; font-family: inherit; min-width: 220px;
+}
+#gmSearch:focus { outline: none; border-color: var(--accent); }
+.gm-list { display: flex; flex-direction: column; gap: 12px; }
+.gm-card { background: var(--bg-soft); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+.gm-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+.gm-stats { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.88rem; color: var(--muted); margin-bottom: 6px; }
+.gm-fps b { color: var(--accent-2); font-size: 1.05rem; }
+.gm-preset.good { color: var(--accent-2); }
+.gm-preset.mid { color: #eab308; }
+.gm-preset.bad { color: #ef4444; }
+.gm-req { font-size: 0.8rem; }
+.sw-bars { display: flex; flex-direction: column; gap: 6px; margin: 8px 0; }
+.sw-imp { display: grid; grid-template-columns: 44px 1fr; gap: 10px; align-items: center; }
+.sw-imp-label { font-size: 0.75rem; color: var(--muted); }
+.sw-bar { height: 6px; }
+.sw-note { font-size: 0.85rem; margin: 6px 0; }
+.sw-verdicts { margin: 6px 0 0; }

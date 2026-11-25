@@ -22,7 +22,12 @@
         <button class="tab-btn" data-view="compare" type="button">Compare</button>
         <button class="tab-btn" data-view="upgrade" type="button">Upgrade</button>
         <button class="tab-btn" data-view="power" type="button">Power</button>
+        <button class="tab-btn" data-view="games" type="button">Games</button>
       </nav>
+      <div class="search-wrap">
+        <input type="text" id="globalSearch" placeholder="Search hardware, games, software..." autocomplete="off" />
+        <div id="searchResults" class="search-results hidden"></div>
+      </div>
     </div>
   </header>
 
@@ -399,6 +404,29 @@
         <p class="muted cmp-note">Temperature estimates assume a 25C room and decent case airflow, derived from TDP ratings only - not sensor data.</p>
       </section>
     </div><!-- /viewPower -->
+
+    <!-- ============ GAMES & SOFTWARE LIBRARY ============ -->
+    <div id="viewGames" class="view hidden">
+      <section class="hero">
+        <h1>Games and software, sized for your build.</h1>
+        <p>Per-game FPS estimates and preset suggestions for the build on the Calculator tab, plus workload profiles for professional software.</p>
+      </section>
+
+      <section class="panel">
+        <div class="gm-toolbar">
+          <input type="text" id="gmSearch" placeholder="Filter games and software..." autocomplete="off" />
+          <span class="muted" id="gmBuildLine"></span>
+        </div>
+        <h2>Games <small class="h-sub">FPS estimated for your build</small></h2>
+        <div id="gmList" class="gm-list"></div>
+        <p class="muted cmp-note">Requirement tiers are derived from the same reference-rig data behind the FPS estimator (GPU score needed for 30/60 fps). Estimates, not measurements.</p>
+      </section>
+
+      <section class="panel">
+        <h2>Software workloads <small class="h-sub">curated profiles</small></h2>
+        <div id="swList" class="gm-list"></div>
+      </section>
+    </div><!-- /viewGames -->
   </main>
 
   <footer class="site-footer">
@@ -417,11 +445,13 @@
   <script src="js/data/components.js?v=20261125a"></script>
   <script src="js/data/cooling-cases.js?v=20261125a"></script>
   <script src="js/data/storage.js?v=20261125a"></script>
+  <script src="js/data/software.js?v=20261125a"></script>
   <script src="js/engine.js?v=20261125a"></script>
   <script src="js/app.js?v=20261125a"></script>
   <script src="js/assistant.js?v=20261125a"></script>
   <script src="js/compare.js?v=20261125a"></script>
   <script src="js/upgrade.js?v=20261125a"></script>
   <script src="js/power.js?v=20261125a"></script>
+  <script src="js/library.js?v=20261125a"></script>
 </body>
 </html>

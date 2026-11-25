@@ -42,6 +42,21 @@
     };
   };
 
+  // Cross-tab setter: global search jumps straight to a component.
+  BCP.setSelection = function (patch) {
+    if (patch.cpuId && hw(BCP.cpus.items, patch.cpuId)) state.cpuId = patch.cpuId;
+    if (patch.gpuId && hw(BCP.gpus.items, patch.gpuId)) state.gpuId = patch.gpuId;
+    if (patch.moboId) state.moboId = patch.moboId;
+    if (patch.ramId) state.ramId = patch.ramId;
+    if (patch.psuId && hw(BCP.psus.items, patch.psuId)) state.psuId = patch.psuId;
+    if (patch.coolerId && hw(BCP.coolers.items, patch.coolerId)) state.coolerId = patch.coolerId;
+    if (patch.storageId && hw(BCP.storage.items, patch.storageId)) state.storageId = patch.storageId;
+    $("#cpuSelect").value = state.cpuId;
+    $("#gpuSelect").value = state.gpuId;
+    syncComponentPickers();
+    render();
+  };
+
   function fillSelect(el, items, groupBy) {
     var groups = {};
     items.forEach(function (it) {
