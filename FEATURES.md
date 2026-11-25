@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 297 live · 🚧 89 in progress · ⏳ 3859 not started**
+**4245 features total: ✅ 300 live · 🚧 89 in progress · ⏳ 3856 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -15,7 +15,7 @@ _Accounts are live via Supabase: email/password signup with mandatory email conf
 - ✅ Guest Mode
 - ⏳ User Profiles
 - ⏳ Personal Dashboard
-- ⏳ User Preferences
+- ✅ User Preferences
 - 🚧 Theme Customization
 - ✅ Dark / Light Mode
 - ⏳ Multi-Language Support
@@ -51,7 +51,7 @@ _Accounts are live via Supabase: email/password signup with mandatory email conf
 - ✅ Build Export
 - ⏳ Build Import
 - ⏳ Build Comparison
-- ⏳ Build Version History
+- ✅ Build Version History
 - ✅ Build Optimization Suggestions
 - ⏳ Upgrade Path Planner
 
@@ -1050,7 +1050,7 @@ _Every item below is not started. Items tagged 'blocked:' wait on an external de
 
 ## 31. Account, Profile & Identity (roadmap - user gap list, Nov 25)
 - ⏳ Email Verification
-- ⏳ Password Reset & Recovery
+- ✅ Password Reset & Recovery
 - ⏳ Two-Factor Authentication (2FA)
 - ⏳ Active Device Management
 - ⏳ Login History
