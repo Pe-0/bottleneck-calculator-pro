@@ -11,16 +11,20 @@ window.BCP.prices = {
   meta: {
     layer: "prices",
     currency: "USD",
-    asOf: "2026-11 (current-gen GPUs) / 2025-Q3 (CPUs and older GPUs)",
-    confidence: "medium for current-gen GPU (verified listings); low for the rest",
-    source: "Cheapest qualifying in-stock Newegg listing per model, Nov 23, 2026, via techfuelhq.com GPU street price index (current-gen GPUs; RTX 5090 excluded - its listings fall outside the index's accepted price band); curated 2025-Q3 snapshots for CPUs and older cards. Live feeds planned for stage 2"
+    asOf: "2026-11 (current-gen GPUs) / 2026-11-25 (AM5 Ryzen 9000/7000 + Core Ultra Plus CPUs) / 2025-Q3 (older CPUs and GPUs)",
+    confidence: "medium for current-gen GPU and current-gen AMD CPU (verified listings); low for the rest",
+    source: "Cheapest qualifying in-stock Newegg listing per model, Nov 23, 2026, via techfuelhq.com GPU street price index (current-gen GPUs; RTX 5090 excluded - its listings fall outside the index's accepted price band); current-gen AMD CPUs refreshed 2026-11-25 from Micro Center holiday pricing (via wccftech, Nov 19 2026) and Amazon/Newegg listings (Tom's Hardware and Club386, Nov 2026); curated 2025-Q3 snapshots for Intel and older cards. Live feeds planned for stage 2"
   },
   cpu: {
     "r9-3900x": 220, "r7-3700x": 120, "r5-3600": 80,
     "i9-11900k": 280, "i5-11400f": 100, "i9-10900k": 250, "i7-10700k": 180, "i5-10400f": 90,
-    "r9-9950x": 649, "r9-9900x": 469, "r7-9800x3d": 479, "r7-9700x": 359,
-    "r5-9600x": 279, "r9-7950x": 549, "r9-7900x": 399, "r7-7800x3d": 449,
-    "r7-7700x": 299, "r5-7600x": 229, "r5-7600": 199,
+    "r9-9950x": 470, "r9-9900x": 300, "r7-9800x3d": 380, "r7-9700x": 250,
+    "r5-9600x": 160, "r9-7950x": 400, "r9-7900x": 399, "r7-7800x3d": 320,
+    "r7-7700x": 200, "r5-7600x": 150, "r5-7600": 160,
+    // X3D + Core Ultra Plus additions, current street 2026-11-25 (Micro Center / Amazon / Newegg holiday listings)
+    "r7-9850x3d": 400, "r9-9950x3d": 580, "r9-9950x3d2": 770, "r9-9900x3d": 400,
+    "r9-7950x3d": 550, "r9-7900x3d": 527, "r7-7700x3d": 280, "r5-7600x3d": 249,
+    "u7-270kp": 233, "u5-250kp": 170,
     "r9-5950x": 549, "r9-5900x": 349, "r7-5800x3d": 329, "r7-5800x": 249,
     "r7-5700x3d": 249, "r5-5600x": 159, "r5-5600": 135,
     "u9-285k": 589, "u7-265k": 394, "u5-245k": 309,
