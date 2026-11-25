@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20261125c" />
+  <link rel="stylesheet" href="css/styles.css?v=20261125d" />
   <script>
     // Apply the saved theme before first paint to avoid a flash.
     try {
@@ -425,6 +425,17 @@
         <ul class="warn-list" id="thList"></ul>
         <p class="muted cmp-note">Temperature estimates assume a 25C room and decent case airflow, derived from TDP ratings only - not sensor data.</p>
       </section>
+
+      <section class="panel">
+        <h2>Electricity cost <small class="h-sub">from the power estimates above</small></h2>
+        <div class="ec-inputs">
+          <label>Gaming <input type="number" id="ecGameH" min="0" max="24" step="0.5" /> h/day</label>
+          <label>Idle / light use <input type="number" id="ecIdleH" min="0" max="24" step="0.5" /> h/day</label>
+          <label>Rate $<input type="number" id="ecRate" min="0" max="2" step="0.01" /> /kWh</label>
+        </div>
+        <div class="pw-stats" id="ecStats"></div>
+        <p class="muted cmp-note">Wall draw assumes ~88% PSU efficiency. Defaults are 2 h gaming + 6 h idle at $0.17/kWh - adjust the rate to your tariff. Estimates, not meter readings.</p>
+      </section>
     </div><!-- /viewPower -->
 
     <!-- ============ GAMES & SOFTWARE LIBRARY ============ -->
@@ -503,24 +514,24 @@
     </div>
   </footer>
 
-  <script src="js/data/hardware.js?v=20261125c"></script>
-  <script src="js/data/benchmarks.js?v=20261125c"></script>
-  <script src="js/data/prices.js?v=20261125c"></script>
-  <script src="js/data/games.js?v=20261125c"></script>
-  <script src="js/data/compat.js?v=20261125c"></script>
-  <script src="js/data/components.js?v=20261125c"></script>
-  <script src="js/data/cooling-cases.js?v=20261125c"></script>
-  <script src="js/data/storage.js?v=20261125c"></script>
-  <script src="js/data/software.js?v=20261125c"></script>
-  <script src="js/engine.js?v=20261125c"></script>
-  <script src="js/app.js?v=20261125c"></script>
-  <script src="js/assistant.js?v=20261125c"></script>
-  <script src="js/compare.js?v=20261125c"></script>
-  <script src="js/upgrade.js?v=20261125c"></script>
-  <script src="js/power.js?v=20261125c"></script>
-  <script src="js/library.js?v=20261125c"></script>
-  <script src="js/dashboard.js?v=20261125c"></script>
-  <script src="js/personal.js?v=20261125c"></script>
-  <script src="js/export.js?v=20261125c"></script>
+  <script src="js/data/hardware.js?v=20261125d"></script>
+  <script src="js/data/benchmarks.js?v=20261125d"></script>
+  <script src="js/data/prices.js?v=20261125d"></script>
+  <script src="js/data/games.js?v=20261125d"></script>
+  <script src="js/data/compat.js?v=20261125d"></script>
+  <script src="js/data/components.js?v=20261125d"></script>
+  <script src="js/data/cooling-cases.js?v=20261125d"></script>
+  <script src="js/data/storage.js?v=20261125d"></script>
+  <script src="js/data/software.js?v=20261125d"></script>
+  <script src="js/engine.js?v=20261125d"></script>
+  <script src="js/app.js?v=20261125d"></script>
+  <script src="js/assistant.js?v=20261125d"></script>
+  <script src="js/compare.js?v=20261125d"></script>
+  <script src="js/upgrade.js?v=20261125d"></script>
+  <script src="js/power.js?v=20261125d"></script>
+  <script src="js/library.js?v=20261125d"></script>
+  <script src="js/dashboard.js?v=20261125d"></script>
+  <script src="js/personal.js?v=20261125d"></script>
+  <script src="js/export.js?v=20261125d"></script>
 </body>
 </html>
