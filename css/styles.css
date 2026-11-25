@@ -473,3 +473,12 @@ body[data-theme="light"] .db-radar-val { fill: rgba(47, 106, 224, 0.18); stroke:
 .mn-price { margin-left: auto; color: var(--text); font-weight: 600; }
 .mn-actions { margin-top: 8px; }
 .mn-actions .gen-load { font-size: 0.78rem; padding: 5px 10px; }
+
+/* ---- Data & methodology ---- */
+.data-layers { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 760px) { .data-layers { grid-template-columns: 1fr; } }
+.data-layer { border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; background: var(--panel-2); }
+.data-layer strong { display: block; font-size: 0.9rem; margin-bottom: 4px; }
+.data-layer span { font-size: 0.8rem; }
+.data-link { color: var(--accent); text-decoration: none; }
+.data-link:hover { text-decoration: underline; }

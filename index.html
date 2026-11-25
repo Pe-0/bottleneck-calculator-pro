@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#0b0f1a" />
   <link rel="stylesheet" href="css/styles.css?v=20261125d" />
   <script>
     // Apply the saved theme before first paint to avoid a flash.
@@ -519,12 +521,35 @@
         </section>
       </div>
     </div><!-- /viewDash -->
+    <!-- ============ DATA & METHODOLOGY ============ -->
+    <div id="viewData" class="view hidden">
+      <section class="hero">
+        <h1>Where every number comes from.</h1>
+        <p>This tool is only as honest as its data. Each layer below lists its coverage, its as-of date and its confidence. Estimates are labeled as estimates everywhere they appear.</p>
+      </section>
+      <section class="panel">
+        <h2>Data layers</h2>
+        <div id="dataLayers" class="data-layers"></div>
+      </section>
+      <section class="panel">
+        <h2>Methodology</h2>
+        <ul class="warn-list">
+          <li class="warn info"><strong>Bottleneck model.</strong> Relative scores are anchored to fixed reference points (RTX 4090 = 100 GPU raster, Ryzen 7 7800X3D = 100 gaming CPU, Ryzen 9 9950X = 100 multi-core). The bottleneck percentage compares CPU and GPU capability at the selected resolution and workload; higher resolutions shift load toward the GPU. It answers "which part limits the other", not "is this build good".</li>
+          <li class="warn info"><strong>FPS model.</strong> Each game stores measured-ish base FPS for a fixed reference rig at three resolutions plus a CPU-sensitivity weight. Your estimate scales the base by whichever of your parts runs out first. Upscaling (DLSS/FSR/XeSS) boosts only the GPU side, so a CPU-limited game gains little.</li>
+          <li class="warn info"><strong>Power &amp; thermals.</strong> Rated TDPs plus rule-of-thumb draws for board, memory and storage. Transient GPU spikes are added for PSU sizing. Temperatures are derived from cooler TDP ratings assuming a 25C room - not sensor data.</li>
+          <li class="warn info"><strong>Prices.</strong> Indicative US street/MSRP estimates in USD, updated manually in batches. Street prices swing week to week; always check a live retailer before buying.</li>
+          <li class="warn info"><strong>Legacy parts.</strong> Older generations (RTX 20/GTX 16/RX 5000, Zen 2, 10th/11th-gen Intel) are estimated from historical data and flagged LOW confidence; they are excluded from rankings by default.</li>
+          <li class="warn info"><strong>Your data.</strong> Saved builds, theme, power-cost settings and the optional AI key live only in this browser's storage. Nothing is uploaded anywhere. The AI assistant sends your question and current build description straight from your browser to Groq when you ask it - that is the only outbound request other than fonts.</li>
+        </ul>
+      </section>
+    </div><!-- /viewData -->
   </main>
 
   <footer class="site-footer">
     <div class="container">
       <p>FPS figures are estimates from curated relative-performance data, not measured benchmarks. Treat prices as indicative.</p>
       <p class="muted" id="dataMeta"></p>
+      <p><a href="#data" id="dataLink" class="data-link">Data sources &amp; methodology</a></p>
       <p class="copy">© 2026 Peter Zakaria. All rights reserved.</p>
     </div>
   </footer>
@@ -550,5 +575,59 @@
   <script src="js/monitors.js?v=20261125d"></script>
   <script src="js/personal.js?v=20261125d"></script>
   <script src="js/export.js?v=20261125d"></script>
+  <script>
+    // Data & methodology view (footer link) + service worker.
+    (function () {
+      var link = document.getElementById("dataLink");
+      if (link) {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelectorAll(".tab-btn").forEach(function (x) { x.classList.remove("active"); });
+          ["viewCalc","viewCompare","viewUpgrade","viewPower","viewGames","viewMonitors","viewDash"].forEach(function (id) {
+            var el = document.getElementById(id); if (el) el.classList.add("hidden");
+          });
+          document.getElementById("viewData").classList.remove("hidden");
+          window.scrollTo(0, 0);
+          var box = document.getElementById("dataLayers");
+          box.innerHTML = "";
+          var B = window.BCP;
+          var layers = [
+            ["CPU specs", B.cpus.meta, B.cpus.items.length + " models"],
+            ["GPU specs", B.gpus.meta, B.gpus.items.length + " models"],
+            ["Benchmark scores", B.benchmarks.meta, "Relative scores on fixed anchors"],
+            ["Prices", B.prices.meta, "USD, indicative"],
+            ["Motherboards", B.motherboards.meta, B.motherboards.items.length + " boards"],
+            ["Memory kits", B.memoryKits.meta, B.memoryKits.items.length + " kits"],
+            ["PSUs", B.psus.meta, B.psus.items.length + " units"],
+            ["Coolers", B.coolers.meta, B.coolers.items.length + " coolers"],
+            ["Storage", B.storage.meta, B.storage.items.length + " drives"],
+            ["Games", B.games.meta, B.games.items.length + " titles with per-resolution base FPS"],
+            ["Software profiles", B.software.meta, B.software.items.length + " curated workload profiles"],
+            ["Monitors", B.monitors.meta, B.monitors.items.length + " panels"]
+          ];
+          layers.forEach(function (l) {
+            var meta = l[1] || {};
+            var div = document.createElement("div");
+            div.className = "data-layer";
+            div.innerHTML = "<strong></strong><span class=\"muted\"></span>";
+            div.querySelector("strong").textContent = l[0];
+            div.querySelector("span").textContent =
+              (l[2] || "") +
+              (meta.asOf ? " · as of " + meta.asOf : "") +
+              (meta.confidence ? " · " + meta.confidence : "");
+            box.appendChild(div);
+          });
+        });
+      }
+      document.querySelectorAll(".tab-btn").forEach(function (b) {
+        b.addEventListener("click", function () {
+          var v = document.getElementById("viewData"); if (v) v.classList.add("hidden");
+        });
+      });
+      if ("serviceWorker" in navigator && location.protocol === "https:") {
+        navigator.serviceWorker.register("sw.js").catch(function () {});
+      }
+    })();
+  </script>
 </body>
 </html>
