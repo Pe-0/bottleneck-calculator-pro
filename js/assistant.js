@@ -54,7 +54,7 @@
     if (!window.isSecureContext) {
       var warn = document.createElement("span");
       warn.className = "muted ai-key-saved";
-      warn.textContent = "API key entry is disabled on this insecure (HTTP) connection. Use the secure HTTPS version (pe-0.github.io/bottleneck-calculator-pro) to add your key.";
+      warn.textContent = "API key entry is disabled on this insecure (HTTP) connection. It comes back automatically once HTTPS is active on bcalc.mooo.com.";
       row.appendChild(warn);
       return;
     }

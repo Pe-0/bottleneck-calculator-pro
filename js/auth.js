@@ -55,8 +55,7 @@
       box.innerHTML =
         '<div class="auth-head"><h2>Secure sign-in only.</h2>' +
         '<p class="muted">This page was loaded over an insecure (HTTP) connection, where a password could be intercepted or the page modified in transit. Sign-in and cloud sync are disabled here.</p></div>' +
-        '<a class="auth-primary auth-secure-link" href="https://pe-0.github.io/bottleneck-calculator-pro/">Open the secure HTTPS version</a>' +
-        '<div class="acct-status muted">Full HTTPS on bcalc.mooo.com is being provisioned - everything else on this page works as usual.</div>';
+        '<div class="acct-status muted">HTTPS for bcalc.mooo.com is being provisioned by the host right now - the moment it is active, this page turns into the normal sign-in form automatically. Everything else on the site works as usual.</div>';
       renderNavAuth();
       return;
     }
