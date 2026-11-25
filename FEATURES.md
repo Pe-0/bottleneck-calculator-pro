@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 300 live · 🚧 89 in progress · ⏳ 3856 not started**
+**4245 features total: ✅ 305 live · 🚧 89 in progress · ⏳ 3851 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -1160,7 +1160,7 @@ _Every item below is not started. Items tagged 'blocked:' wait on an external de
 - ⏳ Bottleneck Detection by RAM Configuration
 - ⏳ Bottleneck Detection by Storage Configuration
 - ⏳ Bottleneck Scenario Presets
-- ⏳ Bottleneck Diagnostic Report
+- ✅ Bottleneck Diagnostic Report
 - ⏳ Bottleneck Root Cause Analysis
 - ⏳ Bottleneck Resolution Suggestions
 - ⏳ Bottleneck Severity History
@@ -3518,7 +3518,7 @@ _Every item below is not started. Items tagged 'blocked:' wait on an external de
 
 ## 77. UX/UI Advanced Features (roadmap - user gap list, Nov 25)
 - ⏳ Global Navigation Optimization
-- ⏳ Navigation Search
+- ✅ Navigation Search
 - ⏳ Breadcrumb Navigation
 - ⏳ Quick Navigation
 - ⏳ Navigation History
@@ -3528,9 +3528,9 @@ _Every item below is not started. Items tagged 'blocked:' wait on an external de
 - ⏳ Contextual Menus
 - ⏳ Quick Actions
 - ⏳ Action Shortcuts
-- ⏳ Command Palette
-- ⏳ Global Command Search
-- ⏳ Keyboard Command System
+- ✅ Command Palette
+- ✅ Global Command Search
+- ✅ Keyboard Command System
 - ⏳ Quick Hardware View
 - ⏳ Quick Product View
 - ⏳ Quick Build View
