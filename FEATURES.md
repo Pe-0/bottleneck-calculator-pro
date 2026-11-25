@@ -2,7 +2,7 @@
 
 Live app: https://pe-0.github.io/bottleneck-calculator-pro/
 
-**931 features total: ✅ 208 live · 🚧 91 in progress · ⏳ 632 not started**
+**931 features total: ✅ 238 live · 🚧 86 in progress · ⏳ 607 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-24 - after stage 11 (Upgrade Advisor). Updated with every shipped stage.
@@ -16,13 +16,13 @@ _Accounts/profiles need a real backend - deferred (architecture decision). Dark 
 - ⏳ User Profiles
 - ⏳ Personal Dashboard
 - ⏳ User Preferences
-- ⏳ Theme Customization
-- 🚧 Dark / Light Mode
+- 🚧 Theme Customization
+- ✅ Dark / Light Mode
 - ⏳ Multi-Language Support
 - ⏳ User Activity History
 - ⏳ Recently Viewed Components
 - ⏳ Favorites & Wishlist
-- ⏳ Saved PC Builds
+- ✅ Saved PC Builds
 - ⏳ Build History
 - ⏳ Notifications Center
 - ⏳ Account Security
@@ -45,10 +45,10 @@ _Accounts/profiles need a real backend - deferred (architecture decision). Dark 
 - ⏳ Build Completion Progress
 - ✅ Component Selection Summary
 - ✅ Build Cost Calculator
-- 🚧 Build Save & Load
+- ✅ Build Save & Load
 - ⏳ Build Duplication
 - ✅ Build Sharing
-- ⏳ Build Export
+- ✅ Build Export
 - ⏳ Build Import
 - ⏳ Build Comparison
 - ⏳ Build Version History
@@ -134,8 +134,8 @@ _Accounts/profiles need a real backend - deferred (architecture decision). Dark 
 ## 5. Power Consumption & PSU Analysis
 
 _TDP-based figures are live in the build summary; the full power/thermal stage (S12) is next after Upgrade Advisor._
-- 🚧 Component Power Consumption
-- 🚧 CPU Power Consumption
+- ✅ Component Power Consumption
+- ✅ CPU Power Consumption
 - ✅ GPU Power Consumption
 - ⏳ Motherboard Power Consumption
 - ⏳ RAM Power Consumption
@@ -149,7 +149,7 @@ _TDP-based figures are live in the build summary; the full power/thermal stage (
 - ⏳ Workload Power Consumption
 - ⏳ Power Headroom Calculator
 - ✅ PSU Wattage Recommendation
-- 🚧 PSU Safety Margin
+- ✅ PSU Safety Margin
 - 🚧 PSU Efficiency Analysis
 - ⏳ 80 PLUS Certification Analysis
 - ⏳ PSU Tier Rating
@@ -190,7 +190,7 @@ _TDP-based figures are live in the build summary; the full power/thermal stage (
 
 ## 7. Game & Software Database
 - ✅ Game Database
-- ⏳ Game Search
+- ✅ Game Search
 - ⏳ Game Categories
 - ⏳ Game Genres
 - ⏳ Game Requirements
@@ -198,9 +198,9 @@ _TDP-based figures are live in the build summary; the full power/thermal stage (
 - ⏳ Recommended System Requirements
 - ⏳ Ultra System Requirements
 - ⏳ Game Benchmark Database
-- 🚧 Game Performance Profiles
+- ✅ Game Performance Profiles
 - ⏳ Game Resolution Profiles
-- ⏳ Game Graphics Presets
+- ✅ Game Graphics Presets
 - ⏳ Game Settings Recommendations
 - ✅ Game-Specific FPS Estimation
 - ⏳ Game CPU Utilization Profiles
@@ -211,13 +211,13 @@ _TDP-based figures are live in the build summary; the full power/thermal stage (
 - ⏳ Game Library
 - ⏳ Favorite Games
 - ⏳ Game Performance Comparison
-- ⏳ Software Database
+- ✅ Software Database
 - ⏳ Software Requirements Database
-- ⏳ Software Performance Profiles
+- ✅ Software Performance Profiles
 - ⏳ Professional Software Compatibility
-- ⏳ Rendering Software Profiles
-- ⏳ Editing Software Profiles
-- ⏳ CAD Software Profiles
+- ✅ Rendering Software Profiles
+- ✅ Editing Software Profiles
+- ✅ CAD Software Profiles
 - ⏳ AI Workload Profiles
 
 ## 8. Hardware Database
@@ -408,7 +408,7 @@ _Parked: waiting on eBay developer API approval (manual review). Zero-spend rule
 - ⏳ Hardware Marketplace
 - ⏳ Component Store
 - ⏳ Product Catalog
-- ⏳ Product Search
+- ✅ Product Search
 - ⏳ Advanced Product Filters
 - ⏳ Product Categories
 - ⏳ Brand Filtering
@@ -599,24 +599,24 @@ _Scheduled as part of stage S12 (power & thermal)._
 ## 16. PC Builder Dashboard & Analytics
 
 _First charts live in the Compare tab; full dashboard is stage S14._
-- ⏳ Build Overview Dashboard
-- ⏳ Performance Dashboard
-- ⏳ Bottleneck Dashboard
+- ✅ Build Overview Dashboard
+- ✅ Performance Dashboard
+- ✅ Bottleneck Dashboard
 - ⏳ Compatibility Dashboard
-- ⏳ Power Dashboard
+- ✅ Power Dashboard
 - ⏳ Thermal Dashboard
-- ⏳ Budget Dashboard
+- ✅ Budget Dashboard
 - ⏳ Component Statistics
 - ⏳ Performance Statistics
 - ⏳ Build Cost Statistics
 - ⏳ Component Distribution Charts
-- ⏳ Performance Charts
-- ⏳ Bottleneck Charts
-- ⏳ Power Consumption Charts
+- ✅ Performance Charts
+- ✅ Bottleneck Charts
+- ✅ Power Consumption Charts
 - ⏳ Price History Charts
 - ⏳ FPS Charts
 - ⏳ Benchmark Charts
-- ⏳ Radar Performance Charts
+- ✅ Radar Performance Charts
 - ⏳ Hardware Ranking Charts
 - ⏳ Build Comparison Charts
 - ⏳ Interactive Data Visualization
@@ -710,7 +710,7 @@ _Scheduled as stage S13 together with the game/software database._
 - ⏳ Performance-Based Search
 - ⏳ Brand Search
 - ⏳ Model Search
-- ⏳ Game Search
+- ✅ Game Search
 - ⏳ Build Search
 - ⏳ Search Filters
 - ⏳ Search Sorting
@@ -758,10 +758,10 @@ _Shareable build links are live; print/PDF/CSV/QR export is stage S15._
 - ⏳ Shopping List Report
 - ⏳ Price Comparison Report
 - ⏳ Build Summary Report
-- ⏳ PDF Export
-- ⏳ CSV Export
+- ✅ PDF Export
+- ✅ CSV Export
 - ⏳ Excel Export
-- ⏳ Print Build
+- ✅ Print Build
 - ✅ Shareable Build Link
 - ⏳ Build QR Code
 - ⏳ Performance Charts Export
@@ -782,7 +782,7 @@ _Shareable build links are live; print/PDF/CSV/QR export is stage S15._
 - ⏳ Monitor Database
 - ⏳ Peripheral Database
 - ✅ Game Database
-- ⏳ Software Database
+- ✅ Software Database
 - ✅ Benchmark Database
 - ✅ FPS Database
 - ✅ Compatibility Database
