@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**3598 features total: ✅ 297 live · 🚧 89 in progress · ⏳ 3212 not started**
+**4245 features total: ✅ 297 live · 🚧 89 in progress · ⏳ 3859 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -3816,4 +3816,678 @@ _Every item below is not started. Items tagged 'blocked:' wait on an external de
 - ⏳ Marketplace Terms
 - ⏳ Seller Terms
 - ⏳ Seller Compliance
+## 82. Environmental & Sustainability Intelligence (roadmap - user gap list, Nov 25)
+- ⏳ PC Energy Efficiency Ranking
+- ⏳ Hardware Energy Efficiency Ranking
+- ⏳ Build Energy Efficiency Ranking
+- ⏳ Performance per Watt Sustainability Ranking
+- ⏳ Energy Consumption Comparison
+- ⏳ Electricity Cost Comparison
+- ⏳ Carbon Footprint Calculator
+- ⏳ PC Carbon Footprint Estimator
+- ⏳ Hardware Manufacturing Carbon Estimator
+- ⏳ PC Usage Carbon Estimator
+- ⏳ Hardware Lifecycle Carbon Analysis
+- ⏳ Hardware Sustainability Score
+- ⏳ Hardware Environmental Rating
+- ⏳ Hardware Repairability Score
+- ⏳ Hardware Recyclability Score
+- ⏳ Hardware Longevity Score
+- ⏳ Sustainable PC Build Recommendations
+- ⏳ Energy Efficient Build Recommendations
+- ⏳ Low Power Build Recommendations
+- ⏳ Eco-Friendly Hardware Recommendations
+- ⏳ Sustainable Upgrade Advisor
+- ⏳ Hardware Reuse Recommendations
+- ⏳ Hardware Recycling Guide
+- ⏳ Electronic Waste Guide
+- ⏳ PC Disposal Guide
+- ⏳ Component Recycling Directory
+- ⏳ Electronic Waste Collection Directory
+- ⏳ Hardware Donation Directory
+- ⏳ Hardware Refurbishment Directory
+- ⏳ Refurbished Hardware Database
+- ⏳ Refurbished PC Recommendations
+- ⏳ Refurbished Hardware Comparison
+- ⏳ Refurbished Hardware Quality Rating
+- ⏳ Hardware Reuse Tracking
+- ⏳ Environmental Impact Comparison
+- ⏳ Sustainability Analytics
+- ⏳ Sustainability Reports
+- ⏳ Sustainability Dashboard
+
+## 83. Laptop & Mobile Computing Ecosystem (roadmap - user gap list, Nov 25)
+- ⏳ Laptop Hardware Database
+- ⏳ Gaming Laptop Database
+- ⏳ Workstation Laptop Database
+- ⏳ Ultrabook Database
+- ⏳ Laptop CPU Database
+- ⏳ Laptop GPU Database
+- ⏳ Laptop RAM Database
+- ⏳ Laptop Storage Database
+- ⏳ Laptop Display Database
+- ⏳ Laptop Cooling Database
+- ⏳ Laptop Battery Database
+- ⏳ Laptop Power Adapter Database
+- ⏳ Laptop Specifications
+- ⏳ Laptop Benchmark Database
+- ⏳ Laptop Gaming Performance
+- ⏳ Laptop Productivity Performance
+- ⏳ Laptop GPU Performance
+- ⏳ Laptop CPU Performance
+- ⏳ Laptop Thermal Performance
+- ⏳ Laptop Noise Analysis
+- ⏳ Laptop Battery Life Estimator
+- ⏳ Laptop Battery Health Analysis
+- ⏳ Laptop Battery Degradation Estimator
+- ⏳ Laptop Upgradeability Analysis
+- ⏳ Laptop RAM Upgrade Compatibility
+- ⏳ Laptop Storage Upgrade Compatibility
+- ⏳ Laptop Cooling Analysis
+- ⏳ Laptop Thermal Throttling Analysis
+- ⏳ Laptop Performance Optimization
+- ⏳ Laptop Power Optimization
+- ⏳ Laptop Comparison Center
+- ⏳ Laptop Price Comparison
+- ⏳ Laptop Performance per Dollar
+- ⏳ Laptop Performance per Watt
+- ⏳ Laptop Upgrade Advisor
+- ⏳ Laptop Buying Guide
+- ⏳ Laptop Recommendations by Budget
+- ⏳ Laptop Recommendations by Workload
+- ⏳ Laptop Recommendations by Gaming Performance
+- ⏳ Laptop Recommendations by Battery Life
+- ⏳ Laptop Recommendations by Portability
+- ⏳ Laptop Recommendations by Display Quality
+- ⏳ Laptop Recommendations by Cooling
+- ⏳ Laptop Recommendations by Noise
+- ⏳ Laptop Recommendations by Upgradeability
+- ⏳ Laptop Recommendations by Longevity
+- ⏳ Laptop vs Desktop Performance Comparison
+- ⏳ Laptop vs Desktop Value Comparison
+- ⏳ Laptop vs Desktop Upgrade Cost Comparison
+- ⏳ Laptop Setup Recommendations
+- ⏳ Laptop Dock Compatibility
+- ⏳ Laptop External GPU Compatibility
+- ⏳ Laptop Monitor Compatibility
+- ⏳ Laptop Peripheral Compatibility
+- ⏳ Mobile Workstation Recommendations
+
+## 84. Networking & Home Lab Ecosystem (roadmap - user gap list, Nov 25)
+- ⏳ Network Hardware Database
+- ⏳ Router Database
+- ⏳ Switch Database
+- ⏳ Wi-Fi Router Database
+- ⏳ Mesh Wi-Fi Database
+- ⏳ Network Adapter Database
+- ⏳ Ethernet Adapter Database
+- ⏳ Network Card Comparison
+- ⏳ Router Comparison
+- ⏳ Switch Comparison
+- ⏳ Network Performance Database
+- ⏳ Network Bandwidth Calculator
+- ⏳ Internet Speed Requirements Calculator
+- ⏳ Network Latency Analysis
+- ⏳ Gaming Network Performance Analysis
+- ⏳ Streaming Bandwidth Calculator
+- ⏳ Upload Bandwidth Calculator
+- ⏳ Download Bandwidth Calculator
+- ⏳ Network Hardware Compatibility
+- ⏳ Network Upgrade Advisor
+- ⏳ Network Setup Recommendations
+- ⏳ Home Network Builder
+- ⏳ Home Lab Builder
+- ⏳ NAS Build Planner
+- ⏳ Server Build Planner
+- ⏳ Storage Server Planner
+- ⏳ Network Attached Storage Recommendations
+- ⏳ RAID Configuration Planner
+- ⏳ RAID Performance Comparison
+- ⏳ RAID Capacity Calculator
+- ⏳ RAID Reliability Analysis
+- ⏳ Storage Redundancy Planner
+- ⏳ Home Lab Budget Planner
+- ⏳ Home Lab Performance Analysis
+- ⏳ Virtualization Hardware Recommendations
+- ⏳ Server Hardware Recommendations
+- ⏳ Docker Hardware Recommendations
+- ⏳ Virtual Machine Hardware Recommendations
+- ⏳ Proxmox Hardware Recommendations
+- ⏳ Home Server Recommendations
+- ⏳ Network Rack Planner
+- ⏳ Network Cable Database
+- ⏳ Ethernet Cable Comparison
+- ⏳ Network Setup Visualization
+- ⏳ Network Equipment Power Analysis
+- ⏳ Home Lab Upgrade Advisor
+- ⏳ Home Lab Compatibility Engine
+
+## 85. Hardware Identification & System Import (roadmap - user gap list, Nov 25)
+- ⏳ Automatic Hardware Detection
+- ⏳ System Hardware Scanner
+- ⏳ PC Hardware Identification
+- ⏳ CPU Identification
+- ⏳ GPU Identification
+- ⏳ Motherboard Identification
+- ⏳ RAM Identification
+- ⏳ Storage Identification
+- ⏳ PSU Identification
+- ⏳ Cooling Identification
+- ⏳ Monitor Identification
+- ⏳ Peripheral Identification
+- ⏳ Hardware Specification Extraction
+- ⏳ Hardware Configuration Import
+- ⏳ Existing PC Import
+- ⏳ Existing Build Import
+- ⏳ Hardware Profile Creation
+- ⏳ Hardware Profile Synchronization
+- ⏳ Hardware Profile Validation
+- ⏳ Hardware Profile History
+- ⏳ Hardware Profile Comparison
+- ⏳ Hardware Profile Export
+- ⏳ Hardware Profile Sharing
+- ⏳ Hardware Profile Privacy Controls
+- ⏳ Hardware Detection Accuracy Score
+- ⏳ Hardware Detection Confidence
+- ⏳ Unknown Hardware Identification
+- ⏳ Hardware Model Matching
+- ⏳ Hardware Variant Matching
+- ⏳ Hardware Revision Identification
+- ⏳ Hardware Serial Information Handling
+- ⏳ Hardware Scanner Error Handling
+- ⏳ Hardware Scanner Permissions
+- ⏳ Hardware Scanner Compatibility
+- ⏳ Hardware Scan History
+- ⏳ Hardware Scan Reports
+- ⏳ Hardware Scan Notifications
+- ⏳ Hardware Profile Update Detection
+- ⏳ Hardware Configuration Change Detection
+- ⏳ Hardware Configuration History
+- ⏳ Hardware Configuration Alerts
+- ⏳ Automatic Benchmark Profile Matching
+- ⏳ Automatic Game Profile Matching
+- ⏳ Automatic Performance Profile Matching
+
+## 86. Desktop Companion & Real-Time PC Monitoring (roadmap - user gap list, Nov 25)
+- ⏳ Desktop Companion Application
+- ⏳ Windows Desktop Application
+- ⏳ System Tray Integration
+- ⏳ Real-Time Hardware Monitoring
+- ⏳ CPU Utilization Monitoring
+- ⏳ CPU Temperature Monitoring
+- ⏳ CPU Clock Monitoring
+- ⏳ CPU Power Monitoring
+- ⏳ GPU Utilization Monitoring
+- ⏳ GPU Temperature Monitoring
+- ⏳ GPU Hotspot Monitoring
+- ⏳ GPU Clock Monitoring
+- ⏳ GPU Power Monitoring
+- ⏳ VRAM Usage Monitoring
+- ⏳ RAM Usage Monitoring
+- ⏳ RAM Speed Monitoring
+- ⏳ Storage Usage Monitoring
+- ⏳ Storage Temperature Monitoring
+- ⏳ Fan RPM Monitoring
+- ⏳ System Power Monitoring
+- ⏳ System Temperature Monitoring
+- ⏳ Network Usage Monitoring
+- ⏳ Real-Time FPS Monitoring
+- ⏳ Frame Time Monitoring
+- ⏳ 1% Low Monitoring
+- ⏳ 0.1% Low Monitoring
+- ⏳ Game Performance Overlay
+- ⏳ Hardware Performance Overlay
+- ⏳ Bottleneck Monitoring Overlay
+- ⏳ CPU-GPU Utilization Overlay
+- ⏳ Performance Alert Overlay
+- ⏳ Temperature Alert Overlay
+- ⏳ Power Alert Overlay
+- ⏳ Hardware Usage Alerts
+- ⏳ Thermal Warning Alerts
+- ⏳ Performance Degradation Alerts
+- ⏳ Hardware Failure Alerts
+- ⏳ Background Monitoring
+- ⏳ Monitoring History
+- ⏳ Monitoring Session Recording
+- ⏳ Monitoring Session Playback
+- ⏳ Monitoring Session Export
+- ⏳ Monitoring Session Comparison
+- ⏳ Monitoring Dashboard
+- ⏳ Monitoring Customization
+- ⏳ Monitoring Widget Management
+- ⏳ Monitoring Profile Management
+- ⏳ Monitoring Game Profiles
+- ⏳ Monitoring Workload Profiles
+- ⏳ Monitoring Benchmark Integration
+- ⏳ Monitoring Performance Reports
+- ⏳ Monitoring Privacy Controls
+- ⏳ Monitoring Data Synchronization
+- ⏳ Monitoring Data Export
+
+## 87. Mobile Application Ecosystem (roadmap - user gap list, Nov 25)
+- ⏳ Native Android Application
+- ⏳ Native iOS Application
+- ⏳ Mobile PC Build Studio
+- ⏳ Mobile Bottleneck Calculator
+- ⏳ Mobile FPS Calculator
+- ⏳ Mobile Hardware Comparison
+- ⏳ Mobile Upgrade Advisor
+- ⏳ Mobile Budget Planner
+- ⏳ Mobile Hardware Search
+- ⏳ Mobile Game Search
+- ⏳ Mobile Shopping
+- ⏳ Mobile Wishlist
+- ⏳ Mobile Price Tracking (blocked: eBay/retailer API approval pending)
+- ⏳ Mobile Price Alerts (blocked: eBay/retailer API approval pending)
+- ⏳ Mobile Build Management
+- ⏳ Mobile Build Sharing
+- ⏳ Mobile Build Import
+- ⏳ Mobile Build Export
+- ⏳ Mobile Community
+- ⏳ Mobile Notifications
+- ⏳ Mobile Dashboard
+- ⏳ Mobile Hardware Profiles
+- ⏳ Mobile AI Hardware Assistant
+- ⏳ Mobile PC Troubleshooting
+- ⏳ Mobile Hardware Scanner
+- ⏳ Mobile Barcode Scanner
+- ⏳ Mobile QR Code Scanner
+- ⏳ Mobile Product Scanner
+- ⏳ Mobile Hardware Identification
+- ⏳ Mobile Camera Hardware Recognition
+- ⏳ Mobile PC Setup Scanner
+- ⏳ Mobile AR Component Visualization
+- ⏳ Mobile AR PC Assembly
+- ⏳ Mobile AR Component Placement
+- ⏳ Mobile AR Clearance Visualization
+- ⏳ Mobile AR Desk Setup Planner
+- ⏳ Mobile Offline Build Access
+- ⏳ Mobile Offline Hardware Database
+- ⏳ Mobile Offline Saved Comparisons
+- ⏳ Mobile Offline Saved Reports
+- ⏳ Mobile Offline Shopping Lists
+- ⏳ Mobile Push Notifications
+- ⏳ Mobile Deep Links
+- ⏳ Mobile App Widget
+- ⏳ Mobile Quick Actions
+- ⏳ Mobile App Shortcuts
+- ⏳ Mobile App Performance Monitoring
+- ⏳ Mobile App Crash Reporting
+- ⏳ Mobile App Analytics
+- ⏳ Mobile App Settings
+- ⏳ Mobile App Data Synchronization
+
+## 88. Offline, Sync & Data Portability (roadmap - user gap list, Nov 25)
+- ⏳ Offline Mode
+- ⏳ Offline PC Build Creation
+- ⏳ Offline Build Editing
+- ⏳ Offline Build Analysis
+- ⏳ Offline Hardware Comparison
+- ⏳ Offline Saved Hardware Database
+- ⏳ Offline Game Database
+- ⏳ Offline Benchmark Database
+- ⏳ Offline Compatibility Database
+- ⏳ Offline Shopping Lists
+- ⏳ Offline Saved Reports
+- ⏳ Offline Saved Guides
+- ⏳ Offline Search
+- ⏳ Offline Favorites
+- ⏳ Offline User Profiles
+- ⏳ Offline Data Storage
+- ⏳ Offline Data Encryption
+- ⏳ Offline Data Synchronization
+- ⏳ Automatic Background Synchronization
+- ⏳ Manual Synchronization
+- ⏳ Sync Status Monitoring
+- ⏳ Sync Conflict Detection
+- ⏳ Sync Conflict Resolution
+- ⏳ Sync History
+- ⏳ Sync Error Recovery
+- ⏳ Sync Retry System
+- ⏳ Sync Notifications
+- ⏳ Multi-Device Synchronization
+- ⏳ Cross-Platform Synchronization
+- ⏳ Data Import
+- ⏳ Data Export
+- ⏳ Build Data Export
+- ⏳ User Data Backup
+- ⏳ User Data Restore
+- ⏳ Data Migration
+- ⏳ Data Migration Assistant
+- ⏳ Data Migration History
+- ⏳ Data Migration Validation
+- ⏳ Data Portability
+- ⏳ Data Format Conversion
+- ⏳ JSON Export
+- ⏳ XML Export
+- ⏳ Spreadsheet Data Export
+- ⏳ Build Import from External Platforms
+- ⏳ Build Import from Text
+- ⏳ Build Import from URL
+- ⏳ Build Import from Image
+- ⏳ Hardware List Import
+- ⏳ Shopping List Import
+- ⏳ Data Import Validation
+- ⏳ Import Error Handling
+- ⏳ Import History
+- ⏳ Export History
+- ⏳ Data Version Compatibility
+
+## 89. Advanced Notifications & Personal Automation (roadmap - user gap list, Nov 25)
+- ⏳ User Automation Rules
+- ⏳ Custom Automation Workflows
+- ⏳ Trigger-Based Automation
+- ⏳ Event-Based Automation
+- ⏳ Scheduled Automation
+- ⏳ Conditional Automation
+- ⏳ Build Change Automation
+- ⏳ Price Monitoring Automation
+- ⏳ Hardware Availability Automation
+- ⏳ Budget Monitoring Automation
+- ⏳ Performance Monitoring Automation
+- ⏳ Upgrade Monitoring Automation
+- ⏳ Compatibility Monitoring Automation
+- ⏳ Warranty Monitoring Automation
+- ⏳ Hardware Lifecycle Monitoring
+- ⏳ Game Update Monitoring
+- ⏳ Benchmark Update Monitoring
+- ⏳ Community Activity Monitoring
+- ⏳ Custom Notification Triggers
+- ⏳ Custom Notification Conditions
+- ⏳ Custom Notification Actions
+- ⏳ Notification Workflow Builder
+- ⏳ Notification Rule Builder
+- ⏳ Notification Rule Templates
+- ⏳ Notification Rule Management
+- ⏳ Notification Rule History
+- ⏳ Notification Automation Testing
+- ⏳ Automation Execution Logs
+- ⏳ Automation Failure Detection
+- ⏳ Automation Retry Management
+- ⏳ Automation Performance Monitoring
+- ⏳ Automation Dashboard
+- ⏳ Automation Analytics
+- ⏳ Automation Personalization
+- ⏳ Automated Daily Summary
+- ⏳ Automated Weekly Summary
+- ⏳ Automated Monthly Summary
+- ⏳ Automated Hardware Summary
+- ⏳ Automated Price Summary
+- ⏳ Automated Build Summary
+- ⏳ Automated Performance Summary
+- ⏳ Automated Upgrade Summary
+- ⏳ Automated Gaming Summary
+- ⏳ Automated Community Summary
+- ⏳ Automated Personalized Insights
+
+## 90. Product Intelligence & Decision Support (roadmap - user gap list, Nov 25)
+- ⏳ Hardware Decision Assistant
+- ⏳ PC Purchase Decision Assistant
+- ⏳ Component Purchase Decision Assistant
+- ⏳ Upgrade Decision Assistant
+- ⏳ Build Decision Assistant
+- ⏳ Gaming PC Decision Assistant
+- ⏳ Workstation Decision Assistant
+- ⏳ Laptop Decision Assistant
+- ⏳ Monitor Decision Assistant
+- ⏳ Peripheral Decision Assistant
+- ⏳ Hardware Needs Assessment
+- ⏳ User Requirements Assessment
+- ⏳ Usage Needs Analysis
+- ⏳ Gaming Needs Analysis
+- ⏳ Productivity Needs Analysis
+- ⏳ Workload Needs Analysis
+- ⏳ Budget Needs Analysis
+- ⏳ Performance Needs Analysis
+- ⏳ Hardware Priority Assessment
+- ⏳ Component Priority Ranking
+- ⏳ User Requirement Weighting
+- ⏳ Requirement Satisfaction Score
+- ⏳ Hardware Recommendation Score
+- ⏳ Build Recommendation Score
+- ⏳ Purchase Confidence Score
+- ⏳ Decision Confidence Score
+- ⏳ Recommendation Transparency
+- ⏳ Recommendation Explanation
+- ⏳ Recommendation Trade-Off Analysis
+- ⏳ Recommendation Risk Analysis
+- ⏳ Recommendation Pros & Cons
+- ⏳ Recommendation Alternatives
+- ⏳ Recommendation Scenario Comparison
+- ⏳ Recommendation Cost Analysis
+- ⏳ Recommendation Long-Term Value
+- ⏳ Recommendation Future-Proofing Analysis
+- ⏳ Recommendation Upgradeability Analysis
+- ⏳ Recommendation Reliability Analysis
+- ⏳ Recommendation Repairability Analysis
+- ⏳ Recommendation Energy Efficiency Analysis
+- ⏳ Recommendation Noise Analysis
+- ⏳ Recommendation Thermal Analysis
+- ⏳ Recommendation Performance Analysis
+- ⏳ Recommendation Gaming Analysis
+- ⏳ Recommendation Productivity Analysis
+- ⏳ Recommendation AI Workload Analysis
+- ⏳ Recommendation Virtualization Analysis
+- ⏳ Recommendation Final Decision Report
+- ⏳ Personalized Hardware Decision Matrix
+- ⏳ Hardware Decision History
+- ⏳ Hardware Decision Tracking
+- ⏳ Purchase Decision Tracking
+- ⏳ Purchase Decision Feedback
+
+## 91. Advanced Business Intelligence & Product Analytics (roadmap - user gap list, Nov 25)
+- ⏳ Business Intelligence Dashboard
+- ⏳ Product Profitability Analysis
+- ⏳ Product Demand Analysis
+- ⏳ Hardware Demand Forecasting
+- ⏳ Market Demand Forecasting
+- ⏳ Product Sales Forecasting
+- ⏳ Revenue Forecasting
+- ⏳ Profit Forecasting
+- ⏳ Hardware Market Trend Analysis
+- ⏳ Hardware Market Share Analysis
+- ⏳ CPU Market Analysis
+- ⏳ GPU Market Analysis
+- ⏳ RAM Market Analysis
+- ⏳ Storage Market Analysis
+- ⏳ Price Trend Analysis
+- ⏳ Market Price Volatility
+- ⏳ Hardware Price Forecasting
+- ⏳ Hardware Value Trend Analysis
+- ⏳ Hardware Value Depreciation Analysis
+- ⏳ Product Popularity Analysis
+- ⏳ Product Demand Ranking
+- ⏳ Hardware Market Ranking
+- ⏳ Hardware Sales Ranking
+- ⏳ Hardware Search Popularity
+- ⏳ Hardware Recommendation Trends
+- ⏳ Build Popularity Trends
+- ⏳ Gaming Hardware Trends
+- ⏳ Workstation Hardware Trends
+- ⏳ Hardware Generation Adoption Analysis
+- ⏳ Hardware Upgrade Trends
+- ⏳ Hardware Purchase Trends
+- ⏳ Consumer Hardware Preference Analysis
+- ⏳ Consumer Budget Analysis
+- ⏳ Consumer Performance Preference Analysis
+- ⏳ Consumer Brand Preference Analysis
+- ⏳ Market Segment Analysis
+- ⏳ Entry-Level Market Analysis
+- ⏳ Mid-Range Market Analysis
+- ⏳ High-End Market Analysis
+- ⏳ Enthusiast Market Analysis
+- ⏳ Market Opportunity Analysis
+- ⏳ Product Opportunity Detection
+- ⏳ Competitive Market Analysis
+- ⏳ Competitive Product Analysis
+- ⏳ Competitive Pricing Analysis
+- ⏳ Market Intelligence Reports
+- ⏳ Business Intelligence Reports
+- ⏳ Automated Business Insights
+- ⏳ Business KPI Tracking
+- ⏳ KPI Dashboard
+- ⏳ Custom KPI Builder
+- ⏳ Analytics Export
+- ⏳ Analytics Report Scheduling
+
+## 92. Advanced Platform Ecosystem & Integrations (roadmap - user gap list, Nov 25)
+- ⏳ Steam Integration
+- ⏳ Epic Games Integration
+- ⏳ Xbox Integration
+- ⏳ PlayStation Integration
+- ⏳ Discord Integration
+- ⏳ Reddit Integration
+- ⏳ YouTube Integration
+- ⏳ Twitch Integration
+- ⏳ GitHub Integration
+- ⏳ Google Account Integration
+- ⏳ Microsoft Account Integration
+- ⏳ Google Drive Integration
+- ⏳ Cloud Storage Integration
+- ⏳ Email Provider Integration
+- ⏳ Calendar Integration
+- ⏳ Shopping Platform Integration
+- ⏳ Retailer API Integration (blocked: retailer/manufacturer API access)
+- ⏳ Manufacturer API Integration (blocked: retailer/manufacturer API access)
+- ⏳ Benchmark Platform Integration
+- ⏳ Hardware News Integration
+- ⏳ Game Database Integration
+- ⏳ Software Database Integration
+- ⏳ PC Part Database Integration
+- ⏳ Price Comparison Platform Integration (blocked: eBay/retailer API approval pending)
+- ⏳ Affiliate Network Integration (blocked: eBay/retailer API approval pending)
+- ⏳ Payment Provider Integration (blocked: needs real payment infrastructure (zero-spend rule))
+- ⏳ Warranty Provider Integration
+- ⏳ Customer Support Integration
+- ⏳ Analytics Platform Integration
+- ⏳ Monitoring Platform Integration
+- ⏳ AI Provider Integration
+- ⏳ AI Model Provider Management
+- ⏳ Integration Marketplace
+- ⏳ Integration Discovery
+- ⏳ Integration Installation
+- ⏳ Integration Permission Management
+- ⏳ Integration Removal
+- ⏳ Integration Health Dashboard
+- ⏳ Integration Activity History
+- ⏳ Integration Error Monitoring
+- ⏳ Integration Usage Analytics
+
+## 93. PC Hardware Knowledge Graph (roadmap - user gap list, Nov 25)
+- ⏳ Hardware Relationship Database
+- ⏳ CPU-Motherboard Relationship Mapping
+- ⏳ CPU-RAM Relationship Mapping
+- ⏳ GPU-CPU Relationship Mapping
+- ⏳ GPU-Monitor Relationship Mapping
+- ⏳ GPU-PSU Relationship Mapping
+- ⏳ Motherboard-Storage Relationship Mapping
+- ⏳ Motherboard-Case Relationship Mapping
+- ⏳ Case-Cooling Relationship Mapping
+- ⏳ Cooler-CPU Relationship Mapping
+- ⏳ Cooler-Case Relationship Mapping
+- ⏳ Hardware Generation Relationship Mapping
+- ⏳ Hardware Architecture Relationship Mapping
+- ⏳ Hardware Performance Relationship Mapping
+- ⏳ Hardware Benchmark Relationship Mapping
+- ⏳ Hardware Compatibility Relationship Mapping
+- ⏳ Hardware Alternative Relationship Mapping
+- ⏳ Hardware Upgrade Relationship Mapping
+- ⏳ Hardware Replacement Relationship Mapping
+- ⏳ Hardware Price Relationship Mapping
+- ⏳ Hardware Availability Relationship Mapping
+- ⏳ Hardware Lifecycle Relationship Mapping
+- ⏳ Hardware Manufacturer Relationship Mapping
+- ⏳ Hardware Brand Relationship Mapping
+- ⏳ Hardware Product Family Mapping
+- ⏳ Hardware Successor Mapping
+- ⏳ Hardware Predecessor Mapping
+- ⏳ Hardware Equivalent Performance Mapping
+- ⏳ Hardware Performance Tier Mapping
+- ⏳ Hardware Recommendation Relationship Mapping
+- ⏳ Hardware Dependency Mapping
+- ⏳ Hardware Constraint Mapping
+- ⏳ Hardware Knowledge Graph Search
+- ⏳ Hardware Knowledge Graph Visualization
+- ⏳ Hardware Relationship Explorer
+- ⏳ Hardware Relationship Analytics
+- ⏳ Hardware Relationship-Based Recommendations
+
+## 94. Advanced Product & Hardware Visualization (roadmap - user gap list, Nov 25)
+- ⏳ Hardware Performance Visualization
+- ⏳ CPU Architecture Visualization
+- ⏳ GPU Architecture Visualization
+- ⏳ CPU Core Visualization
+- ⏳ CPU Thread Visualization
+- ⏳ Cache Hierarchy Visualization
+- ⏳ Memory Architecture Visualization
+- ⏳ RAM Channel Visualization
+- ⏳ RAM Bandwidth Visualization
+- ⏳ PCIe Lane Visualization
+- ⏳ PCIe Bandwidth Visualization
+- ⏳ GPU Memory Visualization
+- ⏳ VRAM Allocation Visualization
+- ⏳ Hardware Power Flow Visualization
+- ⏳ System Power Distribution Visualization
+- ⏳ Cooling System Visualization
+- ⏳ Thermal Flow Visualization
+- ⏳ Airflow Path Visualization
+- ⏳ Hardware Dimension Comparison Visualization
+- ⏳ Performance Scaling Visualization
+- ⏳ Bottleneck Impact Visualization
+- ⏳ CPU-GPU Balance Visualization
+- ⏳ Hardware Generation Visualization
+- ⏳ Hardware Timeline Visualization
+- ⏳ Performance Evolution Visualization
+- ⏳ Hardware Ranking Visualization
+- ⏳ Hardware Market Position Visualization
+- ⏳ Price-Performance Visualization
+- ⏳ Performance-per-Watt Visualization
+- ⏳ Performance-per-Dollar Visualization
+- ⏳ Hardware Value Visualization
+- ⏳ Hardware Lifecycle Visualization
+- ⏳ Hardware Upgrade Path Visualization
+- ⏳ Hardware Dependency Visualization
+- ⏳ Hardware Compatibility Graph
+- ⏳ Hardware Relationship Graph
+- ⏳ Interactive Hardware Explorer
+- ⏳ Interactive Performance Explorer
+- ⏳ Interactive Benchmark Explorer
+- ⏳ Interactive Hardware Timeline
+- ⏳ Interactive Hardware Ranking
+- ⏳ Interactive Hardware Comparison
+- ⏳ Interactive Hardware Analytics
+
+## 95. Final Product-Level Features (roadmap - user gap list, Nov 25)
+- ⏳ Product Maturity Score
+- ⏳ Platform Completeness Score
+- ⏳ Platform Reliability Score
+- ⏳ Platform Performance Score
+- ⏳ Platform Quality Score
+- ⏳ Platform Trust Score
+- ⏳ Platform Data Accuracy Score
+- ⏳ Platform Data Coverage Score
+- ⏳ Platform Recommendation Accuracy Score
+- ⏳ Platform Benchmark Accuracy Score
+- ⏳ Platform Compatibility Accuracy Score
+- ⏳ Platform User Satisfaction Score
+- ⏳ Platform User Trust Analytics
+- ⏳ Platform Feature Completeness Tracking
+- ⏳ Platform Feature Adoption Tracking
+- ⏳ Platform Feature Performance Tracking
+- ⏳ Platform Feature Reliability Tracking
+- ⏳ Platform Feature Quality Tracking
+- ⏳ Platform Feature Prioritization
+- ⏳ Platform Improvement Roadmap
+- ⏳ Platform Improvement Recommendations
+- ⏳ Platform Automated Health Assessment
+- ⏳ Platform Automated Quality Assessment
+- ⏳ Platform Automated Reliability Assessment
+- ⏳ Platform Automated Performance Assessment
+- ⏳ Platform Automated Data Assessment
+- ⏳ Platform Automated Security Assessment
+- ⏳ Platform Automated UX Assessment
+- ⏳ Platform Automated Feature Audit
+- ⏳ Platform Automated Bug Detection
+- ⏳ Platform Automated Regression Detection
+- ⏳ Platform Continuous Improvement System
 
