@@ -16,7 +16,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
   <link rel="apple-touch-icon" href="icons/icon-180.png" />
   <meta name="theme-color" content="#f5f3fc" />
-  <link rel="stylesheet" href="css/styles.css?v=20261125r" />
+  <link rel="stylesheet" href="css/styles.css?v=20261125s" />
   <script>
     // Apply the saved theme before first paint to avoid a flash.
     try {
@@ -533,6 +533,33 @@
           <p class="muted cmp-note">TDP-based estimates; see the Power tab for the full analysis.</p>
         </section>
       </div>
+      <section class="hero" style="margin-top:28px;">
+        <h1>The database, charted.</h1>
+        <p>Live statistics computed from the bundled data layers - no uploads, no tracking. Vintage and confidence per layer are on the Data sources page.</p>
+      </section>
+      <div class="db-grid">
+        <section class="panel">
+          <h2>Database at a glance</h2>
+          <div id="anGlance" class="pw-stats"></div>
+          <p class="muted cmp-note" id="anGlanceNote"></p>
+        </section>
+        <section class="panel">
+          <h2>CPU socket coverage</h2>
+          <div id="anSockets"></div>
+        </section>
+        <section class="panel">
+          <h2>GPU memory coverage</h2>
+          <div id="anVram"></div>
+        </section>
+        <section class="panel">
+          <h2>Best performance per dollar</h2>
+          <h3 class="an-sub">GPUs (raster score / USD)</h3>
+          <div id="anGpuLeaders"></div>
+          <h3 class="an-sub">CPUs (gaming score / USD)</h3>
+          <div id="anCpuLeaders"></div>
+          <p class="muted cmp-note">Indicative street prices, not live quotes - see Prices layer vintage.</p>
+        </section>
+      </div>
     </div><!-- /viewDash -->
     <div id="viewCommunity" class="view hidden">
       <section class="hero">
@@ -581,29 +608,30 @@
     </div>
   </footer>
 
-  <script src="js/data/hardware.js?v=20261125r"></script>
-  <script src="js/data/benchmarks.js?v=20261125r"></script>
-  <script src="js/data/prices.js?v=20261125r"></script>
-  <script src="js/data/games.js?v=20261125r"></script>
-  <script src="js/data/compat.js?v=20261125r"></script>
-  <script src="js/data/components.js?v=20261125r"></script>
-  <script src="js/data/cooling-cases.js?v=20261125r"></script>
-  <script src="js/data/storage.js?v=20261125r"></script>
-  <script src="js/data/monitors.js?v=20261125r"></script>
-  <script src="js/data/software.js?v=20261125r"></script>
-  <script src="js/engine.js?v=20261125r"></script>
-  <script src="js/app.js?v=20261125r"></script>
-  <script src="js/assistant.js?v=20261125r"></script>
-  <script src="js/compare.js?v=20261125r"></script>
-  <script src="js/upgrade.js?v=20261125r"></script>
-  <script src="js/power.js?v=20261125r"></script>
-  <script src="js/library.js?v=20261125r"></script>
-  <script src="js/dashboard.js?v=20261125r"></script>
-  <script src="js/monitors.js?v=20261125r"></script>
-  <script src="js/personal.js?v=20261125r"></script>
-  <script src="js/auth.js?v=20261125r"></script>
-  <script src="js/community.js?v=20261125r"></script>
-  <script src="js/export.js?v=20261125r"></script>
+  <script src="js/data/hardware.js?v=20261125s"></script>
+  <script src="js/data/benchmarks.js?v=20261125s"></script>
+  <script src="js/data/prices.js?v=20261125s"></script>
+  <script src="js/data/games.js?v=20261125s"></script>
+  <script src="js/data/compat.js?v=20261125s"></script>
+  <script src="js/data/components.js?v=20261125s"></script>
+  <script src="js/data/cooling-cases.js?v=20261125s"></script>
+  <script src="js/data/storage.js?v=20261125s"></script>
+  <script src="js/data/monitors.js?v=20261125s"></script>
+  <script src="js/data/software.js?v=20261125s"></script>
+  <script src="js/engine.js?v=20261125s"></script>
+  <script src="js/app.js?v=20261125s"></script>
+  <script src="js/assistant.js?v=20261125s"></script>
+  <script src="js/compare.js?v=20261125s"></script>
+  <script src="js/upgrade.js?v=20261125s"></script>
+  <script src="js/power.js?v=20261125s"></script>
+  <script src="js/library.js?v=20261125s"></script>
+  <script src="js/dashboard.js?v=20261125s"></script>
+  <script src="js/monitors.js?v=20261125s"></script>
+  <script src="js/personal.js?v=20261125s"></script>
+  <script src="js/auth.js?v=20261125s"></script>
+  <script src="js/community.js?v=20261125s"></script>
+  <script src="js/analytics.js?v=20261125s"></script>
+  <script src="js/export.js?v=20261125s"></script>
   <script>
     // Data & methodology view (footer link) + service worker + mobile nav drawer.
     (function () {
