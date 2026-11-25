@@ -606,3 +606,7 @@ button, input, select, a { transition-timing-function: cubic-bezier(0.22, 1, 0.3
 .auth-forgot { display: block; margin: 10px auto 0; background: none; border: none; color: var(--accent); font-size: 0.85rem; cursor: pointer; font-family: inherit; text-decoration: underline; text-underline-offset: 3px; }
 .sr-item.sr-sel { background: var(--accent); color: #fff; }
 .sr-item.sr-sel .sr-kind { color: rgba(255,255,255,0.75); }
+.cmp-history { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; }
+.cmp-hist-label { font-size: 0.82rem; }
+.cmp-chip { border: 1px solid var(--border, #d5d0e8); background: transparent; color: inherit; border-radius: 999px; padding: 5px 12px; font-size: 0.82rem; cursor: pointer; font-family: inherit; }
+.cmp-chip:hover { border-color: var(--accent); color: var(--accent); }

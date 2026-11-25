@@ -299,7 +299,58 @@
   }
 
   function persistCmp() {
-    try { localStorage.setItem("bcp.cmp.last", [cmpState.cat].concat(cmpState.picks.filter(Boolean)).join(",")); } catch (e) {}
+    var code = [cmpState.cat].concat(cmpState.picks.filter(Boolean)).join(",");
+    try {
+      localStorage.setItem("bcp.cmp.last", code);
+      var hist = JSON.parse(localStorage.getItem("bcp.cmp.history") || "[]");
+      if (!Array.isArray(hist)) hist = [];
+      hist = hist.filter(function (c) { return c !== code; });
+      hist.unshift(code);
+      if (hist.length > 8) hist.length = 8;
+      localStorage.setItem("bcp.cmp.history", JSON.stringify(hist));
+    } catch (e) {}
+    renderCmpHistory();
+  }
+
+  function cmpLabel(code) {
+    var parts = code.split(",");
+    var cat = CATEGORIES[parts[0]];
+    if (!cat) return code;
+    var items = cat.items();
+    var names = parts.slice(1).map(function (id) { var it = hw(items, id); return it ? it.name.replace(/^(AMD|Intel|GeForce|NVIDIA) /, "") : null; }).filter(Boolean);
+    return cat.label.replace(/s$/, "") + ": " + names.join(" vs ");
+  }
+
+  function renderCmpHistory() {
+    var box = $("#cmpHistory");
+    if (!box) return;
+    box.innerHTML = "";
+    var hist = [];
+    try { hist = JSON.parse(localStorage.getItem("bcp.cmp.history") || "[]"); } catch (e) {}
+    if (!Array.isArray(hist) || !hist.length) return;
+    var cur = [cmpState.cat].concat(cmpState.picks.filter(Boolean)).join(",");
+    var shown = hist.filter(function (c) { return c !== cur; }).slice(0, 5);
+    if (!shown.length) return;
+    var label = document.createElement("span");
+    label.className = "muted cmp-hist-label";
+    label.textContent = "Recent comparisons:";
+    box.appendChild(label);
+    shown.forEach(function (code) {
+      var chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "cmp-chip";
+      chip.textContent = cmpLabel(code);
+      chip.addEventListener("click", function () {
+        var parts = code.split(",");
+        if (!CATEGORIES[parts[0]]) return;
+        cmpState.cat = parts[0];
+        $("#cmpCat").value = parts[0];
+        cmpState.picks = [parts[1] || null, parts[2] || null, parts[3] || null];
+        renderCompare();
+        persistCmp();
+      });
+      box.appendChild(chip);
+    });
   }
 
   /* ---------- tabs ---------- */
@@ -387,6 +438,7 @@
 
     renderCompare();
     renderRankings();
+    renderCmpHistory();
   }
 
   if (document.readyState === "loading") {
