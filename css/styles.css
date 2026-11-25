@@ -560,3 +560,11 @@ button, input, select, a { transition-timing-function: cubic-bezier(0.22, 1, 0.3
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
 .an-sub { font-size: 0.85rem; margin: 10px 0 6px; }
+/* Games: genre chips + favorites */
+.gm-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 2px; }
+.gm-chip { background: var(--bg-soft); border: 1px solid var(--border); color: var(--muted); border-radius: 999px; padding: 4px 12px; font-size: 0.8rem; cursor: pointer; }
+.gm-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.gm-fav { background: none; border: none; color: var(--muted); font-size: 1.05rem; cursor: pointer; margin-left: auto; padding: 0 2px; }
+.gm-fav.active { color: var(--mid); }
+.gm-head { display: flex; align-items: baseline; gap: 8px; }
+

@@ -35,6 +35,10 @@
 
   var filter = "";
   var upscaleBoost = 0; // 0 = off; otherwise GPU-term multiplier
+  var genreFilter = null;
+  var favs = {};
+  try { favs = JSON.parse(localStorage.getItem("bcp.games.favs") || "{}"); } catch (e) { favs = {}; }
+  function saveFavs() { try { localStorage.setItem("bcp.games.favs", JSON.stringify(favs)); } catch (e) {} }
 
   function upscaleTech(gpu) {
     if (gpu.brand === "NVIDIA" && !/^GTX/.test(gpu.name)) return "DLSS";
@@ -66,6 +70,32 @@
     box.className = "warn-list";
   }
 
+  function renderChips() {
+    var box = $("#gmChips");
+    if (!box) return;
+    var genres = [];
+    Object.keys(GENRES).forEach(function (id) {
+      if (genres.indexOf(GENRES[id]) === -1) genres.push(GENRES[id]);
+    });
+    genres.sort();
+    box.innerHTML = "";
+    function chip(label, val) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "gm-chip" + (genreFilter === val ? " active" : "");
+      b.textContent = label;
+      b.addEventListener("click", function () {
+        genreFilter = val;
+        renderChips();
+        renderAll();
+      });
+      box.appendChild(b);
+    }
+    chip("All", null);
+    if (Object.keys(favs).some(function (k) { return favs[k]; })) chip("\u2605 Favorites", "__fav");
+    genres.forEach(function (g) { chip(g, g); });
+  }
+
   function renderGames(sel) {
     var box = $("#gmList");
     box.innerHTML = "";
@@ -74,10 +104,14 @@
     var tech = upscaleTech(sel.gpu);
     $("#gmUpscaleLabel").textContent = "Upscaling (" + tech + ")";
     var items = BCP.games.items.filter(function (g) {
-      return !filter || g.name.toLowerCase().indexOf(filter) !== -1;
+      if (filter && g.name.toLowerCase().indexOf(filter) === -1) return false;
+      if (genreFilter === "__fav" && !favs[g.id]) return false;
+      if (genreFilter && genreFilter !== "__fav" && GENRES[g.id] !== genreFilter) return false;
+      return true;
     });
+    items = items.slice().sort(function (a, b) { return (favs[b.id] ? 1 : 0) - (favs[a.id] ? 1 : 0); });
     if (!items.length) {
-      box.innerHTML = '<p class="muted">No games match that search.</p>';
+      box.innerHTML = '<p class="muted">No games match that filter.</p>';
       return;
     }
     items.forEach(function (g) {
@@ -90,7 +124,7 @@
       var card = document.createElement("div");
       card.className = "gm-card";
       card.innerHTML =
-        '<div class="gm-head"><strong></strong><span class="gm-genre muted"></span></div>' +
+        '<div class="gm-head"><strong></strong><span class="gm-genre muted"></span><button type="button" class="gm-fav" title="Favorite"></button></div>' +
         '<div class="gm-stats">' +
           '<span class="gm-fps"><b>' + fps + "</b> fps est. at " + resLabel(sel.res) +
             (upscaleBoost > 0 && fps > native ? ' <span class="muted gm-native">(' + native + " native)</span>" : "") + "</span>" +
@@ -104,6 +138,16 @@
         "</div>";
       card.querySelector(".gm-head strong").textContent = g.name;
       card.querySelector(".gm-genre").textContent = GENRES[g.id] || "";
+      var favBtn = card.querySelector(".gm-fav");
+      favBtn.textContent = favs[g.id] ? "\u2605" : "\u2606";
+      favBtn.classList.toggle("active", !!favs[g.id]);
+      favBtn.setAttribute("aria-pressed", favs[g.id] ? "true" : "false");
+      favBtn.addEventListener("click", function () {
+        if (favs[g.id]) delete favs[g.id]; else favs[g.id] = true;
+        saveFavs();
+        renderChips();
+        renderAll();
+      });
       box.appendChild(card);
     });
   }
@@ -131,7 +175,7 @@
       var card = document.createElement("div");
       card.className = "gm-card sw-card";
       card.innerHTML =
-        '<div class="gm-head"><strong></strong><span class="gm-genre muted"></span></div>' +
+        '<div class="gm-head"><strong></strong><span class="gm-genre muted"></span><button type="button" class="gm-fav" title="Favorite"></button></div>' +
         '<div class="sw-bars">' +
           impBar("CPU", s.cpuImp) + impBar("GPU", s.gpuImp) + impBar("RAM", Math.min(1, s.ramGB / 64), s.ramGB >= 64 ? "fill-mid" : "") +
         "</div>" +
@@ -229,6 +273,7 @@
         b.addEventListener("click", function () { $("#viewGames").classList.add("hidden"); });
       }
     });
+    renderChips();
     $("#gmSearch").addEventListener("input", function () {
       filter = this.value.trim().toLowerCase();
       renderAll();
