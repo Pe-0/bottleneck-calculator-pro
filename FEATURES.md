@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**931 features total: ✅ 245 live · 🚧 90 in progress · ⏳ 596 not started**
+**931 features total: ✅ 267 live · 🚧 92 in progress · ⏳ 572 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -133,31 +133,31 @@ _Accounts are live via Supabase: email/password signup with mandatory email conf
 
 ## 5. Power Consumption & PSU Analysis
 
-_TDP-based figures are live in the build summary; the full power/thermal stage (S12) is next after Upgrade Advisor._
+_Full power stage live in the Power tab: per-part draws, idle/gaming/peak, headroom and PSU verdicts. PSU tier list and per-workload splits remain._
 - ✅ Component Power Consumption
 - ✅ CPU Power Consumption
 - ✅ GPU Power Consumption
-- ⏳ Motherboard Power Consumption
-- ⏳ RAM Power Consumption
-- ⏳ Storage Power Consumption
-- ⏳ Cooling Power Consumption
-- ⏳ Fan Power Consumption
-- ⏳ Total System Power Consumption
-- ⏳ Estimated Peak Power Consumption
-- ⏳ Gaming Power Consumption
-- ⏳ Idle Power Consumption
-- ⏳ Workload Power Consumption
-- ⏳ Power Headroom Calculator
+- ✅ Motherboard Power Consumption
+- ✅ RAM Power Consumption
+- ✅ Storage Power Consumption
+- ✅ Cooling Power Consumption
+- 🚧 Fan Power Consumption
+- ✅ Total System Power Consumption
+- ✅ Estimated Peak Power Consumption
+- ✅ Gaming Power Consumption
+- ✅ Idle Power Consumption
+- 🚧 Workload Power Consumption
+- ✅ Power Headroom Calculator
 - ✅ PSU Wattage Recommendation
 - ✅ PSU Safety Margin
 - 🚧 PSU Efficiency Analysis
 - ⏳ 80 PLUS Certification Analysis
 - ⏳ PSU Tier Rating
 - ⏳ PSU Connector Validation
-- 🚧 12VHPWR Compatibility
-- 🚧 12V-2x6 Compatibility
-- ⏳ PSU Upgrade Recommendations
-- ⏳ Power Consumption Visualization
+- ✅ 12VHPWR Compatibility
+- ✅ 12V-2x6 Compatibility
+- 🚧 PSU Upgrade Recommendations
+- ✅ Power Consumption Visualization
 
 ## 6. Performance & Benchmarking
 - ✅ Gaming Performance Estimator
@@ -556,7 +556,7 @@ _Parked with the marketplace (depends on live price/stock APIs)._
 - ✅ GPU Upgrade Recommendations
 - ⏳ RAM Upgrade Recommendations
 - ⏳ Storage Upgrade Recommendations
-- ⏳ PSU Upgrade Recommendations
+- 🚧 PSU Upgrade Recommendations
 - ⏳ Cooling Upgrade Recommendations
 - 🚧 Motherboard Upgrade Recommendations
 - ✅ Upgrade Compatibility Checker
@@ -575,15 +575,15 @@ _Parked with the marketplace (depends on live price/stock APIs)._
 
 ## 15. Cooling, Temperatures & Thermal Analysis
 
-_Scheduled as part of stage S12 (power & thermal)._
-- ⏳ CPU Temperature Estimator
-- ⏳ GPU Temperature Estimator
-- ⏳ Thermal Performance Analysis
-- ⏳ Thermal Bottleneck Detection
-- ⏳ Thermal Throttling Detection
-- ⏳ CPU Thermal Limit Analysis
-- ⏳ GPU Thermal Limit Analysis
-- ⏳ Cooling Capacity Analysis
+_Thermal core live in the Power tab: CPU/GPU temp estimates, throttling classification, cooler headroom. Case airflow/fan planning not modeled._
+- ✅ CPU Temperature Estimator
+- ✅ GPU Temperature Estimator
+- ✅ Thermal Performance Analysis
+- ✅ Thermal Bottleneck Detection
+- ✅ Thermal Throttling Detection
+- ✅ CPU Thermal Limit Analysis
+- 🚧 GPU Thermal Limit Analysis
+- ✅ Cooling Capacity Analysis
 - ⏳ Airflow Analysis
 - ⏳ Case Airflow Optimization
 - ⏳ Fan Configuration Planner
@@ -592,9 +592,9 @@ _Scheduled as part of stage S12 (power & thermal)._
 - ⏳ Negative Pressure Analysis
 - ⏳ Airflow Direction Visualization
 - 🚧 Cooler Performance Comparison
-- ⏳ Thermal Headroom Calculator
+- ✅ Thermal Headroom Calculator
 - ⏳ Cooling Upgrade Advisor
-- ⏳ Temperature Risk Classification
+- ✅ Temperature Risk Classification
 
 ## 16. PC Builder Dashboard & Analytics
 
@@ -1033,7 +1033,7 @@ _PWA + data transparency page are stage S20. Live price APIs are parked with the
 - ✅ Smart Budget-Based Build Recommendations
 - 🚧 Prebuilt PC Recommendation Engine
 - ✅ Upgrade Advisor
-- 🚧 Power Consumption & PSU Calculator
+- ✅ Power Consumption & PSU Calculator
 - 🚧 Game & Software Performance Database
 - ⏳ Historical Pricing & Price Tracking
 - ✅ AI Hardware Assistant
