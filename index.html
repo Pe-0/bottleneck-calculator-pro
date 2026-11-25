@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
   <link rel="apple-touch-icon" href="icons/icon-180.png" />
   <meta name="theme-color" content="#f5f3fc" />
-  <link rel="stylesheet" href="css/styles.css?v=20261125n" />
+  <link rel="stylesheet" href="css/styles.css?v=20261125o" />
   <script>
     // Apply the saved theme before first paint to avoid a flash.
     try {
@@ -51,6 +51,7 @@
       <div id="searchResults" class="search-results hidden"></div>
     </div>
     <div class="sidebar-foot">
+      <div id="accountBox" class="acct"></div>
       <button id="themeToggle" class="theme-toggle" type="button">Light mode</button>
     </div>
   </aside>
@@ -272,8 +273,10 @@
           <button id="expCsv" class="gen-load" type="button">Download CSV</button>
           <button id="expLink" class="gen-load" type="button">Copy share link</button>
           <button id="saveBuildBtn" class="gen-btn" type="button">Save this build</button>
+          <button id="cloudSaveBtn" class="gen-load" type="button" hidden>Save to cloud</button>
         </div>
         <div id="savedBuilds" class="saved-builds"></div>
+        <div id="cloudBuilds" class="saved-builds"></div>
         <p class="muted cmp-note">Everything is generated in your browser - nothing is uploaded. The share link encodes this exact build in the URL.</p>
       </section>
 
@@ -559,27 +562,28 @@
     </div>
   </footer>
 
-  <script src="js/data/hardware.js?v=20261125n"></script>
-  <script src="js/data/benchmarks.js?v=20261125n"></script>
-  <script src="js/data/prices.js?v=20261125n"></script>
-  <script src="js/data/games.js?v=20261125n"></script>
-  <script src="js/data/compat.js?v=20261125n"></script>
-  <script src="js/data/components.js?v=20261125n"></script>
-  <script src="js/data/cooling-cases.js?v=20261125n"></script>
-  <script src="js/data/storage.js?v=20261125n"></script>
-  <script src="js/data/monitors.js?v=20261125n"></script>
-  <script src="js/data/software.js?v=20261125n"></script>
-  <script src="js/engine.js?v=20261125n"></script>
-  <script src="js/app.js?v=20261125n"></script>
-  <script src="js/assistant.js?v=20261125n"></script>
-  <script src="js/compare.js?v=20261125n"></script>
-  <script src="js/upgrade.js?v=20261125n"></script>
-  <script src="js/power.js?v=20261125n"></script>
-  <script src="js/library.js?v=20261125n"></script>
-  <script src="js/dashboard.js?v=20261125n"></script>
-  <script src="js/monitors.js?v=20261125n"></script>
-  <script src="js/personal.js?v=20261125n"></script>
-  <script src="js/export.js?v=20261125n"></script>
+  <script src="js/data/hardware.js?v=20261125o"></script>
+  <script src="js/data/benchmarks.js?v=20261125o"></script>
+  <script src="js/data/prices.js?v=20261125o"></script>
+  <script src="js/data/games.js?v=20261125o"></script>
+  <script src="js/data/compat.js?v=20261125o"></script>
+  <script src="js/data/components.js?v=20261125o"></script>
+  <script src="js/data/cooling-cases.js?v=20261125o"></script>
+  <script src="js/data/storage.js?v=20261125o"></script>
+  <script src="js/data/monitors.js?v=20261125o"></script>
+  <script src="js/data/software.js?v=20261125o"></script>
+  <script src="js/engine.js?v=20261125o"></script>
+  <script src="js/app.js?v=20261125o"></script>
+  <script src="js/assistant.js?v=20261125o"></script>
+  <script src="js/compare.js?v=20261125o"></script>
+  <script src="js/upgrade.js?v=20261125o"></script>
+  <script src="js/power.js?v=20261125o"></script>
+  <script src="js/library.js?v=20261125o"></script>
+  <script src="js/dashboard.js?v=20261125o"></script>
+  <script src="js/monitors.js?v=20261125o"></script>
+  <script src="js/personal.js?v=20261125o"></script>
+  <script src="js/auth.js?v=20261125o"></script>
+  <script src="js/export.js?v=20261125o"></script>
   <script>
     // Data & methodology view (footer link) + service worker + mobile nav drawer.
     (function () {

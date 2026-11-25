@@ -526,3 +526,17 @@ body[data-theme="light"] .fps-row:nth-child(odd) { background: rgba(124, 58, 237
 .data-layer span { font-size: 0.8rem; }
 .data-link { color: var(--accent); text-decoration: none; }
 .data-link:hover { text-decoration: underline; }
+
+/* ============ Account / cloud saves ============ */
+.acct { border-top: 1px solid var(--border); padding: 12px 4px 10px; margin-bottom: 8px; display: flex; flex-direction: column; gap: 8px; }
+.acct-title { font-weight: 600; font-size: 0.85rem; }
+.acct-title .muted { font-weight: 400; font-size: 0.78rem; }
+.acct input { background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px; color: var(--text); padding: 8px 10px; font-size: 0.85rem; font-family: inherit; width: 100%; box-sizing: border-box; }
+.acct input:focus { outline: none; border-color: var(--accent); }
+.acct-btns { display: flex; gap: 8px; }
+.acct-btns button { flex: 1; background: var(--accent); color: #fff; border: 0; border-radius: 8px; padding: 8px 0; font-weight: 600; font-size: 0.85rem; cursor: pointer; }
+.acct-btns button.acct-alt { background: var(--bg-soft); color: var(--text); border: 1px solid var(--border); }
+.acct-user { font-size: 0.82rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.acct-status { font-size: 0.78rem; min-height: 1em; }
+.acct-err { color: var(--bad, #e05252); }
+.sb-cloud-title { font-size: 0.85rem; margin: 14px 0 8px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
