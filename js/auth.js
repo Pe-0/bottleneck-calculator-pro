@@ -21,8 +21,31 @@
     if (el) { el.textContent = msg || ""; el.classList.toggle("acct-err", !!isErr); }
   }
 
+  function renderNavAuth() {
+    var btn = $("#navAuthBtn");
+    if (!btn) return;
+    if (user) {
+      btn.textContent = "Log out";
+      btn.classList.remove("login");
+      btn.classList.add("logout");
+    } else {
+      btn.textContent = "Log in";
+      btn.classList.remove("logout");
+      btn.classList.add("login");
+    }
+  }
+
+  function showAuthView() {
+    document.querySelectorAll(".view").forEach(function (v) { v.classList.add("hidden"); });
+    document.querySelectorAll(".tab-btn").forEach(function (x) { x.classList.remove("active"); });
+    var v = $("#viewAuth");
+    if (v) v.classList.remove("hidden");
+    window.scrollTo(0, 0);
+  }
+
   function renderAccount() {
-    var box = $("#accountBox");
+    renderNavAuth();
+    var box = $("#viewAuthBody");
     if (!box) return;
     if (!sb) {
       box.innerHTML = '<span class="muted">Cloud saves unavailable (offline).</span>';
@@ -136,6 +159,16 @@
   function init() {
     var btn = $("#cloudSaveBtn");
     if (btn) btn.addEventListener("click", saveCloud);
+    var navBtn = $("#navAuthBtn");
+    if (navBtn) navBtn.addEventListener("click", function () {
+      if (user) doSignOut(); else showAuthView();
+    });
+    document.querySelectorAll(".tab-btn").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var v = $("#viewAuth");
+        if (v) v.classList.add("hidden");
+      });
+    });
     import("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm").then(function (mod) {
       sb = mod.createClient(SUPABASE_URL, SUPABASE_KEY);
       sb.auth.onAuthStateChange(function (_e, session) {

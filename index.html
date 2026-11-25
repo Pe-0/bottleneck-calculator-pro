@@ -16,7 +16,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
   <link rel="apple-touch-icon" href="icons/icon-180.png" />
   <meta name="theme-color" content="#f5f3fc" />
-  <link rel="stylesheet" href="css/styles.css?v=20261125aa" />
+  <link rel="stylesheet" href="css/styles.css?v=20261125ab" />
   <script>
     // Apply the saved theme before first paint to avoid a flash.
     try {
@@ -41,6 +41,7 @@
       </span>
       <span>Bottleneck Calculator <strong>Pro</strong></span>
     </div>
+    <button id="navAuthBtn" class="auth-nav-btn login" type="button">Log in</button>
     <nav class="tab-nav">
       <button class="tab-btn active" data-view="calc" type="button">Calculator</button>
       <button class="tab-btn" data-view="compare" type="button">Compare</button>
@@ -56,7 +57,6 @@
       <div id="searchResults" class="search-results hidden"></div>
     </div>
     <div class="sidebar-foot">
-      <div id="accountBox" class="acct"></div>
       <button id="themeToggle" class="theme-toggle" type="button">Light mode</button>
     </div>
   </aside>
@@ -594,6 +594,16 @@
       </section>
     </div><!-- /viewCommunity -->
     <!-- ============ DATA & METHODOLOGY ============ -->
+    <div id="viewAuth" class="view hidden">
+      <section class="hero">
+        <h1>Your account.</h1>
+        <p>Sign in to keep builds in the cloud, share them to the community gallery, and pick them up on any device. Everything works for guests - an account only adds saving and sharing.</p>
+      </section>
+      <section class="panel auth-panel">
+        <div id="viewAuthBody" class="acct"></div>
+      </section>
+    </div>
+
     <div id="viewData" class="view hidden">
       <section class="hero">
         <h1>Where every number comes from.</h1>
@@ -626,30 +636,30 @@
     </div>
   </footer>
 
-  <script src="js/data/hardware.js?v=20261125aa"></script>
-  <script src="js/data/benchmarks.js?v=20261125aa"></script>
-  <script src="js/data/prices.js?v=20261125aa"></script>
-  <script src="js/data/games.js?v=20261125aa"></script>
-  <script src="js/data/compat.js?v=20261125aa"></script>
-  <script src="js/data/components.js?v=20261125aa"></script>
-  <script src="js/data/cooling-cases.js?v=20261125aa"></script>
-  <script src="js/data/storage.js?v=20261125aa"></script>
-  <script src="js/data/monitors.js?v=20261125aa"></script>
-  <script src="js/data/software.js?v=20261125aa"></script>
-  <script src="js/engine.js?v=20261125aa"></script>
-  <script src="js/app.js?v=20261125aa"></script>
-  <script src="js/assistant.js?v=20261125aa"></script>
-  <script src="js/compare.js?v=20261125aa"></script>
-  <script src="js/upgrade.js?v=20261125aa"></script>
-  <script src="js/power.js?v=20261125aa"></script>
-  <script src="js/library.js?v=20261125aa"></script>
-  <script src="js/dashboard.js?v=20261125aa"></script>
-  <script src="js/monitors.js?v=20261125aa"></script>
-  <script src="js/personal.js?v=20261125aa"></script>
-  <script src="js/auth.js?v=20261125aa"></script>
-  <script src="js/community.js?v=20261125aa"></script>
-  <script src="js/analytics.js?v=20261125aa"></script>
-  <script src="js/export.js?v=20261125aa"></script>
+  <script src="js/data/hardware.js?v=20261125ab"></script>
+  <script src="js/data/benchmarks.js?v=20261125ab"></script>
+  <script src="js/data/prices.js?v=20261125ab"></script>
+  <script src="js/data/games.js?v=20261125ab"></script>
+  <script src="js/data/compat.js?v=20261125ab"></script>
+  <script src="js/data/components.js?v=20261125ab"></script>
+  <script src="js/data/cooling-cases.js?v=20261125ab"></script>
+  <script src="js/data/storage.js?v=20261125ab"></script>
+  <script src="js/data/monitors.js?v=20261125ab"></script>
+  <script src="js/data/software.js?v=20261125ab"></script>
+  <script src="js/engine.js?v=20261125ab"></script>
+  <script src="js/app.js?v=20261125ab"></script>
+  <script src="js/assistant.js?v=20261125ab"></script>
+  <script src="js/compare.js?v=20261125ab"></script>
+  <script src="js/upgrade.js?v=20261125ab"></script>
+  <script src="js/power.js?v=20261125ab"></script>
+  <script src="js/library.js?v=20261125ab"></script>
+  <script src="js/dashboard.js?v=20261125ab"></script>
+  <script src="js/monitors.js?v=20261125ab"></script>
+  <script src="js/personal.js?v=20261125ab"></script>
+  <script src="js/auth.js?v=20261125ab"></script>
+  <script src="js/community.js?v=20261125ab"></script>
+  <script src="js/analytics.js?v=20261125ab"></script>
+  <script src="js/export.js?v=20261125ab"></script>
   <script>
     // Data & methodology view (footer link) + service worker + mobile nav drawer.
     (function () {

@@ -569,4 +569,14 @@ button, input, select, a { transition-timing-function: cubic-bezier(0.22, 1, 0.3
 .gm-head { display: flex; align-items: baseline; gap: 8px; }
 .gm-vram { color: var(--mid); }
 #upPreGo { width: auto; padding: 8px 20px; }
+/* Auth: nav button + dedicated page */
+.auth-nav-btn { width: 100%; margin: 2px 0 10px; border: 0; border-radius: 8px; padding: 9px 0; font-weight: 700; font-size: 0.9rem; cursor: pointer; color: #fff; font-family: inherit; }
+.auth-nav-btn.login { background: #16a34a; }
+.auth-nav-btn.login:hover { background: #15803d; }
+.auth-nav-btn.logout { background: #dc2626; }
+.auth-nav-btn.logout:hover { background: #b91c1c; }
+.auth-panel { max-width: 480px; }
+.auth-panel .acct { border-top: 0; padding-top: 0; }
+.auth-panel .acct input { font-size: 0.95rem; padding: 10px 12px; }
+.auth-panel .acct-btns button { padding: 10px 0; font-size: 0.95rem; }
 
