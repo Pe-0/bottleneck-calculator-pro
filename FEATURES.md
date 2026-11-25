@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**931 features total: ✅ 273 live · 🚧 92 in progress · ⏳ 566 not started**
+**931 features total: ✅ 286 live · 🚧 92 in progress · ⏳ 553 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -191,34 +191,34 @@ _Full power stage live in the Power tab: per-part draws, idle/gaming/peak, headr
 ## 7. Game & Software Database
 - ✅ Game Database
 - ✅ Game Search
-- ⏳ Game Categories
-- ⏳ Game Genres
-- ⏳ Game Requirements
+- ✅ Game Categories
+- ✅ Game Genres
+- ✅ Game Requirements
 - ⏳ Minimum System Requirements
 - ⏳ Recommended System Requirements
 - ⏳ Ultra System Requirements
-- ⏳ Game Benchmark Database
+- ✅ Game Benchmark Database
 - ✅ Game Performance Profiles
-- ⏳ Game Resolution Profiles
+- ✅ Game Resolution Profiles
 - ✅ Game Graphics Presets
-- ⏳ Game Settings Recommendations
+- ✅ Game Settings Recommendations
 - ✅ Game-Specific FPS Estimation
-- ⏳ Game CPU Utilization Profiles
-- ⏳ Game GPU Utilization Profiles
+- ✅ Game CPU Utilization Profiles
+- ✅ Game GPU Utilization Profiles
 - ⏳ Game RAM Requirements
 - ⏳ Game VRAM Requirements
 - ⏳ Game Compatibility Checker
-- ⏳ Game Library
-- ⏳ Favorite Games
+- ✅ Game Library
+- ✅ Favorite Games
 - ⏳ Game Performance Comparison
 - ✅ Software Database
-- ⏳ Software Requirements Database
+- ✅ Software Requirements Database
 - ✅ Software Performance Profiles
-- ⏳ Professional Software Compatibility
+- ✅ Professional Software Compatibility
 - ✅ Rendering Software Profiles
 - ✅ Editing Software Profiles
 - ✅ CAD Software Profiles
-- ⏳ AI Workload Profiles
+- ✅ AI Workload Profiles
 
 ## 8. Hardware Database
 
