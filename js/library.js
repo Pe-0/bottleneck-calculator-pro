@@ -34,12 +34,45 @@
   }
 
   var filter = "";
+  var upscaleBoost = 0; // 0 = off; otherwise GPU-term multiplier
+
+  function upscaleTech(gpu) {
+    if (gpu.brand === "NVIDIA" && !/^GTX/.test(gpu.name)) return "DLSS";
+    if (gpu.brand === "Intel") return "XeSS";
+    return "FSR"; // FSR runs on every modern GPU
+  }
+
+  function renderVr(sel) {
+    var box = $("#vrVerdict");
+    if (!box) return;
+    var cpuBench = BCP.benchmarks.cpu[sel.cpu.id];
+    var gpuScore = BCP.benchmarks.gpu[sel.gpu.id];
+    var vram = sel.gpu.vramGB || 0;
+    var cls, text;
+    if (gpuScore >= 80 && vram >= 12) {
+      cls = "good"; text = "Comfortable for demanding PC VR - high settings at 90 Hz in most titles.";
+    } else if (gpuScore >= 55 && vram >= 8) {
+      cls = "good"; text = "Ready for PC VR - medium to high settings; the heaviest titles may need reprojection.";
+    } else if (gpuScore >= 35 && vram >= 6) {
+      cls = "mid"; text = "Entry-level PC VR - expect low to medium settings and reprojection in heavy titles.";
+    } else {
+      cls = "bad"; text = "Not recommended for PC VR - this GPU is below the practical floor for a smooth experience.";
+    }
+    var cpuNote = cpuBench.gaming < 60
+      ? " CPU note: sim and physics-heavy VR titles (flight sims, Bonelab-style) may be held back by this processor."
+      : "";
+    box.innerHTML = '<li class="warn ' + cls + '"></li>';
+    box.firstChild.textContent = sel.gpu.name + ": " + text + cpuNote;
+    box.className = "warn-list";
+  }
 
   function renderGames(sel) {
     var box = $("#gmList");
     box.innerHTML = "";
     var cpuBench = BCP.benchmarks.cpu[sel.cpu.id];
     var gpuScore = BCP.benchmarks.gpu[sel.gpu.id];
+    var tech = upscaleTech(sel.gpu);
+    $("#gmUpscaleLabel").textContent = "Upscaling (" + tech + ")";
     var items = BCP.games.items.filter(function (g) {
       return !filter || g.name.toLowerCase().indexOf(filter) !== -1;
     });
@@ -48,7 +81,10 @@
       return;
     }
     items.forEach(function (g) {
-      var fps = eng.gameFps(g, cpuBench.gaming, gpuScore, sel.res, sel.workload);
+      var native = eng.gameFps(g, cpuBench.gaming, gpuScore, sel.res, sel.workload);
+      var fps = upscaleBoost > 0
+        ? eng.gameFpsUpscaled(g, cpuBench.gaming, gpuScore, sel.res, sel.workload, upscaleBoost)
+        : native;
       var preset = presetFor(fps);
       var cpuCls = g.cpuWeight >= 0.7 ? "CPU-sensitive" : g.cpuWeight >= 0.5 ? "Balanced" : "GPU-bound";
       var card = document.createElement("div");
@@ -56,7 +92,8 @@
       card.innerHTML =
         '<div class="gm-head"><strong></strong><span class="gm-genre muted"></span></div>' +
         '<div class="gm-stats">' +
-          '<span class="gm-fps"><b>' + fps + "</b> fps est. at " + resLabel(sel.res) + "</span>" +
+          '<span class="gm-fps"><b>' + fps + "</b> fps est. at " + resLabel(sel.res) +
+            (upscaleBoost > 0 && fps > native ? ' <span class="muted gm-native">(' + native + " native)</span>" : "") + "</span>" +
           '<span>preset: <b class="gm-preset ' + preset.cls + '">' + preset.name + "</b></span>" +
           '<span class="muted">' + cpuCls + "</span>" +
         "</div>" +
@@ -121,6 +158,7 @@
     $("#gmBuildLine").textContent = sel.cpu.name + " + " + sel.gpu.name + " at " + resLabel(sel.res) + " · " + eng.WORKLOADS[sel.workload].label + " (from the Calculator tab)";
     renderGames(sel);
     renderSoftware(sel);
+    renderVr(sel);
   }
 
   /* ---------- global search ---------- */
@@ -194,6 +232,13 @@
     $("#gmSearch").addEventListener("input", function () {
       filter = this.value.trim().toLowerCase();
       renderAll();
+    });
+    document.querySelectorAll("#gmUpscaleSeg button").forEach(function (b) {
+      b.addEventListener("click", function () {
+        document.querySelectorAll("#gmUpscaleSeg button").forEach(function (x) { x.classList.toggle("active", x === b); });
+        upscaleBoost = parseFloat(b.getAttribute("data-val"));
+        renderAll();
+      });
     });
     initSearch();
   }

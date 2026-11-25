@@ -397,6 +397,12 @@ body[data-theme="light"] .db-radar-val { fill: rgba(47, 106, 224, 0.18); stroke:
 .saved-actions { display: flex; gap: 8px; flex-shrink: 0; }
 .saved-actions .gen-load { padding: 5px 10px; font-size: 0.78rem; }
 
+/* ---- Upscaling + VR ---- */
+.gm-upscale-row { display: flex; align-items: center; gap: 12px; margin: 10px 0 4px; font-size: 0.85rem; }
+.gm-upscale-row .seg { display: inline-flex; gap: 4px; }
+.gm-native { font-size: 0.8em; }
+#vrVerdict { list-style: none; margin: 0; padding: 0; }
+
 /* ---- Print report ---- */
 @media print {
   body { background: #fff; color: #000; }

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20261125b" />
+  <link rel="stylesheet" href="css/styles.css?v=20261125c" />
   <script>
     // Apply the saved theme before first paint to avoid a flash.
     try {
@@ -439,9 +439,24 @@
           <input type="text" id="gmSearch" placeholder="Filter games and software..." autocomplete="off" />
           <span class="muted" id="gmBuildLine"></span>
         </div>
+        <div class="gm-upscale-row">
+          <span class="muted" id="gmUpscaleLabel">Upscaling</span>
+          <span class="seg" id="gmUpscaleSeg">
+            <button type="button" data-val="0" class="active">Off</button>
+            <button type="button" data-val="1.5">Quality</button>
+            <button type="button" data-val="1.75">Balanced</button>
+            <button type="button" data-val="2.1">Performance</button>
+          </span>
+        </div>
         <h2>Games <small class="h-sub">FPS estimated for your build</small></h2>
         <div id="gmList" class="gm-list"></div>
         <p class="muted cmp-note">Requirement tiers are derived from the same reference-rig data behind the FPS estimator (GPU score needed for 30/60 fps). Estimates, not measurements.</p>
+      </section>
+
+      <section class="panel" id="vrPanel">
+        <h2>VR readiness <small class="h-sub">estimate</small></h2>
+        <div id="vrVerdict"></div>
+        <p class="muted cmp-note">PC VR (Quest Link, SteamVR headsets) leans hard on the GPU and hates frame drops, so the bar is higher than flatscreen gaming. Standalone headsets (Quest-class) run their own mobile hardware and do not depend on this PC. Estimate from GPU score, VRAM and CPU gaming score - not a certification.</p>
       </section>
 
       <section class="panel">
@@ -488,24 +503,24 @@
     </div>
   </footer>
 
-  <script src="js/data/hardware.js?v=20261125b"></script>
-  <script src="js/data/benchmarks.js?v=20261125b"></script>
-  <script src="js/data/prices.js?v=20261125b"></script>
-  <script src="js/data/games.js?v=20261125b"></script>
-  <script src="js/data/compat.js?v=20261125b"></script>
-  <script src="js/data/components.js?v=20261125b"></script>
-  <script src="js/data/cooling-cases.js?v=20261125b"></script>
-  <script src="js/data/storage.js?v=20261125b"></script>
-  <script src="js/data/software.js?v=20261125b"></script>
-  <script src="js/engine.js?v=20261125b"></script>
-  <script src="js/app.js?v=20261125b"></script>
-  <script src="js/assistant.js?v=20261125b"></script>
-  <script src="js/compare.js?v=20261125b"></script>
-  <script src="js/upgrade.js?v=20261125b"></script>
-  <script src="js/power.js?v=20261125b"></script>
-  <script src="js/library.js?v=20261125b"></script>
-  <script src="js/dashboard.js?v=20261125b"></script>
-  <script src="js/personal.js?v=20261125b"></script>
-  <script src="js/export.js?v=20261125b"></script>
+  <script src="js/data/hardware.js?v=20261125c"></script>
+  <script src="js/data/benchmarks.js?v=20261125c"></script>
+  <script src="js/data/prices.js?v=20261125c"></script>
+  <script src="js/data/games.js?v=20261125c"></script>
+  <script src="js/data/compat.js?v=20261125c"></script>
+  <script src="js/data/components.js?v=20261125c"></script>
+  <script src="js/data/cooling-cases.js?v=20261125c"></script>
+  <script src="js/data/storage.js?v=20261125c"></script>
+  <script src="js/data/software.js?v=20261125c"></script>
+  <script src="js/engine.js?v=20261125c"></script>
+  <script src="js/app.js?v=20261125c"></script>
+  <script src="js/assistant.js?v=20261125c"></script>
+  <script src="js/compare.js?v=20261125c"></script>
+  <script src="js/upgrade.js?v=20261125c"></script>
+  <script src="js/power.js?v=20261125c"></script>
+  <script src="js/library.js?v=20261125c"></script>
+  <script src="js/dashboard.js?v=20261125c"></script>
+  <script src="js/personal.js?v=20261125c"></script>
+  <script src="js/export.js?v=20261125c"></script>
 </body>
 </html>

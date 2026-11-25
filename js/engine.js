@@ -86,6 +86,19 @@ window.BCP.engine = (function () {
     return Math.round(fps);
   }
 
+  // Upscaling (DLSS/FSR/XeSS): the GPU renders at a lower internal
+  // resolution, so only the GPU term gets the boost - a CPU-limited
+  // game gains nothing. gpuBoost ~1.5 Quality, ~1.75 Balanced, ~2.1 Performance.
+  function gameFpsUpscaled(game, cpuGamingScore, gpuScore, resKey, workloadKey, gpuBoost) {
+    var wl = WORKLOADS[workloadKey] || WORKLOADS.gaming;
+    var gpuRel = (gpuScore / 100) * wl.fpsGpuPenalty * (gpuBoost || 1);
+    var cpuRel = (cpuGamingScore / 100) * wl.fpsCpuPenalty;
+    var cpuTerm = 1 + (cpuRel - 1) * game.cpuWeight;
+    var fps = game.baseFps[resKey] * Math.min(gpuRel, cpuTerm);
+    if (game.cap) fps = Math.min(fps, game.cap);
+    return Math.round(fps);
+  }
+
   function recommendedPsuW(cpuTdp, gpuTdp) {
     var c = window.BCP.compat.psu;
     var raw = cpuTdp + gpuTdp * c.gpuSpikeFactor + c.headroomW;
@@ -335,6 +348,7 @@ window.BCP.engine = (function () {
     WORKLOADS: WORKLOADS,
     bottleneck: bottleneck,
     gameFps: gameFps,
+    gameFpsUpscaled: gameFpsUpscaled,
     recommendedPsuW: recommendedPsuW,
     compatibility: compatibility,
     partCompatibility: partCompatibility,
