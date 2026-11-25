@@ -16,7 +16,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
   <link rel="apple-touch-icon" href="icons/icon-180.png" />
   <meta name="theme-color" content="#f5f3fc" />
-  <link rel="stylesheet" href="css/styles.css?v=20261125v" />
+  <link rel="stylesheet" href="css/styles.css?v=20261125w" />
   <script>
     // Apply the saved theme before first paint to avoid a flash.
     try {
@@ -424,6 +424,17 @@
         <div id="upOptList" class="up-list"></div>
         <p class="muted cmp-note" id="upOptNote"></p>
       </section>
+
+      <section class="panel">
+        <h2>Prebuilt price check <small class="h-sub">eyeing a prebuilt with these specs?</small></h2>
+        <p class="muted">Uses the CPU and GPU selected above. Enter the prebuilt's asking price and compare it against building the same core yourself.</p>
+        <div class="cmp-controls">
+          <label>Prebuilt price <input type="number" id="upPrePrice" min="0" step="10" placeholder="e.g. 900"></label>
+          <button type="button" id="upPreGo" class="btn">Check</button>
+        </div>
+        <div id="upPreList" class="up-list"></div>
+        <p class="muted cmp-note" id="upPreNote"></p>
+      </section>
     </div><!-- /viewUpgrade -->
 
     <!-- ============ POWER & THERMAL ============ -->
@@ -615,30 +626,30 @@
     </div>
   </footer>
 
-  <script src="js/data/hardware.js?v=20261125v"></script>
-  <script src="js/data/benchmarks.js?v=20261125v"></script>
-  <script src="js/data/prices.js?v=20261125v"></script>
-  <script src="js/data/games.js?v=20261125v"></script>
-  <script src="js/data/compat.js?v=20261125v"></script>
-  <script src="js/data/components.js?v=20261125v"></script>
-  <script src="js/data/cooling-cases.js?v=20261125v"></script>
-  <script src="js/data/storage.js?v=20261125v"></script>
-  <script src="js/data/monitors.js?v=20261125v"></script>
-  <script src="js/data/software.js?v=20261125v"></script>
-  <script src="js/engine.js?v=20261125v"></script>
-  <script src="js/app.js?v=20261125v"></script>
-  <script src="js/assistant.js?v=20261125v"></script>
-  <script src="js/compare.js?v=20261125v"></script>
-  <script src="js/upgrade.js?v=20261125v"></script>
-  <script src="js/power.js?v=20261125v"></script>
-  <script src="js/library.js?v=20261125v"></script>
-  <script src="js/dashboard.js?v=20261125v"></script>
-  <script src="js/monitors.js?v=20261125v"></script>
-  <script src="js/personal.js?v=20261125v"></script>
-  <script src="js/auth.js?v=20261125v"></script>
-  <script src="js/community.js?v=20261125v"></script>
-  <script src="js/analytics.js?v=20261125v"></script>
-  <script src="js/export.js?v=20261125v"></script>
+  <script src="js/data/hardware.js?v=20261125w"></script>
+  <script src="js/data/benchmarks.js?v=20261125w"></script>
+  <script src="js/data/prices.js?v=20261125w"></script>
+  <script src="js/data/games.js?v=20261125w"></script>
+  <script src="js/data/compat.js?v=20261125w"></script>
+  <script src="js/data/components.js?v=20261125w"></script>
+  <script src="js/data/cooling-cases.js?v=20261125w"></script>
+  <script src="js/data/storage.js?v=20261125w"></script>
+  <script src="js/data/monitors.js?v=20261125w"></script>
+  <script src="js/data/software.js?v=20261125w"></script>
+  <script src="js/engine.js?v=20261125w"></script>
+  <script src="js/app.js?v=20261125w"></script>
+  <script src="js/assistant.js?v=20261125w"></script>
+  <script src="js/compare.js?v=20261125w"></script>
+  <script src="js/upgrade.js?v=20261125w"></script>
+  <script src="js/power.js?v=20261125w"></script>
+  <script src="js/library.js?v=20261125w"></script>
+  <script src="js/dashboard.js?v=20261125w"></script>
+  <script src="js/monitors.js?v=20261125w"></script>
+  <script src="js/personal.js?v=20261125w"></script>
+  <script src="js/auth.js?v=20261125w"></script>
+  <script src="js/community.js?v=20261125w"></script>
+  <script src="js/analytics.js?v=20261125w"></script>
+  <script src="js/export.js?v=20261125w"></script>
   <script>
     // Data & methodology view (footer link) + service worker + mobile nav drawer.
     (function () {

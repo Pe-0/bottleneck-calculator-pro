@@ -137,6 +137,81 @@
     return { budget: budget, rows: rows.slice(0, 3) };
   }
 
+  // Cheapest supporting parts for the selected CPU + GPU, mirroring
+  // the engine's build generator choices (no case, no peripherals).
+  function selfBuildCost(cpu, gpu) {
+    var pCpu = BCP.prices.cpu[cpu.id], pGpu = BCP.prices.gpu[gpu.id];
+    if (!pCpu || !pGpu) return null;
+    var plat = platformCost(cpu.socket);
+    if (!plat) return null;
+    var cooler = 0;
+    if (!cpu.stockCooler) {
+      var cls = BCP.coolers.items.filter(function (cl) {
+        return cl.id !== "cl-stock" && cl.sockets.indexOf(cpu.socket) !== -1 && cl.tdpRatingW >= cpu.tdpW;
+      });
+      cls.sort(function (a, b) { return a.priceUSD - b.priceUSD; });
+      if (!cls.length) return null;
+      cooler = cls[0].priceUSD;
+    }
+    var drives = BCP.storage.items.filter(function (d) { return d.capacityGB >= 1000 && d.interface !== "SATA"; });
+    drives.sort(function (a, b) { return a.priceUSD - b.priceUSD; });
+    if (!drives.length) return null;
+    var rec = eng.recommendedPsuW(cpu.tdpW, gpu.tdpW);
+    var needAtx31 = gpu.tdpW >= 300;
+    var psus = BCP.psus.items.filter(function (p) { return p.wattageW >= rec && (!needAtx31 || p.atx31); });
+    psus.sort(function (a, b) { return p.priceUSD - b.priceUSD; });
+    if (!psus.length) return null;
+    return { total: pCpu + pGpu + plat.cost + cooler + drives[0].priceUSD + psus[0].priceUSD };
+  }
+
+  function renderPrebuilt() {
+    var box = $("#upPreList"), note = $("#upPreNote");
+    if (!box) return;
+    box.innerHTML = "";
+    var cpu = hw(BCP.cpus.items, upState.cpuId);
+    var gpu = hw(BCP.gpus.items, upState.gpuId);
+    if (!cpu || !gpu) return;
+    if (!upState.prePrice) {
+      box.innerHTML = '<p class="muted">Enter the asking price above and hit Check.</p>';
+      if (note) note.textContent = "";
+      return;
+    }
+    var est = selfBuildCost(cpu, gpu);
+    if (!est) {
+      box.innerHTML = '<p class="muted">Cannot price this combination - one of the parts or its supporting components is missing from the internal price layer.</p>';
+      if (note) note.textContent = "";
+      return;
+    }
+    var ratio = upState.prePrice / est.total;
+    var v;
+    if (ratio <= 1.10) v = { cls: "good", text: "Strong deal - at or near the cost of the parts alone." };
+    else if (ratio <= 1.25) v = { cls: "good", text: "Fair price - inside the normal prebuilt markup for assembly, warranty and a Windows license." };
+    else if (ratio <= 1.50) v = { cls: "mid", text: "Pricey - well above the parts estimate. Worth negotiating or comparing other listings." };
+    else v = { cls: "bad", text: "Overpriced against building it yourself on the internal price layer." };
+    var alt = eng.generateBuilds(upState.prePrice, upState.workload, upState.res, 1);
+    var div = document.createElement("div");
+    div.innerHTML =
+      '<div class="up-card">' +
+        '<div class="up-head"><strong></strong><span class="price">' + fmtUsd(upState.prePrice) + "</span></div>" +
+        '<div class="up-stats">' +
+          '<span>parts estimate <b>' + fmtUsd(est.total) + "</b></span>" +
+          '<span>markup <b>' + Math.round((ratio - 1) * 100) + "%</b></span>" +
+        "</div>" +
+        '<ul class="warn-list"><li class="warn ' + v.cls + '"></li></ul>' +
+        (alt.length ? '<div class="up-note muted"></div>' : "") +
+      "</div>";
+    var node = div.firstChild;
+    node.querySelector(".up-head strong").textContent = cpu.name + " + " + gpu.name + " prebuilt";
+    node.querySelector(".warn li").textContent = v.text;
+    var altNote = node.querySelector(".up-note");
+    if (altNote) altNote.textContent = "The same budget self-built buys roughly: " + alt[0].cpu.name + " + " + alt[0].gpu.name + " (est. " + fmtUsd(alt[0].total) + " core parts, " + upState.workload + " focus).";
+    box.appendChild(node);
+    if (note) {
+      note.textContent = "The parts estimate adds the cheapest compatible board, 32 GB kit, cooler, 1 TB NVMe and an adequately rated PSU to the CPU + GPU prices from the internal price layer (" +
+        BCP.prices.meta.asOf + "). It excludes the case, peripherals and Windows. The fairness bands (fair within roughly +10-25% over parts) are a rule of thumb, not a market standard. Prebuilts vary in RAM speed, SSD quality and cooling - check the exact component list before buying.";
+    }
+  }
+
   function cardHtml(u, kind) {
     var costTxt = kind === "cpu" ? fmtUsd(u.cost) : fmtUsd(u.price);
     if (u.item.legacy) costTxt += " (used est.)";
@@ -179,6 +254,8 @@
       { el: "#upGpuList", rows: gpuUpgrades(bench).slice(0, 6), kind: "gpu", empty: "No worthwhile graphics card upgrade in the database" + (upState.budget ? " within this budget." : ".") },
       { el: "#upCpuList", rows: cpuUpgrades(gscore).slice(0, 6), kind: "cpu", empty: cpuEmpty }
     ];
+    renderPrebuilt();
+
     var rb = rebalance();
     var optBox = $("#upOptList"), optNote = $("#upOptNote");
     if (optBox) {
@@ -260,6 +337,13 @@
         render();
       });
     });
+    var preGo = function () {
+      upState.prePrice = parseInt($("#upPrePrice").value, 10) || 0;
+      renderPrebuilt();
+    };
+    $("#upPreGo").addEventListener("click", preGo);
+    $("#upPrePrice").addEventListener("keydown", function (e) { if (e.key === "Enter") preGo(); });
+
     $("#upBudget").addEventListener("change", function () {
       upState.budget = parseInt(this.value, 10) || 0;
       render();
