@@ -77,30 +77,32 @@
   function renderCloudArea() {
     var btn = $("#cloudSaveBtn");
     if (btn) btn.hidden = !user;
-    var box = $("#cloudBuilds");
-    if (!box) return;
-    if (!user) { box.innerHTML = ""; return; }
-    if (!cloudRows.length) {
-      box.innerHTML = '<p class="muted" style="font-size:0.85rem;">No cloud saves yet - use "Save to cloud" to keep builds on your account.</p>';
-      return;
-    }
-    box.innerHTML = '<h3 class="sb-cloud-title">Cloud saves</h3>';
-    cloudRows.forEach(function (r) {
-      var row = document.createElement("div");
-      row.className = "saved-row";
-      row.innerHTML = '<span class="saved-name"></span>' +
-        '<span class="saved-actions"><button type="button" class="gen-load saved-load">Load</button>' +
-        '<button type="button" class="gen-load saved-del">Delete</button></span>';
-      row.querySelector(".saved-name").textContent = r.name + " · " + new Date(r.created_at).toLocaleDateString();
-      row.querySelector(".saved-load").addEventListener("click", function () {
-        if (r.code && BCP.applyBuildCode && BCP.applyBuildCode(r.code)) {
-          try { history.replaceState(null, "", "#b=" + r.code); } catch (e) {}
-          document.querySelector('.tab-btn[data-view="calc"]').click();
-          status("Loaded: " + r.name);
-        } else status("Could not load that build.", true);
+    ["#cloudBuilds", "#cloudBuildsAuth"].forEach(function (sel) {
+      var box = $(sel);
+      if (!box) return;
+      if (!user) { box.innerHTML = ""; return; }
+      if (!cloudRows.length) {
+        box.innerHTML = '<p class="muted" style="font-size:0.85rem;">No cloud saves yet - use "Save to cloud" to keep builds on your account.</p>';
+        return;
+      }
+      box.innerHTML = '<h3 class="sb-cloud-title">Cloud saves</h3>';
+      cloudRows.forEach(function (r) {
+        var row = document.createElement("div");
+        row.className = "saved-row";
+        row.innerHTML = '<span class="saved-name"></span>' +
+          '<span class="saved-actions"><button type="button" class="gen-load saved-load">Load</button>' +
+          '<button type="button" class="gen-load saved-del">Delete</button></span>';
+        row.querySelector(".saved-name").textContent = r.name + " · " + new Date(r.created_at).toLocaleDateString();
+        row.querySelector(".saved-load").addEventListener("click", function () {
+          if (r.code && BCP.applyBuildCode && BCP.applyBuildCode(r.code)) {
+            try { history.replaceState(null, "", "#b=" + r.code); } catch (e) {}
+            document.querySelector('.tab-btn[data-view="calc"]').click();
+            status("Loaded: " + r.name);
+          } else status("Could not load that build.", true);
+        });
+        row.querySelector(".saved-del").addEventListener("click", function () { delBuild(r.id); });
+        box.appendChild(row);
       });
-      row.querySelector(".saved-del").addEventListener("click", function () { delBuild(r.id); });
-      box.appendChild(row);
     });
   }
 
