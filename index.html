@@ -9,6 +9,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css?v=20261125b" />
+  <script>
+    // Apply the saved theme before first paint to avoid a flash.
+    try {
+      if (localStorage.getItem("bcp-theme") === "light") document.body.setAttribute("data-theme", "light");
+    } catch (e) {}
+  </script>
 </head>
 <body>
   <p id="printHeader" class="print-only"></p>
@@ -30,6 +36,7 @@
         <input type="text" id="globalSearch" placeholder="Search hardware, games, software..." autocomplete="off" />
         <div id="searchResults" class="search-results hidden"></div>
       </div>
+      <button id="themeToggle" class="theme-toggle" type="button">Light mode</button>
     </div>
   </header>
 
@@ -246,7 +253,9 @@
           <button id="expPrint" class="gen-load" type="button">Print / save as PDF</button>
           <button id="expCsv" class="gen-load" type="button">Download CSV</button>
           <button id="expLink" class="gen-load" type="button">Copy share link</button>
+          <button id="saveBuildBtn" class="gen-btn" type="button">Save this build</button>
         </div>
+        <div id="savedBuilds" class="saved-builds"></div>
         <p class="muted cmp-note">Everything is generated in your browser - nothing is uploaded. The share link encodes this exact build in the URL.</p>
       </section>
 
@@ -496,6 +505,7 @@
   <script src="js/power.js?v=20261125b"></script>
   <script src="js/library.js?v=20261125b"></script>
   <script src="js/dashboard.js?v=20261125b"></script>
+  <script src="js/personal.js?v=20261125b"></script>
   <script src="js/export.js?v=20261125b"></script>
 </body>
 </html>

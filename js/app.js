@@ -385,26 +385,33 @@
       }
     });
 
-    // Restore a shared build from the URL hash.
-    if (location.hash.indexOf("#b=") === 0) {
-      var parts0 = location.hash.slice(3).split(",");
-      if (parts0.length === 10) {
-        state.cpuId = parts0[0]; state.gpuId = parts0[1]; state.moboId = parts0[2];
-        state.ramId = parts0[3]; state.psuId = parts0[4]; state.coolerId = parts0[5];
-        state.caseId = parts0[6]; state.storageId = parts0[7];
-        if ({p1080:1,p1440:1,p2160:1}[parts0[8]]) state.res = parts0[8];
-        if (eng.WORKLOADS[parts0[9]]) state.workload = parts0[9];
-        document.querySelectorAll("#resSeg button").forEach(function (b) {
-          b.classList.toggle("active", b.dataset.val === state.res);
-        });
-        document.querySelectorAll("#wlSeg button").forEach(function (b) {
-          b.classList.toggle("active", b.dataset.val === state.workload);
-        });
-        cpuSel.value = state.cpuId;
-        gpuSel.value = state.gpuId;
-        syncComponentPickers();
-      }
+    // Restore a shared build from a #b= code (URL hash or saved builds).
+    function applyBuildCode(code) {
+      var parts0 = code.split(",");
+      if (parts0.length !== 10) return false;
+      state.cpuId = parts0[0]; state.gpuId = parts0[1]; state.moboId = parts0[2];
+      state.ramId = parts0[3]; state.psuId = parts0[4]; state.coolerId = parts0[5];
+      state.caseId = parts0[6]; state.storageId = parts0[7];
+      if ({p1080:1,p1440:1,p2160:1}[parts0[8]]) state.res = parts0[8];
+      if (eng.WORKLOADS[parts0[9]]) state.workload = parts0[9];
+      document.querySelectorAll("#resSeg button").forEach(function (b) {
+        b.classList.toggle("active", b.dataset.val === state.res);
+      });
+      document.querySelectorAll("#wlSeg button").forEach(function (b) {
+        b.classList.toggle("active", b.dataset.val === state.workload);
+      });
+      cpuSel.value = state.cpuId;
+      gpuSel.value = state.gpuId;
+      syncComponentPickers();
+      render();
+      return true;
     }
+    BCP.applyBuildCode = applyBuildCode;
+    BCP.currentBuildCode = function () {
+      return [state.cpuId, state.gpuId, state.moboId, state.ramId, state.psuId,
+              state.coolerId, state.caseId, state.storageId, state.res, state.workload].join(",");
+    };
+    if (location.hash.indexOf("#b=") === 0) applyBuildCode(location.hash.slice(3));
     bindSegmented("resSeg", "res");
     bindSegmented("wlSeg", "workload");
 
