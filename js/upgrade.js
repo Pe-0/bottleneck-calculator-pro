@@ -159,7 +159,7 @@
     var rec = eng.recommendedPsuW(cpu.tdpW, gpu.tdpW);
     var needAtx31 = gpu.tdpW >= 300;
     var psus = BCP.psus.items.filter(function (p) { return p.wattageW >= rec && (!needAtx31 || p.atx31); });
-    psus.sort(function (a, b) { return p.priceUSD - b.priceUSD; });
+    psus.sort(function (a, b) { return a.priceUSD - b.priceUSD; });
     if (!psus.length) return null;
     return { total: pCpu + pGpu + plat.cost + cooler + drives[0].priceUSD + psus[0].priceUSD };
   }
