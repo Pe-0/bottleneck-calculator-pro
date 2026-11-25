@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**931 features total: ✅ 267 live · 🚧 92 in progress · ⏳ 572 not started**
+**931 features total: ✅ 273 live · 🚧 92 in progress · ⏳ 566 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -598,7 +598,7 @@ _Thermal core live in the Power tab: CPU/GPU temp estimates, throttling classifi
 
 ## 16. PC Builder Dashboard & Analytics
 
-_First charts live in the Compare tab; full dashboard is stage S14._
+_Dashboard live: per-build cost/radar/bottleneck/power charts plus database-wide analytics (layer sizes, socket and VRAM coverage, perf-per-dollar leaders). Thermal dashboard shows on the Power tab._
 - ✅ Build Overview Dashboard
 - ✅ Performance Dashboard
 - ✅ Bottleneck Dashboard
@@ -606,10 +606,10 @@ _First charts live in the Compare tab; full dashboard is stage S14._
 - ✅ Power Dashboard
 - ⏳ Thermal Dashboard
 - ✅ Budget Dashboard
-- ⏳ Component Statistics
-- ⏳ Performance Statistics
-- ⏳ Build Cost Statistics
-- ⏳ Component Distribution Charts
+- ✅ Component Statistics
+- ✅ Performance Statistics
+- ✅ Build Cost Statistics
+- ✅ Component Distribution Charts
 - ✅ Performance Charts
 - ✅ Bottleneck Charts
 - ✅ Power Consumption Charts
@@ -617,7 +617,7 @@ _First charts live in the Compare tab; full dashboard is stage S14._
 - ⏳ FPS Charts
 - ⏳ Benchmark Charts
 - ✅ Radar Performance Charts
-- ⏳ Hardware Ranking Charts
+- ✅ Hardware Ranking Charts
 - ⏳ Build Comparison Charts
 - ⏳ Interactive Data Visualization
 - ⏳ Personalized Recommendations
@@ -1038,7 +1038,7 @@ _PWA + data transparency page are stage S20. Live price APIs are parked with the
 - ⏳ Historical Pricing & Price Tracking
 - ✅ AI Hardware Assistant
 - 🚧 Community Builds & Sharing
-- ⏳ Hardware Analytics Dashboard
+- ✅ Hardware Analytics Dashboard
 - 🚧 Build Optimization Engine
 - ✅ Performance Per Dollar Ranking
 - ✅ Automated Compatibility Validation
