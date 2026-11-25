@@ -71,6 +71,7 @@ body {
     transition: transform 0.25s ease;
     box-shadow: 0 0 48px rgba(0, 0, 0, 0.5);
     width: 260px;
+    padding-top: 66px;
   }
   body.nav-open .sidebar { transform: none; }
   .nav-toggle { display: block; }
