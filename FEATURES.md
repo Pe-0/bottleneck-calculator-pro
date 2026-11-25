@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**931 features total: ✅ 286 live · 🚧 92 in progress · ⏳ 553 not started**
+**931 features total: ✅ 290 live · 🚧 91 in progress · ⏳ 550 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -52,7 +52,7 @@ _Accounts are live via Supabase: email/password signup with mandatory email conf
 - ⏳ Build Import
 - ⏳ Build Comparison
 - ⏳ Build Version History
-- ⏳ Build Optimization Suggestions
+- ✅ Build Optimization Suggestions
 - ⏳ Upgrade Path Planner
 
 ## 3. Bottleneck Analysis Engine
@@ -476,7 +476,7 @@ _Parked with the marketplace (depends on live price/stock APIs)._
 - ⏳ Shopping List Price Tracking
 - ⏳ Build Price Alerts
 - ⏳ Price Drop Notifications
-- ⏳ Budget Optimization
+- ✅ Budget Optimization
 - ⏳ Automatic Component Substitution
 - ⏳ Alternative Component Finder
 - ⏳ Build Cost Breakdown
@@ -534,7 +534,7 @@ _Parked with the marketplace (depends on live price/stock APIs)._
 - ⏳ Cooling Budget Allocation
 - ⏳ Case Budget Allocation
 - ⏳ Budget Distribution Visualization
-- ⏳ Budget Optimization Engine
+- ✅ Budget Optimization Engine
 - ⏳ Budget Remaining Calculator
 - ⏳ Over-Budget Warning
 - ⏳ Under-Budget Recommendations
@@ -1039,7 +1039,7 @@ _PWA + data transparency page are stage S20. Live price APIs are parked with the
 - ✅ AI Hardware Assistant
 - 🚧 Community Builds & Sharing
 - ✅ Hardware Analytics Dashboard
-- 🚧 Build Optimization Engine
+- ✅ Build Optimization Engine
 - ✅ Performance Per Dollar Ranking
 - ✅ Automated Compatibility Validation
 - ⏳ Build-to-Cart Shopping System
