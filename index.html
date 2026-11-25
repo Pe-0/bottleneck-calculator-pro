@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20261124h" />
+  <link rel="stylesheet" href="css/styles.css?v=20261125a" />
 </head>
 <body>
   <header class="site-header">
@@ -21,6 +21,7 @@
         <button class="tab-btn active" data-view="calc" type="button">Calculator</button>
         <button class="tab-btn" data-view="compare" type="button">Compare</button>
         <button class="tab-btn" data-view="upgrade" type="button">Upgrade</button>
+        <button class="tab-btn" data-view="power" type="button">Power</button>
       </nav>
     </div>
   </header>
@@ -364,6 +365,40 @@
         <p class="muted cmp-note">FPS figures are engine estimates averaged over the game database, not measured results. Platform-change rows add the cheapest compatible board and a 32 GB memory kit to the price, since a new socket means a new board and usually new RAM.</p>
       </section>
     </div><!-- /viewUpgrade -->
+
+    <!-- ============ POWER & THERMAL ============ -->
+    <div id="viewPower" class="view hidden">
+      <section class="hero">
+        <h1>Power draw and temperatures.</h1>
+        <p>Analyzes the build you picked on the Calculator tab: where the watts go, whether the PSU has real headroom, and how warm the CPU will run on the selected cooler.</p>
+      </section>
+
+      <section class="panel">
+        <h2>Power draw <small class="h-sub" id="pwBuildLine"></small></h2>
+        <div id="pwBreakdown" class="pw-breakdown"></div>
+        <div id="pwStats" class="pw-stats"></div>
+        <p class="muted cmp-note">Estimates from rated TDPs plus rule-of-thumb draws for the rest. Real numbers vary with workload, silicon and case airflow; treat them as planning figures, not measurements.</p>
+      </section>
+
+      <section class="panel">
+        <h2>PSU analysis</h2>
+        <ul class="warn-list" id="pwPsuList"></ul>
+      </section>
+
+      <section class="panel">
+        <h2>Thermal estimate <small class="h-sub">CPU on the selected cooler</small></h2>
+        <div class="th-block">
+          <span class="th-temp" id="thCpuTemp">-</span>
+          <span class="muted" id="thCpuClass"></span>
+        </div>
+        <div class="th-headroom-row">
+          <span class="field-label">Cooler capacity vs CPU TDP</span>
+          <span class="fps-bar th-bar"><span class="fps-fill" id="thHeadroom"></span></span>
+        </div>
+        <ul class="warn-list" id="thList"></ul>
+        <p class="muted cmp-note">Temperature estimates assume a 25C room and decent case airflow, derived from TDP ratings only - not sensor data.</p>
+      </section>
+    </div><!-- /viewPower -->
   </main>
 
   <footer class="site-footer">
@@ -374,18 +409,19 @@
     </div>
   </footer>
 
-  <script src="js/data/hardware.js?v=20261124h"></script>
-  <script src="js/data/benchmarks.js?v=20261124h"></script>
-  <script src="js/data/prices.js?v=20261124h"></script>
-  <script src="js/data/games.js?v=20261124h"></script>
-  <script src="js/data/compat.js?v=20261124h"></script>
-  <script src="js/data/components.js?v=20261124h"></script>
-  <script src="js/data/cooling-cases.js?v=20261124h"></script>
-  <script src="js/data/storage.js?v=20261124h"></script>
-  <script src="js/engine.js?v=20261124h"></script>
-  <script src="js/app.js?v=20261124h"></script>
-  <script src="js/assistant.js?v=20261124h"></script>
-  <script src="js/compare.js?v=20261124h"></script>
-  <script src="js/upgrade.js?v=20261124h"></script>
+  <script src="js/data/hardware.js?v=20261125a"></script>
+  <script src="js/data/benchmarks.js?v=20261125a"></script>
+  <script src="js/data/prices.js?v=20261125a"></script>
+  <script src="js/data/games.js?v=20261125a"></script>
+  <script src="js/data/compat.js?v=20261125a"></script>
+  <script src="js/data/components.js?v=20261125a"></script>
+  <script src="js/data/cooling-cases.js?v=20261125a"></script>
+  <script src="js/data/storage.js?v=20261125a"></script>
+  <script src="js/engine.js?v=20261125a"></script>
+  <script src="js/app.js?v=20261125a"></script>
+  <script src="js/assistant.js?v=20261125a"></script>
+  <script src="js/compare.js?v=20261125a"></script>
+  <script src="js/upgrade.js?v=20261125a"></script>
+  <script src="js/power.js?v=20261125a"></script>
 </body>
 </html>

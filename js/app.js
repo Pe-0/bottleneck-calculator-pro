@@ -26,6 +26,22 @@
     return null;
   }
 
+  // Exposed so analysis tabs (Power & thermal, ...) work on the
+  // current calculator selection instead of duplicating pickers.
+  BCP.getSelection = function () {
+    return {
+      cpu: hw(BCP.cpus.items, state.cpuId),
+      gpu: hw(BCP.gpus.items, state.gpuId),
+      mobo: state.moboId === UNKNOWN ? null : hw(BCP.motherboards.items, state.moboId),
+      ram: state.ramId === UNKNOWN ? null : hw(BCP.memoryKits.items, state.ramId),
+      psu: hw(BCP.psus.items, state.psuId),
+      cooler: hw(BCP.coolers.items, state.coolerId),
+      storage: hw(BCP.storage.items, state.storageId),
+      res: state.res,
+      workload: state.workload
+    };
+  };
+
   function fillSelect(el, items, groupBy) {
     var groups = {};
     items.forEach(function (it) {

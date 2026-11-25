@@ -325,3 +325,25 @@ select:hover, select:focus { border-color: var(--accent); outline: none; }
 .up-stats b { color: var(--text); }
 .up-stats .up-value b { color: var(--accent-2); }
 .up-note { font-size: 0.82rem; margin-top: 8px; }
+
+/* ============ Power & thermal ============ */
+.pw-breakdown { display: flex; flex-direction: column; }
+.pw-row { display: grid; grid-template-columns: 1.4fr 2fr auto; gap: 10px; align-items: center; padding: 7px 0; border-bottom: 1px solid rgba(148,163,184,.1); font-size: 0.9rem; }
+.pw-name { color: var(--text); }
+.pw-w { color: var(--accent-2); font-weight: 700; white-space: nowrap; }
+.pw-note { grid-column: 1 / -1; font-size: 0.78rem; margin-top: -4px; }
+.pw-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 16px; }
+.pw-stat { background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+.pw-stat small { display: block; color: var(--muted); font-size: 0.78rem; margin-bottom: 4px; }
+.pw-stat strong { font-size: 1.15rem; color: var(--accent-2); }
+.th-block { display: flex; align-items: baseline; gap: 14px; margin-bottom: 14px; }
+.th-temp { font-size: 2.2rem; font-weight: 800; }
+.th-temp.good { color: var(--accent-2); }
+.th-temp.mid { color: #eab308; }
+.th-temp.bad { color: #ef4444; }
+.th-headroom-row { margin-bottom: 14px; }
+.th-bar { display: block; width: 100%; margin-top: 6px; height: 10px; }
+.fill-mid { background: linear-gradient(90deg, #eab308, #ca8a04) !important; }
+.fill-bad { background: linear-gradient(90deg, #ef4444, #b91c1c) !important; }
+.warn.ok { border-left-color: var(--accent-2); }
+@media (max-width: 720px) { .pw-row { grid-template-columns: 1.2fr 1.4fr auto; } }
