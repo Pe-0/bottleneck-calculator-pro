@@ -53,22 +53,30 @@
     }
     if (!user) {
       box.innerHTML =
-        '<div class="acct-title">Account <span class="muted">cloud saves</span></div>' +
-        '<input type="email" id="acctEmail" placeholder="Email" autocomplete="email" />' +
-        '<input type="password" id="acctPass" placeholder="Password" autocomplete="current-password" />' +
-        '<div class="acct-btns">' +
-        '  <button type="button" id="acctSignIn">Sign in</button>' +
-        '  <button type="button" id="acctSignUp" class="acct-alt">Sign up</button>' +
-        '</div>' +
+        '<div class="auth-head"><h2>Welcome back.</h2>' +
+        '<p class="muted">Sign in to sync your builds and share them to the community gallery.</p></div>' +
+        '<label class="auth-field"><span>Email</span>' +
+        '<input type="email" id="acctEmail" placeholder="you@example.com" autocomplete="email" /></label>' +
+        '<label class="auth-field"><span>Password</span>' +
+        '<input type="password" id="acctPass" placeholder="Your password" autocomplete="current-password" /></label>' +
+        '<button type="button" id="acctSignIn" class="auth-primary">Sign in</button>' +
+        '<div class="auth-divider"><span>New to Bottleneck Calculator Pro?</span></div>' +
+        '<button type="button" id="acctSignUp" class="auth-secondary">Create an account</button>' +
         '<div class="acct-status muted" id="acctStatus"></div>';
       $("#acctSignIn").addEventListener("click", function () { doAuth("in"); });
       $("#acctSignUp").addEventListener("click", function () { doAuth("up"); });
+      $("#acctPass").addEventListener("keydown", function (e) { if (e.key === "Enter") doAuth("in"); });
     } else {
+      var initial = (user.email || "?").charAt(0).toUpperCase();
       box.innerHTML =
-        '<div class="acct-title">Account</div>' +
-        '<div class="acct-user" title="' + esc(user.email) + '">' + esc(user.email) + '</div>' +
-        '<div class="acct-btns"><button type="button" id="acctSignOut" class="acct-alt">Sign out</button></div>' +
+        '<div class="auth-user-row">' +
+        '  <span class="auth-avatar" aria-hidden="true"></span>' +
+        '  <div class="auth-user-meta"><strong></strong><span class="muted">Signed in - cloud sync is on</span></div>' +
+        '</div>' +
+        '<button type="button" id="acctSignOut" class="auth-secondary">Sign out</button>' +
         '<div class="acct-status muted" id="acctStatus"></div>';
+      box.querySelector(".auth-avatar").textContent = initial;
+      box.querySelector(".auth-user-meta strong").textContent = user.email;
       $("#acctSignOut").addEventListener("click", doSignOut);
     }
     renderCloudArea();
