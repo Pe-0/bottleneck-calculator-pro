@@ -2,7 +2,7 @@
 
 Live app: https://pe-0.github.io/bottleneck-calculator-pro/
 
-**931 features total: ✅ 246 live · 🚧 89 in progress · ⏳ 596 not started**
+**931 features total: ✅ 241 live · 🚧 89 in progress · ⏳ 601 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-24 - after stage 11 (Upgrade Advisor). Updated with every shipped stage.
@@ -543,11 +543,11 @@ _Parked with the marketplace (depends on live price/stock APIs)._
 - ✅ Cost Breakdown
 - ⏳ Upgrade Cost Calculator
 - ⏳ Total Ownership Cost
-- ✅ Electricity Cost Calculator
-- ✅ Monthly Electricity Cost
-- ✅ Annual Electricity Cost
-- ✅ Gaming Electricity Cost
-- ✅ Idle Electricity Cost
+- ⏳ Electricity Cost Calculator
+- ⏳ Monthly Electricity Cost
+- ⏳ Annual Electricity Cost
+- ⏳ Gaming Electricity Cost
+- ⏳ Idle Electricity Cost
 - ⏳ Power Efficiency Cost Analysis
 
 ## 14. Upgrade Advisor

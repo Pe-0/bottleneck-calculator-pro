@@ -169,67 +169,12 @@
     }
   }
 
-  /* ---------- electricity cost ---------- */
-  var EC_KEY = "bcp-power-cost";
-  function ecSettings() {
-    var d = { gameH: 2, idleH: 6, rate: 0.17 };
-    try {
-      var raw = localStorage.getItem(EC_KEY);
-      if (raw) {
-        var s = JSON.parse(raw);
-        if (typeof s.gameH === "number") d.gameH = s.gameH;
-        if (typeof s.idleH === "number") d.idleH = s.idleH;
-        if (typeof s.rate === "number") d.rate = s.rate;
-      }
-    } catch (e) {}
-    return d;
-  }
-  function ecSave(s) {
-    try { localStorage.setItem(EC_KEY, JSON.stringify(s)); } catch (e) {}
-  }
-
-  function renderCost(sel) {
-    var box = $("#ecStats");
-    if (!box) return;
-    var rows = breakdown(sel);
-    var totalTdp = rows.reduce(function (s, r) { return s + r.w; }, 0);
-    var gaming = Math.round(sel.cpu.tdpW * 0.85 + sel.gpu.tdpW * 0.9 + (totalTdp - sel.cpu.tdpW - sel.gpu.tdpW));
-    var idle = Math.round(35 + (sel.cpu.tdpW + sel.gpu.tdpW) * 0.08);
-    var s = ecSettings();
-    var gh = $("#ecGameH"), ih = $("#ecIdleH"), rt = $("#ecRate");
-    if (gh && document.activeElement !== gh) gh.value = s.gameH;
-    if (ih && document.activeElement !== ih) ih.value = s.idleH;
-    if (rt && document.activeElement !== rt) rt.value = s.rate;
-    var EFF = 0.88;
-    var gameWh = (gaming / EFF) * s.gameH;
-    var idleWh = (idle / EFF) * s.idleH;
-    var dailyKwh = (gameWh + idleWh) / 1000;
-    var dailyCost = dailyKwh * s.rate;
-    var gameShare = (gameWh + idleWh) > 0 ? Math.round((gameWh / (gameWh + idleWh)) * 100) : 0;
-    var cards = [
-      ["Per day", "$" + dailyCost.toFixed(2) + " (" + dailyKwh.toFixed(2) + " kWh)"],
-      ["Per month", "$" + (dailyCost * 30.4).toFixed(2)],
-      ["Per year", "$" + (dailyCost * 365).toFixed(2)],
-      ["Gaming share", gameShare + "% of the energy"]
-    ];
-    box.innerHTML = "";
-    cards.forEach(function (cd) {
-      var d = document.createElement("div");
-      d.className = "pw-stat";
-      d.innerHTML = "<small></small><strong></strong>";
-      d.querySelector("small").textContent = cd[0];
-      d.querySelector("strong").textContent = cd[1];
-      box.appendChild(d);
-    });
-  }
-
   function renderAll() {
     var sel = BCP.getSelection();
     if (!sel || !sel.cpu || !sel.gpu) return;
     $("#pwBuildLine").textContent = sel.cpu.name + " + " + sel.gpu.name + (sel.cooler ? " · " + sel.cooler.name : "") + (sel.psu ? " · " + sel.psu.name : "");
     renderPower(sel);
     renderThermal(sel);
-    renderCost(sel);
   }
 
   function init() {
@@ -247,20 +192,6 @@
       } else {
         b.addEventListener("click", function () { $("#viewPower").classList.add("hidden"); });
       }
-    });
-    ["ecGameH", "ecIdleH", "ecRate"].forEach(function (id) {
-      var el = document.getElementById(id);
-      if (!el) return;
-      el.addEventListener("input", function () {
-        var s = ecSettings();
-        var v = parseFloat(el.value);
-        if (isNaN(v) || v < 0) return;
-        if (id === "ecGameH") s.gameH = Math.min(v, 24);
-        if (id === "ecIdleH") s.idleH = Math.min(v, 24);
-        if (id === "ecRate") s.rate = v;
-        ecSave(s);
-        renderCost(BCP.getSelection());
-      });
     });
   }
 

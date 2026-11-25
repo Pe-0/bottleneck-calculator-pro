@@ -403,14 +403,6 @@ body[data-theme="light"] .db-radar-val { fill: rgba(47, 106, 224, 0.18); stroke:
 .gm-native { font-size: 0.8em; }
 #vrVerdict { list-style: none; margin: 0; padding: 0; }
 
-/* ---- Electricity cost ---- */
-.ec-inputs { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 14px; font-size: 0.85rem; color: var(--muted); }
-.ec-inputs label { display: flex; align-items: center; gap: 6px; }
-.ec-inputs input {
-  width: 70px; padding: 6px 8px; border-radius: 8px; border: 1px solid var(--border);
-  background: var(--panel-2); color: var(--text); font-size: 0.85rem;
-}
-
 /* ---- Print report ---- */
 @media print {
   body { background: #fff; color: #000; }
