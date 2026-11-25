@@ -202,7 +202,7 @@
       "</div>";
     var node = div.firstChild;
     node.querySelector(".up-head strong").textContent = cpu.name + " + " + gpu.name + " prebuilt";
-    node.querySelector(".warn li").textContent = v.text;
+    node.querySelector(".warn-list li").textContent = v.text;
     var altNote = node.querySelector(".up-note");
     if (altNote) altNote.textContent = "The same budget self-built buys roughly: " + alt[0].cpu.name + " + " + alt[0].gpu.name + " (est. " + fmtUsd(alt[0].total) + " core parts, " + upState.workload + " focus).";
     box.appendChild(node);
