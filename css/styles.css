@@ -1,12 +1,12 @@
 /* Bottleneck Calculator Pro — Violet Core palette */
 :root {
-  --bg: #0d0a18;
-  --bg-soft: #140f26;
-  --panel: #1c1535;
-  --panel-2: #221a42;
-  --border: #342a5a;
+  --bg: #0a0713;
+  --bg-soft: #100b1e;
+  --panel: #171029;
+  --panel-2: #1d1433;
+  --border: #2c2350;
   --text: #f0ecfb;
-  --muted: #a197c7;
+  --muted: #9a8fc2;
   --accent: #8b5cf6;
   --accent-2: #e879f9;
   --brand-ink: #1b1030;
@@ -22,8 +22,8 @@ body {
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, sans-serif;
   background:
-    radial-gradient(1100px 500px at 85% -10%, rgba(139, 92, 246, 0.18), transparent 60%),
-    radial-gradient(900px 480px at -10% 0%, rgba(232, 121, 249, 0.09), transparent 55%),
+    radial-gradient(1100px 500px at 85% -10%, rgba(139, 92, 246, 0.13), transparent 60%),
+    radial-gradient(900px 480px at -10% 0%, rgba(232, 121, 249, 0.06), transparent 55%),
     var(--bg);
   color: var(--text);
   line-height: 1.5;
@@ -63,7 +63,8 @@ body {
 .nav-overlay { display: none; }
 
 @media (min-width: 901px) {
-  main.container, .site-footer .container { max-width: 1420px; padding-left: 260px; }
+  main.container, .site-footer .container { max-width: none; margin: 0; padding-left: 284px; padding-right: 28px; }
+  .layout { max-width: 1720px; }
 }
 @media (max-width: 900px) {
   .sidebar {
@@ -115,7 +116,7 @@ body {
 select {
   width: 100%;
   appearance: none;
-  background: var(--bg-soft) url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a197c7' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 14px center;
+  background: var(--bg-soft) url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239a8fc2' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 14px center;
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 11px;
