@@ -298,6 +298,10 @@
     });
   }
 
+  function persistCmp() {
+    try { localStorage.setItem("bcp.cmp.last", [cmpState.cat].concat(cmpState.picks.filter(Boolean)).join(",")); } catch (e) {}
+  }
+
   /* ---------- tabs ---------- */
 
   function switchView(name) {
@@ -326,13 +330,48 @@
       cmpState.cat = this.value;
       cmpState.picks = [null, null, null];
       renderCompare();
+      persistCmp();
     });
     [0, 1, 2].forEach(function (slot) {
       $("#cmpPick" + slot).addEventListener("change", function () {
         cmpState.picks[slot] = this.value || null;
         renderCompare();
+        persistCmp();
       });
     });
+
+    // Shareable comparison link: #c=<cat>,<id1>,<id2>[,<id3>]
+    var shareBtn = $("#cmpShare");
+    if (shareBtn) shareBtn.addEventListener("click", function () {
+      var code = [cmpState.cat].concat(cmpState.picks.filter(Boolean)).join(",");
+      var url = location.origin + location.pathname + "#c=" + code;
+      var done = function () {
+        shareBtn.textContent = "Link copied";
+        setTimeout(function () { shareBtn.textContent = "Copy comparison link"; }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(done, function () { prompt("Copy this link:", url); });
+      } else {
+        prompt("Copy this link:", url);
+      }
+    });
+
+    // Restore: URL hash wins, else the last comparison from this browser.
+    (function restoreCmp() {
+      var fromHash = null;
+      if (location.hash.indexOf("#c=") === 0) fromHash = location.hash.slice(3);
+      var saved = null;
+      try { saved = localStorage.getItem("bcp.cmp.last"); } catch (e) {}
+      var code = fromHash || saved;
+      if (!code) return;
+      var parts = code.split(",");
+      if (!CATEGORIES[parts[0]]) return;
+      cmpState.cat = parts[0];
+      catSel.value = cmpState.cat;
+      cmpState.picks = [parts[1] || null, parts[2] || null, parts[3] || null];
+      renderCompare();
+      if (fromHash) switchView("compare");
+    })();
 
     $("#rankCat").addEventListener("change", function () {
       rankState.cat = this.value;
