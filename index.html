@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
   <link rel="apple-touch-icon" href="icons/icon-180.png" />
   <meta name="theme-color" content="#f5f3fc" />
-  <link rel="stylesheet" href="css/styles.css?v=20261125p" />
+  <link rel="stylesheet" href="css/styles.css?v=20261125q" />
   <script>
     // Apply the saved theme before first paint to avoid a flash.
     try {
@@ -45,6 +45,7 @@
       <button class="tab-btn" data-view="games" type="button">Games</button>
       <button class="tab-btn" data-view="monitors" type="button">Monitors</button>
       <button class="tab-btn" data-view="dash" type="button">Dashboard</button>
+      <button class="tab-btn" data-view="community" type="button">Community</button>
     </nav>
     <div class="search-wrap">
       <input type="text" id="globalSearch" placeholder="Search parts, games, software..." autocomplete="off" />
@@ -529,6 +530,20 @@
         </section>
       </div>
     </div><!-- /viewDash -->
+    <div id="viewCommunity" class="view hidden">
+      <section class="hero">
+        <h1>Builds from the community.</h1>
+        <p>Real rigs shared by other builders - load any of them into the Calculator with one click. Browsing is open to everyone; an account is only needed to share your own.</p>
+      </section>
+      <section class="panel">
+        <h2>Share your build</h2>
+        <div id="commShareArea"></div>
+      </section>
+      <section class="panel">
+        <h2>Latest shared builds</h2>
+        <div id="communityList" class="saved-builds"></div>
+      </section>
+    </div><!-- /viewCommunity -->
     <!-- ============ DATA & METHODOLOGY ============ -->
     <div id="viewData" class="view hidden">
       <section class="hero">
@@ -562,28 +577,29 @@
     </div>
   </footer>
 
-  <script src="js/data/hardware.js?v=20261125p"></script>
-  <script src="js/data/benchmarks.js?v=20261125p"></script>
-  <script src="js/data/prices.js?v=20261125p"></script>
-  <script src="js/data/games.js?v=20261125p"></script>
-  <script src="js/data/compat.js?v=20261125p"></script>
-  <script src="js/data/components.js?v=20261125p"></script>
-  <script src="js/data/cooling-cases.js?v=20261125p"></script>
-  <script src="js/data/storage.js?v=20261125p"></script>
-  <script src="js/data/monitors.js?v=20261125p"></script>
-  <script src="js/data/software.js?v=20261125p"></script>
-  <script src="js/engine.js?v=20261125p"></script>
-  <script src="js/app.js?v=20261125p"></script>
-  <script src="js/assistant.js?v=20261125p"></script>
-  <script src="js/compare.js?v=20261125p"></script>
-  <script src="js/upgrade.js?v=20261125p"></script>
-  <script src="js/power.js?v=20261125p"></script>
-  <script src="js/library.js?v=20261125p"></script>
-  <script src="js/dashboard.js?v=20261125p"></script>
-  <script src="js/monitors.js?v=20261125p"></script>
-  <script src="js/personal.js?v=20261125p"></script>
-  <script src="js/auth.js?v=20261125p"></script>
-  <script src="js/export.js?v=20261125p"></script>
+  <script src="js/data/hardware.js?v=20261125q"></script>
+  <script src="js/data/benchmarks.js?v=20261125q"></script>
+  <script src="js/data/prices.js?v=20261125q"></script>
+  <script src="js/data/games.js?v=20261125q"></script>
+  <script src="js/data/compat.js?v=20261125q"></script>
+  <script src="js/data/components.js?v=20261125q"></script>
+  <script src="js/data/cooling-cases.js?v=20261125q"></script>
+  <script src="js/data/storage.js?v=20261125q"></script>
+  <script src="js/data/monitors.js?v=20261125q"></script>
+  <script src="js/data/software.js?v=20261125q"></script>
+  <script src="js/engine.js?v=20261125q"></script>
+  <script src="js/app.js?v=20261125q"></script>
+  <script src="js/assistant.js?v=20261125q"></script>
+  <script src="js/compare.js?v=20261125q"></script>
+  <script src="js/upgrade.js?v=20261125q"></script>
+  <script src="js/power.js?v=20261125q"></script>
+  <script src="js/library.js?v=20261125q"></script>
+  <script src="js/dashboard.js?v=20261125q"></script>
+  <script src="js/monitors.js?v=20261125q"></script>
+  <script src="js/personal.js?v=20261125q"></script>
+  <script src="js/auth.js?v=20261125q"></script>
+  <script src="js/community.js?v=20261125q"></script>
+  <script src="js/export.js?v=20261125q"></script>
   <script>
     // Data & methodology view (footer link) + service worker + mobile nav drawer.
     (function () {
@@ -608,7 +624,7 @@
         link.addEventListener("click", function (e) {
           e.preventDefault();
           document.querySelectorAll(".tab-btn").forEach(function (x) { x.classList.remove("active"); });
-          ["viewCalc","viewCompare","viewUpgrade","viewPower","viewGames","viewMonitors","viewDash"].forEach(function (id) {
+          ["viewCalc","viewCompare","viewUpgrade","viewPower","viewGames","viewMonitors","viewDash","viewCommunity"].forEach(function (id) {
             var el = document.getElementById(id); if (el) el.classList.add("hidden");
           });
           document.getElementById("viewData").classList.remove("hidden");
