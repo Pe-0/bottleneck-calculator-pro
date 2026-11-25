@@ -2,7 +2,7 @@
 
 Live app: https://pe-0.github.io/bottleneck-calculator-pro/
 
-**931 features total: ✅ 238 live · 🚧 86 in progress · ⏳ 607 not started**
+**931 features total: ✅ 246 live · 🚧 89 in progress · ⏳ 596 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-24 - after stage 11 (Upgrade Advisor). Updated with every shipped stage.
@@ -125,7 +125,7 @@ _Accounts/profiles need a real backend - deferred (architecture decision). Dark 
 - ⏳ USB Header Compatibility
 - ⏳ Front Panel Connector Compatibility
 - ⏳ Display Compatibility
-- ⏳ Multi-Monitor Compatibility
+- 🚧 Multi-Monitor Compatibility
 - 🚧 Compatibility Score
 - ✅ Compatibility Warnings
 - 🚧 Compatibility Report
@@ -378,7 +378,7 @@ _TDP-based figures are live in the build summary; the full power/thermal stage (
 - ✅ CPU Cooler Comparison
 - ⏳ Case Comparison
 - ⏳ Fan Comparison
-- ⏳ Monitor Comparison
+- 🚧 Monitor Comparison
 - ⏳ Keyboard Comparison
 - ⏳ Mouse Comparison
 - ⏳ Headset Comparison
@@ -543,11 +543,11 @@ _Parked with the marketplace (depends on live price/stock APIs)._
 - ✅ Cost Breakdown
 - ⏳ Upgrade Cost Calculator
 - ⏳ Total Ownership Cost
-- ⏳ Electricity Cost Calculator
-- ⏳ Monthly Electricity Cost
-- ⏳ Annual Electricity Cost
-- ⏳ Gaming Electricity Cost
-- ⏳ Idle Electricity Cost
+- ✅ Electricity Cost Calculator
+- ✅ Monthly Electricity Cost
+- ✅ Annual Electricity Cost
+- ✅ Gaming Electricity Cost
+- ✅ Idle Electricity Cost
 - ⏳ Power Efficiency Cost Analysis
 
 ## 14. Upgrade Advisor
@@ -779,7 +779,7 @@ _Shareable build links are live; print/PDF/CSV/QR export is stage S15._
 - ✅ PSU Database
 - ✅ Cooling Database
 - 🚧 Case Database
-- ⏳ Monitor Database
+- ✅ Monitor Database
 - ⏳ Peripheral Database
 - ✅ Game Database
 - ✅ Software Database
@@ -933,8 +933,8 @@ _Static site: server-side items don't apply yet; client-side items are listed._
 ## 27. Display & Peripheral Ecosystem
 
 _Monitor planner is stage S18; peripheral catalogs later._
-- ⏳ Monitor Database
-- ⏳ Monitor Comparison
+- ✅ Monitor Database
+- 🚧 Monitor Comparison
 - ⏳ Resolution Compatibility
 - ⏳ Refresh Rate Analysis
 - ⏳ Response Time Comparison
@@ -963,7 +963,7 @@ _PWA + data transparency page are stage S20. Live price APIs are parked with the
 - ⏳ Cloud Build Synchronization
 - ⏳ Cross-Device Synchronization
 - ⏳ Mobile Companion App
-- ⏳ Progressive Web App (PWA)
+- ✅ Progressive Web App (PWA)
 - ⏳ Public Hardware API
 - ⏳ Developer API
 - ⏳ Third-Party Integrations
