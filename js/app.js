@@ -77,8 +77,8 @@
   }
 
   function fmtUsd(n) { return "$" + n.toLocaleString("en-US"); }
-  function cpuPriceText(id) { var p = BCP.prices.cpu[id]; return p ? fmtUsd(p) : "—"; }
-  function gpuPriceText(id) { var p = BCP.prices.gpu[id]; return p ? fmtUsd(p) : "—"; }
+  function cpuPriceText(id) { var p = BCP.prices.cpu[id]; var it = hw(BCP.cpus.items, id); return p ? fmtUsd(p) + (it && it.legacy ? " used" : "") : "—"; }
+  function gpuPriceText(id) { var p = BCP.prices.gpu[id]; var it = hw(BCP.gpus.items, id); return p ? fmtUsd(p) + (it && it.legacy ? " used" : "") : "—"; }
 
   function fillComponentSelect(el, items, currentId) {
     el.innerHTML = "";
@@ -186,8 +186,9 @@
       fpsBox.appendChild(note);
     }
     var games = BCP.games.items.slice();
+    var gpuVram = (hw(BCP.gpus.items, state.gpuId) || {}).vramGB;
     var rows = games.map(function (g) {
-      return { name: g.name, fps: eng.gameFps(g, cpuBench.gaming, gpuScore, state.res, state.workload) };
+      return { name: g.name, fps: eng.gameFps(g, cpuBench.gaming, gpuScore, state.res, state.workload, gpuVram) };
     }).sort(function (a, b) { return b.fps - a.fps; });
     var maxFps = rows[0] ? rows[0].fps : 1;
     rows.forEach(function (r) {
@@ -211,7 +212,7 @@
     var cooler0 = hw(BCP.coolers.items, state.coolerId);
     var case0 = hw(BCP.cases.items, state.caseId);
     var storage0 = hw(BCP.storage.items, state.storageId);
-    eng.partCompatibility(cpu, gpu, mobo0, ram0, psu0, state.workload, bn, cooler0, case0).forEach(function (w) {
+    eng.partCompatibility(cpu, gpu, mobo0, ram0, psu0, state.workload, bn, cooler0, case0, state.res).forEach(function (w) {
       var li = document.createElement("li");
       li.className = "warn " + w.level;
       li.textContent = w.text;
@@ -241,8 +242,10 @@
     $("#sumGpuName").textContent = gpu.name;
     $("#sumCpuSpecs").textContent = specLineCpu(cpu);
     $("#sumGpuSpecs").textContent = specLineGpu(gpu);
-    $("#sumCpuPrice").textContent = cpuPrice ? fmtUsd(cpuPrice) : "—";
-    $("#sumGpuPrice").textContent = gpuPrice ? fmtUsd(gpuPrice) : "—";
+    $("#sumCpuPrice").textContent = cpuPrice ? (cpu.legacy ? "≈ " : "") + fmtUsd(cpuPrice) : "—";
+    $("#sumGpuPrice").textContent = gpuPrice ? (gpu.legacy ? "≈ " : "") + fmtUsd(gpuPrice) : "—";
+    var usedNote = $("#sumUsedNote");
+    if (usedNote) usedNote.hidden = !(cpu.legacy || gpu.legacy);
     if (mobo) {
       $("#sumMoboName").textContent = mobo.name;
       $("#sumMoboSpecs").textContent = mobo.socket + " · " + mobo.chipset + " · " + mobo.formFactor + " · " + mobo.ramType;
@@ -295,6 +298,8 @@
       ["TDP", cpu.tdpW + "W"],
       ["Launch year", cpu.launchYear]
     ];
+    if (cpu.blurb) cpuRows.push(["Variant notes", cpu.blurb]);
+    if (cpu.mobile) cpuRows.push(["Form factor", "Laptop / soldered (BGA)"]);
     var gpuRows = [
       ["Architecture", gpu.arch || "—"],
       ["VRAM", gpu.vramGB + " GB"],
@@ -302,6 +307,8 @@
       ["TDP", gpu.tdpW + "W"],
       ["Launch year", gpu.launchYear]
     ];
+    if (gpu.blurb) gpuRows.push(["Variant notes", gpu.blurb]);
+    if (gpu.mobile) gpuRows.push(["Form factor", "Laptop / power-limited"]);
     function fillSpec(id, rows) {
       var el = $(id);
       el.innerHTML = "";

@@ -81,9 +81,9 @@
       return;
     }
     items.forEach(function (g) {
-      var native = eng.gameFps(g, cpuBench.gaming, gpuScore, sel.res, sel.workload);
+      var native = eng.gameFps(g, cpuBench.gaming, gpuScore, sel.res, sel.workload, sel.gpu.vramGB);
       var fps = upscaleBoost > 0
-        ? eng.gameFpsUpscaled(g, cpuBench.gaming, gpuScore, sel.res, sel.workload, upscaleBoost)
+        ? eng.gameFpsUpscaled(g, cpuBench.gaming, gpuScore, sel.res, sel.workload, upscaleBoost, sel.gpu.vramGB)
         : native;
       var preset = presetFor(fps);
       var cpuCls = g.cpuWeight >= 0.7 ? "CPU-sensitive" : g.cpuWeight >= 0.5 ? "Balanced" : "GPU-bound";

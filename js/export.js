@@ -39,7 +39,7 @@
     if (sel.workload !== "productivity") {
       rows.push(["Game", "Estimated FPS @ " + (RES_LABEL[sel.res] || sel.res)]);
       BCP.games.items.map(function (g) {
-        return { name: g.name, fps: eng.gameFps(g, cpuBench.gaming, gpuScore, sel.res, sel.workload) };
+        return { name: g.name, fps: eng.gameFps(g, cpuBench.gaming, gpuScore, sel.res, sel.workload, sel.gpu && sel.gpu.vramGB) };
       }).sort(function (a, b) { return b.fps - a.fps; }).forEach(function (r) {
         rows.push([r.name, r.fps]);
       });

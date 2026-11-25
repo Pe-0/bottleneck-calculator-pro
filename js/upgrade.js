@@ -18,13 +18,14 @@
   function clamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
 
   // Estimated average FPS across the game database for a pair.
-  function avgFps(cpuBench, gpuScore, resKey, workloadKey) {
+  function avgFps(cpuBench, gpuScore, resKey, workloadKey, vramGB) {
     var sum = 0, n = 0;
     BCP.games.items.forEach(function (g) {
-      sum += eng.gameFps(g, cpuBench.gaming, gpuScore, resKey, workloadKey); n++;
+      sum += eng.gameFps(g, cpuBench.gaming, gpuScore, resKey, workloadKey, vramGB); n++;
     });
     return n ? sum / n : 0;
   }
+  function gpuVram(id) { var g = hw(BCP.gpus.items, id); return g ? g.vramGB : 0; }
 
   // Cheapest board + 32GB kit for a socket (platform-change cost).
   function platformCost(socket) {
@@ -48,7 +49,7 @@
     var gs = BCP.benchmarks.gpu[upState.gpuId];
     if (!cb || !gs) return null;
     if (upState.workload === "productivity") return { cpu: cb.productivity, gpu: gs, unit: "pts" };
-    return { fps: avgFps(cb, gs, upState.res, upState.workload), unit: "fps" };
+    return { fps: avgFps(cb, gs, upState.res, upState.workload, gpuVram(upState.gpuId)), unit: "fps" };
   }
 
   function gpuUpgrades(benchNow) {
@@ -57,16 +58,16 @@
     var now = metricNow();
     var out = [];
     BCP.gpus.items.forEach(function (g) {
-      if (g.id === upState.gpuId) return;
+      if (g.id === upState.gpuId || g.mobile) return;
       var score = BCP.benchmarks.gpu[g.id];
       var price = BCP.prices.gpu[g.id];
       if (!score || !price) return;
-      var gain = prod ? score - now.gpu : avgFps(benchNow, score, upState.res, upState.workload) - now.fps;
+      var gain = prod ? score - now.gpu : avgFps(benchNow, score, upState.res, upState.workload, g.vramGB) - now.fps;
       if (gain <= 0.5) return;
       if (upState.budget && price > upState.budget) return;
       var bn = eng.bottleneck(benchNow, score, upState.res, upState.workload, hw(BCP.cpus.items, upState.cpuId));
       var recPsu = eng.recommendedPsuW(hw(BCP.cpus.items, upState.cpuId).tdpW, g.tdpW);
-      out.push({ item: g, price: price, after: prod ? score : avgFps(benchNow, score, upState.res, upState.workload),
+      out.push({ item: g, price: price, after: prod ? score : avgFps(benchNow, score, upState.res, upState.workload, g.vramGB),
                  gain: gain, pct: bn.pct, limiter: bn.limiter, unit: now.unit,
                  value: gain / price * 100, note: g.tdpW >= 300 ? "Needs " + recPsu + "W+ PSU and an ATX 3.x unit with native 12V-2x6" : "Recommended PSU: " + recPsu + "W" });
     });
@@ -80,20 +81,21 @@
     var out = [];
     var curCpu = hw(BCP.cpus.items, upState.cpuId);
     BCP.cpus.items.forEach(function (c) {
-      if (c.id === upState.cpuId) return;
+      if (c.id === upState.cpuId || c.mobile) return;
       var bench = BCP.benchmarks.cpu[c.id];
       var price = BCP.prices.cpu[c.id];
       if (!bench || !price) return;
       var sameSocket = c.socket === curCpu.socket;
+      if (c.legacy && !sameSocket) return;
       var plat = sameSocket ? null : platformCost(c.socket);
       if (!sameSocket && !plat) return;
       var cost = price + (plat ? plat.cost : 0);
-      var gain = prod ? bench.productivity - now.cpu : avgFps(bench, gpuScoreNow, upState.res, upState.workload) - now.fps;
+      var gain = prod ? bench.productivity - now.cpu : avgFps(bench, gpuScoreNow, upState.res, upState.workload, gpuVram(upState.gpuId)) - now.fps;
       if (gain <= 0.5) return;
       if (upState.budget && cost > upState.budget) return;
       var bn = eng.bottleneck(bench, gpuScoreNow, upState.res, upState.workload, c);
       out.push({ item: c, price: price, plat: plat, cost: cost,
-                 after: prod ? bench.productivity : avgFps(bench, gpuScoreNow, upState.res, upState.workload),
+                 after: prod ? bench.productivity : avgFps(bench, gpuScoreNow, upState.res, upState.workload, gpuVram(upState.gpuId)),
                  gain: gain, pct: bn.pct, limiter: bn.limiter, unit: now.unit,
                  value: gain / cost * 100,
                  note: sameSocket ? "Drop-in upgrade on your " + c.socket + " board"
@@ -105,6 +107,7 @@
 
   function cardHtml(u, kind) {
     var costTxt = kind === "cpu" ? fmtUsd(u.cost) : fmtUsd(u.price);
+    if (u.item.legacy) costTxt += " (used est.)";
     return { html:
       '<div class="up-card">' +
         '<div class="up-head"><strong></strong><span class="price">' + costTxt + "</span></div>" +

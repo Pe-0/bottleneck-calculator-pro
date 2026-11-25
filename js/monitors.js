@@ -9,8 +9,8 @@
   var $ = function (sel) { return document.querySelector(sel); };
   function fmtUsd(n) { return "$" + n.toLocaleString("en-US"); }
 
-  function gameFpsAt(g, cpuGaming, gpuScore, mon, workload) {
-    var base = eng.gameFps(g, cpuGaming, gpuScore, mon.fpsRes, workload);
+  function gameFpsAt(g, cpuGaming, gpuScore, mon, workload, vramGB) {
+    var base = eng.gameFps(g, cpuGaming, gpuScore, mon.fpsRes, workload, vramGB);
     return Math.round(base * mon.fpsScale);
   }
 
@@ -37,7 +37,7 @@
     var gpuScore = BCP.benchmarks.gpu[sel.gpu.id];
     BCP.monitors.items.forEach(function (m) {
       var fpss = BCP.games.items.map(function (g) {
-        return gameFpsAt(g, cpuBench.gaming, gpuScore, m, sel.workload);
+        return gameFpsAt(g, cpuBench.gaming, gpuScore, m, sel.workload, sel.gpu.vramGB);
       }).sort(function (a, b) { return a - b; });
       var med = fpss[Math.floor(fpss.length / 2)];
       var avg = Math.round(fpss.reduce(function (s, f) { return s + f; }, 0) / fpss.length);

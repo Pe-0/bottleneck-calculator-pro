@@ -16,21 +16,21 @@ window.BCP.coolers = {
     source: "Cooler Master, Thermalright, Noctua, be quiet!, DeepCool, Arctic spec pages"
   },
   items: [
-    { id: "cl-stock",   name: "Stock cooler (bundled with CPU)",  type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851","LGA1200"], tdpRatingW: 65, heightMM: 60, priceUSD: 0 },
-    { id: "cl-212",     name: "Hyper 212-class tower (air)",      type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 150, heightMM: 155, priceUSD: 30 },
-    { id: "cl-ak400",   name: "DeepCool AK400 (air)",             type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 220, heightMM: 155, priceUSD: 30 },
-    { id: "cl-pa120",   name: "Thermalright PA120 SE (air)",      type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 245, heightMM: 155, priceUSD: 35 },
-    { id: "cl-u12s",    name: "Noctua NH-U12S redux (air)",       type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 190, heightMM: 158, priceUSD: 55 },
-    { id: "cl-dr4",     name: "be quiet! Dark Rock 4 (air)",      type: "Air", sockets: ["AM5","AM4","LGA1700"],           tdpRatingW: 200, heightMM: 160, priceUSD: 75 },
-    { id: "cl-drp5",    name: "be quiet! Dark Rock Pro 5 (air)",  type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 270, heightMM: 168, priceUSD: 95 },
-    { id: "cl-d15",     name: "Noctua NH-D15 G2 (air)",           type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 260, heightMM: 168, priceUSD: 150 },
-    { id: "cl-aio240",  name: "240mm AIO liquid cooler",          type: "AIO", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 250, radiatorMM: 240, priceUSD: 100 },
-    { id: "cl-aio280",  name: "280mm AIO liquid cooler",          type: "AIO", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 300, radiatorMM: 280, priceUSD: 130 },
-    { id: "cl-aio360",  name: "360mm AIO liquid cooler",          type: "AIO", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 350, radiatorMM: 360, priceUSD: 150 },
-    { id: "cl-aio420",  name: "420mm AIO liquid cooler",          type: "AIO", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 400, radiatorMM: 420, priceUSD: 200 },
-    { id: "cl-ax120",   name: "Thermalright Assassin X 120 (air)", type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 180, heightMM: 148, priceUSD: 20 },
-    { id: "cl-l9",      name: "Noctua NH-L9-class low-profile (air)", type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 95, heightMM: 37, priceUSD: 50 },
-    { id: "cl-aio120",  name: "120mm AIO liquid cooler",          type: "AIO", sockets: ["AM5","AM4","LGA1700","LGA1851"], tdpRatingW: 200, radiatorMM: 120, priceUSD: 70 }
+    { id: "cl-stock",   name: "Stock cooler (bundled with CPU)",  type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851","LGA1200","LGA1151","LGA1151-300","LGA1150","LGA1155","AM3+"], tdpRatingW: 65, heightMM: 60, priceUSD: 0 },
+    { id: "cl-212",     name: "Hyper 212-class tower (air)",      type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851","LGA1151","LGA1151-300","LGA1150","LGA1155","AM3+"], tdpRatingW: 150, heightMM: 155, priceUSD: 30 },
+    { id: "cl-ak400",   name: "DeepCool AK400 (air)",             type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851","LGA1151","LGA1151-300","LGA1150","LGA1155","AM3+"], tdpRatingW: 220, heightMM: 155, priceUSD: 30 },
+    { id: "cl-pa120",   name: "Thermalright PA120 SE (air)",      type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851","LGA1151","LGA1151-300","LGA1150","LGA1155","AM3+"], tdpRatingW: 245, heightMM: 155, priceUSD: 35 },
+    { id: "cl-u12s",    name: "Noctua NH-U12S redux (air)",       type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851","LGA1151","LGA1151-300","LGA1150","LGA1155","AM3+"], tdpRatingW: 190, heightMM: 158, priceUSD: 55 },
+    { id: "cl-dr4",     name: "be quiet! Dark Rock 4 (air)",      type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1151","LGA1151-300","LGA1150","LGA1155","AM3+"],           tdpRatingW: 200, heightMM: 160, priceUSD: 75 },
+    { id: "cl-drp5",    name: "be quiet! Dark Rock Pro 5 (air)",  type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851","LGA1151","LGA1151-300","LGA1150","LGA1155","AM3+"], tdpRatingW: 270, heightMM: 168, priceUSD: 95 },
+    { id: "cl-d15",     name: "Noctua NH-D15 G2 (air)",           type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851","LGA1151","LGA1151-300","LGA1150","LGA1155","AM3+"], tdpRatingW: 260, heightMM: 168, priceUSD: 150 },
+    { id: "cl-aio240",  name: "240mm AIO liquid cooler",          type: "AIO", sockets: ["AM5","AM4","LGA1700","LGA1851","LGA1151","LGA1151-300","LGA1150","LGA1155","AM3+"], tdpRatingW: 250, radiatorMM: 240, priceUSD: 100 },
+    { id: "cl-aio280",  name: "280mm AIO liquid cooler",          type: "AIO", sockets: ["AM5","AM4","LGA1700","LGA1851","LGA1151","LGA1151-300","LGA1150","LGA1155","AM3+"], tdpRatingW: 300, radiatorMM: 280, priceUSD: 130 },
+    { id: "cl-aio360",  name: "360mm AIO liquid cooler",          type: "AIO", sockets: ["AM5","AM4","LGA1700","LGA1851","LGA1151","LGA1151-300","LGA1150","LGA1155","AM3+"], tdpRatingW: 350, radiatorMM: 360, priceUSD: 150 },
+    { id: "cl-aio420",  name: "420mm AIO liquid cooler",          type: "AIO", sockets: ["AM5","AM4","LGA1700","LGA1851","LGA1151","LGA1151-300","LGA1150","LGA1155","AM3+"], tdpRatingW: 400, radiatorMM: 420, priceUSD: 200 },
+    { id: "cl-ax120",   name: "Thermalright Assassin X 120 (air)", type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851","LGA1151","LGA1151-300","LGA1150","LGA1155","AM3+"], tdpRatingW: 180, heightMM: 148, priceUSD: 20 },
+    { id: "cl-l9",      name: "Noctua NH-L9-class low-profile (air)", type: "Air", sockets: ["AM5","AM4","LGA1700","LGA1851","LGA1151","LGA1151-300","LGA1150","LGA1155","AM3+"], tdpRatingW: 95, heightMM: 37, priceUSD: 50 },
+    { id: "cl-aio120",  name: "120mm AIO liquid cooler",          type: "AIO", sockets: ["AM5","AM4","LGA1700","LGA1851","LGA1151","LGA1151-300","LGA1150","LGA1155","AM3+"], tdpRatingW: 200, radiatorMM: 120, priceUSD: 70 }
   ]
 };
 

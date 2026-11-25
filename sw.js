@@ -1,7 +1,7 @@
 /* Service worker: cache-first for the app's own static assets so the
  * tool works offline. Data is bundled in the JS files, so the whole
  * calculator keeps working without a connection. */
-var CACHE = "bcp-v20261125m";
+var CACHE = "bcp-v20261125n";
 var ASSETS = [
   "./",
   "index.html",

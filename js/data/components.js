@@ -52,7 +52,23 @@ window.BCP.motherboards = {
     { id: "b760-d5", name: "B760 DDR5 (ATX)",     socket: "LGA1700", chipset: "B760",  formFactor: "ATX",  ramType: "DDR5", ramSlots: 4, maxRamGB: 192, m2Slots: 3, pcie5Gpu: false, priceUSD: 160 },
     { id: "b760i",   name: "B760I DDR5 (ITX)",    socket: "LGA1700", chipset: "B760",  formFactor: "ITX",  ramType: "DDR5", ramSlots: 2, maxRamGB: 96,  m2Slots: 2, pcie5Gpu: false, priceUSD: 170 },
     { id: "z690-d4", name: "Z690 DDR4 (ATX)",     socket: "LGA1700", chipset: "Z690",  formFactor: "ATX",  ramType: "DDR4", ramSlots: 4, maxRamGB: 128, m2Slots: 3, pcie5Gpu: false, priceUSD: 190 },
-    { id: "z790",    name: "Z790 DDR5 (ATX)",     socket: "LGA1700", chipset: "Z790",  formFactor: "ATX",  ramType: "DDR5", ramSlots: 4, maxRamGB: 192, m2Slots: 4, pcie5Gpu: true,  priceUSD: 240 }
+    { id: "z790",    name: "Z790 DDR5 (ATX)",     socket: "LGA1700", chipset: "Z790",  formFactor: "ATX",  ramType: "DDR5", ramSlots: 4, maxRamGB: 192, m2Slots: 4, pcie5Gpu: true,  priceUSD: 240 },
+    // ---- Legacy platforms + laptop (added 2026-11-25; prices = used-market estimates) ----
+    { id: "a320m",   name: "A320M (mATX)",        socket: "AM4",     chipset: "A320",  formFactor: "mATX", ramType: "DDR4", ramSlots: 2, maxRamGB: 64,  m2Slots: 1, pcie5Gpu: false, priceUSD: 45 },
+    { id: "b450m",   name: "B450M (mATX)",       socket: "AM4",     chipset: "B450",  formFactor: "mATX", ramType: "DDR4", ramSlots: 4, maxRamGB: 128, m2Slots: 1, pcie5Gpu: false, priceUSD: 70 },
+    { id: "h110m",   name: "H110M (mATX)",       socket: "LGA1151", chipset: "H110",  formFactor: "mATX", ramType: "DDR4", ramSlots: 2, maxRamGB: 32,  m2Slots: 0, pcie5Gpu: false, priceUSD: 35 },
+    { id: "b250",    name: "B250 (ATX)",         socket: "LGA1151", chipset: "B250",  formFactor: "ATX",  ramType: "DDR4", ramSlots: 4, maxRamGB: 64,  m2Slots: 1, pcie5Gpu: false, priceUSD: 50 },
+    { id: "z270",    name: "Z270 (ATX)",         socket: "LGA1151", chipset: "Z270",  formFactor: "ATX",  ramType: "DDR4", ramSlots: 4, maxRamGB: 64,  m2Slots: 2, pcie5Gpu: false, priceUSD: 75 },
+    { id: "h310m",   name: "H310M (mATX)",       socket: "LGA1151-300", chipset: "H310", formFactor: "mATX", ramType: "DDR4", ramSlots: 2, maxRamGB: 32,  m2Slots: 0, pcie5Gpu: false, priceUSD: 40 },
+    { id: "b360",    name: "B360 (ATX)",         socket: "LGA1151-300", chipset: "B360", formFactor: "ATX",  ramType: "DDR4", ramSlots: 4, maxRamGB: 64,  m2Slots: 1, pcie5Gpu: false, priceUSD: 60 },
+    { id: "z390",    name: "Z390 (ATX)",         socket: "LGA1151-300", chipset: "Z390", formFactor: "ATX",  ramType: "DDR4", ramSlots: 4, maxRamGB: 128, m2Slots: 2, pcie5Gpu: false, priceUSD: 100 },
+    { id: "h81m",    name: "H81M (mATX)",        socket: "LGA1150", chipset: "H81",   formFactor: "mATX", ramType: "DDR3", ramSlots: 2, maxRamGB: 16,  m2Slots: 0, pcie5Gpu: false, priceUSD: 30 },
+    { id: "b85",     name: "B85 (ATX)",          socket: "LGA1150", chipset: "B85",   formFactor: "ATX",  ramType: "DDR3", ramSlots: 4, maxRamGB: 32,  m2Slots: 0, pcie5Gpu: false, priceUSD: 40 },
+    { id: "z97",     name: "Z97 (ATX)",          socket: "LGA1150", chipset: "Z97",   formFactor: "ATX",  ramType: "DDR3", ramSlots: 4, maxRamGB: 32,  m2Slots: 1, pcie5Gpu: false, priceUSD: 65 },
+    { id: "h61m",    name: "H61M (mATX)",        socket: "LGA1155", chipset: "H61",   formFactor: "mATX", ramType: "DDR3", ramSlots: 2, maxRamGB: 16,  m2Slots: 0, pcie5Gpu: false, priceUSD: 25 },
+    { id: "b75",     name: "B75 (ATX)",          socket: "LGA1155", chipset: "B75",   formFactor: "ATX",  ramType: "DDR3", ramSlots: 4, maxRamGB: 32,  m2Slots: 0, pcie5Gpu: false, priceUSD: 35 },
+    { id: "am3-970a",name: "AMD 970A (ATX)",     socket: "AM3+",    chipset: "970",   formFactor: "ATX",  ramType: "DDR3", ramSlots: 4, maxRamGB: 32,  m2Slots: 0, pcie5Gpu: false, priceUSD: 35 },
+    { id: "bga-laptop", name: "Laptop platform (soldered)", socket: "BGA", chipset: "BGA", formFactor: "Laptop", ramType: "any", ramSlots: 2, maxRamGB: 64, m2Slots: 1, pcie5Gpu: false, priceUSD: 0 }
   ]
 };
 
@@ -79,7 +95,17 @@ window.BCP.memoryKits = {
     { id: "d5-6000-16", name: "16 GB DDR5-6000 CL30 (2x8)",   type: "DDR5", speedMTs: 6000, capacityGB: 16, modules: 2, casLatency: 30, priceUSD: 62 },
     { id: "d5-6400-48", name: "48 GB DDR5-6400 CL32 (2x24)",  type: "DDR5", speedMTs: 6400, capacityGB: 48, modules: 2, casLatency: 32, priceUSD: 140 },
     { id: "d5-5600-96", name: "96 GB DDR5-5600 CL40 (2x48)",  type: "DDR5", speedMTs: 5600, capacityGB: 96, modules: 2, casLatency: 40, priceUSD: 280 },
-    { id: "d5-5600-128",name: "128 GB DDR5-5600 CL40 (4x32)", type: "DDR5", speedMTs: 5600, capacityGB: 128, modules: 4, casLatency: 40, priceUSD: 390 }
+    { id: "d5-5600-128",name: "128 GB DDR5-5600 CL40 (4x32)", type: "DDR5", speedMTs: 5600, capacityGB: 128, modules: 4, casLatency: 40, priceUSD: 390 },
+    // ---- Small/legacy kits (added 2026-11-25; used-market estimates) ----
+    { id: "d4-2666-4",  name: "4 GB DDR4-2666 (1x4)",    type: "DDR4", speedMTs: 2666, capacityGB: 4,  modules: 1, casLatency: 19, priceUSD: 8 },
+    { id: "d4-2666-8",  name: "8 GB DDR4-2666 (1x8)",    type: "DDR4", speedMTs: 2666, capacityGB: 8,  modules: 1, casLatency: 19, priceUSD: 15 },
+    { id: "d4-3200-8",  name: "8 GB DDR4-3200 CL16 (1x8)", type: "DDR4", speedMTs: 3200, capacityGB: 8, modules: 1, casLatency: 16, priceUSD: 15 },
+    { id: "d4-2666-16", name: "16 GB DDR4-2666 (2x8)",   type: "DDR4", speedMTs: 2666, capacityGB: 16, modules: 2, casLatency: 19, priceUSD: 25 },
+    { id: "d3-1333-4",  name: "4 GB DDR3-1333 (1x4)",    type: "DDR3", speedMTs: 1333, capacityGB: 4,  modules: 1, casLatency: 9,  priceUSD: 5 },
+    { id: "d3-1600-4",  name: "4 GB DDR3-1600 (1x4)",    type: "DDR3", speedMTs: 1600, capacityGB: 4,  modules: 1, casLatency: 11, priceUSD: 6 },
+    { id: "d3-1333-6",  name: "6 GB DDR3-1333 (3x2)",    type: "DDR3", speedMTs: 1333, capacityGB: 6,  modules: 3, casLatency: 9,  priceUSD: 10 },
+    { id: "d3-1600-8",  name: "8 GB DDR3-1600 (2x4)",    type: "DDR3", speedMTs: 1600, capacityGB: 8,  modules: 2, casLatency: 11, priceUSD: 12 },
+    { id: "d3-1600-16", name: "16 GB DDR3-1600 (2x8)",   type: "DDR3", speedMTs: 1600, capacityGB: 16, modules: 2, casLatency: 11, priceUSD: 22 }
   ]
 };
 

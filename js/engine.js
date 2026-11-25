@@ -76,9 +76,21 @@ window.BCP.engine = (function () {
   // component runs out first, with the game's CPU sensitivity
   // softening the CPU term (a game with cpuWeight 0.4 barely cares
   // about CPU above a threshold; 0.9 esports titles scale hard).
-  function gameFps(game, cpuGamingScore, gpuScore, resKey, workloadKey) {
+  // VRAM sufficiency: below the comfortable buffer for a resolution the card
+  // spills to system memory and loses performance (estimated steps).
+  function vramFactor(vramGB, resKey) {
+    if (!vramGB) return 1;
+    var steps;
+    if (resKey === "p4k") steps = [[16, 1], [12, 0.97], [10, 0.93], [8, 0.85], [6, 0.73], [0, 0.6]];
+    else if (resKey === "p1440") steps = [[12, 1], [10, 0.99], [8, 0.96], [6, 0.88], [4, 0.78], [0, 0.68]];
+    else steps = [[8, 1], [6, 0.95], [4, 0.87], [3, 0.82], [0, 0.72]];
+    for (var i = 0; i < steps.length; i++) if (vramGB >= steps[i][0]) return steps[i][1];
+    return 1;
+  }
+
+  function gameFps(game, cpuGamingScore, gpuScore, resKey, workloadKey, vramGB) {
     var wl = WORKLOADS[workloadKey] || WORKLOADS.gaming;
-    var gpuRel = (gpuScore / 100) * wl.fpsGpuPenalty;
+    var gpuRel = (gpuScore / 100) * wl.fpsGpuPenalty * vramFactor(vramGB, resKey);
     var cpuRel = (cpuGamingScore / 100) * wl.fpsCpuPenalty;
     var cpuTerm = 1 + (cpuRel - 1) * game.cpuWeight;
     var fps = game.baseFps[resKey] * Math.min(gpuRel, cpuTerm);
@@ -89,9 +101,9 @@ window.BCP.engine = (function () {
   // Upscaling (DLSS/FSR/XeSS): the GPU renders at a lower internal
   // resolution, so only the GPU term gets the boost - a CPU-limited
   // game gains nothing. gpuBoost ~1.5 Quality, ~1.75 Balanced, ~2.1 Performance.
-  function gameFpsUpscaled(game, cpuGamingScore, gpuScore, resKey, workloadKey, gpuBoost) {
+  function gameFpsUpscaled(game, cpuGamingScore, gpuScore, resKey, workloadKey, gpuBoost, vramGB) {
     var wl = WORKLOADS[workloadKey] || WORKLOADS.gaming;
-    var gpuRel = (gpuScore / 100) * wl.fpsGpuPenalty * (gpuBoost || 1);
+    var gpuRel = (gpuScore / 100) * wl.fpsGpuPenalty * (gpuBoost || 1) * vramFactor(vramGB, resKey);
     var cpuRel = (cpuGamingScore / 100) * wl.fpsCpuPenalty;
     var cpuTerm = 1 + (cpuRel - 1) * game.cpuWeight;
     var fps = game.baseFps[resKey] * Math.min(gpuRel, cpuTerm);
@@ -105,7 +117,7 @@ window.BCP.engine = (function () {
     return Math.max(c.minW, Math.ceil(raw / 50) * 50);
   }
 
-  function partCompatibility(cpuHw, gpuHw, mobo, ram, psuSel, workloadKey, bn, cooler, pcCase) {
+  function partCompatibility(cpuHw, gpuHw, mobo, ram, psuSel, workloadKey, bn, cooler, pcCase, resKey) {
     var R = window.BCP.compat;
     var out = compatibility(cpuHw, gpuHw, bn);
     if (!mobo) return out;
@@ -119,7 +131,7 @@ window.BCP.engine = (function () {
       out.push({ level: "bad", text: mobo.name + " is a " + mobo.socket + " board - it does not fit the " + cpuHw.socket + " CPU." });
     }
     if (ram) {
-      if (ram.type !== mobo.ramType) {
+      if (mobo.ramType !== "any" && ram.type !== mobo.ramType) {
         out.push({ level: "bad", text: ram.name + " is " + ram.type + " but this board takes " + mobo.ramType + " only." });
       }
       if (ram.capacityGB > mobo.maxRamGB) {
@@ -170,7 +182,9 @@ window.BCP.engine = (function () {
       }
     }
 
-    if (cooler) {
+    if (cooler && cpuHw.socket === "BGA") {
+      out.push({ level: "info", text: "Laptop: cooling is built into the laptop - no desktop cooler needed." });
+    } else if (cooler) {
       if (cooler.id === "cl-stock" && !cpuHw.stockCooler) {
         out.push({ level: "warn", text: "The " + cpuHw.name + " does not include a stock cooler - add an aftermarket cooler to the list." });
       }
@@ -187,12 +201,25 @@ window.BCP.engine = (function () {
         out.push({ level: "bad", text: "The " + cooler.radiatorMM + "mm radiator does not fit this case (max " + pcCase.maxRadiatorMM + "mm)." });
       }
     }
-    if (pcCase && mobo) {
+    if (pcCase && mobo && mobo.formFactor === "Laptop") {
+      out.push({ level: "info", text: "Laptop platform: no desktop case needed." });
+    } else if (pcCase && mobo) {
       if (pcCase.fits.indexOf(mobo.formFactor) === -1) {
         out.push({ level: "bad", text: "This case takes " + pcCase.fits.join("/") + " boards - the " + mobo.formFactor + " board does not fit." });
       }
       if (gpuHw.lengthMM && gpuHw.lengthMM > pcCase.maxGpuLengthMM) {
         out.push({ level: "bad", text: gpuHw.name + " (~" + gpuHw.lengthMM + "mm long) exceeds this case's " + pcCase.maxGpuLengthMM + "mm GPU clearance." });
+      }
+    }
+
+    if (gpuHw && gpuHw.vramGB && resKey) {
+      var v = gpuHw.vramGB;
+      if (resKey === "p4k" && v < 12) {
+        out.push({ level: "warn", text: gpuHw.name + " has " + v + " GB VRAM - tight for 4K. Newer games will need lower texture settings (the FPS estimates already reflect this)." });
+      } else if (resKey === "p1440" && v < 8) {
+        out.push({ level: "warn", text: gpuHw.name + " has " + v + " GB VRAM - tight for 1440p. Expect to drop texture quality in newer titles (the FPS estimates already reflect this)." });
+      } else if (resKey === "p1080" && v < 4) {
+        out.push({ level: "warn", text: gpuHw.name + " has under 4 GB VRAM - texture quality is the limit even at 1080p in newer games (the FPS estimates already reflect this)." });
       }
     }
 
@@ -207,7 +234,9 @@ window.BCP.engine = (function () {
   function compatibility(cpuHw, gpuHw, bn) {
     var out = [];
     var sock = window.BCP.compat.sockets[cpuHw.socket];
-    if (sock) {
+    if (cpuHw.socket === "BGA") {
+      out.push({ level: "info", text: "Laptop platform: the CPU is soldered (BGA) and cannot be upgraded later. Pair it with the laptop platform entry instead of a desktop motherboard." });
+    } else if (sock) {
       if (sock.ram.length === 1) {
         out.push({ level: "info", text: cpuHw.socket + " platform: " + sock.ram[0] + " memory required. " + sock.note });
       } else {
@@ -215,8 +244,12 @@ window.BCP.engine = (function () {
       }
       out.push({ level: "info", text: "Needs a " + sock.chipsets + " motherboard." });
     }
-    var psu = recommendedPsuW(cpuHw.tdpW, gpuHw.tdpW);
-    out.push({ level: psu >= 850 ? "warn" : "info", text: "Recommended PSU: " + psu + "W or higher (" + cpuHw.tdpW + "W CPU + " + gpuHw.tdpW + "W GPU, with transient headroom)." });
+    if (cpuHw.socket === "BGA") {
+      out.push({ level: "info", text: "Laptop: powered by its own charger - no desktop PSU needed." });
+    } else {
+      var psu = recommendedPsuW(cpuHw.tdpW, gpuHw.tdpW);
+      out.push({ level: psu >= 850 ? "warn" : "info", text: "Recommended PSU: " + psu + "W or higher (" + cpuHw.tdpW + "W CPU + " + gpuHw.tdpW + "W GPU, with transient headroom)." });
+    }
     if (gpuHw.tdpW >= 350) {
       out.push({ level: "warn", text: gpuHw.name + " is a high-power card — check case clearance and use a quality PSU with the native power connector." });
     }
@@ -314,11 +347,11 @@ window.BCP.engine = (function () {
     B.cpus.items.forEach(function (cpu) {
       var cpuPrice = B.prices.cpu[cpu.id];
       var cpuBench = B.benchmarks.cpu[cpu.id];
-      if (!cpuPrice || !cpuBench) return;
+      if (!cpuPrice || !cpuBench || cpu.legacy || cpu.mobile) return;
       B.gpus.items.forEach(function (gpu) {
         var gpuPrice = B.prices.gpu[gpu.id];
         var gpuScore = B.benchmarks.gpu[gpu.id];
-        if (!gpuPrice || !gpuScore) return;
+        if (!gpuPrice || !gpuScore || gpu.legacy || gpu.mobile) return;
         var mobo = pickMobo(cpu), ram = mobo && pickRam(mobo, workloadKey), psu = pickPsu(cpu, gpu);
         var cooler = pickCooler(cpu);
         var drive = pickStorage(workloadKey);
