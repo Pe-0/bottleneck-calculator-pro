@@ -223,6 +223,15 @@
     BCP.storage.items.forEach(function (s) { add(s.name, "Storage", function () { BCP.setSelection({ storageId: s.id }); go("calc"); }); });
     BCP.coolers.items.forEach(function (c) { add(c.name, "Cooler", function () { BCP.setSelection({ coolerId: c.id }); go("calc"); }); });
     BCP.games.items.forEach(function (g) { add(g.name, "Game", function () { go("games"); var inp = $("#gmSearch"); inp.value = g.name; filter = g.name.toLowerCase(); renderAll(); }); });
+    // Quick actions: views + common commands (command palette).
+    [["Calculator", "calc"], ["Compare", "compare"], ["Upgrade", "upgrade"], ["Power", "power"],
+     ["Games", "games"], ["Monitors", "monitors"], ["Dashboard", "dash"], ["Community", "community"]
+    ].forEach(function (t) { add("Go to " + t[0], "View", function () { go(t[1]); }); });
+    add("Toggle dark mode", "Action", function () { var b = document.getElementById("themeToggle"); if (b) b.click(); });
+    add("Print report", "Action", function () { go("calc"); var b = document.getElementById("expPrint"); if (b) b.click(); });
+    add("Save this build", "Action", function () { go("calc"); var b = document.getElementById("saveBuildBtn"); if (b) b.click(); });
+    add("Account / sign in", "View", function () { var b = document.getElementById("navAuthBtn"); if (b) b.click(); });
+    add("Data sources & methodology", "View", function () { var l = document.getElementById("dataLink"); if (l) l.click(); });
     BCP.software.items.forEach(function (s) { add(s.name, "Software", function () { go("games"); var inp = $("#gmSearch"); inp.value = s.name; filter = s.name.toLowerCase(); renderAll(); }); });
     return idx;
   }
@@ -247,6 +256,7 @@
         hits.forEach(function (h) {
           var d = document.createElement("div");
           d.className = "sr-item";
+          d.setAttribute("data-i", "1");
           d.innerHTML = '<span class="sr-kind"></span><span class="sr-name"></span>';
           d.querySelector(".sr-kind").textContent = h.kind;
           d.querySelector(".sr-name").textContent = h.label;
@@ -260,8 +270,33 @@
         });
       }
       dd.classList.remove("hidden");
+      selIdx = -1;
     });
     input.addEventListener("blur", function () { setTimeout(function () { dd.classList.add("hidden"); }, 150); });
+
+    // Keyboard: Ctrl/Cmd+K focuses search; arrows + Enter walk results; Esc closes.
+    var selIdx = -1;
+    document.addEventListener("keydown", function (e) {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        input.focus();
+        input.select();
+      }
+    });
+    input.addEventListener("keydown", function (e) {
+      var items = dd.querySelectorAll(".sr-item[data-i]");
+      if (e.key === "Escape") { input.value = ""; dd.classList.add("hidden"); input.blur(); return; }
+      if (!items.length) return;
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault();
+        selIdx = e.key === "ArrowDown" ? Math.min(selIdx + 1, items.length - 1) : Math.max(selIdx - 1, 0);
+        items.forEach(function (d, i) { d.classList.toggle("sr-sel", i === selIdx); });
+        items[selIdx] && items[selIdx].scrollIntoView({ block: "nearest" });
+      } else if (e.key === "Enter" && selIdx >= 0 && items[selIdx]) {
+        e.preventDefault();
+        items[selIdx].dispatchEvent(new MouseEvent("mousedown", { bubbles: true, cancelable: true }));
+      }
+    });
   }
 
   function init() {

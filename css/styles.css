@@ -604,3 +604,5 @@ button, input, select, a { transition-timing-function: cubic-bezier(0.22, 1, 0.3
 
 .auth-secure-link { display: block; text-align: center; text-decoration: none; margin: 14px 0 10px; }
 .auth-forgot { display: block; margin: 10px auto 0; background: none; border: none; color: var(--accent); font-size: 0.85rem; cursor: pointer; font-family: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.sr-item.sr-sel { background: var(--accent); color: #fff; }
+.sr-item.sr-sel .sr-kind { color: rgba(255,255,255,0.75); }
