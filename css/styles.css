@@ -567,4 +567,5 @@ button, input, select, a { transition-timing-function: cubic-bezier(0.22, 1, 0.3
 .gm-fav { background: none; border: none; color: var(--muted); font-size: 1.05rem; cursor: pointer; margin-left: auto; padding: 0 2px; }
 .gm-fav.active { color: var(--mid); }
 .gm-head { display: flex; align-items: baseline; gap: 8px; }
+.gm-vram { color: var(--mid); }
 

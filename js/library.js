@@ -121,6 +121,10 @@
         : native;
       var preset = presetFor(fps);
       var cpuCls = g.cpuWeight >= 0.7 ? "CPU-sensitive" : g.cpuWeight >= 0.5 ? "Balanced" : "GPU-bound";
+      var fpsRoomy = upscaleBoost > 0
+        ? eng.gameFpsUpscaled(g, cpuBench.gaming, gpuScore, sel.res, sel.workload, upscaleBoost, 16)
+        : eng.gameFps(g, cpuBench.gaming, gpuScore, sel.res, sel.workload, 16);
+      var vramLoss = fpsRoomy > fps ? Math.round((fpsRoomy - fps) / fpsRoomy * 100) : 0;
       var card = document.createElement("div");
       card.className = "gm-card";
       card.innerHTML =
@@ -130,6 +134,7 @@
             (upscaleBoost > 0 && fps > native ? ' <span class="muted gm-native">(' + native + " native)</span>" : "") + "</span>" +
           '<span>preset: <b class="gm-preset ' + preset.cls + '">' + preset.name + "</b></span>" +
           '<span class="muted">' + cpuCls + "</span>" +
+          (vramLoss >= 4 ? '<span class="gm-vram">VRAM-limited: ' + (sel.gpu.vramGB || 0) + " GB costs ~" + vramLoss + "% at " + resLabel(sel.res) + "</span>" : "") +
         "</div>" +
         '<div class="gm-req muted">GPU score needed: 30 fps 1080p ≥ ' + gpuScoreFor(g, 30, "p1080") +
           " · 60 fps 1080p ≥ " + gpuScoreFor(g, 60, "p1080") +
