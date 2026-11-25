@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**931 features total: ✅ 243 live · 🚧 89 in progress · ⏳ 599 not started**
+**931 features total: ✅ 245 live · 🚧 90 in progress · ⏳ 596 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -626,9 +626,9 @@ _First charts live in the Compare tab; full dashboard is stage S14._
 ## 17. Community & Social Features
 
 _Accounts and cloud saves are live (Supabase); social features themselves not started._
-- ⏳ Community PC Builds
+- ✅ Community PC Builds
 - ⏳ Public Build Profiles
-- ⏳ Build Publishing
+- ✅ Build Publishing
 - ✅ Build Sharing
 - ⏳ Build Likes
 - ⏳ Build Ratings
@@ -1037,7 +1037,7 @@ _PWA + data transparency page are stage S20. Live price APIs are parked with the
 - 🚧 Game & Software Performance Database
 - ⏳ Historical Pricing & Price Tracking
 - ✅ AI Hardware Assistant
-- ⏳ Community Builds & Sharing
+- 🚧 Community Builds & Sharing
 - ⏳ Hardware Analytics Dashboard
 - 🚧 Build Optimization Engine
 - ✅ Performance Per Dollar Ranking
