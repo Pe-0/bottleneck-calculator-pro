@@ -30,6 +30,7 @@
         <button class="tab-btn" data-view="upgrade" type="button">Upgrade</button>
         <button class="tab-btn" data-view="power" type="button">Power</button>
         <button class="tab-btn" data-view="games" type="button">Games</button>
+        <button class="tab-btn" data-view="monitors" type="button">Monitors</button>
         <button class="tab-btn" data-view="dash" type="button">Dashboard</button>
       </nav>
       <div class="search-wrap">
@@ -438,6 +439,20 @@
       </section>
     </div><!-- /viewPower -->
 
+    <!-- ============ MONITOR PLANNER ============ -->
+    <div id="viewMonitors" class="view hidden">
+      <section class="hero">
+        <h1>Match a monitor to your build.</h1>
+        <p>Each panel is checked against your Calculator build: the median estimated FPS across the game database tells you whether the build can actually feed that resolution and refresh rate.</p>
+      </section>
+      <p class="muted db-line" id="mnBuildLine"></p>
+      <section class="panel">
+        <h2>Monitor catalog <small class="h-sub">curated, indicative prices</small></h2>
+        <div id="mnList" class="gm-list"></div>
+        <p class="muted cmp-note">Ultrawide panels are estimated from the nearest standard resolution with a pixel-count adjustment. Median FPS covers the whole game database - esports titles usually run far above it. Estimates, not measurements. For multi-monitor setups, add roughly 5-10% GPU load per extra desktop display (light use; gaming spans are a different story).</p>
+      </section>
+    </div><!-- /viewMonitors -->
+
     <!-- ============ GAMES & SOFTWARE LIBRARY ============ -->
     <div id="viewGames" class="view hidden">
       <section class="hero">
@@ -522,6 +537,7 @@
   <script src="js/data/components.js?v=20261125d"></script>
   <script src="js/data/cooling-cases.js?v=20261125d"></script>
   <script src="js/data/storage.js?v=20261125d"></script>
+  <script src="js/data/monitors.js?v=20261125d"></script>
   <script src="js/data/software.js?v=20261125d"></script>
   <script src="js/engine.js?v=20261125d"></script>
   <script src="js/app.js?v=20261125d"></script>
@@ -531,6 +547,7 @@
   <script src="js/power.js?v=20261125d"></script>
   <script src="js/library.js?v=20261125d"></script>
   <script src="js/dashboard.js?v=20261125d"></script>
+  <script src="js/monitors.js?v=20261125d"></script>
   <script src="js/personal.js?v=20261125d"></script>
   <script src="js/export.js?v=20261125d"></script>
 </body>

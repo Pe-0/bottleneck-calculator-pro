@@ -467,3 +467,9 @@ body[data-theme="light"] .db-radar-val { fill: rgba(47, 106, 224, 0.18); stroke:
 .sw-bar { height: 6px; }
 .sw-note { font-size: 0.85rem; margin: 6px 0; }
 .sw-verdicts { margin: 6px 0 0; }
+
+/* ---- Monitor planner ---- */
+.mn-card .warn-list { margin: 8px 0 0; }
+.mn-price { margin-left: auto; color: var(--text); font-weight: 600; }
+.mn-actions { margin-top: 8px; }
+.mn-actions .gen-load { font-size: 0.78rem; padding: 5px 10px; }
