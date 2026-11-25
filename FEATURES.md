@@ -1,17 +1,17 @@
 # Bottleneck Calculator Pro - Feature Checklist
 
-Live app: https://pe-0.github.io/bottleneck-calculator-pro/
+Live app: https://bcalc.mooo.com/
 
-**931 features total: ✅ 241 live · 🚧 89 in progress · ⏳ 601 not started**
+**931 features total: ✅ 243 live · 🚧 89 in progress · ⏳ 599 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
-Last updated: 2026-11-24 - after stage 11 (Upgrade Advisor). Updated with every shipped stage.
+Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
 
 
 ## 1. Core System & User Management
 
-_Accounts/profiles need a real backend - deferred (architecture decision). Dark mode is the shipped theme; light mode pending._
-- ⏳ User Authentication
+_Accounts are live via Supabase: email/password signup with mandatory email confirmation (custom SMTP via Brevo), plus cloud build save/load. Dark mode is the shipped theme; light mode pending._
+- ✅ User Authentication
 - ✅ Guest Mode
 - ⏳ User Profiles
 - ⏳ Personal Dashboard
@@ -625,7 +625,7 @@ _First charts live in the Compare tab; full dashboard is stage S14._
 
 ## 17. Community & Social Features
 
-_Needs accounts + a live backend - deferred, not started._
+_Accounts and cloud saves are live (Supabase); social features themselves not started._
 - ⏳ Community PC Builds
 - ⏳ Public Build Profiles
 - ⏳ Build Publishing
@@ -821,7 +821,7 @@ _Shareable build links are live; print/PDF/CSV/QR export is stage S15._
 
 ## 23. Admin & Content Management
 
-_Needs a backend - deferred._
+_Supabase backend now exists; admin tooling remains deferred._
 - ⏳ Admin Control Panel
 - ⏳ Hardware Management
 - ⏳ Product Management
@@ -960,7 +960,7 @@ _Monitor planner is stage S18; peripheral catalogs later._
 ## 28. Future & Advanced Features
 
 _PWA + data transparency page are stage S20. Live price APIs are parked with the marketplace._
-- ⏳ Cloud Build Synchronization
+- ✅ Cloud Build Synchronization
 - ⏳ Cross-Device Synchronization
 - ⏳ Mobile Companion App
 - ✅ Progressive Web App (PWA)
