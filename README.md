@@ -1,12 +1,14 @@
 # Bottleneck Calculator Pro
 
-Stage 1 of a PC hardware platform: a CPU/GPU balance checker with resolution- and workload-aware bottleneck analysis, FPS estimates for popular games, and basic compatibility guidance.
+A PC hardware platform: CPU/GPU balance checker with resolution- and workload-aware bottleneck analysis, FPS estimates, compatibility guidance, build generator, compare, upgrade advisor, power estimates, user accounts with cloud build sync, and more. See FEATURES.md for the full 931-item checklist.
 
-Live site: deployed on Netlify (free tier). English UI, prices in USD.
+Live site: https://bcalc.mooo.com/ (GitHub Pages, custom domain; free tier). English UI, prices in USD.
+
+Accounts: email/password sign-in via Supabase Auth (mandatory email confirmation through custom SMTP), with optional per-user cloud save/load of builds (RLS: only the owner can read their rows).
 
 ## What it does
 
-- Pick a CPU and GPU from a seeded database of popular current- and recent-gen parts.
+- Pick a CPU and GPU from a database of 124 CPUs (incl. legacy + laptop HX) and 95 GPUs (incl. legacy + laptop).
 - Bottleneck percentage **varies by resolution (1080p/1440p/4K) and workload (gaming / streaming / productivity)** — never a fixed number per CPU+GPU pair.
 - FPS estimates for 15 popular games at the selected resolution.
 - Compatibility advice: socket + RAM generation (including the LGA1700 DDR4-vs-DDR5 pitfall), chipset guidance, recommended PSU wattage, high-power GPU warnings, and severe-mismatch alerts.
