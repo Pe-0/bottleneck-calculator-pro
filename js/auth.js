@@ -51,6 +51,15 @@
       box.innerHTML = '<span class="muted">Cloud saves unavailable (offline).</span>';
       return;
     }
+    if (!user && !window.isSecureContext) {
+      box.innerHTML =
+        '<div class="auth-head"><h2>Secure sign-in only.</h2>' +
+        '<p class="muted">This page was loaded over an insecure (HTTP) connection, where a password could be intercepted or the page modified in transit. Sign-in and cloud sync are disabled here.</p></div>' +
+        '<a class="auth-primary auth-secure-link" href="https://pe-0.github.io/bottleneck-calculator-pro/">Open the secure HTTPS version</a>' +
+        '<div class="acct-status muted">Full HTTPS on bcalc.mooo.com is being provisioned - everything else on this page works as usual.</div>';
+      renderNavAuth();
+      return;
+    }
     if (!user) {
       box.innerHTML =
         '<div class="auth-head"><h2>Welcome back.</h2>' +

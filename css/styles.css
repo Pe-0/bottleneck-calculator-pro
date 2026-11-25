@@ -602,3 +602,4 @@ button, input, select, a { transition-timing-function: cubic-bezier(0.22, 1, 0.3
 .auth-panel .saved-builds:not(:empty) { margin-top: 18px; border-top: 1px solid var(--border); padding-top: 14px; }
 .auth-panel .acct-status { min-height: 1.1em; font-size: 0.85rem; }
 
+.auth-secure-link { display: block; text-align: center; text-decoration: none; margin: 14px 0 10px; }

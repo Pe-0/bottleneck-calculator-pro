@@ -51,6 +51,13 @@
     var row = $("#aiKeyRow");
     if (!row) return;
     row.innerHTML = "";
+    if (!window.isSecureContext) {
+      var warn = document.createElement("span");
+      warn.className = "muted ai-key-saved";
+      warn.textContent = "API key entry is disabled on this insecure (HTTP) connection. Use the secure HTTPS version (pe-0.github.io/bottleneck-calculator-pro) to add your key.";
+      row.appendChild(warn);
+      return;
+    }
     if (activeKey()) {
       var note = document.createElement("span");
       note.className = "muted ai-key-saved";
