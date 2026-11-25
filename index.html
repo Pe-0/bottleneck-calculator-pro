@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="manifest" href="manifest.webmanifest" />
   <meta name="theme-color" content="#0b0f1a" />
-  <link rel="stylesheet" href="css/styles.css?v=20261125f" />
+  <link rel="stylesheet" href="css/styles.css?v=20261125g" />
   <script>
     // Apply the saved theme before first paint to avoid a flash.
     try {
@@ -20,28 +20,30 @@
 </head>
 <body>
   <p id="printHeader" class="print-only"></p>
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand">
-        <span class="brand-mark">◧</span>
-        <span>Bottleneck Calculator <strong>Pro</strong></span>
-      </div>
-      <nav class="tab-nav">
-        <button class="tab-btn active" data-view="calc" type="button">Calculator</button>
-        <button class="tab-btn" data-view="compare" type="button">Compare</button>
-        <button class="tab-btn" data-view="upgrade" type="button">Upgrade</button>
-        <button class="tab-btn" data-view="power" type="button">Power</button>
-        <button class="tab-btn" data-view="games" type="button">Games</button>
-        <button class="tab-btn" data-view="monitors" type="button">Monitors</button>
-        <button class="tab-btn" data-view="dash" type="button">Dashboard</button>
-      </nav>
-      <div class="search-wrap">
-        <input type="text" id="globalSearch" placeholder="Search hardware, games, software..." autocomplete="off" />
-        <div id="searchResults" class="search-results hidden"></div>
-      </div>
+  <button id="navToggle" class="nav-toggle" type="button" aria-label="Open menu">☰</button>
+  <div class="nav-overlay" id="navOverlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <span class="brand-mark">◧</span>
+      <span>Bottleneck Calculator <strong>Pro</strong></span>
+    </div>
+    <nav class="tab-nav">
+      <button class="tab-btn active" data-view="calc" type="button">Calculator</button>
+      <button class="tab-btn" data-view="compare" type="button">Compare</button>
+      <button class="tab-btn" data-view="upgrade" type="button">Upgrade</button>
+      <button class="tab-btn" data-view="power" type="button">Power</button>
+      <button class="tab-btn" data-view="games" type="button">Games</button>
+      <button class="tab-btn" data-view="monitors" type="button">Monitors</button>
+      <button class="tab-btn" data-view="dash" type="button">Dashboard</button>
+    </nav>
+    <div class="search-wrap">
+      <input type="text" id="globalSearch" placeholder="Search hardware, games, software..." autocomplete="off" />
+      <div id="searchResults" class="search-results hidden"></div>
+    </div>
+    <div class="sidebar-foot">
       <button id="themeToggle" class="theme-toggle" type="button">Light mode</button>
     </div>
-  </header>
+  </aside>
 
   <main class="container">
     <div id="viewCalc" class="view">
@@ -543,30 +545,46 @@
     </div>
   </footer>
 
-  <script src="js/data/hardware.js?v=20261125f"></script>
-  <script src="js/data/benchmarks.js?v=20261125f"></script>
-  <script src="js/data/prices.js?v=20261125f"></script>
-  <script src="js/data/games.js?v=20261125f"></script>
-  <script src="js/data/compat.js?v=20261125f"></script>
-  <script src="js/data/components.js?v=20261125f"></script>
-  <script src="js/data/cooling-cases.js?v=20261125f"></script>
-  <script src="js/data/storage.js?v=20261125f"></script>
-  <script src="js/data/monitors.js?v=20261125f"></script>
-  <script src="js/data/software.js?v=20261125f"></script>
-  <script src="js/engine.js?v=20261125f"></script>
-  <script src="js/app.js?v=20261125f"></script>
-  <script src="js/assistant.js?v=20261125f"></script>
-  <script src="js/compare.js?v=20261125f"></script>
-  <script src="js/upgrade.js?v=20261125f"></script>
-  <script src="js/power.js?v=20261125f"></script>
-  <script src="js/library.js?v=20261125f"></script>
-  <script src="js/dashboard.js?v=20261125f"></script>
-  <script src="js/monitors.js?v=20261125f"></script>
-  <script src="js/personal.js?v=20261125f"></script>
-  <script src="js/export.js?v=20261125f"></script>
+  <script src="js/data/hardware.js?v=20261125g"></script>
+  <script src="js/data/benchmarks.js?v=20261125g"></script>
+  <script src="js/data/prices.js?v=20261125g"></script>
+  <script src="js/data/games.js?v=20261125g"></script>
+  <script src="js/data/compat.js?v=20261125g"></script>
+  <script src="js/data/components.js?v=20261125g"></script>
+  <script src="js/data/cooling-cases.js?v=20261125g"></script>
+  <script src="js/data/storage.js?v=20261125g"></script>
+  <script src="js/data/monitors.js?v=20261125g"></script>
+  <script src="js/data/software.js?v=20261125g"></script>
+  <script src="js/engine.js?v=20261125g"></script>
+  <script src="js/app.js?v=20261125g"></script>
+  <script src="js/assistant.js?v=20261125g"></script>
+  <script src="js/compare.js?v=20261125g"></script>
+  <script src="js/upgrade.js?v=20261125g"></script>
+  <script src="js/power.js?v=20261125g"></script>
+  <script src="js/library.js?v=20261125g"></script>
+  <script src="js/dashboard.js?v=20261125g"></script>
+  <script src="js/monitors.js?v=20261125g"></script>
+  <script src="js/personal.js?v=20261125g"></script>
+  <script src="js/export.js?v=20261125g"></script>
   <script>
-    // Data & methodology view (footer link) + service worker.
+    // Data & methodology view (footer link) + service worker + mobile nav drawer.
     (function () {
+      var navToggle = document.getElementById("navToggle");
+      var overlay = document.getElementById("navOverlay");
+      if (navToggle) navToggle.addEventListener("click", function () {
+        document.body.classList.toggle("nav-open");
+        navToggle.textContent = document.body.classList.contains("nav-open") ? "✕" : "☰";
+      });
+      if (overlay) overlay.addEventListener("click", function () {
+        document.body.classList.remove("nav-open");
+        if (navToggle) navToggle.textContent = "☰";
+      });
+      document.querySelectorAll(".sidebar .tab-btn").forEach(function (b) {
+        b.addEventListener("click", function () {
+          document.body.classList.remove("nav-open");
+          if (navToggle) navToggle.textContent = "☰";
+        });
+      });
       var link = document.getElementById("dataLink");
       if (link) {
         link.addEventListener("click", function (e) {
