@@ -105,6 +105,38 @@
     return out;
   }
 
+  // Every non-legacy desktop CPU x GPU pair at or under the current
+  // pair's combined internal price, ranked by the active metric.
+  function rebalance() {
+    var prod = upState.workload === "productivity";
+    var now = metricNow();
+    if (!now) return { rows: [] };
+    var pCpu = BCP.prices.cpu[upState.cpuId], pGpu = BCP.prices.gpu[upState.gpuId];
+    if (!pCpu || !pGpu) return { rows: [], noPrice: true };
+    var budget = pCpu + pGpu;
+    var nowM = prod ? now.cpu : now.fps;
+    var rows = [];
+    BCP.cpus.items.forEach(function (c) {
+      if (c.mobile || c.legacy) return;
+      var cb = BCP.benchmarks.cpu[c.id], cp = BCP.prices.cpu[c.id];
+      if (!cb || !cp) return;
+      BCP.gpus.items.forEach(function (g) {
+        if (g.mobile || g.legacy) return;
+        if (c.id === upState.cpuId && g.id === upState.gpuId) return;
+        var gs = BCP.benchmarks.gpu[g.id], gp = BCP.prices.gpu[g.id];
+        if (!gs || !gp || cp + gp > budget) return;
+        var metric = prod ? cb.productivity : avgFps(cb, gs, upState.res, upState.workload, g.vramGB);
+        if (metric <= nowM * 1.02) return;
+        var bn = eng.bottleneck(cb, gs, upState.res, upState.workload, c);
+        rows.push({ cpu: c, gpu: g, total: cp + gp, metric: metric,
+                    pctGain: (metric - nowM) / nowM * 100,
+                    pct: bn.pct, limiter: bn.limiter, unit: now.unit });
+      });
+    });
+    rows.sort(function (a, b) { return b.metric - a.metric; });
+    return { budget: budget, rows: rows.slice(0, 3) };
+  }
+
   function cardHtml(u, kind) {
     var costTxt = kind === "cpu" ? fmtUsd(u.cost) : fmtUsd(u.price);
     if (u.item.legacy) costTxt += " (used est.)";
@@ -147,6 +179,37 @@
       { el: "#upGpuList", rows: gpuUpgrades(bench).slice(0, 6), kind: "gpu", empty: "No worthwhile graphics card upgrade in the database" + (upState.budget ? " within this budget." : ".") },
       { el: "#upCpuList", rows: cpuUpgrades(gscore).slice(0, 6), kind: "cpu", empty: cpuEmpty }
     ];
+    var rb = rebalance();
+    var optBox = $("#upOptList"), optNote = $("#upOptNote");
+    if (optBox) {
+      optBox.innerHTML = "";
+      if (rb.noPrice) {
+        optBox.innerHTML = '<p class="muted">Rebalance needs an internal price for both your current CPU and GPU; one of them is not in the price layer.</p>';
+      } else if (!rb.rows.length) {
+        optBox.innerHTML = '<p class="muted">No CPU + GPU pair in the database beats your split at ' + fmtUsd(rb.budget) + ' or less for this workload. Your money is already well distributed.</p>';
+      } else {
+        rb.rows.forEach(function (r) {
+          var div = document.createElement("div");
+          div.innerHTML =
+            '<div class="up-card">' +
+              '<div class="up-head"><strong></strong><span class="price">' + fmtUsd(r.total) + "</span></div>" +
+              '<div class="up-stats">' +
+                '<span>+<b>' + (Math.round(r.pctGain * 10) / 10) + "%</b> " + (upState.workload === "productivity" ? "multi-core" : "avg fps") + "</span>" +
+                '<span><b>' + Math.round(r.metric) + " " + r.unit + "</b> after</span>" +
+                '<span>bottleneck <b>' + r.pct + "%</b> (" + r.limiter + ")</span>" +
+              "</div>" +
+            "</div>";
+          div.firstChild.querySelector(".up-head strong").textContent = r.cpu.name + " + " + r.gpu.name;
+          optBox.appendChild(div.firstChild);
+        });
+      }
+      if (optNote) {
+        optNote.textContent = "Compares every current-generation CPU + GPU pair in the database whose combined internal price fits your pair's " +
+          (rb.budget ? fmtUsd(rb.budget) : "") + " budget, ranked by the same engine metric as the upgrades above. Prices come from the internal price layer (" +
+          BCP.prices.meta.asOf + ") - guidance for balancing a build, not live market prices.";
+      }
+    }
+
     lists.forEach(function (L) {
       var box = $(L.el);
       box.innerHTML = "";
