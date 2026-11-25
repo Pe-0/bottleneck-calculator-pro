@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**931 features total: ✅ 290 live · 🚧 91 in progress · ⏳ 550 not started**
+**931 features total: ✅ 296 live · 🚧 89 in progress · ⏳ 546 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -378,7 +378,7 @@ _Full power stage live in the Power tab: per-part draws, idle/gaming/peak, headr
 - ✅ CPU Cooler Comparison
 - ⏳ Case Comparison
 - ⏳ Fan Comparison
-- 🚧 Monitor Comparison
+- ✅ Monitor Comparison
 - ⏳ Keyboard Comparison
 - ⏳ Mouse Comparison
 - ⏳ Headset Comparison
@@ -934,18 +934,18 @@ _Static site: server-side items don't apply yet; client-side items are listed._
 
 _Monitor planner is stage S18; peripheral catalogs later._
 - ✅ Monitor Database
-- 🚧 Monitor Comparison
-- ⏳ Resolution Compatibility
-- ⏳ Refresh Rate Analysis
+- ✅ Monitor Comparison
+- ✅ Resolution Compatibility
+- ✅ Refresh Rate Analysis
 - ⏳ Response Time Comparison
-- ⏳ Panel Type Comparison
+- ✅ Panel Type Comparison
 - ⏳ HDR Analysis
 - ⏳ G-SYNC Compatibility
 - ⏳ FreeSync Compatibility
 - ⏳ DisplayPort Compatibility
 - ⏳ HDMI Compatibility
 - ⏳ Multi-Monitor Planner
-- ⏳ Monitor GPU Requirements
+- ✅ Monitor GPU Requirements
 - ⏳ Keyboard Database
 - ⏳ Mouse Database
 - ⏳ Headset Database
