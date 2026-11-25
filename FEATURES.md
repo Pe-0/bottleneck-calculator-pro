@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**931 features total: ✅ 296 live · 🚧 89 in progress · ⏳ 546 not started**
+**931 features total: ✅ 297 live · 🚧 89 in progress · ⏳ 545 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -518,7 +518,7 @@ _Parked with the marketplace (depends on live price/stock APIs)._
 - ⏳ Build Benchmark Results
 - ⏳ Build Alternatives
 - ⏳ Build Customization
-- ⏳ Prebuilt Build Comparison
+- ✅ Prebuilt Build Comparison
 - ⏳ Prebuilt Build Price Tracking
 
 ## 13. Budget & Financial Tools
