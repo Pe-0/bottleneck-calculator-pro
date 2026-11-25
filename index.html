@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
+  <link rel="apple-touch-icon" href="icons/icon-180.png" />
   <meta name="theme-color" content="#0b0f1a" />
   <link rel="stylesheet" href="css/styles.css?v=20261125h" />
   <script>
@@ -24,7 +26,15 @@
   <div class="nav-overlay" id="navOverlay"></div>
   <aside class="sidebar" id="sidebar">
     <div class="brand">
-      <span class="brand-mark">◧</span>
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64" width="19" height="19" fill="none" stroke="currentColor" stroke-linecap="round">
+          <rect x="16" y="16" width="32" height="32" rx="6" stroke-width="4.5"/>
+          <path d="M24 8 v6 M32 8 v6 M40 8 v6 M24 50 v6 M32 50 v6 M40 50 v6 M8 24 h6 M8 32 h6 M8 40 h6 M50 24 h6 M50 32 h6 M50 40 h6" stroke-width="4"/>
+          <path d="M23 40 A 11 11 0 0 1 45 40" stroke-width="3.5"/>
+          <path d="M34 39 L41 30" stroke-width="3.5"/>
+          <circle cx="34" cy="39" r="2.6" fill="currentColor" stroke="none"/>
+        </svg>
+      </span>
       <span>Bottleneck Calculator <strong>Pro</strong></span>
     </div>
     <nav class="tab-nav">
