@@ -29,6 +29,68 @@
     });
   }
 
+  /* ---------- build history (auto, last 10) ---------- */
+  var HIST_KEY = "bcp.build-history";
+  function readHist() {
+    try {
+      var raw = localStorage.getItem(HIST_KEY);
+      var list = raw ? JSON.parse(raw) : [];
+      return Array.isArray(list) ? list : [];
+    } catch (e) { return []; }
+  }
+  function histName(code) {
+    var p = code.split(",");
+    var cpu = null, gpu = null;
+    (BCP.cpus.items || []).forEach(function (c) { if (c.id === p[0]) cpu = c.name; });
+    (BCP.gpus.items || []).forEach(function (g) { if (g.id === p[1]) gpu = g.name; });
+    var res = { p1080: "1080p", p1440: "1440p", p2160: "4K" }[p[8]] || "";
+    return (cpu || "?") + " + " + (gpu || "?") + (res ? " · " + res : "");
+  }
+  function recordHist() {
+    if (!BCP.currentBuildCode) return;
+    var code = BCP.currentBuildCode();
+    var list = readHist();
+    if (list.length && list[0].code === code) return;
+    list = list.filter(function (e) { return e.code !== code; });
+    list.unshift({ code: code, ts: Date.now() });
+    if (list.length > 10) list.length = 10;
+    try { localStorage.setItem(HIST_KEY, JSON.stringify(list)); } catch (e) {}
+    renderHist();
+  }
+  function renderHist() {
+    var box = document.querySelector("#buildHistory");
+    if (!box) return;
+    var list = readHist();
+    box.innerHTML = "";
+    if (!list.length) return;
+    var title = document.createElement("h3");
+    title.className = "sb-cloud-title";
+    title.textContent = "Recent builds";
+    box.appendChild(title);
+    list.forEach(function (e) {
+      var row = document.createElement("div");
+      row.className = "saved-row";
+      row.innerHTML = '<span class="saved-name"></span>' +
+        '<span class="saved-actions"><button type="button" class="gen-load saved-load">Load</button></span>';
+      row.querySelector(".saved-name").textContent = histName(e.code);
+      row.querySelector(".saved-load").addEventListener("click", function () {
+        if (BCP.applyBuildCode && BCP.applyBuildCode(e.code)) renderHist();
+      });
+      box.appendChild(row);
+    });
+  }
+  var histTimer = null;
+  function armHist() {
+    // Any calculator interaction may change the build; record after a beat.
+    ["change", "click"].forEach(function (evt) {
+      document.getElementById("viewCalc").addEventListener(evt, function () {
+        clearTimeout(histTimer);
+        histTimer = setTimeout(recordHist, 1200);
+      });
+    });
+    recordHist();
+  }
+
   /* ---------- saved builds ---------- */
   function readBuilds() {
     try {
@@ -97,6 +159,7 @@
     var saveBtn = $("#saveBuildBtn");
     if (saveBtn) saveBtn.addEventListener("click", saveCurrent);
     renderBuilds();
+    if (document.getElementById("viewCalc")) armHist();
   }
 
   if (document.readyState === "loading") {

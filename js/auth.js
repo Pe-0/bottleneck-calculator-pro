@@ -12,7 +12,7 @@
   var SUPABASE_URL = "https://jejnmtjugnckzdhzceiq.supabase.co";
   var SUPABASE_KEY = "sb_publishable_UYtzt5bsvas8UH8J1ahyJQ_YMjqf3Sm";
   var $ = function (sel) { return document.querySelector(sel); };
-  var sb = null, user = null, cloudRows = [];
+  var sb = null, user = null, cloudRows = [], recoveryMode = false;
 
   function esc(s) { var d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
 
@@ -51,13 +51,27 @@
       box.innerHTML = '<span class="muted">Cloud saves unavailable (offline).</span>';
       return;
     }
-    if (!user && !window.isSecureContext) {
+    if ((!user || recoveryMode) && !window.isSecureContext) {
       box.innerHTML =
         '<div class="auth-head"><h2>Secure sign-in only.</h2>' +
         '<p class="muted">This page was loaded over an insecure (HTTP) connection, where a password could be intercepted or the page modified in transit. Sign-in and cloud sync are disabled here.</p></div>' +
         '<a class="auth-primary auth-secure-link" href="https://pe-0.github.io/bottleneck-calculator-pro/">Open the secure HTTPS version</a>' +
         '<div class="acct-status muted">Full HTTPS on bcalc.mooo.com is being provisioned - everything else on this page works as usual.</div>';
       renderNavAuth();
+      return;
+    }
+    if (recoveryMode) {
+      box.innerHTML =
+        '<div class="auth-head"><h2>Choose a new password.</h2>' +
+        '<p class="muted">You opened a password-reset link. Set a new password for your account below.</p></div>' +
+        '<label class="auth-field"><span>New password</span>' +
+        '<input type="password" id="acctNewPass" placeholder="At least 6 characters" autocomplete="new-password" /></label>' +
+        '<label class="auth-field"><span>Repeat new password</span>' +
+        '<input type="password" id="acctNewPass2" placeholder="Same password again" autocomplete="new-password" /></label>' +
+        '<button type="button" id="acctSetPass" class="auth-primary">Update password</button>' +
+        '<div class="acct-status muted" id="acctStatus"></div>';
+      $("#acctSetPass").addEventListener("click", doSetPassword);
+      $("#acctNewPass2").addEventListener("keydown", function (e) { if (e.key === "Enter") doSetPassword(); });
       return;
     }
     if (!user) {
@@ -69,11 +83,13 @@
         '<label class="auth-field"><span>Password</span>' +
         '<input type="password" id="acctPass" placeholder="Your password" autocomplete="current-password" /></label>' +
         '<button type="button" id="acctSignIn" class="auth-primary">Sign in</button>' +
+        '<button type="button" id="acctForgot" class="auth-forgot">Forgot password?</button>' +
         '<div class="auth-divider"><span>New to Bottleneck Calculator Pro?</span></div>' +
         '<button type="button" id="acctSignUp" class="auth-secondary">Create an account</button>' +
         '<div class="acct-status muted" id="acctStatus"></div>';
       $("#acctSignIn").addEventListener("click", function () { doAuth("in"); });
       $("#acctSignUp").addEventListener("click", function () { doAuth("up"); });
+      $("#acctForgot").addEventListener("click", doReset);
       $("#acctPass").addEventListener("keydown", function (e) { if (e.key === "Enter") doAuth("in"); });
     } else {
       var initial = (user.email || "?").charAt(0).toUpperCase();
@@ -139,6 +155,30 @@
     }).catch(function (e) { status(String(e), true); });
   }
 
+  function doReset() {
+    var email = ($("#acctEmail") || {}).value;
+    if (!email) { status("Enter your email above first, then click Forgot password.", true); return; }
+    status("Sending reset link...");
+    sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname })
+      .then(function (res) {
+        if (res.error) { status(res.error.message, true); return; }
+        status("Reset link sent - check your email and open the link on this device.");
+      }).catch(function (e) { status(String(e), true); });
+  }
+
+  function doSetPassword() {
+    var p1 = ($("#acctNewPass") || {}).value, p2 = ($("#acctNewPass2") || {}).value;
+    if (!p1 || p1.length < 6) { status("Password needs at least 6 characters.", true); return; }
+    if (p1 !== p2) { status("The two passwords do not match.", true); return; }
+    status("Updating password...");
+    sb.auth.updateUser({ password: p1 }).then(function (res) {
+      if (res.error) { status(res.error.message, true); return; }
+      recoveryMode = false;
+      status("");
+      renderAccount();
+    }).catch(function (e) { status(String(e), true); });
+  }
+
   function doSignOut() {
     sb.auth.signOut().then(function () { cloudRows = []; });
   }
@@ -190,8 +230,9 @@
     });
     import("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm").then(function (mod) {
       sb = mod.createClient(SUPABASE_URL, SUPABASE_KEY);
-      sb.auth.onAuthStateChange(function (_e, session) {
+      sb.auth.onAuthStateChange(function (evt, session) {
         user = session && session.user ? session.user : null;
+        if (evt === "PASSWORD_RECOVERY") { recoveryMode = true; showAuthView(); }
         renderAccount();
         if (user) loadCloudBuilds();
       });

@@ -6,6 +6,19 @@
   var BCP = window.BCP;
   var eng = BCP.engine;
 
+  var PREFS_KEY = "bcp.prefs";
+  function loadPrefs() {
+    try {
+      var p = JSON.parse(localStorage.getItem(PREFS_KEY) || "{}");
+      return p && typeof p === "object" ? p : {};
+    } catch (e) { return {}; }
+  }
+  function savePrefs(patch) {
+    var p = loadPrefs();
+    for (var k in patch) p[k] = patch[k];
+    try { localStorage.setItem(PREFS_KEY, JSON.stringify(p)); } catch (e) {}
+  }
+
   var state = {
     cpuId: "r7-7800x3d",
     gpuId: "rtx-4070s",
@@ -18,6 +31,11 @@
     res: "p1440",
     workload: "gaming"
   };
+  (function applyPrefs() {
+    var p = loadPrefs();
+    if ({p1080:1,p1440:1,p2160:1}[p.res]) state.res = p.res;
+    if (eng.WORKLOADS[p.workload]) state.workload = p.workload;
+  })();
 
   var $ = function (sel) { return document.querySelector(sel); };
 
@@ -354,6 +372,7 @@
       var btn = e.target.closest("button[data-val]");
       if (!btn) return;
       state[key] = btn.getAttribute("data-val");
+      savePrefs(key === "res" ? { res: state.res } : { workload: state.workload });
       box.querySelectorAll("button").forEach(function (b) {
         b.classList.toggle("active", b === btn);
       });
@@ -422,6 +441,19 @@
     bindSegmented("resSeg", "res");
     bindSegmented("wlSeg", "workload");
 
+    (function () {
+      var p = loadPrefs();
+      var bsel = $("#budgetSelect");
+      if (p.budget && bsel && bsel.querySelector('option[value="' + p.budget + '"]')) bsel.value = p.budget;
+      if (bsel) bsel.addEventListener("change", function () { savePrefs({ budget: this.value }); });
+    })();
+    // Reflect stored res/workload prefs on the segmented controls.
+    document.querySelectorAll("#resSeg button").forEach(function (b) {
+      b.classList.toggle("active", b.dataset.val === state.res);
+    });
+    document.querySelectorAll("#wlSeg button").forEach(function (b) {
+      b.classList.toggle("active", b.dataset.val === state.workload);
+    });
     $("#genBtn").addEventListener("click", function () {
       var budget = parseInt($("#budgetSelect").value, 10);
       var builds = eng.generateBuilds(budget, state.workload, state.res, 3);
