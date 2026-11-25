@@ -23,6 +23,7 @@
         <button class="tab-btn" data-view="upgrade" type="button">Upgrade</button>
         <button class="tab-btn" data-view="power" type="button">Power</button>
         <button class="tab-btn" data-view="games" type="button">Games</button>
+        <button class="tab-btn" data-view="dash" type="button">Dashboard</button>
       </nav>
       <div class="search-wrap">
         <input type="text" id="globalSearch" placeholder="Search hardware, games, software..." autocomplete="off" />
@@ -427,6 +428,35 @@
         <div id="swList" class="gm-list"></div>
       </section>
     </div><!-- /viewGames -->
+
+    <!-- ============ ANALYTICS DASHBOARD ============ -->
+    <div id="viewDash" class="view hidden">
+      <section class="hero">
+        <h1>Your build, charted.</h1>
+        <p>Cost split, performance shape, bottleneck across resolutions and power draw - all for the build on the Calculator tab.</p>
+      </section>
+      <p class="muted db-line" id="dbBuildLine"></p>
+      <div class="db-grid">
+        <section class="panel">
+          <h2>Cost breakdown</h2>
+          <div id="dbCost"></div>
+        </section>
+        <section class="panel">
+          <h2>Performance shape</h2>
+          <div id="dbRadar"></div>
+          <p class="muted cmp-note" id="dbRadarNote"></p>
+        </section>
+        <section class="panel">
+          <h2>Bottleneck by resolution</h2>
+          <div id="dbBn"></div>
+        </section>
+        <section class="panel">
+          <h2>Power overview</h2>
+          <div id="dbPower"></div>
+          <p class="muted cmp-note">TDP-based estimates; see the Power tab for the full analysis.</p>
+        </section>
+      </div>
+    </div><!-- /viewDash -->
   </main>
 
   <footer class="site-footer">
@@ -453,5 +483,6 @@
   <script src="js/upgrade.js?v=20261125a"></script>
   <script src="js/power.js?v=20261125a"></script>
   <script src="js/library.js?v=20261125a"></script>
+  <script src="js/dashboard.js?v=20261125a"></script>
 </body>
 </html>

@@ -345,6 +345,21 @@ select:hover, select:focus { border-color: var(--accent); outline: none; }
 .th-bar { display: block; width: 100%; margin-top: 6px; height: 10px; }
 .fill-mid { background: linear-gradient(90deg, #eab308, #ca8a04) !important; }
 .fill-bad { background: linear-gradient(90deg, #ef4444, #b91c1c) !important; }
+
+/* ---- Dashboard ---- */
+.db-line { text-align: center; margin-bottom: 20px; font-size: 0.9rem; }
+.db-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 760px) { .db-grid { grid-template-columns: 1fr; } }
+.db-row { display: flex; align-items: center; gap: 10px; padding: 5px 0; font-size: 0.85rem; }
+.db-label { width: 108px; flex-shrink: 0; color: var(--muted); }
+.db-bar { flex: 1; }
+.db-val { width: 130px; text-align: right; color: var(--text); font-variant-numeric: tabular-nums; flex-shrink: 0; }
+.db-total { display: flex; justify-content: space-between; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 0.9rem; }
+.db-radar { width: 100%; max-width: 340px; display: block; margin: 0 auto; }
+.db-radar-ring { fill: none; stroke: var(--border); stroke-width: 1; }
+.db-radar-axis { stroke: var(--border); stroke-width: 1; opacity: 0.6; }
+.db-radar-val { fill: rgba(47, 128, 237, 0.25); stroke: #2f80ed; stroke-width: 1.5; }
+.db-radar-label { fill: var(--muted); font-size: 9px; }
 .warn.ok { border-left-color: var(--accent-2); }
 @media (max-width: 720px) { .pw-row { grid-template-columns: 1.2fr 1.4fr auto; } }
 
