@@ -486,10 +486,14 @@ body[data-theme="light"] .fps-row:nth-child(odd) { background: rgba(124, 58, 237
 .sr-name { color: var(--text); }
 
 /* ============ Games & software ============ */
-.gm-toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 18px; }
+.gm-toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.gm-toolbar .gm-upscale-row { margin: 0; flex: 0 0 auto; }
+.gm-toolbar .gm-upscale-row .segmented { min-width: 320px; }
+.gm-buildline { margin: 0 0 16px; font-size: 0.85rem; }
+@media (max-width: 640px) { .gm-toolbar .gm-upscale-row { width: 100%; } .gm-toolbar .gm-upscale-row .segmented { min-width: 0; flex: 1; } }
 #gmSearch {
   background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px;
-  color: var(--text); padding: 9px 12px; font-size: 0.9rem; font-family: inherit; min-width: 220px;
+  color: var(--text); padding: 9px 12px; font-size: 0.9rem; font-family: inherit; flex: 1 1 240px; min-width: 200px;
 }
 #gmSearch:focus { outline: none; border-color: var(--accent); }
 .gm-list { display: flex; flex-direction: column; gap: 12px; }
