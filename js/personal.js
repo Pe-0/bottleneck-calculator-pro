@@ -384,6 +384,7 @@
     ["ram", "Memory"], ["psu", "Power supply"], ["cooler", "CPU cooler"],
     ["storage", "Storage"]
   ];
+  var fillNote = null; // {code, text} shown until the selection changes again
   function renderChecklist() {
     var list = $("#checkList");
     var summary = $("#checkSummary");
@@ -400,10 +401,42 @@
       if (!ok) missing.push(pair[1].toLowerCase());
       list.appendChild(li);
     });
+    var panel = list.parentNode;
+    var oldBtn = panel.querySelector("#completeBuildBtn");
+    if (oldBtn) oldBtn.remove();
+    var oldNote = panel.querySelector("#fillNote");
+    if (oldNote) oldNote.remove();
     if (summary) {
       summary.textContent = missing.length
         ? "Build incomplete - missing: " + missing.join(", ") + ". You can still save or share it; the analysis only uses the parts you picked."
         : "Build complete. Every core slot has a part selected.";
+    }
+    if (missing.length && BCP.completeBuild) {
+      var btn = document.createElement("button");
+      btn.id = "completeBuildBtn";
+      btn.type = "button";
+      btn.className = "gen-btn check-complete-btn";
+      btn.textContent = "Complete my build";
+      btn.title = "Fill the empty slots with the cheapest compatible parts";
+      btn.addEventListener("click", function () {
+        var filled = BCP.completeBuild();
+        if (filled && filled.length && BCP.currentBuildCode) {
+          fillNote = {
+            code: BCP.currentBuildCode(),
+            text: "Filled in: " + filled.join("; ") +
+              ". These are the cheapest compatible picks - review the advice panel before buying."
+          };
+        }
+        renderChecklist();
+      });
+      panel.appendChild(btn);
+    }
+    if (fillNote && BCP.currentBuildCode && fillNote.code === BCP.currentBuildCode()) {
+      var p = document.createElement("p");
+      p.className = "muted cmp-note";
+      p.id = "fillNote";
+      p.textContent = fillNote.text;
+      panel.appendChild(p);
     }
   }
 

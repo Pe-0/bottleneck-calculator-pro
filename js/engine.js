@@ -277,6 +277,87 @@ window.BCP.engine = (function () {
     return { label: "Severe CPU bottleneck", cls: "bad" };
   }
 
+  // Shared compatible-part pickers (cheapest part passing the rules).
+  // Used by the build generator and by "complete my build" auto-fill.
+  var TIER_ORDER = { entry: 0, mid: 1, high: 2 };
+  function pickMobo(cpu) {
+    var B = window.BCP;
+    var unlocked = /k(f)?$|kp$/.test(cpu.id);
+    var minTier = (cpu.tdpW >= 170 || unlocked) ? "mid" : "entry";
+    var boards = B.motherboards.items.filter(function (m) {
+      return m.socket === cpu.socket && TIER_ORDER[(B.compat.boardTier[m.chipset] || "mid")] >= TIER_ORDER[minTier];
+    });
+    boards.sort(function (a, b) { return a.priceUSD - b.priceUSD; });
+    return boards[0] || null;
+  }
+  function pickRam(mobo, workload) {
+    var B = window.BCP;
+    var want64 = workload === "productivity";
+    var kits = B.memoryKits.items.filter(function (k) { return k.type === mobo.ramType; });
+    var exact = kits.filter(function (k) { return want64 ? k.capacityGB >= 64 : k.capacityGB === 32; });
+    var pool = exact.length ? exact : kits;
+    pool = pool.slice().sort(function (a, b) { return a.priceUSD - b.priceUSD; });
+    return pool[0] || null;
+  }
+  function pickCooler(cpu) {
+    var B = window.BCP;
+    if (cpu.stockCooler) {
+      var stock = B.coolers.items.find(function (cl) { return cl.id === "cl-stock"; });
+      if (stock && stock.tdpRatingW >= cpu.tdpW) return stock;
+    }
+    var units = B.coolers.items.filter(function (cl) {
+      return cl.id !== "cl-stock" && cl.sockets.indexOf(cpu.socket) !== -1 && cl.tdpRatingW >= cpu.tdpW;
+    });
+    units.sort(function (a, b) { return a.priceUSD - b.priceUSD; });
+    return units[0] || null;
+  }
+  function pickCase(mobo, gpu, cooler) {
+    var B = window.BCP;
+    var needLen = gpu.lengthMM || 250;
+    var boxes = B.cases.items.filter(function (cs) {
+      if (cs.fits.indexOf(mobo.formFactor) === -1) return false;
+      if (cs.maxGpuLengthMM < needLen) return false;
+      if (cooler && cooler.type === "Air" && cs.maxCoolerHeightMM < cooler.heightMM) return false;
+      if (cooler && cooler.type === "AIO" && cs.maxRadiatorMM < cooler.radiatorMM) return false;
+      return true;
+    });
+    boxes.sort(function (a, b) { return a.priceUSD - b.priceUSD; });
+    return boxes[0] || null;
+  }
+  function pickStorage(workload) {
+    var B = window.BCP;
+    var want = workload === "productivity" ? 2000 : 1000;
+    var drives = B.storage.items.filter(function (s) { return s.capacityGB >= want && s.interface !== "SATA"; });
+    drives.sort(function (a, b) { return a.priceUSD - b.priceUSD; });
+    return drives[0] || B.storage.items[0];
+  }
+  function pickPsu(cpu, gpu) {
+    var B = window.BCP;
+    var rec = recommendedPsuW(cpu.tdpW, gpu.tdpW);
+    var needAtx31 = gpu.tdpW >= 300;
+    var units = B.psus.items.filter(function (p) {
+      return p.wattageW >= rec && (!needAtx31 || p.atx31);
+    });
+    units.sort(function (a, b) { return a.priceUSD - b.priceUSD; });
+    return units[0] || null;
+  }
+
+  // Suggest the cheapest compatible part for every empty slot, anchored
+  // to the parts already selected. Returns {slot: part} plus a flat list
+  // of {slot, part, priceUSD} for display. null when anchors are missing.
+  function suggestMissing(sel, workloadKey) {
+    if (!sel || !sel.cpu || !sel.gpu) return null;
+    var filled = [];
+    var out = {};
+    if (!sel.mobo) { out.mobo = pickMobo(sel.cpu); if (out.mobo) filled.push({ slot: "Motherboard", part: out.mobo }); }
+    var mobo = sel.mobo || out.mobo;
+    if (!sel.ram && mobo) { out.ram = pickRam(mobo, workloadKey); if (out.ram) filled.push({ slot: "Memory", part: out.ram }); }
+    if (!sel.psu) { out.psu = pickPsu(sel.cpu, sel.gpu); if (out.psu) filled.push({ slot: "Power supply", part: out.psu }); }
+    if (!sel.cooler) { out.cooler = pickCooler(sel.cpu); if (out.cooler) filled.push({ slot: "CPU cooler", part: out.cooler }); }
+    if (!sel.storage) { out.storage = pickStorage(workloadKey); if (out.storage) filled.push({ slot: "Storage", part: out.storage }); }
+    return { parts: out, filled: filled };
+  }
+
   // Assemble the best-balanced priced builds within a budget.
   // Uses the separated layers: specs (hardware), scores (benchmarks),
   // prices (prices + components). Parts without a verified price are
@@ -285,64 +366,7 @@ window.BCP.engine = (function () {
     var B = window.BCP;
     var wl = WORKLOADS[workloadKey] || WORKLOADS.gaming;
     var feed = wl.feedMod === null ? PRODUCTIVITY_FEED : FEED_NEED[resKey] * wl.feedMod;
-    var tierOrder = { entry: 0, mid: 1, high: 2 };
     var out = [];
-
-    function pickMobo(cpu) {
-      var unlocked = /k(f)?$|kp$/.test(cpu.id);
-      var minTier = (cpu.tdpW >= 170 || unlocked) ? "mid" : "entry";
-      var boards = B.motherboards.items.filter(function (m) {
-        return m.socket === cpu.socket && tierOrder[(B.compat.boardTier[m.chipset] || "mid")] >= tierOrder[minTier];
-      });
-      boards.sort(function (a, b) { return a.priceUSD - b.priceUSD; });
-      return boards[0] || null;
-    }
-    function pickRam(mobo, workload) {
-      var want64 = workload === "productivity";
-      var kits = B.memoryKits.items.filter(function (k) { return k.type === mobo.ramType; });
-      var exact = kits.filter(function (k) { return want64 ? k.capacityGB >= 64 : k.capacityGB === 32; });
-      var pool = exact.length ? exact : kits;
-      pool = pool.slice().sort(function (a, b) { return a.priceUSD - b.priceUSD; });
-      return pool[0] || null;
-    }
-    function pickCooler(cpu) {
-      if (cpu.stockCooler) {
-        var stock = B.coolers.items.find(function (cl) { return cl.id === "cl-stock"; });
-        if (stock && stock.tdpRatingW >= cpu.tdpW) return stock;
-      }
-      var units = B.coolers.items.filter(function (cl) {
-        return cl.id !== "cl-stock" && cl.sockets.indexOf(cpu.socket) !== -1 && cl.tdpRatingW >= cpu.tdpW;
-      });
-      units.sort(function (a, b) { return a.priceUSD - b.priceUSD; });
-      return units[0] || null;
-    }
-    function pickCase(mobo, gpu, cooler) {
-      var needLen = gpu.lengthMM || 250;
-      var boxes = B.cases.items.filter(function (cs) {
-        if (cs.fits.indexOf(mobo.formFactor) === -1) return false;
-        if (cs.maxGpuLengthMM < needLen) return false;
-        if (cooler && cooler.type === "Air" && cs.maxCoolerHeightMM < cooler.heightMM) return false;
-        if (cooler && cooler.type === "AIO" && cs.maxRadiatorMM < cooler.radiatorMM) return false;
-        return true;
-      });
-      boxes.sort(function (a, b) { return a.priceUSD - b.priceUSD; });
-      return boxes[0] || null;
-    }
-    function pickStorage(workload) {
-      var want = workload === "productivity" ? 2000 : 1000;
-      var drives = B.storage.items.filter(function (s) { return s.capacityGB >= want && s.interface !== "SATA"; });
-      drives.sort(function (a, b) { return a.priceUSD - b.priceUSD; });
-      return drives[0] || B.storage.items[0];
-    }
-    function pickPsu(cpu, gpu) {
-      var rec = recommendedPsuW(cpu.tdpW, gpu.tdpW);
-      var needAtx31 = gpu.tdpW >= 300;
-      var units = B.psus.items.filter(function (p) {
-        return p.wattageW >= rec && (!needAtx31 || p.atx31);
-      });
-      units.sort(function (a, b) { return a.priceUSD - b.priceUSD; });
-      return units[0] || null;
-    }
 
     B.cpus.items.forEach(function (cpu) {
       var cpuPrice = B.prices.cpu[cpu.id];
@@ -386,6 +410,7 @@ window.BCP.engine = (function () {
     compatibility: compatibility,
     partCompatibility: partCompatibility,
     generateBuilds: generateBuilds,
+    suggestMissing: suggestMissing,
     balanceLabel: balanceLabel
   };
 })();

@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 314 live · 🚧 89 in progress · ⏳ 3842 not started**
+**4245 features total: ✅ 319 live · 🚧 89 in progress · ⏳ 3837 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -1081,8 +1081,8 @@ _Every item below is not started. Items tagged 'blocked:' wait on an external de
 ## 32. Build Management & Advanced Build Workspace (roadmap - user gap list, Nov 25)
 - ⏳ Build Revision Tracking
 - ⏳ Build Change History
-- ⏳ Build Undo & Redo
-- ⏳ Build Templates
+- ✅ Build Undo & Redo
+- ✅ Build Templates
 - ⏳ Build Preset Management
 - ✅ Build Notes
 - ✅ Build Tags
@@ -1098,9 +1098,9 @@ _Every item below is not started. Items tagged 'blocked:' wait on an external de
 - ✅ Build Auto-Save
 - ✅ Build Recovery
 - ✅ Build Draft Management
-- ⏳ Build Completion Assistant
-- ⏳ Auto-Fill Missing Components
-- ⏳ Cheapest Compatible Component Finder
+- ✅ Build Completion Assistant
+- ✅ Auto-Fill Missing Components
+- ✅ Cheapest Compatible Component Finder
 - ✅ Build Error Summary
 - ✅ Build Validation Checklist
 - ⏳ Build Quality Score

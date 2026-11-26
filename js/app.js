@@ -438,6 +438,98 @@
               state.coolerId, state.caseId, state.storageId, state.res, state.workload].join(",");
     };
     if (location.hash.indexOf("#b=") === 0) applyBuildCode(location.hash.slice(3));
+
+    // ---- build undo/redo (selection history, this session only) ----
+    var undoStack = [], redoStack = [], applyingHistory = false;
+    function updateUndoButtons() {
+      var u = $("#undoBtn"), r = $("#redoBtn");
+      if (u) u.disabled = undoStack.length < 2;
+      if (r) r.disabled = !redoStack.length;
+    }
+    var baseRender = render;
+    render = function () {
+      baseRender();
+      if (applyingHistory) return;
+      var code = BCP.currentBuildCode();
+      if (undoStack[undoStack.length - 1] !== code) {
+        undoStack.push(code);
+        if (undoStack.length > 50) undoStack.shift();
+        redoStack.length = 0;
+      }
+      updateUndoButtons();
+    };
+    function doUndo() {
+      if (undoStack.length < 2) return;
+      redoStack.push(undoStack.pop());
+      applyingHistory = true;
+      applyBuildCode(undoStack[undoStack.length - 1]);
+      applyingHistory = false;
+      updateUndoButtons();
+    }
+    function doRedo() {
+      if (!redoStack.length) return;
+      var code = redoStack.pop();
+      applyingHistory = true;
+      applyBuildCode(code);
+      applyingHistory = false;
+      undoStack.push(code);
+      updateUndoButtons();
+    }
+    var undoBtn = $("#undoBtn"), redoBtn = $("#redoBtn");
+    if (undoBtn) undoBtn.addEventListener("click", doUndo);
+    if (redoBtn) redoBtn.addEventListener("click", doRedo);
+    document.addEventListener("keydown", function (e) {
+      if (!(e.ctrlKey || e.metaKey) || e.altKey) return;
+      var t = e.target;
+      if (t && /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return;
+      var k = e.key.toLowerCase();
+      if (k === "z" && !e.shiftKey) { e.preventDefault(); doUndo(); }
+      else if (k === "y" || (k === "z" && e.shiftKey)) { e.preventDefault(); doRedo(); }
+    });
+
+    // ---- complete my build (cheapest compatible auto-fill) ----
+    // Returns the list of "Slot: name ($price)" strings it filled, [] when
+    // nothing was missing, or null when CPU/GPU anchors are missing.
+    BCP.completeBuild = function () {
+      var sel = BCP.getSelection();
+      var sug = eng.suggestMissing(sel, state.workload);
+      if (!sug) return null;
+      if (!sug.filled.length) return [];
+      var p = sug.parts;
+      if (p.mobo) state.moboId = p.mobo.id;
+      if (p.ram) state.ramId = p.ram.id;
+      if (p.psu) state.psuId = p.psu.id;
+      if (p.cooler) state.coolerId = p.cooler.id;
+      if (p.storage) state.storageId = p.storage.id;
+      syncComponentPickers();
+      render();
+      return sug.filled.map(function (f) { return f.slot + ": " + f.part.name + " ($" + f.part.priceUSD + ")"; });
+    };
+
+    // ---- build templates (curated starting points) ----
+    var TEMPLATES = [
+      { name: "Esports 1080p", desc: "Great-value competitive build", code: "r5-7600,rtx-4060,a620m,d5-5600-32,psu-550b,cl-stock,case-matx-budget,ssd-1tb-g4,p1080,gaming" },
+      { name: "Balanced 1440p", desc: "The sweet spot for most gamers", code: "r7-7800x3d,rtx-4070s,b650m,d5-6000-32,psu-750g,cl-pa120,case-atx-value,ssd-1tb-g4,p1440,gaming" },
+      { name: "4K enthusiast", desc: "No-compromise 4K gaming", code: "r7-9850x3d,rtx-5080,x870,d5-6000-32,psu-850g,cl-aio360,case-atx-mesh,ssd-2tb-g4,p2160,gaming" },
+      { name: "Creator workstation", desc: "16-core rendering and editing", code: "r9-9950x,rtx-5070ti,x870,d5-6000-64,psu-1000g,cl-aio420,case-full,ssd-2tb-g4,p2160,productivity" }
+    ];
+    (function renderTemplates() {
+      var row = $("#tplRow");
+      if (!row) return;
+      TEMPLATES.forEach(function (t) {
+        var chip = document.createElement("button");
+        chip.type = "button";
+        chip.className = "cmp-chip tpl-chip";
+        chip.textContent = t.name;
+        chip.title = t.desc;
+        chip.addEventListener("click", function () {
+          if (applyBuildCode(t.code)) {
+            try { history.replaceState(null, "", "#b=" + t.code); } catch (e) {}
+          }
+        });
+        row.appendChild(chip);
+      });
+    })();
     bindSegmented("resSeg", "res");
     bindSegmented("wlSeg", "workload");
 
