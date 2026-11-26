@@ -483,6 +483,15 @@
   /* ---------- interaction wiring ---------- */
   var debounceTimer = null;
   function afterCalcInteraction() {
+    // Right after "clear local data" + reload, do not re-seed history/draft.
+    try {
+      if (sessionStorage.getItem("bcp.justCleared")) {
+        sessionStorage.removeItem("bcp.justCleared");
+        renderChecklist();
+        renderHealth();
+        return;
+      }
+    } catch (e) {}
     recordHist();
     saveDraft();
     renderChecklist();
@@ -528,6 +537,7 @@
       if (k && k.indexOf("bcp") === 0) keys.push(k);
     }
     keys.forEach(function (k) { localStorage.removeItem(k); });
+    try { sessionStorage.setItem("bcp.justCleared", "1"); } catch (e) {}
     location.reload();
   }
 
