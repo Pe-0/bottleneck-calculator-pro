@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 319 live · 🚧 89 in progress · ⏳ 3837 not started**
+**4245 features total: ✅ 323 live · 🚧 89 in progress · ⏳ 3833 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -1070,7 +1070,7 @@ _Every item below is not started. Items tagged 'blocked:' wait on an external de
 - ⏳ Preferred Price Range
 - ⏳ Preferred Performance Target
 - ⏳ Preferred Resolution
-- ⏳ Preferred FPS Target
+- ✅ Preferred FPS Target
 - ⏳ Preferred PC Usage Profile
 - ⏳ User Personalization Engine
 - ⏳ Multi-Device Session Management
@@ -1103,7 +1103,7 @@ _Every item below is not started. Items tagged 'blocked:' wait on an external de
 - ✅ Cheapest Compatible Component Finder
 - ✅ Build Error Summary
 - ✅ Build Validation Checklist
-- ⏳ Build Quality Score
+- ✅ Build Quality Score
 - ⏳ Build Optimization Score
 - ⏳ Build Reliability Score
 - ⏳ Build Longevity Score
@@ -1139,11 +1139,11 @@ _Every item below is not started. Items tagged 'blocked:' wait on an external de
 - ⏳ VRAM Utilization Analysis
 - ⏳ Disk Utilization Analysis
 - ⏳ Hardware Resource Distribution
-- ⏳ System Bottleneck Ranking
+- ✅ System Bottleneck Ranking
 - ⏳ Bottleneck History Tracking
 - ⏳ Bottleneck Scenario Comparison
 - ⏳ Bottleneck Detection by Graphics Settings
-- ⏳ Bottleneck Detection by Target FPS
+- ✅ Bottleneck Detection by Target FPS
 - ⏳ Bottleneck Detection by Refresh Rate
 - ⏳ Bottleneck Detection by Ray Tracing
 - ⏳ Bottleneck Detection by Frame Generation

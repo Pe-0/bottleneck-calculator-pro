@@ -55,6 +55,7 @@
       psu: hw(BCP.psus.items, state.psuId),
       cooler: hw(BCP.coolers.items, state.coolerId),
       storage: hw(BCP.storage.items, state.storageId),
+      case_: hw(BCP.cases.items, state.caseId),
       res: state.res,
       workload: state.workload
     };
@@ -209,9 +210,16 @@
       return { name: g.name, fps: eng.gameFps(g, cpuBench.gaming, gpuScore, state.res, state.workload, gpuVram) };
     }).sort(function (a, b) { return b.fps - a.fps; });
     var maxFps = rows[0] ? rows[0].fps : 1;
+    var targetSel = $("#fpsTarget");
+    var target = targetSel ? parseInt(targetSel.value, 10) : 0;
+    var met = 0;
     rows.forEach(function (r) {
       var row = document.createElement("div");
       row.className = "fps-row";
+      if (target > 0) {
+        row.classList.add(r.fps >= target ? "fps-meet" : "fps-miss");
+        if (r.fps >= target) met++;
+      }
       var w = Math.max(4, Math.round((r.fps / maxFps) * 100));
       row.innerHTML =
         '<span class="fps-name"></span>' +
@@ -220,6 +228,12 @@
       row.querySelector(".fps-name").textContent = r.name;
       fpsBox.appendChild(row);
     });
+    var tnote = $("#fpsTargetNote");
+    if (tnote) {
+      tnote.textContent = (target > 0 && state.workload !== "productivity")
+        ? met + " of " + rows.length + " games meet " + target + "+ FPS at this resolution (estimates)"
+        : "";
+    }
 
     // Compatibility
     var warnBox = $("#warnList");
@@ -538,6 +552,9 @@
       var bsel = $("#budgetSelect");
       if (p.budget && bsel && bsel.querySelector('option[value="' + p.budget + '"]')) bsel.value = p.budget;
       if (bsel) bsel.addEventListener("change", function () { savePrefs({ budget: this.value }); });
+      var tsel = $("#fpsTarget");
+      if (p.fpsTarget && tsel && tsel.querySelector('option[value="' + p.fpsTarget + '"]')) tsel.value = p.fpsTarget;
+      if (tsel) tsel.addEventListener("change", function () { savePrefs({ fpsTarget: this.value }); render(); });
     })();
     // Reflect stored res/workload prefs on the segmented controls.
     document.querySelectorAll("#resSeg button").forEach(function (b) {

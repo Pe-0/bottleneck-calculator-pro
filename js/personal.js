@@ -440,12 +440,36 @@
     }
   }
 
+  /* ---------- build health score ---------- */
+  function renderHealth() {
+    var scoreEl = $("#healthScore"), list = $("#healthList"), tips = $("#healthTips");
+    if (!list || !BCP.engine || !BCP.engine.buildHealth || !BCP.getSelection) return;
+    var h = BCP.engine.buildHealth(BCP.getSelection());
+    if (!h) { if (scoreEl) scoreEl.textContent = "–"; list.innerHTML = ""; if (tips) tips.textContent = ""; return; }
+    if (scoreEl) scoreEl.textContent = h.score;
+    list.innerHTML = "";
+    h.rows.forEach(function (r) {
+      var li = document.createElement("li");
+      var ratio = r.pts / r.max;
+      li.className = ratio >= 0.8 ? "check-ok" : ratio >= 0.5 ? "check-mid" : "check-miss";
+      li.textContent = (ratio >= 0.8 ? "✓ " : ratio >= 0.5 ? "• " : "✗ ") +
+        r.label + " - " + r.note + " (" + r.pts + "/" + r.max + ")";
+      list.appendChild(li);
+    });
+    if (tips) {
+      tips.textContent = h.tips.length
+        ? "Biggest gains first: " + h.tips.map(function (t, i) { return (i + 1) + ") " + t; }).join("  ")
+        : "No weak spots in the core categories.";
+    }
+  }
+
   /* ---------- interaction wiring ---------- */
   var debounceTimer = null;
   function afterCalcInteraction() {
     recordHist();
     saveDraft();
     renderChecklist();
+    renderHealth();
   }
   function armCalc() {
     ["change", "click"].forEach(function (evt) {

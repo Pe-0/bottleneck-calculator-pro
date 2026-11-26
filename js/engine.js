@@ -358,6 +358,71 @@ window.BCP.engine = (function () {
     return { parts: out, filled: filled };
   }
 
+  // Heuristic build health score (0-100) from balance, power headroom,
+  // memory speed, storage class, cooling and case clearance. Deterministic,
+  // not a benchmark. Returns null without CPU/GPU anchors.
+  function buildHealth(sel) {
+    if (!sel || !sel.cpu || !sel.gpu) return null;
+    var B = window.BCP;
+    var rows = [];
+    var cpuBench = B.benchmarks.cpu[sel.cpu.id];
+    var gpuScore = B.benchmarks.gpu[sel.gpu.id];
+    if (cpuBench && gpuScore) {
+      var bn = bottleneck(cpuBench, gpuScore, sel.res, sel.workload, sel.cpu);
+      var bal = balanceLabel(bn.pct, bn.limiter);
+      var balPts = bal.cls === "good" ? 30 : bal.cls === "mid" ? 20 : 8;
+      rows.push({ label: "CPU-GPU balance", pts: balPts, max: 30, note: bn.pct + "% - " + bal.label.toLowerCase() });
+    } else {
+      rows.push({ label: "CPU-GPU balance", pts: 0, max: 30, note: "no benchmark data for this pair" });
+    }
+    var rec = recommendedPsuW(sel.cpu.tdpW, sel.gpu.tdpW);
+    if (sel.psu) {
+      var head = sel.psu.wattageW - rec;
+      var pPts = head >= 150 ? 20 : head >= 0 ? 15 : head >= -50 ? 8 : 0;
+      rows.push({ label: "Power headroom", pts: pPts, max: 20, note: sel.psu.wattageW + "W vs " + rec + "W recommended" });
+    } else {
+      rows.push({ label: "Power headroom", pts: 0, max: 20, note: "no power supply selected" });
+    }
+    if (sel.ram) {
+      var mg = (B.compat.memGuidance || {})[sel.cpu.socket];
+      var rPts = 12, rNote = sel.ram.name;
+      if (mg && sel.ram.speedMTs) {
+        if (sel.ram.speedMTs < mg.low) { rPts = 9; rNote = sel.ram.speedMTs + " MT/s - below the usual " + sel.cpu.socket + " range"; }
+        else if (sel.ram.speedMTs > mg.high) { rPts = 12; rNote = sel.ram.speedMTs + " MT/s - above the sweet spot, diminishing returns"; }
+        else { rPts = 15; rNote = sel.ram.speedMTs + " MT/s - in the " + sel.cpu.socket + " sweet spot"; }
+      }
+      rows.push({ label: "Memory speed", pts: rPts, max: 15, note: rNote });
+    } else {
+      rows.push({ label: "Memory speed", pts: 0, max: 15, note: "no memory selected" });
+    }
+    if (sel.storage) {
+      var sPts = /PCIe 5/.test(sel.storage.interface) ? 15 : /PCIe 4/.test(sel.storage.interface) ? 14 : /PCIe 3/.test(sel.storage.interface) ? 11 : 6;
+      rows.push({ label: "Storage class", pts: sPts, max: 15, note: sel.storage.interface });
+    } else {
+      rows.push({ label: "Storage class", pts: 0, max: 15, note: "no storage selected" });
+    }
+    if (sel.cooler) {
+      var cPts = sel.cooler.tdpRatingW >= sel.cpu.tdpW * 1.3 ? 10 : sel.cooler.tdpRatingW >= sel.cpu.tdpW ? 7 : 3;
+      rows.push({ label: "Cooling headroom", pts: cPts, max: 10, note: "rated " + sel.cooler.tdpRatingW + "W vs " + sel.cpu.tdpW + "W CPU" });
+    } else {
+      rows.push({ label: "Cooling headroom", pts: 0, max: 10, note: "no cooler selected" });
+    }
+    if (sel.case_) {
+      var need = sel.gpu.lengthMM || 250;
+      var clear = sel.case_.maxGpuLengthMM - need;
+      var kPts = clear >= 20 ? 10 : clear >= 0 ? 7 : 0;
+      rows.push({ label: "Case clearance", pts: kPts, max: 10, note: clear >= 0 ? clear + "mm spare GPU length" : "GPU does not fit this case" });
+    } else {
+      rows.push({ label: "Case clearance", pts: 10, max: 10, note: "no case constraint applied" });
+    }
+    var score = rows.reduce(function (s, r) { return s + r.pts; }, 0);
+    var tips = rows.filter(function (r) { return r.max - r.pts > 0; })
+      .sort(function (a, b) { return (b.max - b.pts) - (a.max - a.pts); })
+      .slice(0, 3)
+      .map(function (r) { return r.label + " (" + r.note + ")"; });
+    return { score: score, rows: rows, tips: tips };
+  }
+
   // Assemble the best-balanced priced builds within a budget.
   // Uses the separated layers: specs (hardware), scores (benchmarks),
   // prices (prices + components). Parts without a verified price are
@@ -411,6 +476,7 @@ window.BCP.engine = (function () {
     partCompatibility: partCompatibility,
     generateBuilds: generateBuilds,
     suggestMissing: suggestMissing,
+    buildHealth: buildHealth,
     balanceLabel: balanceLabel
   };
 })();
