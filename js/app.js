@@ -44,6 +44,13 @@
     return null;
   }
 
+  function upscaleTechName(gpu) {
+    if (!gpu) return "FSR";
+    if (gpu.brand === "NVIDIA" && !/^GTX/.test(gpu.name)) return "DLSS";
+    if (gpu.brand === "Intel") return "XeSS";
+    return "FSR";
+  }
+
   // Exposed so analysis tabs (Power & thermal, ...) work on the
   // current calculator selection instead of duplicating pickers.
   BCP.getSelection = function () {
@@ -206,8 +213,18 @@
     }
     var games = BCP.games.items.slice();
     var gpuVram = (hw(BCP.gpus.items, state.gpuId) || {}).vramGB;
+    var upsBoost = 0;
+    document.querySelectorAll("#fpsUpscaleSeg button").forEach(function (b) {
+      if (b.classList.contains("active")) upsBoost = parseFloat(b.getAttribute("data-val"));
+    });
+    var upsLabel = $("#fpsUpscaleLabel");
+    if (upsLabel) upsLabel.textContent = "Upscaling (" + upscaleTechName(hw(BCP.gpus.items, state.gpuId)) + ")";
     var rows = games.map(function (g) {
-      return { name: g.name, fps: eng.gameFps(g, cpuBench.gaming, gpuScore, state.res, state.workload, gpuVram) };
+      var native = eng.gameFps(g, cpuBench.gaming, gpuScore, state.res, state.workload, gpuVram);
+      var fps = upsBoost > 0
+        ? eng.gameFpsUpscaled(g, cpuBench.gaming, gpuScore, state.res, state.workload, upsBoost, gpuVram)
+        : native;
+      return { name: g.name, fps: fps, native: native };
     }).sort(function (a, b) { return b.fps - a.fps; });
     var maxFps = rows[0] ? rows[0].fps : 1;
     var targetSel = $("#fpsTarget");
@@ -226,6 +243,7 @@
         '<span class="fps-bar"><span class="fps-fill" style="width:' + w + '%"></span></span>' +
         '<span class="fps-val">' + r.fps + '</span>';
       row.querySelector(".fps-name").textContent = r.name;
+      if (upsBoost > 0 && r.fps !== r.native) row.title = "native estimate: " + r.native + " fps";
       fpsBox.appendChild(row);
     });
     var tnote = $("#fpsTargetNote");
@@ -555,6 +573,18 @@
       var tsel = $("#fpsTarget");
       if (p.fpsTarget && tsel && tsel.querySelector('option[value="' + p.fpsTarget + '"]')) tsel.value = p.fpsTarget;
       if (tsel) tsel.addEventListener("change", function () { savePrefs({ fpsTarget: this.value }); render(); });
+      var useg = $("#fpsUpscaleSeg");
+      if (useg) {
+        var wantUp = p.fpsUpscale || "0";
+        useg.querySelectorAll("button").forEach(function (b) {
+          b.classList.toggle("active", b.getAttribute("data-val") === wantUp);
+          b.addEventListener("click", function () {
+            useg.querySelectorAll("button").forEach(function (x) { x.classList.toggle("active", x === b); });
+            savePrefs({ fpsUpscale: b.getAttribute("data-val") });
+            render();
+          });
+        });
+      }
     })();
     // Reflect stored res/workload prefs on the segmented controls.
     document.querySelectorAll("#resSeg button").forEach(function (b) {

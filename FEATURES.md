@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 327 live · 🚧 89 in progress · ⏳ 3829 not started**
+**4245 features total: ✅ 328 live · 🚧 89 in progress · ⏳ 3828 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -1147,7 +1147,7 @@ _Every item below is not started. Items tagged 'blocked:' wait on an external de
 - ⏳ Bottleneck Detection by Refresh Rate
 - ⏳ Bottleneck Detection by Ray Tracing
 - ⏳ Bottleneck Detection by Frame Generation
-- ⏳ Bottleneck Detection by Upscaling
+- ✅ Bottleneck Detection by Upscaling
 - ⏳ Bottleneck Detection by Background Workload
 - ⏳ Bottleneck Detection by Multitasking
 - ⏳ Bottleneck Detection by Streaming Software
