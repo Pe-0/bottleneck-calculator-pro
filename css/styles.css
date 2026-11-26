@@ -610,3 +610,20 @@ button, input, select, a { transition-timing-function: cubic-bezier(0.22, 1, 0.3
 .cmp-hist-label { font-size: 0.82rem; }
 .cmp-chip { border: 1px solid var(--border, #d5d0e8); background: transparent; color: inherit; border-radius: 999px; padding: 5px 12px; font-size: 0.82rem; cursor: pointer; font-family: inherit; }
 .cmp-chip:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ---------- build workspace: favorites, tags, notes, draft, checklist ---------- */
+.saved-fav { background: none; border: none; cursor: pointer; font-size: 1rem; padding: 2px 4px; color: var(--muted); line-height: 1; flex-shrink: 0; }
+.saved-fav.fav-on { color: #e6a817; }
+.saved-main { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.saved-note { font-size: 0.78rem; color: var(--muted); white-space: pre-wrap; }
+.saved-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.saved-tag { border: 1px solid var(--border, #d5d0e8); border-radius: 999px; padding: 1px 8px; font-size: 0.7rem; color: var(--muted); }
+.saved-filter { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 10px 0 4px; }
+.saved-filter .cmp-chip { padding: 3px 10px; font-size: 0.76rem; }
+.saved-filter .cmp-chip.active { border-color: var(--accent); color: var(--accent); }
+.saved-editor { display: flex; gap: 8px; align-items: flex-start; padding: 8px 0; border-top: 1px dashed var(--border); }
+.saved-editor textarea, .saved-editor input[type="text"] { flex: 1; font: inherit; font-size: 0.82rem; padding: 6px 8px; border: 1px solid var(--border); border-radius: 8px; background: var(--panel, #fff); color: var(--text); resize: vertical; }
+.draft-banner { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; border: 1px solid var(--border); border-radius: 12px; padding: 10px 14px; margin-top: 14px; font-size: 0.85rem; background: var(--panel, #fff); }
+.draft-banner .draft-actions { display: flex; gap: 8px; }
+.check-list li.check-ok::marker { color: #2e9e5b; }
+.check-list li.check-miss::marker { color: #c0392b; }

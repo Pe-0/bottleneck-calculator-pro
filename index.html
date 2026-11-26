@@ -16,7 +16,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
   <link rel="apple-touch-icon" href="icons/icon-180.png" />
   <meta name="theme-color" content="#f5f3fc" />
-  <link rel="stylesheet" href="css/styles.css?v=20261125al" />
+  <link rel="stylesheet" href="css/styles.css?v=20261126a" />
   <script>
     // Apply the saved theme before first paint to avoid a flash.
     try {
@@ -268,6 +268,12 @@
           <h2>Compatibility &amp; advice</h2>
           <ul class="warn-list" id="warnList"></ul>
         </div>
+
+        <div class="panel">
+          <h2>Build checklist</h2>
+          <ul class="warn-list check-list" id="checkList"></ul>
+          <p class="muted cmp-note" id="checkSummary"></p>
+        </div>
       </section>
 
 <!-- ============ EXPORT & SHARE ============ -->
@@ -280,6 +286,7 @@
           <button id="saveBuildBtn" class="gen-btn" type="button">Save this build</button>
           <button id="cloudSaveBtn" class="gen-load" type="button" hidden>Save to cloud</button>
         </div>
+        <div id="draftRestore"></div>
         <div id="savedBuilds" class="saved-builds"></div>
         <div id="buildHistory" class="saved-builds"></div>
         <div id="cloudBuilds" class="saved-builds"></div>
@@ -640,30 +647,30 @@
     </div>
   </footer>
 
-  <script src="js/data/hardware.js?v=20261125al"></script>
-  <script src="js/data/benchmarks.js?v=20261125al"></script>
-  <script src="js/data/prices.js?v=20261125al"></script>
-  <script src="js/data/games.js?v=20261125al"></script>
-  <script src="js/data/compat.js?v=20261125al"></script>
-  <script src="js/data/components.js?v=20261125al"></script>
-  <script src="js/data/cooling-cases.js?v=20261125al"></script>
-  <script src="js/data/storage.js?v=20261125al"></script>
-  <script src="js/data/monitors.js?v=20261125al"></script>
-  <script src="js/data/software.js?v=20261125al"></script>
-  <script src="js/engine.js?v=20261125al"></script>
-  <script src="js/app.js?v=20261125al"></script>
-  <script src="js/assistant.js?v=20261125al"></script>
-  <script src="js/compare.js?v=20261125al"></script>
-  <script src="js/upgrade.js?v=20261125al"></script>
-  <script src="js/power.js?v=20261125al"></script>
-  <script src="js/library.js?v=20261125al"></script>
-  <script src="js/dashboard.js?v=20261125al"></script>
-  <script src="js/monitors.js?v=20261125al"></script>
-  <script src="js/personal.js?v=20261125al"></script>
-  <script src="js/auth.js?v=20261125al"></script>
-  <script src="js/community.js?v=20261125al"></script>
-  <script src="js/analytics.js?v=20261125al"></script>
-  <script src="js/export.js?v=20261125al"></script>
+  <script src="js/data/hardware.js?v=20261126a"></script>
+  <script src="js/data/benchmarks.js?v=20261126a"></script>
+  <script src="js/data/prices.js?v=20261126a"></script>
+  <script src="js/data/games.js?v=20261126a"></script>
+  <script src="js/data/compat.js?v=20261126a"></script>
+  <script src="js/data/components.js?v=20261126a"></script>
+  <script src="js/data/cooling-cases.js?v=20261126a"></script>
+  <script src="js/data/storage.js?v=20261126a"></script>
+  <script src="js/data/monitors.js?v=20261126a"></script>
+  <script src="js/data/software.js?v=20261126a"></script>
+  <script src="js/engine.js?v=20261126a"></script>
+  <script src="js/app.js?v=20261126a"></script>
+  <script src="js/assistant.js?v=20261126a"></script>
+  <script src="js/compare.js?v=20261126a"></script>
+  <script src="js/upgrade.js?v=20261126a"></script>
+  <script src="js/power.js?v=20261126a"></script>
+  <script src="js/library.js?v=20261126a"></script>
+  <script src="js/dashboard.js?v=20261126a"></script>
+  <script src="js/monitors.js?v=20261126a"></script>
+  <script src="js/personal.js?v=20261126a"></script>
+  <script src="js/auth.js?v=20261126a"></script>
+  <script src="js/community.js?v=20261126a"></script>
+  <script src="js/analytics.js?v=20261126a"></script>
+  <script src="js/export.js?v=20261126a"></script>
   <script>
     // Data & methodology view (footer link) + service worker + mobile nav drawer.
     (function () {
