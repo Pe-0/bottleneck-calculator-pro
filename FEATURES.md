@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 323 live · 🚧 89 in progress · ⏳ 3833 not started**
+**4245 features total: ✅ 326 live · 🚧 89 in progress · ⏳ 3830 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -1129,9 +1129,9 @@ _Every item below is not started. Items tagged 'blocked:' wait on an external de
 - ⏳ Multitasking Bottleneck Analysis
 - ⏳ Hardware Resource Saturation Analysis
 - ⏳ CPU Cache Performance Impact
-- ⏳ Memory Channel Performance Impact
-- ⏳ Single-Channel Memory Impact
-- ⏳ Dual-Channel Memory Impact
+- ✅ Memory Channel Performance Impact
+- ✅ Single-Channel Memory Impact
+- ✅ Dual-Channel Memory Impact
 - ⏳ CPU Frequency Scaling Impact
 - ⏳ GPU Utilization Analysis
 - ⏳ CPU Utilization Analysis

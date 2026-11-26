@@ -145,6 +145,12 @@ window.BCP.engine = (function () {
           out.push({ level: "info", text: ram.name + " is above the practical " + cpuHw.socket + " range - expect diminishing returns and manual tuning." });
         }
       }
+      if (ram.modules === 1 && mobo.ramSlots >= 2) {
+        out.push({ level: "warn", text: ram.name + " is a single stick - it runs in single-channel mode and roughly halves memory bandwidth. A 2-stick kit of the same total capacity is noticeably faster in games." });
+      }
+      if (ram.modules === 2 && mobo.ramSlots >= 2) {
+        out.push({ level: "info", text: ram.name + " runs in dual-channel mode - full memory bandwidth." });
+      }
       if (mobo.chipset === "H610" && ram.speedMTs > 3200) {
         out.push({ level: "warn", text: "H610 boards run memory at JEDEC speeds - this " + ram.speedMTs + " MT/s kit would be capped near 3200." });
       }
@@ -390,6 +396,10 @@ window.BCP.engine = (function () {
         if (sel.ram.speedMTs < mg.low) { rPts = 9; rNote = sel.ram.speedMTs + " MT/s - below the usual " + sel.cpu.socket + " range"; }
         else if (sel.ram.speedMTs > mg.high) { rPts = 12; rNote = sel.ram.speedMTs + " MT/s - above the sweet spot, diminishing returns"; }
         else { rPts = 15; rNote = sel.ram.speedMTs + " MT/s - in the " + sel.cpu.socket + " sweet spot"; }
+      }
+      if (sel.ram.modules === 1) {
+        rPts = Math.min(rPts, 8);
+        rNote += "; single stick = single-channel, half bandwidth";
       }
       rows.push({ label: "Memory speed", pts: rPts, max: 15, note: rNote });
     } else {
