@@ -49,6 +49,21 @@
     var res = { p1080: "1080p", p1440: "1440p", p2160: "4K" }[p[8]] || "";
     return (cpu || "?") + " + " + (gpu || "?") + (res ? " · " + res : "");
   }
+  function bnBadge(code) {
+    try {
+      var p = code.split(",");
+      var cb = BCP.benchmarks.cpu[p[0]], gs = BCP.benchmarks.gpu[p[1]];
+      if (!cb || !gs || !BCP.engine) return null;
+      var cpuHw = null;
+      (BCP.cpus.items || []).forEach(function (c) { if (c.id === p[0]) cpuHw = c; });
+      var bn = BCP.engine.bottleneck(cb, gs, p[8], p[9], cpuHw);
+      var span = document.createElement("span");
+      span.className = "hist-badge" + (bn.limiter === "cpu" && bn.pct >= 25 ? " hist-badge-warn" : "");
+      span.textContent = bn.pct + "% " + (bn.limiter === "cpu" ? "CPU" : "GPU");
+      span.title = "Estimated bottleneck for this build at its saved resolution and workload";
+      return span;
+    } catch (e) { return null; }
+  }
   function recordHist() {
     if (!BCP.currentBuildCode) return;
     var code = BCP.currentBuildCode();
@@ -76,6 +91,8 @@
       row.innerHTML = '<span class="saved-name"></span>' +
         '<span class="saved-actions"><button type="button" class="gen-load saved-load">Load</button></span>';
       row.querySelector(".saved-name").textContent = histName(e.code);
+      var badge = bnBadge(e.code);
+      if (badge) row.querySelector(".saved-name").appendChild(badge);
       row.querySelector(".saved-load").addEventListener("click", function () {
         if (BCP.applyBuildCode && BCP.applyBuildCode(e.code)) renderHist();
       });
@@ -481,10 +498,47 @@
     afterCalcInteraction();
   }
 
+  /* ---------- my data: export & clear (everything is local) ---------- */
+  function collectLocalData() {
+    var data = { app: "Bottleneck Calculator Pro", exportedAt: new Date().toISOString(),
+      note: "Everything Bottleneck Calculator Pro stores about you lives in this browser. This file is the complete copy.", stores: {} };
+    for (var i = 0; i < localStorage.length; i++) {
+      var k = localStorage.key(i);
+      if (k && k.indexOf("bcp") === 0) {
+        try { data.stores[k] = JSON.parse(localStorage.getItem(k)); }
+        catch (e) { data.stores[k] = localStorage.getItem(k); }
+      }
+    }
+    return data;
+  }
+  function exportLocalData() {
+    var blob = new Blob([JSON.stringify(collectLocalData(), null, 2)], { type: "application/json" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "bcp-my-data-" + new Date().toISOString().slice(0, 10) + ".json";
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  }
+  function clearLocalData() {
+    if (!window.confirm("Delete everything Bottleneck Calculator Pro stores in this browser? Saved builds, tags, notes, history, drafts and preferences will be removed. This cannot be undone.")) return;
+    var keys = [];
+    for (var i = 0; i < localStorage.length; i++) {
+      var k = localStorage.key(i);
+      if (k && k.indexOf("bcp") === 0) keys.push(k);
+    }
+    keys.forEach(function (k) { localStorage.removeItem(k); });
+    location.reload();
+  }
+
   function init() {
     initTheme();
     var saveBtn = $("#saveBuildBtn");
     if (saveBtn) saveBtn.addEventListener("click", saveCurrent);
+    var expBtn = $("#dataExportBtn");
+    if (expBtn) expBtn.addEventListener("click", exportLocalData);
+    var clrBtn = $("#dataClearBtn");
+    if (clrBtn) clrBtn.addEventListener("click", clearLocalData);
     renderBuilds();
     if (document.getElementById("viewCalc")) {
       armCalc();

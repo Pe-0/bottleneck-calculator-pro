@@ -646,3 +646,7 @@ button, input, select, a { transition-timing-function: cubic-bezier(0.22, 1, 0.3
 .health-score strong { font-size: 2rem; font-weight: 800; }
 .health-max { font-size: 0.9rem; }
 .check-list li.check-mid::marker { color: #b8860b; }
+
+/* ---------- history bottleneck badges ---------- */
+.hist-badge { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 0.7rem; border: 1px solid var(--border, #d5d0e8); color: var(--muted); vertical-align: middle; }
+.hist-badge-warn { color: #c0392b; border-color: #c0392b; }

@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 326 live · 🚧 89 in progress · ⏳ 3830 not started**
+**4245 features total: ✅ 327 live · 🚧 89 in progress · ⏳ 3829 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -1063,7 +1063,7 @@ _Every item below is not started. Items tagged 'blocked:' wait on an external de
 - ⏳ Private Account Mode
 - ⏳ Account Deactivation
 - ⏳ Account Deletion & Data Purging
-- ⏳ Account Data Export
+- ✅ Account Data Export
 - ⏳ User Preferences Management
 - ⏳ Favorite Brands
 - ⏳ Preferred Hardware Manufacturers
