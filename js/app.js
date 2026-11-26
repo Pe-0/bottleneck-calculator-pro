@@ -163,6 +163,7 @@
   }
 
   function render() {
+    if (BCP.livePricesHook) BCP.livePricesHook();
     var cpu = hw(BCP.cpus.items, state.cpuId);
     var gpu = hw(BCP.gpus.items, state.gpuId);
     var cpuBench = BCP.benchmarks.cpu[state.cpuId];

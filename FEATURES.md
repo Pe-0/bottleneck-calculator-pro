@@ -2,10 +2,10 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 328 live · 🚧 89 in progress · ⏳ 3828 not started**
+**4245 features total: ✅ 328 live · 🚧 99 in progress · ⏳ 3818 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
-Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
+Last updated: 2026-11-26 - weekly market price layer (Pricify open data, CC BY 4.0): Market tab, calculator price cards with 7-week history and deal flags, weekly GitHub Actions refresh. Updated with every shipped stage.
 
 
 ## 1. Core System & User Management
@@ -241,7 +241,7 @@ _Full power stage live in the Power tab: per-part draws, idle/gaming/peak, headr
 - ⏳ CPU PCIe Support
 - ✅ CPU Benchmark Scores
 - ✅ CPU Release Date
-- ⏳ CPU Price History
+- 🚧 CPU Price History
 - ✅ CPU Gaming Performance
 - ✅ CPU Productivity Performance
 
@@ -266,7 +266,7 @@ _Full power stage live in the Power tab: per-part draws, idle/gaming/peak, headr
 - ✅ GPU Benchmark Scores
 - ✅ GPU Gaming Performance
 - ✅ GPU Release Date
-- ⏳ GPU Price History
+- 🚧 GPU Price History
 
 ### Motherboard Database
 - ✅ Motherboard Catalog
@@ -420,13 +420,13 @@ _Parked: waiting on eBay developer API approval (manual review). Zero-spend rule
 - ⏳ Product Reviews
 - ⏳ User Ratings
 - ⏳ Verified Reviews
-- ⏳ Product Availability
-- ⏳ Stock Tracking
-- ⏳ Price Tracking
-- ⏳ Price History
+- 🚧 Product Availability
+- 🚧 Stock Tracking
+- 🚧 Price Tracking
+- 🚧 Price History
 - ⏳ Price Alerts
-- ⏳ Discount Tracking
-- ⏳ Deals & Offers
+- 🚧 Discount Tracking
+- 🚧 Deals & Offers
 - ⏳ Featured Products
 - ⏳ Best Sellers
 - ⏳ New Arrivals
@@ -467,8 +467,8 @@ _Parked with the marketplace (depends on live price/stock APIs)._
 - ⏳ Best Value Build
 - ⏳ Price-Optimized Build
 - ⏳ Seller Price Comparison
-- ⏳ Multi-Store Price Comparison
-- ⏳ Lowest Price Finder
+- 🚧 Multi-Store Price Comparison
+- 🚧 Lowest Price Finder
 - ⏳ Component Price Aggregation
 - ⏳ Build Shopping List
 - ⏳ Shopping List Export

@@ -16,7 +16,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
   <link rel="apple-touch-icon" href="icons/icon-180.png" />
   <meta name="theme-color" content="#f5f3fc" />
-  <link rel="stylesheet" href="css/styles.css?v=20261126i" />
+  <link rel="stylesheet" href="css/styles.css?v=20261126j" />
   <script>
     // Apply the saved theme before first paint to avoid a flash.
     try {
@@ -49,6 +49,7 @@
       <button class="tab-btn" data-view="power" type="button">Power</button>
       <button class="tab-btn" data-view="games" type="button">Games</button>
       <button class="tab-btn" data-view="monitors" type="button">Monitors</button>
+      <button class="tab-btn" data-view="market" type="button">Market</button>
       <button class="tab-btn" data-view="dash" type="button">Dashboard</button>
       <button class="tab-btn" data-view="community" type="button">Community</button>
     </nav>
@@ -309,6 +310,13 @@
           <p class="muted cmp-note" id="healthTips"></p>
           <p class="muted cmp-note">Heuristic score from balance, power headroom, memory speed, storage class, cooling and clearance. Not a benchmark.</p>
         </div>
+      </section>
+
+<!-- ============ LIVE MARKET PRICES ============ -->
+      <section class="panel live-panel" id="livePanel">
+        <h2>Market prices <small class="h-sub">weekly US retail snapshot</small></h2>
+        <div id="livePrices" class="pl-grid"></div>
+        <p class="muted cmp-note" id="livePricesNote"></p>
       </section>
 
 <!-- ============ EXPORT & SHARE ============ -->
@@ -572,6 +580,26 @@
     </div><!-- /viewGames -->
 
     <!-- ============ ANALYTICS DASHBOARD ============ -->
+    <div id="viewMarket" class="view hidden">
+      <section class="hero">
+        <h1>What parts cost right now.</h1>
+        <p>Real US retail prices for the most popular new parts, refreshed weekly. See who has it cheapest, what is in stock, and whether the price is going up or down.</p>
+      </section>
+      <section class="panel">
+        <div id="mkChips" class="mk-chips"></div>
+        <div class="mk-tools">
+          <input id="mkSearch" type="search" placeholder="Search products" aria-label="Search products" autocomplete="off">
+          <label class="mk-sort">Sort <select id="mkSort" aria-label="Sort products">
+            <option value="shops">Most in stock</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option>
+            <option value="drop">Biggest weekly drop</option><option value="msrp">Closest to launch price</option></select></label>
+          <span class="muted" id="mkCount"></span>
+        </div>
+        <div id="mkList"></div>
+        <p class="muted cmp-note" id="mkMeta"></p>
+        <p class="muted cmp-note" id="mkAttr"></p>
+      </section>
+    </div><!-- /viewMarket -->
+
     <div id="viewDash" class="view hidden">
       <section class="hero">
         <h1>Your build, charted.</h1>
@@ -680,34 +708,37 @@
       <p>FPS figures are estimates from curated relative-performance data, not measured benchmarks. Treat prices as indicative.</p>
       <p class="muted" id="dataMeta"></p>
       <p><a href="#data" id="dataLink" class="data-link">Data sources &amp; methodology</a></p>
+      <p class="muted" id="plFooter"></p>
       <p class="copy">© 2026 Peter Zakaria. All rights reserved.</p>
     </div>
   </footer>
 
-  <script src="js/data/hardware.js?v=20261126i"></script>
-  <script src="js/data/benchmarks.js?v=20261126i"></script>
-  <script src="js/data/prices.js?v=20261126i"></script>
-  <script src="js/data/games.js?v=20261126i"></script>
-  <script src="js/data/compat.js?v=20261126i"></script>
-  <script src="js/data/components.js?v=20261126i"></script>
-  <script src="js/data/cooling-cases.js?v=20261126i"></script>
-  <script src="js/data/storage.js?v=20261126i"></script>
-  <script src="js/data/monitors.js?v=20261126i"></script>
-  <script src="js/data/software.js?v=20261126i"></script>
-  <script src="js/engine.js?v=20261126i"></script>
-  <script src="js/app.js?v=20261126i"></script>
-  <script src="js/assistant.js?v=20261126i"></script>
-  <script src="js/compare.js?v=20261126i"></script>
-  <script src="js/upgrade.js?v=20261126i"></script>
-  <script src="js/power.js?v=20261126i"></script>
-  <script src="js/library.js?v=20261126i"></script>
-  <script src="js/dashboard.js?v=20261126i"></script>
-  <script src="js/monitors.js?v=20261126i"></script>
-  <script src="js/personal.js?v=20261126i"></script>
-  <script src="js/auth.js?v=20261126i"></script>
-  <script src="js/community.js?v=20261126i"></script>
-  <script src="js/analytics.js?v=20261126i"></script>
-  <script src="js/export.js?v=20261126i"></script>
+  <script src="js/data/hardware.js?v=20261126j"></script>
+  <script src="js/data/benchmarks.js?v=20261126j"></script>
+  <script src="js/data/prices.js?v=20261126j"></script>
+  <script src="js/data/prices-live.js?v=20261126j"></script>
+  <script src="js/data/games.js?v=20261126j"></script>
+  <script src="js/data/compat.js?v=20261126j"></script>
+  <script src="js/data/components.js?v=20261126j"></script>
+  <script src="js/data/cooling-cases.js?v=20261126j"></script>
+  <script src="js/data/storage.js?v=20261126j"></script>
+  <script src="js/data/monitors.js?v=20261126j"></script>
+  <script src="js/data/software.js?v=20261126j"></script>
+  <script src="js/engine.js?v=20261126j"></script>
+  <script src="js/app.js?v=20261126j"></script>
+  <script src="js/assistant.js?v=20261126j"></script>
+  <script src="js/compare.js?v=20261126j"></script>
+  <script src="js/upgrade.js?v=20261126j"></script>
+  <script src="js/power.js?v=20261126j"></script>
+  <script src="js/library.js?v=20261126j"></script>
+  <script src="js/dashboard.js?v=20261126j"></script>
+  <script src="js/monitors.js?v=20261126j"></script>
+  <script src="js/prices-live.js?v=20261126j"></script>
+  <script src="js/personal.js?v=20261126j"></script>
+  <script src="js/auth.js?v=20261126j"></script>
+  <script src="js/community.js?v=20261126j"></script>
+  <script src="js/analytics.js?v=20261126j"></script>
+  <script src="js/export.js?v=20261126j"></script>
   <script>
     // Data & methodology view (footer link) + service worker + mobile nav drawer.
     (function () {
@@ -732,7 +763,7 @@
         link.addEventListener("click", function (e) {
           e.preventDefault();
           document.querySelectorAll(".tab-btn").forEach(function (x) { x.classList.remove("active"); });
-          ["viewCalc","viewCompare","viewUpgrade","viewPower","viewGames","viewMonitors","viewDash","viewCommunity","viewAuth"].forEach(function (id) {
+          ["viewCalc","viewCompare","viewUpgrade","viewPower","viewGames","viewMonitors","viewDash","viewCommunity","viewAuth","viewMarket"].forEach(function (id) {
             var el = document.getElementById(id); if (el) el.classList.add("hidden");
           });
           document.getElementById("viewData").classList.remove("hidden");
@@ -744,7 +775,8 @@
             ["CPU specs", B.cpus.meta, B.cpus.items.length + " models"],
             ["GPU specs", B.gpus.meta, B.gpus.items.length + " models"],
             ["Benchmark scores", B.benchmarks.meta, "Relative scores on fixed anchors"],
-            ["Prices", B.prices.meta, "USD, indicative"],
+            ["Prices (curated)", B.prices.meta, "USD, indicative"],
+            ["Market prices (weekly feed)", B.pricesLive.meta, "USD, " + B.pricesLive.meta.week + ", " + B.pricesLive.meta.matched.cpu + " CPUs + " + B.pricesLive.meta.matched.gpu + " GPUs matched, data by " + B.pricesLive.meta.attribution + " (" + B.pricesLive.meta.license + ")"],
             ["Motherboards", B.motherboards.meta, B.motherboards.items.length + " boards"],
             ["Memory kits", B.memoryKits.meta, B.memoryKits.items.length + " kits"],
             ["PSUs", B.psus.meta, B.psus.items.length + " units"],
