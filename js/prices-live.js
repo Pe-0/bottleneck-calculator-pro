@@ -57,7 +57,7 @@
     var rec = PL[kind][item.id];
     var head = el("div", "pl-head");
     head.appendChild(el("strong", null, item.name));
-    head.appendChild(el("span", "pl-kind", kind.toUpperCase()));
+    head.appendChild(el("span", "pl-kind", ({ mobo: "BOARD", ram: "RAM", ssd: "SSD", psu: "PSU", pcase: "CASE" })[kind] || kind.toUpperCase()));
     card.appendChild(head);
     if (!rec) {
       card.appendChild(el("p", "muted pl-none", item.legacy
@@ -67,10 +67,11 @@
       return card;
     }
     var hist = (PL.history[kind] || {})[item.id] || [];
+    var isClass = !!rec.basis;
     var row = el("div", "pl-row");
     var big = el("div", "pl-big");
     big.appendChild(el("span", "pl-price", usd(rec.week_close)));
-    big.appendChild(el("small", null, "lowest in-stock new price, week end"));
+    big.appendChild(el("small", null, (isClass ? "cheapest in-stock new price in class, week end" : "lowest in-stock new price, week end")));
     row.appendChild(big);
     var sp = hist.length > 1 ? sparkline(hist) : null;
     if (sp) { var w = el("div", "pl-spark-wrap"); w.appendChild(sp); w.appendChild(el("small", null, hist.length + "-week history")); row.appendChild(w); }
@@ -81,12 +82,17 @@
     card.appendChild(flags);
     var dl = el("dl", "pl-facts");
     function fact(k, v) { dl.appendChild(el("dt", null, k)); dl.appendChild(el("dd", null, v)); }
+    if (isClass) fact("Basis", "Cheapest in class" + (rec.n ? " (" + rec.n + ")" : ""));
     fact("Week range", usd(rec.week_low) + " to " + usd(rec.week_high));
     if (rec.launch_price) fact("Launch price", usd(rec.launch_price));
     fact("Cheapest at", (rec.lowest_store_end || "-").replace(" (in store)", " (in-store)"));
     fact("In stock", rec.retailers_in_stock_end + " retailers, " + rec.shops_in_stock_end + " shops");
     if (curated) fact("Curated estimate", usd(curated));
     card.appendChild(dl);
+    if (isClass) {
+      var bn = el("p", "muted pl-var", "Class price: " + rec.basis + (rec.product ? ". Cheapest: " + rec.product : "") + ". Not this exact part, so treat it as a floor price.");
+      card.appendChild(bn);
+    }
     if (rec.variant) card.appendChild(el("p", "muted pl-var", "Matched to the most-tracked variant: " + rec.pricifyName + "."));
     return card;
   }
@@ -96,28 +102,33 @@
     var box = $("#livePrices"); if (!box || !BCP.getSelection) return;
     var sel = BCP.getSelection();
     if (!sel || !sel.cpu || !sel.gpu) return;
-    var key = sel.cpu.id + "|" + sel.gpu.id;
+    var key = [sel.cpu, sel.gpu, sel.mobo, sel.ram, sel.psu, sel.storage].map(function (x) { return x ? x.id : "-"; }).join("|");
     if (key === lastKey) return;
     lastKey = key;
     box.innerHTML = "";
     box.appendChild(priceCard("cpu", sel.cpu, BCP.prices.cpu[sel.cpu.id]));
     box.appendChild(priceCard("gpu", sel.gpu, BCP.prices.gpu[sel.gpu.id]));
+    [["mobo", sel.mobo], ["ram", sel.ram], ["psu", sel.psu], ["ssd", sel.storage]].forEach(function (pr) {
+      if (pr[1]) box.appendChild(priceCard(pr[0], pr[1], pr[1].priceUSD));
+    });
     var note = $("#livePricesNote");
     if (note) note.textContent = "Weekly US retail snapshot, " + weekLabel() + ". Not a live quote: check the store before buying. Data: " + PL.meta.attribution + " (" + PL.meta.license + ").";
   }
   BCP.livePricesHook = renderCalc;
-  // Build total re-priced with the weekly feed (CPU/GPU only; other parts stay curated).
+  // Build total re-priced with the weekly feed. Parts without a feed price keep their curated estimate.
   BCP.livePricesTotal = function (b) {
     var n = $("#sumLiveTotal"); if (!n) return;
-    var c = PL.cpu[b.cpuId], g = PL.gpu[b.gpuId];
-    if ((!c && !g) || b.missing) { n.hidden = true; return; }
-    var cp = c ? c.week_close : b.cpuPrice, gp = g ? g.week_close : b.gpuPrice;
-    var live = b.total - (b.cpuPrice || 0) - (b.gpuPrice || 0) + (cp || 0) + (gp || 0);
-    var which = (c && g) ? "CPU and GPU" : c ? "CPU" : "GPU";
+    if (b.missing) { n.hidden = true; return; }
+    var live = b.total, names = [], labels = { cpu: "CPU", gpu: "GPU", mobo: "board", ram: "RAM", psu: "PSU", ssd: "storage" };
+    b.items.forEach(function (it) {
+      var rec = PL[it[0]] && PL[it[0]][it[1]];
+      if (rec && it[2] != null) { live += rec.week_close - it[2]; names.push(labels[it[0]]); }
+    });
+    if (!names.length) { n.hidden = true; return; }
     var diff = live - b.total;
     n.textContent = "At weekly market prices (" + PL.meta.week + "): " + usd(Math.round(live)) +
-      (Math.round(diff) === 0 ? " (same as the estimate above). " : " (" + (diff > 0 ? "+" : "-") + usd(Math.abs(Math.round(diff))) + " vs the estimate above). ") + which +
-      " from the weekly US retail feed, other parts use curated estimates.";
+      (Math.round(diff) === 0 ? " (same as the estimate above). " : " (" + (diff > 0 ? "+" : "-") + usd(Math.abs(Math.round(diff))) + " vs the estimate above). ") +
+      "Re-priced from the weekly US feed: " + names.join(", ") + ". Boards, RAM, PSU and storage use the cheapest in-stock price in their class; other parts keep curated estimates.";
     n.hidden = false;
   };
   BCP.livePrice = function (kind, id) { return PL && PL[kind] ? PL[kind][id] || null : null; };

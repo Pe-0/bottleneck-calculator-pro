@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 328 live · 🚧 100 in progress · ⏳ 3817 not started**
+**4245 features total: ✅ 328 live · 🚧 105 in progress · ⏳ 3812 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -286,7 +286,7 @@ _Full power stage live in the Power tab: per-part draws, idle/gaming/peak, headr
 - ⏳ Wi-Fi Support
 - ⏳ Bluetooth Support
 - ⏳ BIOS Version
-- ⏳ Motherboard Price History
+- 🚧 Motherboard Price History
 
 ### RAM Database
 - ✅ RAM Catalog
@@ -304,7 +304,7 @@ _Full power stage live in the Power tab: per-part draws, idle/gaming/peak, headr
 - ⏳ XMP Profiles
 - ⏳ EXPO Profiles
 - 🚧 RAM Compatibility Database
-- ⏳ RAM Price History
+- 🚧 RAM Price History
 
 ### Storage Database
 - ✅ SSD Catalog
@@ -321,7 +321,7 @@ _Full power stage live in the Power tab: per-part draws, idle/gaming/peak, headr
 - ⏳ DRAM Cache
 - ⏳ NAND Type
 - 🚧 Form Factor
-- ⏳ Storage Price History
+- 🚧 Storage Price History
 
 ### PSU Database
 - ✅ PSU Catalog
@@ -335,7 +335,7 @@ _Full power stage live in the Power tab: per-part draws, idle/gaming/peak, headr
 - ⏳ EPS Connectors
 - ⏳ PSU Dimensions
 - ⏳ PSU Tier Database
-- ⏳ PSU Price History
+- 🚧 PSU Price History
 
 ### Cooling Database
 - ✅ CPU Cooler Catalog
@@ -469,7 +469,7 @@ _Parked with the marketplace (depends on live price/stock APIs)._
 - ⏳ Seller Price Comparison
 - 🚧 Multi-Store Price Comparison
 - 🚧 Lowest Price Finder
-- ⏳ Component Price Aggregation
+- 🚧 Component Price Aggregation
 - ⏳ Build Shopping List
 - ⏳ Shopping List Export
 - ⏳ Shopping List Sharing
