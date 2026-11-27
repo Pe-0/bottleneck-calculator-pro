@@ -755,3 +755,9 @@ button, input, select, a { transition-timing-function: cubic-bezier(0.22, 1, 0.3
 .ch-tile { background: var(--panel-2); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; border-left: 4px solid var(--accent); }
 .ch-tile strong { font-size: 20px; }
 .ch-tile.ok { border-left-color: #34d399; } .ch-tile.warn { border-left-color: #fbbf24; } .ch-tile.bad { border-left-color: #f87171; }
+
+/* Smart hub */
+.sm-q { flex: 1 1 360px; min-width: 240px; }
+.hb-list { margin: 8px 0 0 18px; line-height: 1.6; }
+.sm-q { background: var(--panel-2); color: var(--text); border: 1px solid var(--border); border-radius: 10px; padding: 11px 14px; font: inherit; }
+.sm-q:focus { outline: none; border-color: var(--accent); }

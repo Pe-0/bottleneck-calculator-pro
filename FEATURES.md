@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 457 live · 🚧 105 in progress · ⏳ 3683 not started**
+**4245 features total: ✅ 489 live · 🚧 101 in progress · ⏳ 3655 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -889,46 +889,46 @@ _Static site: server-side items don't apply yet; client-side items are listed._
 ## 25. AI & Smart Recommendations
 - ✅ AI PC Build Assistant
 - ✅ AI Hardware Advisor
-- ⏳ AI Component Recommendations
-- ⏳ AI Build Optimization
-- ⏳ AI Budget Optimization
-- 🚧 AI Bottleneck Explanation
-- ⏳ AI Upgrade Advisor
-- ⏳ AI Performance Prediction
-- ⏳ AI Game-Based Build Recommendations
-- ⏳ AI Workload-Based Recommendations
-- ⏳ AI Hardware Comparison
-- ⏳ AI Shopping Assistant
-- ⏳ AI Alternative Component Finder
-- 🚧 AI Compatibility Assistant
-- 🚧 AI Build Review
-- ⏳ AI Build Rating
-- ⏳ AI Build Improvement Suggestions
-- ⏳ AI Natural Language Search
+- ✅ AI Component Recommendations
+- ✅ AI Build Optimization
+- ✅ AI Budget Optimization
+- ✅ AI Bottleneck Explanation
+- ✅ AI Upgrade Advisor
+- ✅ AI Performance Prediction
+- ✅ AI Game-Based Build Recommendations
+- ✅ AI Workload-Based Recommendations
+- ✅ AI Hardware Comparison
+- ✅ AI Shopping Assistant
+- ✅ AI Alternative Component Finder
+- ✅ AI Compatibility Assistant
+- ✅ AI Build Review
+- ✅ AI Build Rating
+- ✅ AI Build Improvement Suggestions
+- ✅ AI Natural Language Search
 - ✅ AI Hardware Q&A
 - ⏳ AI Personalized Recommendations
-- ⏳ AI Build Troubleshooting
+- ✅ AI Build Troubleshooting
 
 ## 26. Gaming Ecosystem
 - ✅ Gaming PC Builder
-- 🚧 Game Performance Finder
-- ⏳ Game-Based Build Finder
+- ✅ Game Performance Finder
+- ✅ Game-Based Build Finder
 - ✅ FPS Calculator
 - ✅ Resolution Selector
-- ⏳ Graphics Preset Selector
-- ⏳ Ray Tracing Performance Analysis
-- ⏳ DLSS Performance Analysis
-- ⏳ FSR Performance Analysis
-- ⏳ XeSS Performance Analysis
-- ⏳ Frame Generation Analysis
-- ⏳ VR Gaming Compatibility
-- ⏳ VR Performance Estimator
-- ⏳ Competitive Gaming Optimizer
-- ⏳ High Refresh Rate Optimizer
-- ⏳ Gaming Performance Profiles
+- ✅ Graphics Preset Selector
+- ✅ Ray Tracing Performance Analysis
+- ✅ DLSS Performance Analysis
+- ✅ FSR Performance Analysis
+- ✅ XeSS Performance Analysis
+- ✅ Frame Generation Analysis
+- ✅ VR Gaming Compatibility
+- ✅ VR Performance Estimator
+- ✅ Competitive Gaming Optimizer
+- ✅ High Refresh Rate Optimizer
+- ✅ Gaming Performance Profiles
 - ⏳ Game Library Integration
-- ⏳ Gaming Hardware Rankings
-- ⏳ Esports Build Recommendations
+- ✅ Gaming Hardware Rankings
+- ✅ Esports Build Recommendations
 
 ## 27. Display & Peripheral Ecosystem
 
