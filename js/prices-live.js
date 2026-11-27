@@ -106,6 +106,20 @@
     if (note) note.textContent = "Weekly US retail snapshot, " + weekLabel() + ". Not a live quote: check the store before buying. Data: " + PL.meta.attribution + " (" + PL.meta.license + ").";
   }
   BCP.livePricesHook = renderCalc;
+  // Build total re-priced with the weekly feed (CPU/GPU only; other parts stay curated).
+  BCP.livePricesTotal = function (b) {
+    var n = $("#sumLiveTotal"); if (!n) return;
+    var c = PL.cpu[b.cpuId], g = PL.gpu[b.gpuId];
+    if ((!c && !g) || b.missing) { n.hidden = true; return; }
+    var cp = c ? c.week_close : b.cpuPrice, gp = g ? g.week_close : b.gpuPrice;
+    var live = b.total - (b.cpuPrice || 0) - (b.gpuPrice || 0) + (cp || 0) + (gp || 0);
+    var which = (c && g) ? "CPU and GPU" : c ? "CPU" : "GPU";
+    var diff = live - b.total;
+    n.textContent = "At weekly market prices (" + PL.meta.week + "): " + usd(Math.round(live)) +
+      (Math.round(diff) === 0 ? " (same as the estimate above). " : " (" + (diff > 0 ? "+" : "-") + usd(Math.abs(Math.round(diff))) + " vs the estimate above). ") + which +
+      " from the weekly US retail feed, other parts use curated estimates.";
+    n.hidden = false;
+  };
   BCP.livePrice = function (kind, id) { return PL && PL[kind] ? PL[kind][id] || null : null; };
 
   // ---- Market tab ----

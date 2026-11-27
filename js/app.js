@@ -337,6 +337,7 @@
     var total = 0, missing = false;
     parts.forEach(function (p) { if (p !== undefined && p !== null) { total += p; } else { missing = true; } });
     $("#sumTotal").textContent = missing && total === 0 ? "—" : fmtUsd(total) + (missing ? "+" : "");
+    if (BCP.livePricesTotal) BCP.livePricesTotal({ cpuId: state.cpuId, gpuId: state.gpuId, cpuPrice: cpuPrice, gpuPrice: gpuPrice, total: total, missing: missing });
     $("#sumPsu").textContent = recPsu + "W";
 
     // Spec sheets

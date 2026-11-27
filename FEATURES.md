@@ -2,10 +2,10 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 328 live · 🚧 99 in progress · ⏳ 3818 not started**
+**4245 features total: ✅ 328 live · 🚧 100 in progress · ⏳ 3817 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
-Last updated: 2026-11-26 - weekly market price layer (Pricify open data, CC BY 4.0): Market tab, calculator price cards with 7-week history and deal flags, weekly GitHub Actions refresh. Updated with every shipped stage.
+Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
 
 
 ## 1. Core System & User Management
@@ -462,7 +462,7 @@ _Parked with the marketplace (depends on live price/stock APIs)._
 - ⏳ Individual Component Purchase
 - ⏳ Missing Component Detection
 - ⏳ Component Availability Checker
-- ⏳ Build Price Calculator
+- 🚧 Build Price Calculator
 - ⏳ Cheapest Compatible Build
 - ⏳ Best Value Build
 - ⏳ Price-Optimized Build
