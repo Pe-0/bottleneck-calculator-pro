@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 423 live · 🚧 103 in progress · ⏳ 3719 not started**
+**4245 features total: ✅ 433 live · 🚧 107 in progress · ⏳ 3705 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -474,7 +474,7 @@ _Parked with the marketplace (depends on live price/stock APIs)._
 - ⏳ Shopping List Export
 - ⏳ Shopping List Sharing
 - ⏳ Shopping List Price Tracking
-- ⏳ Build Price Alerts
+- 🚧 Build Price Alerts
 - ⏳ Price Drop Notifications
 - ✅ Budget Optimization
 - ⏳ Automatic Component Substitution
@@ -721,26 +721,26 @@ _Scheduled as stage S13 together with the game/software database._
 ## 20. Notifications & Alerts
 
 _Price alerts depend on live price APIs (parked with the marketplace)._
-- ⏳ Price Drop Alerts
+- 🚧 Price Drop Alerts
 - ⏳ Product Availability Alerts
 - ⏳ Restock Notifications
-- ⏳ Wishlist Notifications
-- ⏳ Build Price Alerts
-- ⏳ Budget Alerts
+- 🚧 Wishlist Notifications
+- 🚧 Build Price Alerts
+- ✅ Budget Alerts
 - ✅ Compatibility Alerts
-- ⏳ BIOS Compatibility Alerts
-- 🚧 Power Warning Alerts
-- ⏳ Bottleneck Alerts
-- ⏳ Upgrade Alerts
-- ⏳ Deal Notifications
-- ⏳ Discount Notifications
-- ⏳ Build Recommendation Notifications
-- ⏳ Benchmark Update Notifications
-- ⏳ Hardware Release Notifications
+- ✅ BIOS Compatibility Alerts
+- ✅ Power Warning Alerts
+- ✅ Bottleneck Alerts
+- ✅ Upgrade Alerts
+- 🚧 Deal Notifications
+- 🚧 Discount Notifications
+- ✅ Build Recommendation Notifications
+- ✅ Benchmark Update Notifications
+- ✅ Hardware Release Notifications
 - ⏳ Game Requirement Update Notifications
-- ⏳ Notification Preferences
+- ✅ Notification Preferences
 - ⏳ Email Notifications
-- 🚧 In-App Notifications
+- ✅ In-App Notifications
 
 ## 21. Reports & Export System
 
