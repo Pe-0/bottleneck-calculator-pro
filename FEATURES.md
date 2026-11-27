@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 385 live · 🚧 105 in progress · ⏳ 3755 not started**
+**4245 features total: ✅ 378 live · 🚧 105 in progress · ⏳ 3762 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -542,13 +542,13 @@ _Parked with the marketplace (depends on live price/stock APIs)._
 - ✅ Value Score Calculator
 - ✅ Cost Breakdown
 - ✅ Upgrade Cost Calculator
-- ✅ Total Ownership Cost
-- ✅ Electricity Cost Calculator
-- ✅ Monthly Electricity Cost
-- ✅ Annual Electricity Cost
-- ✅ Gaming Electricity Cost
-- ✅ Idle Electricity Cost
-- ✅ Power Efficiency Cost Analysis
+- ⏳ Total Ownership Cost
+- ⏳ Electricity Cost Calculator
+- ⏳ Monthly Electricity Cost
+- ⏳ Annual Electricity Cost
+- ⏳ Gaming Electricity Cost
+- ⏳ Idle Electricity Cost
+- ⏳ Power Efficiency Cost Analysis
 
 ## 14. Upgrade Advisor
 - ✅ PC Upgrade Advisor

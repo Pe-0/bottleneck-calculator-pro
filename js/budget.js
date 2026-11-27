@@ -149,7 +149,7 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    BCP.addHub({ key: "budget", label: "Budget", before: "dash", title: "Plan the money.", intro: "Set a budget, see how your build splits it, find the best use of what is left, price an upgrade, and see what the build costs to run.",
-      subs: [{ id: "alloc", label: "Budget allocation", render: allocation }, { id: "upgrade", label: "Upgrade cost", render: upgradeCost }, { id: "power", label: "Electricity & ownership", render: electricity }] });
+    BCP.addHub({ key: "budget", label: "Budget", before: "dash", title: "Plan the money.", intro: "Set a budget, see how your build splits it, find the best use of what is left, price an upgrade.",
+      subs: [{ id: "alloc", label: "Budget allocation", render: allocation }, { id: "upgrade", label: "Upgrade cost", render: upgradeCost }] });
   });
 })();
