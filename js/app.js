@@ -53,6 +53,11 @@
 
   // Exposed so analysis tabs (Power & thermal, ...) work on the
   // current calculator selection instead of duplicating pickers.
+  BCP.buildLink = function () {
+    var code = [state.cpuId, state.gpuId, state.moboId, state.ramId, state.psuId,
+                state.coolerId, state.caseId, state.storageId, state.res, state.workload].join(",");
+    return location.origin + location.pathname + "#b=" + code;
+  };
   BCP.getSelection = function () {
     return {
       cpu: hw(BCP.cpus.items, state.cpuId),

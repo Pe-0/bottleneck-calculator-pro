@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 403 live · 🚧 105 in progress · ⏳ 3737 not started**
+**4245 features total: ✅ 423 live · 🚧 103 in progress · ⏳ 3719 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -128,7 +128,7 @@ _Accounts are live via Supabase: email/password signup with mandatory email conf
 - 🚧 Multi-Monitor Compatibility
 - 🚧 Compatibility Score
 - ✅ Compatibility Warnings
-- 🚧 Compatibility Report
+- ✅ Compatibility Report
 - ✅ Automatic Compatibility Validation
 
 ## 5. Power Consumption & PSU Analysis
@@ -745,29 +745,29 @@ _Price alerts depend on live price APIs (parked with the marketplace)._
 ## 21. Reports & Export System
 
 _Shareable build links are live; print/PDF/CSV/QR export is stage S15._
-- ⏳ PC Build Report
-- ⏳ Bottleneck Analysis Report
-- 🚧 Compatibility Report
-- ⏳ Performance Report
-- ⏳ Benchmark Report
-- ⏳ Power Consumption Report
-- ⏳ Thermal Analysis Report
-- ⏳ Budget Breakdown Report
-- ⏳ Component Comparison Report
-- ⏳ Upgrade Recommendation Report
-- ⏳ Shopping List Report
-- ⏳ Price Comparison Report
-- ⏳ Build Summary Report
+- ✅ PC Build Report
+- ✅ Bottleneck Analysis Report
+- ✅ Compatibility Report
+- ✅ Performance Report
+- ✅ Benchmark Report
+- ✅ Power Consumption Report
+- ✅ Thermal Analysis Report
+- ✅ Budget Breakdown Report
+- ✅ Component Comparison Report
+- ✅ Upgrade Recommendation Report
+- ✅ Shopping List Report
+- ✅ Price Comparison Report
+- ✅ Build Summary Report
 - ✅ PDF Export
 - ✅ CSV Export
-- ⏳ Excel Export
+- ✅ Excel Export
 - ✅ Print Build
 - ✅ Shareable Build Link
-- ⏳ Build QR Code
-- ⏳ Performance Charts Export
-- ⏳ Build Image Export
-- ⏳ Social Media Build Card
-- ⏳ Custom Report Templates
+- ✅ Build QR Code
+- ✅ Performance Charts Export
+- ✅ Build Image Export
+- ✅ Social Media Build Card
+- ✅ Custom Report Templates
 
 ## 22. Database & Data Management
 - ✅ Hardware Master Database

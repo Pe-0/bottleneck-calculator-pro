@@ -727,3 +727,9 @@ button, input, select, a { transition-timing-function: cubic-bezier(0.22, 1, 0.3
 .lab-table th, .lab-table td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line, #e4defa); white-space: nowrap; }
 .lab-table tr:first-child th { color: var(--muted, #6b6590); font-weight: 600; font-size: 13px; }
 .lab-table td:not(:first-child) { font-variant-numeric: tabular-nums; }
+
+/* Reports hub */
+.rp-img { max-width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border); display: block; margin-bottom: 12px; }
+.rp-qr { border-radius: 12px; display: block; margin: 8px 0 12px; }
+.rp-link { display: block; word-break: break-all; margin-top: 8px; padding: 10px 12px; background: var(--panel-2); border-radius: 10px; font-size: 13px; }
+.panel .hb-form + .mk-chips, .panel .mk-chips { margin: 8px 0; }
