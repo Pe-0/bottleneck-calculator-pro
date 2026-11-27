@@ -686,3 +686,15 @@ button, input, select, a { transition-timing-function: cubic-bezier(0.22, 1, 0.3
 .sum-live { font-size: 0.8rem; margin: 6px 0 0; line-height: 1.4; }
 .sum-total { flex-wrap: wrap; }
 .sum-total .sum-live, .sum-total #sumUsedNote { flex: 0 0 100%; }
+
+/* ---- Build review ---- */
+.rv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 760px) { .rv-grid { grid-template-columns: 1fr; } }
+.rv-card { background: var(--bg-soft); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+.rv-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+.rv-val.good { color: var(--good); } .rv-val.mid { color: var(--mid); } .rv-val.bad { color: var(--bad); }
+.rv-bar { height: 8px; border-radius: 999px; background: var(--panel-2); overflow: hidden; }
+.rv-fill { height: 100%; border-radius: 999px; background: var(--accent); }
+.rv-fill.good { background: var(--good); } .rv-fill.mid { background: var(--mid); } .rv-fill.bad { background: var(--bad); }
+.rv-why { font-size: 0.8rem; margin: 8px 0 0; }
+.rv-sum { margin: 14px 0 6px; font-weight: 600; }
