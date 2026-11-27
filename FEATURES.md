@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 355 live · 🚧 103 in progress · ⏳ 3787 not started**
+**4245 features total: ✅ 385 live · 🚧 105 in progress · ⏳ 3755 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -162,30 +162,30 @@ _Full power stage live in the Power tab: per-part draws, idle/gaming/peak, headr
 ## 6. Performance & Benchmarking
 - ✅ Gaming Performance Estimator
 - ✅ Average FPS Estimator
-- ⏳ Minimum FPS Estimator
-- ⏳ 1% Low FPS Estimator
-- ⏳ 0.1% Low FPS Estimator
+- ✅ Minimum FPS Estimator
+- ✅ 1% Low FPS Estimator
+- ✅ 0.1% Low FPS Estimator
 - ✅ CPU Performance Score
 - ✅ GPU Performance Score
-- ⏳ Overall PC Performance Score
+- ✅ Overall PC Performance Score
 - ✅ Gaming Performance Score
 - ✅ Productivity Performance Score
-- ⏳ Rendering Performance Score
+- ✅ Rendering Performance Score
 - ✅ Multi-Core Performance Analysis
-- ⏳ Single-Core Performance Analysis
+- ✅ Single-Core Performance Analysis
 - ✅ Performance Comparison
 - ✅ Benchmark Database
-- ⏳ Benchmark History
+- ✅ Benchmark History
 - ✅ Performance Per Watt
 - ✅ Performance Per Dollar
 - ✅ FPS Per Dollar
 - 🚧 Real-World Performance Analysis
-- ⏳ Synthetic Benchmark Analysis
+- 🚧 Synthetic Benchmark Analysis
 - 🚧 Gaming Benchmark Analysis
-- ⏳ Workload Benchmark Analysis
-- ⏳ Frame Time Analysis
-- ⏳ Performance Stability Score
-- ⏳ Expected Performance Range
+- ✅ Workload Benchmark Analysis
+- ✅ Frame Time Analysis
+- ✅ Performance Stability Score
+- ✅ Expected Performance Range
 - 🚧 Performance Prediction Confidence
 
 ## 7. Game & Software Database
@@ -662,34 +662,34 @@ _Accounts and cloud saves are live (Supabase); social features themselves not st
 
 ## 18. Advanced Hardware Tools
 - ✅ PC Bottleneck Simulator
-- ⏳ CPU Performance Simulator
-- ⏳ GPU Performance Simulator
+- ✅ CPU Performance Simulator
+- ✅ GPU Performance Simulator
 - ✅ Resolution Performance Simulator
-- ⏳ Game Settings Simulator
+- ✅ Game Settings Simulator
 - ✅ Hardware Upgrade Simulator
-- ⏳ Build Optimization Simulator
-- ⏳ Power Load Simulator
+- ✅ Build Optimization Simulator
+- ✅ Power Load Simulator
 - ⏳ Cooling Simulator
 - 🚧 RAM Capacity Simulator
 - ⏳ Storage Performance Simulator
 - ⏳ Multi-GPU Analysis
 - ⏳ PCIe Bandwidth Analysis
 - ⏳ CPU Cache Analysis
-- ⏳ VRAM Usage Estimator
-- ⏳ RAM Usage Estimator
-- ⏳ Memory Bandwidth Analysis
-- ⏳ Storage Workload Analysis
-- ⏳ Hardware Utilization Estimator
-- ⏳ Workload Distribution Analysis
-- ⏳ Rendering Time Estimator
-- ⏳ Video Export Time Estimator
-- ⏳ AI Model Performance Estimator
-- ⏳ Machine Learning Workload Estimator
-- ⏳ Virtual Machine Capacity Planner
-- ⏳ Server Workload Planner
-- ⏳ Streaming Performance Estimator
-- ⏳ Recording Performance Estimator
-- ⏳ Multitasking Performance Estimator
+- ✅ VRAM Usage Estimator
+- ✅ RAM Usage Estimator
+- ✅ Memory Bandwidth Analysis
+- ✅ Storage Workload Analysis
+- ✅ Hardware Utilization Estimator
+- 🚧 Workload Distribution Analysis
+- ✅ Rendering Time Estimator
+- ✅ Video Export Time Estimator
+- ✅ AI Model Performance Estimator
+- ✅ Machine Learning Workload Estimator
+- ✅ Virtual Machine Capacity Planner
+- ✅ Server Workload Planner
+- ✅ Streaming Performance Estimator
+- ✅ Recording Performance Estimator
+- ✅ Multitasking Performance Estimator
 
 ## 19. Search & Discovery
 

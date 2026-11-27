@@ -720,3 +720,10 @@ button, input, select, a { transition-timing-function: cubic-bezier(0.22, 1, 0.3
 .hb-table th { text-align: left; color: var(--muted); font-weight: 600; padding: 8px 10px; border-bottom: 1px solid var(--border); }
 .hb-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
 .hb-good { color: var(--good); } .hb-mid { color: var(--mid); } .hb-bad { color: var(--bad); }
+
+/* Lab hub tables */
+.lab-scroll { overflow-x: auto; margin-top: 8px; }
+.lab-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.lab-table th, .lab-table td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line, #e4defa); white-space: nowrap; }
+.lab-table tr:first-child th { color: var(--muted, #6b6590); font-weight: 600; font-size: 13px; }
+.lab-table td:not(:first-child) { font-variant-numeric: tabular-nums; }
