@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 378 live · 🚧 105 in progress · ⏳ 3762 not started**
+**4245 features total: ✅ 403 live · 🚧 105 in progress · ⏳ 3737 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -194,9 +194,9 @@ _Full power stage live in the Power tab: per-part draws, idle/gaming/peak, headr
 - ✅ Game Categories
 - ✅ Game Genres
 - ✅ Game Requirements
-- ⏳ Minimum System Requirements
-- ⏳ Recommended System Requirements
-- ⏳ Ultra System Requirements
+- ✅ Minimum System Requirements
+- ✅ Recommended System Requirements
+- ✅ Ultra System Requirements
 - ✅ Game Benchmark Database
 - ✅ Game Performance Profiles
 - ✅ Game Resolution Profiles
@@ -205,12 +205,12 @@ _Full power stage live in the Power tab: per-part draws, idle/gaming/peak, headr
 - ✅ Game-Specific FPS Estimation
 - ✅ Game CPU Utilization Profiles
 - ✅ Game GPU Utilization Profiles
-- ⏳ Game RAM Requirements
-- ⏳ Game VRAM Requirements
-- ⏳ Game Compatibility Checker
+- ✅ Game RAM Requirements
+- ✅ Game VRAM Requirements
+- ✅ Game Compatibility Checker
 - ✅ Game Library
 - ✅ Favorite Games
-- ⏳ Game Performance Comparison
+- ✅ Game Performance Comparison
 - ✅ Software Database
 - ✅ Software Requirements Database
 - ✅ Software Performance Profiles
@@ -694,29 +694,29 @@ _Accounts and cloud saves are live (Supabase); social features themselves not st
 ## 19. Search & Discovery
 
 _Scheduled as stage S13 together with the game/software database._
-- ⏳ Global Hardware Search
-- ⏳ Smart Component Search
+- ✅ Global Hardware Search
+- ✅ Smart Component Search
 - ⏳ Semantic Product Search
-- ⏳ Search Suggestions
-- ⏳ Search Autocomplete
-- ⏳ Search History
+- ✅ Search Suggestions
+- ✅ Search Autocomplete
+- ✅ Search History
 - ⏳ Trending Searches
 - ⏳ Popular Components
-- ⏳ Recently Added Components
-- ⏳ Advanced Search
-- ⏳ Specification-Based Search
-- ⏳ Compatibility-Based Search
-- ⏳ Price-Based Search
-- ⏳ Performance-Based Search
-- ⏳ Brand Search
-- ⏳ Model Search
+- ✅ Recently Added Components
+- ✅ Advanced Search
+- ✅ Specification-Based Search
+- ✅ Compatibility-Based Search
+- ✅ Price-Based Search
+- ✅ Performance-Based Search
+- ✅ Brand Search
+- ✅ Model Search
 - ✅ Game Search
 - ⏳ Build Search
-- ⏳ Search Filters
-- ⏳ Search Sorting
-- ⏳ Search Result Comparison
-- ⏳ Similar Hardware Discovery
-- ⏳ Alternative Component Discovery
+- ✅ Search Filters
+- ✅ Search Sorting
+- ✅ Search Result Comparison
+- ✅ Similar Hardware Discovery
+- ✅ Alternative Component Discovery
 
 ## 20. Notifications & Alerts
 
