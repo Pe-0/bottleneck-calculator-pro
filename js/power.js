@@ -36,6 +36,18 @@
     return rows;
   }
 
+  // Shared with the Budget hub: idle / gaming / peak wall-draw estimates (same formulas as the Power tab).
+  BCP.powerFigures = function (sel) {
+    var rows = breakdown(sel), c = BCP.compat.psu;
+    var totalTdp = rows.reduce(function (s, r) { return s + r.w; }, 0);
+    return {
+      idle: Math.round(35 + (sel.cpu.tdpW + sel.gpu.tdpW) * 0.08),
+      gaming: Math.round(sel.cpu.tdpW * 0.85 + sel.gpu.tdpW * 0.9 + (totalTdp - sel.cpu.tdpW - sel.gpu.tdpW)),
+      peak: totalTdp + Math.round(sel.gpu.tdpW * (c.gpuSpikeFactor - 1)),
+      rows: rows
+    };
+  };
+
   function renderPower(sel) {
     var rows = breakdown(sel);
     var c = BCP.compat.psu;
