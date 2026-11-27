@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 328 live · 🚧 105 in progress · ⏳ 3812 not started**
+**4245 features total: ✅ 334 live · 🚧 105 in progress · ⏳ 3806 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -1106,13 +1106,13 @@ _Every item below is not started. Items tagged 'blocked:' wait on an external de
 - ✅ Build Quality Score
 - ⏳ Build Optimization Score
 - ⏳ Build Reliability Score
-- ⏳ Build Longevity Score
-- ⏳ Build Upgradeability Score
+- ✅ Build Longevity Score
+- ✅ Build Upgradeability Score
 - ⏳ Build Repairability Score
-- ⏳ Build Noise Score
-- ⏳ Build Efficiency Score
-- ⏳ Build Risk Assessment
-- ⏳ Build Decision Summary
+- ✅ Build Noise Score
+- ✅ Build Efficiency Score
+- ✅ Build Risk Assessment
+- ✅ Build Decision Summary
 - ⏳ Build Final Review
 
 ## 33. Advanced Bottleneck & System Diagnostics (roadmap - user gap list, Nov 25)
