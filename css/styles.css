@@ -761,3 +761,19 @@ button, input, select, a { transition-timing-function: cubic-bezier(0.22, 1, 0.3
 .hb-list { margin: 8px 0 0 18px; line-height: 1.6; }
 .sm-q { background: var(--panel-2); color: var(--text); border: 1px solid var(--border); border-radius: 10px; padding: 11px 14px; font: inherit; }
 .sm-q:focus { outline: none; border-color: var(--accent); }
+
+/* UX layer */
+.ux-tip { position: fixed; z-index: 9999; max-width: 240px; background: #1d1433; color: #f3eefe; border: 1px solid var(--accent); border-radius: 8px; padding: 7px 10px; font-size: 13px; pointer-events: none; box-shadow: 0 6px 20px rgba(0,0,0,.35); }
+.ux-help { position: fixed; top: 0; right: 0; bottom: 0; width: min(420px, 100vw); z-index: 9000; background: var(--panel); color: var(--text); border-left: 1px solid var(--border); padding: 18px 20px; overflow-y: auto; box-shadow: -10px 0 30px rgba(0,0,0,.3); }
+.ux-help[hidden], .ux-modal[hidden], .ux-tip[hidden] { display: none; }
+.ux-help-head { display: flex; justify-content: space-between; align-items: center; font-size: 18px; }
+.ux-help h3 { margin: 16px 0 6px; } .ux-help p { margin: 6px 0; line-height: 1.5; font-size: 14px; }
+.ux-help-btn { width: 100%; margin-bottom: 8px; }
+.ux-modal { position: fixed; inset: 0; z-index: 10000; background: rgba(8,4,20,.6); display: flex; align-items: center; justify-content: center; }
+.ux-modal-box { background: var(--panel); color: var(--text); border: 1px solid var(--border); border-radius: 14px; padding: 22px; max-width: 380px; width: 90%; }
+.ux-chip { display: flex; flex-direction: column; gap: 2px; text-align: left; width: 100%; margin-top: 10px; padding: 10px 12px; background: var(--panel-2); color: var(--text); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 10px; font: inherit; cursor: pointer; }
+.ux-chip small { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; } .ux-chip strong { font-size: 13px; } .ux-chip span { font-size: 12px; color: var(--accent-2); }
+.db-grid { display: grid; } .db-cust { display: flex; flex-direction: column; gap: 6px; }
+.db-cust-row { display: flex; align-items: center; gap: 10px; } .db-cust-row span { flex: 1; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+.db-cust > .hb-btn { align-self: flex-start; }

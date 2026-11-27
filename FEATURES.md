@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 489 live · 🚧 101 in progress · ⏳ 3655 not started**
+**4245 features total: ✅ 499 live · 🚧 101 in progress · ⏳ 3645 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -621,7 +621,7 @@ _Dashboard live: per-build cost/radar/bottleneck/power charts plus database-wide
 - ✅ Build Comparison Charts
 - 🚧 Interactive Data Visualization
 - ⏳ Personalized Recommendations
-- ⏳ Dashboard Customization
+- ✅ Dashboard Customization
 
 ## 17. Community & Social Features
 
@@ -998,24 +998,24 @@ _PWA + data transparency page are stage S20. Live price APIs are parked with the
 - ✅ Hardware Specification Cards
 - ✅ Animated Performance Indicators
 - 🚧 Interactive Charts
-- ⏳ Dynamic Build Preview
-- ⏳ Real-Time Build Updates
+- ✅ Dynamic Build Preview
+- ✅ Real-Time Build Updates
 - ⏳ Real-Time Price Updates
 - ✅ Live Compatibility Indicators
 - ✅ Visual Warning System
 - ✅ Component Status Indicators
 - ⏳ Skeleton Loading
 - ⏳ Lazy Loading
-- ⏳ Pagination
+- ✅ Pagination
 - ⏳ Infinite Scrolling
-- ⏳ Advanced Filtering UI
-- ⏳ Advanced Sorting UI
+- ✅ Advanced Filtering UI
+- ✅ Advanced Sorting UI
 - 🚧 Smart Empty States
 - 🚧 Error States
-- ⏳ Confirmation Dialogs
-- ⏳ Tooltips
-- ⏳ Contextual Help
-- ⏳ Keyboard Navigation
+- ✅ Confirmation Dialogs
+- ✅ Tooltips
+- ✅ Contextual Help
+- ✅ Keyboard Navigation
 - 🚧 Accessibility Support
 - ✅ Mobile Optimization
 - 🚧 Tablet Optimization

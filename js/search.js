@@ -8,7 +8,7 @@
   "use strict";
   var BCP = window.BCP, ui = BCP.ui, eng = BCP.engine, el = ui.el;
   var CATS = [["cpus", "CPU"], ["gpus", "GPU"], ["motherboards", "Motherboard"], ["memoryKits", "Memory"], ["storage", "Storage"], ["psus", "PSU"], ["coolers", "Cooler"], ["cases", "Case"]];
-  var S = { cat: "gpus", q: "", brand: "", maxP: "", minPerf: "", sort: "perf", compat: false, hist: ui.get("search.hist", []), cmp: [], opt: {} };
+  var S = { cat: "gpus", q: "", brand: "", maxP: "", minPerf: "", sort: "perf", page: 0, compat: false, hist: ui.get("search.hist", []), cmp: [], opt: {} };
   function brandOf(n) { var m = n.match(/^(AMD|Intel|NVIDIA|GeForce|Radeon|Ryzen|Core|Arc|Corsair|Noctua|Samsung|WD|Crucial|Kingston|G\.Skill|ASUS|MSI|Gigabyte|Seasonic|Thermalright|Deepcool|NZXT|Lian Li|Fractal)/i); return m ? ({ geforce: "NVIDIA", radeon: "AMD", ryzen: "AMD", core: "Intel", arc: "Intel" }[m[1].toLowerCase()] || m[1]) : "Generic"; }
   function norm(cat, x) {
     var o = { cat: cat, id: x.id, name: x.name, raw: x, brand: x.brand || brandOf(x.name), price: 0, perf: null, year: x.launchYear || 0, specs: [] };
@@ -47,9 +47,9 @@
     var items = all(S.cat), f = el("div", "hb-form");
     var qi = el("input"); qi.type = "search"; qi.placeholder = "Model, brand or spec, e.g. 7800X3D"; qi.value = S.q; qi.setAttribute("list", "srchSug");
     var dl = el("datalist"); dl.id = "srchSug"; items.slice(0, 200).forEach(function (o) { var op = el("option"); op.value = o.name; dl.appendChild(op); }); P.appendChild(dl);
-    qi.addEventListener("change", function () { S.q = qi.value; remember(S.q); rerun(); });
+    qi.addEventListener("change", function () { S.q = qi.value; S.page = 0; remember(S.q); rerun(); });
     f.appendChild(ui.field("Search", qi, "Autocomplete lists this category"));
-    f.appendChild(ui.field("Category", ui.select(CATS.map(function (c) { return [c[0], c[1]]; }), S.cat, function (v) { S.cat = v; S.brand = ""; rerun(); })));
+    f.appendChild(ui.field("Category", ui.select(CATS.map(function (c) { return [c[0], c[1]]; }), S.cat, function (v) { S.cat = v; S.brand = ""; S.page = 0; rerun(); })));
     var brands = {}; items.forEach(function (o) { brands[o.brand] = 1; });
     f.appendChild(ui.field("Brand", ui.select([["", "Any brand"]].concat(Object.keys(brands).sort().map(function (b) { return [b, b]; })), S.brand, function (v) { S.brand = v; rerun(); })));
     var mp = el("input"); mp.type = "number"; mp.placeholder = "No limit"; mp.value = S.maxP; mp.addEventListener("change", function () { S.maxP = mp.value; rerun(); });
@@ -77,14 +77,14 @@
     if (S.hist.length) { var hh = el("div", "mk-chips"); hh.appendChild(el("span", "muted", "Recent searches ")); S.hist.slice(0, 6).forEach(function (h) { var c = el("button", "mk-chip", h); c.type = "button"; c.addEventListener("click", function () { S.q = h; rerun(); }); hh.appendChild(c); });
       var clr = el("button", "mk-chip", "Clear"); clr.type = "button"; clr.addEventListener("click", function () { S.hist = []; ui.set("search.hist", []); rerun(); }); hh.appendChild(clr); P.appendChild(hh); }
     var R = ui.panel(res.length + " results", CATS.filter(function (c) { return c[0] === S.cat; })[0][1]); box.appendChild(R);
-    var shown = res.slice(0, 40);
+    var PS = 25, pages = Math.max(1, Math.ceil(res.length / PS)); if (S.page >= pages) S.page = 0; var shown = res.slice(S.page * PS, S.page * PS + PS);
     table(R, ["", "Name", "Specs", "Price", "Score", "Year", ""], shown.map(function (o) {
       var ck = el("input"); ck.type = "checkbox"; ck.checked = S.cmp.indexOf(o.id) >= 0; ck.addEventListener("change", function () { var i = S.cmp.indexOf(o.id); if (ck.checked && i < 0) S.cmp.push(o.id); else if (i >= 0) S.cmp.splice(i, 1); S.cmp = S.cmp.slice(-4); cmpPanel(); });
       var sim = el("button", "mk-chip", "Similar"); sim.type = "button"; sim.addEventListener("click", function () { S.opt.simId = o.id; S.opt.simCat = o.cat; rerun(); });
       return [ck, o.name, o.specs.join(" , "), o.price ? ui.usd(o.price) : "-", o.perf != null ? String(Math.round(o.perf)) : "-", o.year || "-", sim];
     }));
     if (!res.length) R.appendChild(el("p", "muted", "Nothing matches. Loosen a filter."));
-    if (res.length > 40) R.appendChild(ui.note("Showing the first 40. Narrow the filters to see the rest."));
+    if (pages > 1) { var pg = el("div", "mk-chips"); var pv = el("button", "mk-chip", "Previous"); pv.type = "button"; pv.disabled = S.page === 0; pv.addEventListener("click", function () { S.page--; rerun(); }); var nx = el("button", "mk-chip", "Next"); nx.type = "button"; nx.disabled = S.page >= pages - 1; nx.addEventListener("click", function () { S.page++; rerun(); }); pg.appendChild(pv); pg.appendChild(el("span", "muted", "Page " + (S.page + 1) + " of " + pages + " (" + res.length + " results)")); pg.appendChild(nx); R.appendChild(pg); }
     var cmpBox = el("div"); R.appendChild(cmpBox);
     function cmpPanel() {
       cmpBox.innerHTML = ""; var pick = items.filter(function (o) { return S.cmp.indexOf(o.id) >= 0; }); if (pick.length < 2) { if (pick.length) cmpBox.appendChild(ui.note("Tick one more part to compare side by side (up to 4).")); return; }
