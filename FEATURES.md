@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 433 live · 🚧 107 in progress · ⏳ 3705 not started**
+**4245 features total: ✅ 452 live · 🚧 104 in progress · ⏳ 3689 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -156,7 +156,7 @@ _Full power stage live in the Power tab: per-part draws, idle/gaming/peak, headr
 - ⏳ PSU Connector Validation
 - ✅ 12VHPWR Compatibility
 - ✅ 12V-2x6 Compatibility
-- 🚧 PSU Upgrade Recommendations
+- ✅ PSU Upgrade Recommendations
 - ✅ Power Consumption Visualization
 
 ## 6. Performance & Benchmarking
@@ -554,11 +554,11 @@ _Parked with the marketplace (depends on live price/stock APIs)._
 - ✅ PC Upgrade Advisor
 - ✅ CPU Upgrade Recommendations
 - ✅ GPU Upgrade Recommendations
-- ⏳ RAM Upgrade Recommendations
-- ⏳ Storage Upgrade Recommendations
-- 🚧 PSU Upgrade Recommendations
-- ⏳ Cooling Upgrade Recommendations
-- 🚧 Motherboard Upgrade Recommendations
+- ✅ RAM Upgrade Recommendations
+- ✅ Storage Upgrade Recommendations
+- ✅ PSU Upgrade Recommendations
+- ✅ Cooling Upgrade Recommendations
+- ✅ Motherboard Upgrade Recommendations
 - ✅ Upgrade Compatibility Checker
 - ✅ Upgrade Bottleneck Analysis
 - ✅ Before & After Performance Comparison
@@ -566,11 +566,11 @@ _Parked with the marketplace (depends on live price/stock APIs)._
 - ✅ Upgrade Cost Analysis
 - ✅ Upgrade Value Score
 - ✅ Upgrade Priority Ranking
-- ⏳ Upgrade Roadmap
-- ⏳ Incremental Upgrade Planner
-- ⏳ Future-Proofing Analysis
-- ⏳ Upgrade Impact Analysis
-- ⏳ Upgrade Alternatives
+- ✅ Upgrade Roadmap
+- ✅ Incremental Upgrade Planner
+- ✅ Future-Proofing Analysis
+- 🚧 Upgrade Impact Analysis
+- ✅ Upgrade Alternatives
 - ⏳ Used Hardware Upgrade Recommendations
 
 ## 15. Cooling, Temperatures & Thermal Analysis
@@ -582,18 +582,18 @@ _Thermal core live in the Power tab: CPU/GPU temp estimates, throttling classifi
 - ✅ Thermal Bottleneck Detection
 - ✅ Thermal Throttling Detection
 - ✅ CPU Thermal Limit Analysis
-- 🚧 GPU Thermal Limit Analysis
+- ✅ GPU Thermal Limit Analysis
 - ✅ Cooling Capacity Analysis
-- ⏳ Airflow Analysis
-- ⏳ Case Airflow Optimization
-- ⏳ Fan Configuration Planner
-- ⏳ Fan Curve Recommendations
-- ⏳ Positive Pressure Analysis
-- ⏳ Negative Pressure Analysis
-- ⏳ Airflow Direction Visualization
-- 🚧 Cooler Performance Comparison
+- ✅ Airflow Analysis
+- 🚧 Case Airflow Optimization
+- ✅ Fan Configuration Planner
+- ✅ Fan Curve Recommendations
+- ✅ Positive Pressure Analysis
+- ✅ Negative Pressure Analysis
+- ✅ Airflow Direction Visualization
+- ✅ Cooler Performance Comparison
 - ✅ Thermal Headroom Calculator
-- ⏳ Cooling Upgrade Advisor
+- ✅ Cooling Upgrade Advisor
 - ✅ Temperature Risk Classification
 
 ## 16. PC Builder Dashboard & Analytics
