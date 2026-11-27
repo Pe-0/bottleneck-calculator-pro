@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 452 live · 🚧 104 in progress · ⏳ 3689 not started**
+**4245 features total: ✅ 457 live · 🚧 105 in progress · ⏳ 3683 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -602,9 +602,9 @@ _Dashboard live: per-build cost/radar/bottleneck/power charts plus database-wide
 - ✅ Build Overview Dashboard
 - ✅ Performance Dashboard
 - ✅ Bottleneck Dashboard
-- ⏳ Compatibility Dashboard
+- ✅ Compatibility Dashboard
 - ✅ Power Dashboard
-- ⏳ Thermal Dashboard
+- ✅ Thermal Dashboard
 - ✅ Budget Dashboard
 - ✅ Component Statistics
 - ✅ Performance Statistics
@@ -614,12 +614,12 @@ _Dashboard live: per-build cost/radar/bottleneck/power charts plus database-wide
 - ✅ Bottleneck Charts
 - ✅ Power Consumption Charts
 - ⏳ Price History Charts
-- ⏳ FPS Charts
-- ⏳ Benchmark Charts
+- ✅ FPS Charts
+- ✅ Benchmark Charts
 - ✅ Radar Performance Charts
 - ✅ Hardware Ranking Charts
-- ⏳ Build Comparison Charts
-- ⏳ Interactive Data Visualization
+- ✅ Build Comparison Charts
+- 🚧 Interactive Data Visualization
 - ⏳ Personalized Recommendations
 - ⏳ Dashboard Customization
 

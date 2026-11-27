@@ -748,3 +748,10 @@ button, input, select, a { transition-timing-function: cubic-bezier(0.22, 1, 0.3
 .adv-block h3 { margin: 4px 0; }
 .adv-score { font-weight: 700; margin: 12px 0; color: var(--accent-2); }
 .adv-svg { width: 100%; max-width: 560px; height: auto; display: block; margin: 12px 0; border-radius: 12px; }
+
+/* Charts hub */
+.ch-svg { width: 100%; min-width: 620px; height: auto; display: block; margin: 8px 0; }
+.ch-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; margin-bottom: 10px; }
+.ch-tile { background: var(--panel-2); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; border-left: 4px solid var(--accent); }
+.ch-tile strong { font-size: 20px; }
+.ch-tile.ok { border-left-color: #34d399; } .ch-tile.warn { border-left-color: #fbbf24; } .ch-tile.bad { border-left-color: #f87171; }
