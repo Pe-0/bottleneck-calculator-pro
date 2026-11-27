@@ -684,3 +684,5 @@ button, input, select, a { transition-timing-function: cubic-bezier(0.22, 1, 0.3
 .mk-link a { color: var(--accent-2); white-space: nowrap; }
 
 .sum-live { font-size: 0.8rem; margin: 6px 0 0; line-height: 1.4; }
+.sum-total { flex-wrap: wrap; }
+.sum-total .sum-live, .sum-total #sumUsedNote { flex: 0 0 100%; }
