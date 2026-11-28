@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 563 live · 🚧 93 in progress · ⏳ 3589 not started**
+**4245 features total: ✅ 572 live · 🚧 93 in progress · ⏳ 3580 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -14,16 +14,16 @@ _Accounts are live via Supabase: email/password signup with mandatory email conf
 - ✅ User Authentication
 - ✅ Guest Mode
 - ⏳ User Profiles
-- ⏳ Personal Dashboard
+- ✅ Personal Dashboard
 - ✅ User Preferences
 - 🚧 Theme Customization
 - ✅ Dark / Light Mode
 - ⏳ Multi-Language Support
-- ⏳ User Activity History
-- ⏳ Recently Viewed Components
-- ⏳ Favorites & Wishlist
+- ✅ User Activity History
+- ✅ Recently Viewed Components
+- ✅ Favorites & Wishlist
 - ✅ Saved PC Builds
-- ⏳ Build History
+- ✅ Build History
 - ⏳ Notifications Center
 - ⏳ Account Security
 - ⏳ Role-Based Access Control (RBAC)
@@ -35,21 +35,21 @@ _Accounts are live via Supabase: email/password signup with mandatory email conf
 ## 2. PC Build Studio
 - ✅ PC Build Configurator
 - ⏳ Drag & Drop Component Selection
-- ⏳ Step-by-Step Build Wizard
+- ✅ Step-by-Step Build Wizard
 - ✅ Custom PC Build Creation
 - 🚧 Gaming Build Presets
 - 🚧 Workstation Build Presets
 - 🚧 Content Creation Build Presets
 - 🚧 AI-Assisted Build Recommendations
 - ✅ Budget-Based Build Planner
-- ⏳ Build Completion Progress
+- ✅ Build Completion Progress
 - ✅ Component Selection Summary
 - ✅ Build Cost Calculator
 - ✅ Build Save & Load
-- ⏳ Build Duplication
+- ✅ Build Duplication
 - ✅ Build Sharing
 - ✅ Build Export
-- ⏳ Build Import
+- ✅ Build Import
 - ⏳ Build Comparison
 - ✅ Build Version History
 - ✅ Build Optimization Suggestions
