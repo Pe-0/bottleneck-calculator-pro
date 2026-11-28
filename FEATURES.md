@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 547 live · 🚧 95 in progress · ⏳ 3603 not started**
+**4245 features total: ✅ 563 live · 🚧 93 in progress · ⏳ 3589 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -62,31 +62,31 @@ _Accounts are live via Supabase: email/password signup with mandatory email conf
 - ✅ Overall Bottleneck Score
 - ✅ Bottleneck Severity Classification
 - ✅ Primary Bottleneck Identification
-- ⏳ Secondary Bottleneck Detection
+- ✅ Secondary Bottleneck Detection
 - ✅ CPU-Limited Detection
 - ✅ GPU-Limited Detection
-- ⏳ RAM Bottleneck Detection
-- ⏳ VRAM Bottleneck Detection
+- ✅ RAM Bottleneck Detection
+- ✅ VRAM Bottleneck Detection
 - ✅ Resolution-Based Bottleneck Analysis
 - ✅ 1080p Bottleneck Analysis
 - ✅ 1440p Bottleneck Analysis
 - ✅ 4K Bottleneck Analysis
 - ✅ Gaming Bottleneck Analysis
 - ✅ Productivity Bottleneck Analysis
-- ⏳ Rendering Bottleneck Analysis
+- 🚧 Rendering Bottleneck Analysis
 - ✅ Streaming Bottleneck Analysis
-- ⏳ Multi-Tasking Bottleneck Analysis
+- ✅ Multi-Tasking Bottleneck Analysis
 - ✅ Workload-Based Analysis
-- ⏳ Game-Specific Bottleneck Analysis
-- ⏳ Software-Specific Bottleneck Analysis
+- ✅ Game-Specific Bottleneck Analysis
+- ✅ Software-Specific Bottleneck Analysis
 - ✅ Bottleneck Visualization
-- 🚧 Bottleneck Impact Breakdown
+- ✅ Bottleneck Impact Breakdown
 - 🚧 Bottleneck Explanation Engine
-- 🚧 Bottleneck Reduction Recommendations
+- ✅ Bottleneck Reduction Recommendations
 - ✅ Alternative Component Recommendations
-- ⏳ Bottleneck-Free Build Suggestions
-- ⏳ Bottleneck Analysis History
-- ⏳ Bottleneck Comparison
+- ✅ Bottleneck-Free Build Suggestions
+- ✅ Bottleneck Analysis History
+- ✅ Bottleneck Comparison
 - 🚧 Bottleneck Confidence Score
 
 ## 4. Hardware Compatibility Engine
@@ -99,8 +99,8 @@ _Accounts are live via Supabase: email/password signup with mandatory email conf
 - ✅ RAM Capacity Compatibility
 - ✅ RAM Speed Compatibility
 - ✅ RAM Module Compatibility
-- ⏳ XMP Compatibility
-- ⏳ EXPO Compatibility
+- ✅ XMP Compatibility
+- ✅ EXPO Compatibility
 - ✅ GPU Compatibility
 - ✅ GPU Interface Compatibility
 - ✅ PCIe Compatibility
@@ -108,7 +108,7 @@ _Accounts are live via Supabase: email/password signup with mandatory email conf
 - ✅ M.2 Compatibility
 - ✅ SATA Compatibility
 - ✅ NVMe Compatibility
-- ⏳ M.2 Slot Availability
+- ✅ M.2 Slot Availability
 - ⏳ PCIe Lane Analysis
 - ✅ PSU Compatibility
 - 🚧 PSU Connector Compatibility
@@ -150,8 +150,8 @@ _Full power stage live in the Power tab: per-part draws, idle/gaming/peak, headr
 - ✅ Power Headroom Calculator
 - ✅ PSU Wattage Recommendation
 - ✅ PSU Safety Margin
-- 🚧 PSU Efficiency Analysis
-- ⏳ 80 PLUS Certification Analysis
+- ✅ PSU Efficiency Analysis
+- ✅ 80 PLUS Certification Analysis
 - ⏳ PSU Tier Rating
 - ⏳ PSU Connector Validation
 - ✅ 12VHPWR Compatibility
