@@ -777,3 +777,5 @@ button, input, select, a { transition-timing-function: cubic-bezier(0.22, 1, 0.3
 .db-cust-row { display: flex; align-items: center; gap: 10px; } .db-cust-row span { flex: 1; }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
 .db-cust > .hb-btn { align-self: flex-start; }
+.dh-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; margin: 10px 0; }
+.dh-row .hb-field { min-width: 180px; }

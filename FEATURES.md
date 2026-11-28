@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 499 live · 🚧 101 in progress · ⏳ 3645 not started**
+**4245 features total: ✅ 518 live · 🚧 103 in progress · ⏳ 3624 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -793,31 +793,31 @@ _Shareable build links are live; print/PDF/CSV/QR export is stage S15._
 - ⏳ Manufacturer Database
 - ⏳ Brand Database
 - 🚧 Hardware Specification Normalization
-- ⏳ Data Deduplication
-- ⏳ Data Validation
-- ⏳ Data Integrity Checks
+- ✅ Data Deduplication
+- ✅ Data Validation
+- ✅ Data Integrity Checks
 - 🚧 Database Versioning
-- ⏳ Database Backup
-- ⏳ Database Restore
+- ✅ Database Backup
+- ✅ Database Restore
 - ⏳ Database Migration
 - ⏳ Database Synchronization
 - ⏳ Automated Data Updates
 - ⏳ Scheduled Data Refresh
-- ⏳ Data Change Tracking
-- ⏳ Historical Data Storage
-- 🚧 Data Quality Monitoring
-- ⏳ Missing Data Detection
-- 🚧 Outdated Data Detection
+- ✅ Data Change Tracking
+- 🚧 Historical Data Storage
+- ✅ Data Quality Monitoring
+- ✅ Missing Data Detection
+- ✅ Outdated Data Detection
 - ✅ Confidence-Based Data Validation
 - ✅ Source Tracking
 - ✅ Data Provenance
 - ⏳ Admin Database Editor
 - ⏳ Bulk Data Import
-- ⏳ Bulk Data Export
-- ⏳ CSV Import
-- ⏳ JSON Import
+- ✅ Bulk Data Export
+- ✅ CSV Import
+- ✅ JSON Import
 - ⏳ API Data Import
-- ⏳ Database Health Monitoring
+- ✅ Database Health Monitoring
 
 ## 23. Admin & Content Management
 
@@ -865,20 +865,20 @@ _Static site: server-side items don't apply yet; client-side items are listed._
 - ⏳ Secure Payment Integration
 - ⏳ Fraud Detection
 - ⏳ Suspicious Activity Detection
-- ⏳ Error Logging
-- ⏳ Exception Handling
-- ⏳ System Health Monitoring
-- ⏳ Performance Monitoring
-- ⏳ Database Integrity Monitoring
+- ✅ Error Logging
+- 🚧 Exception Handling
+- ✅ System Health Monitoring
+- ✅ Performance Monitoring
+- ✅ Database Integrity Monitoring
 - ⏳ Automated Backup System
 - ⏳ Disaster Recovery
-- ⏳ Data Recovery
+- 🚧 Data Recovery
 - ⏳ Transaction Management
 - ⏳ Retry Mechanism
 - ⏳ Fallback System
-- ⏳ Availability Monitoring
-- ⏳ Automated Testing
-- ⏳ Unit Testing
+- ✅ Availability Monitoring
+- ✅ Automated Testing
+- 🚧 Unit Testing
 - ⏳ Integration Testing
 - ⏳ End-to-End Testing
 - ⏳ Compatibility Testing
