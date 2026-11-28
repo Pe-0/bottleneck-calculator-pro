@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 581 live · 🚧 106 in progress · ⏳ 3558 not started**
+**4245 features total: ✅ 583 live · 🚧 104 in progress · ⏳ 3558 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -1011,14 +1011,14 @@ _PWA + data transparency page are stage S20. Live price APIs are parked with the
 - ✅ Advanced Filtering UI
 - ✅ Advanced Sorting UI
 - 🚧 Smart Empty States
-- 🚧 Error States
+- ✅ Error States
 - ✅ Confirmation Dialogs
 - ✅ Tooltips
 - ✅ Contextual Help
 - ✅ Keyboard Navigation
 - 🚧 Accessibility Support
 - ✅ Mobile Optimization
-- 🚧 Tablet Optimization
+- ✅ Tablet Optimization
 - ✅ Desktop Optimization
 
 ## 30. Core product features (the 20 that define the project)

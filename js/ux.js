@@ -97,3 +97,18 @@
   }
   customize();
 })();
+
+/* offline / online notice */
+(function () {
+  "use strict";
+  var bar;
+  function show(off) {
+    if (!bar) { bar = document.createElement("div"); bar.setAttribute("role", "status"); bar.style.cssText = "position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:9999;padding:10px 16px;border-radius:12px;font:600 0.88rem system-ui;box-shadow:0 6px 24px rgba(0,0,0,.25);max-width:92vw"; document.body.appendChild(bar); }
+    bar.style.background = off ? "#3b1d6e" : "#14693f"; bar.style.color = "#fff"; bar.hidden = false;
+    bar.textContent = off ? "You are offline. The calculator and your saved data still work. The weekly price file may be older." : "Back online.";
+    if (!off) setTimeout(function () { bar.hidden = true; }, 2500);
+  }
+  window.addEventListener("offline", function () { show(true); });
+  window.addEventListener("online", function () { show(false); });
+  if (navigator.onLine === false) document.addEventListener("DOMContentLoaded", function () { show(true); });
+})();
