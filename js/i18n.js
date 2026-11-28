@@ -9,7 +9,7 @@
     if (q) { if (q[1] === "ar") localStorage.setItem("bcp.lang", "ar"); else localStorage.removeItem("bcp.lang"); }
     flag = localStorage.getItem("bcp.lang") === "ar";
   } catch (e) {}
-  var I18N = window.I18N = { active: flag, dict: {}, pats: [], pat: function (a) { a.forEach(function (x) { I18N.pats.push([new RegExp(x[0]), x[1]]); }); }, add: function (o) { for (var k in o) I18N.dict[k] = o[k]; } };
+  var I18N = window.I18N = { active: flag, dict: {}, frags: [], frag: function (o) { for (var k in o) I18N.frags.push([k, o[k]]); I18N.frags.sort(function (a, b) { return b[0].length - a[0].length; }); }, pats: [], pat: function (a) { a.forEach(function (x) { I18N.pats.push([new RegExp(x[0]), x[1]]); }); }, add: function (o) { for (var k in o) I18N.dict[k] = o[k]; } };
   if (!flag) return;
   var de = document.documentElement;
   de.setAttribute("lang", "ar"); de.setAttribute("dir", "rtl"); de.classList.add("is-rtl");
@@ -31,6 +31,9 @@
       }
       var g = /^([^:]{2,40}): (.+)$/.exec(core);
       if (g) { var a = tr(g[1]), b2 = tr(g[2]); if (a !== g[1] || b2 !== g[2]) return lead + a + ": " + b2 + trail; }
+      var out2 = core, hit = false;
+      for (var f = 0; f < I18N.frags.length; f++) { if (out2.indexOf(I18N.frags[f][0]) >= 0) { out2 = out2.split(I18N.frags[f][0]).join(I18N.frags[f][1]); hit = true; } }
+      if (hit) return lead + out2 + trail;
       return s;
     }
     return lead + fill(t, n.nums) + trail;

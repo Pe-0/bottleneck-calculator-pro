@@ -89,7 +89,7 @@
     LAYERS.forEach(function (L) {
       var m = metaOf(L[0]), asOf = m.asOf || (m.week ? m.week + " (" + (m.to || "") + ")" : "?"), age = ageMonths(newestAsOf(m.asOf || m.to || ""));
       var st = age == null ? "unknown" : age <= 3 ? "fresh" : age <= 9 ? "aging" : "outdated"; if (st === "outdated") stale++;
-      var tr = el("tr"); [L[1], ui.num(sizeOf(L[0], L[2])), String(asOf).slice(0, 60), age == null ? "-" : age + " mo", String(m.confidence || "-").slice(0, 70), st].forEach(function (x, i) { tr.appendChild(el(i ? "td" : "th", null, x)); }); t.appendChild(tr);
+      var tr = el("tr"); [L[1], ui.num(sizeOf(L[0], L[2])), String(asOf), age == null ? "-" : age + " mo", String(m.confidence || "-"), st].forEach(function (x, i) { tr.appendChild(el(i ? "td" : "th", null, x)); }); t.appendChild(tr);
     });
     var w = el("div", "lab-scroll"); w.appendChild(t); P.appendChild(w);
     P.appendChild(ui.note("Age is measured from the newest date in each layer's as-of field to today. Aging and outdated layers keep their own confidence label in the app; they are not hidden. " + stale + " layer(s) flagged outdated."));
