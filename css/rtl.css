@@ -2,3 +2,31 @@
 html.is-rtl body { font-family: "Segoe UI", Tahoma, "Noto Naskh Arabic", "Noto Sans Arabic", system-ui, sans-serif; }
 html.is-rtl input, html.is-rtl select, html.is-rtl textarea, html.is-rtl button { font-family: inherit; }
 html.is-rtl .ltr, html.is-rtl [data-ltr], html.is-rtl input[type=number], html.is-rtl input[type=email], html.is-rtl input[type=url] { direction: ltr; unicode-bidi: plaintext; }
+/* sidebar to the right */
+html.is-rtl .sidebar { left: auto; right: 0; border-right: 0; border-left: 1px solid var(--border); }
+html.is-rtl .nav-toggle { left: auto; right: 12px; }
+html.is-rtl .back-to-top { right: auto; left: 20px; }
+@media (min-width: 901px) {
+  html.is-rtl main.container, html.is-rtl .site-footer .container { padding-left: 28px; padding-right: 284px; }
+}
+@media (max-width: 900px) {
+  html.is-rtl .sidebar { transform: translateX(105%); }
+  html.is-rtl body.nav-open .sidebar { transform: none; }
+  html.is-rtl .back-to-top { right: auto; left: 14px; }
+}
+/* help drawer opens from the left in RTL */
+html.is-rtl .ux-help { right: auto; left: 0; border-left: 0; border-right: 1px solid var(--border); box-shadow: 10px 0 30px rgba(0,0,0,.3); }
+/* directional accents and alignment */
+html.is-rtl .warn, html.is-rtl .ch-tile, html.is-rtl .ux-chip { border-left-width: 1px; border-right-width: 4px; border-right-style: solid; }
+html.is-rtl .warn.info, html.is-rtl .ch-tile, html.is-rtl .ux-chip { border-right-color: var(--accent); border-left-color: var(--border); }
+html.is-rtl .warn.warn { border-right-color: var(--mid); } html.is-rtl .warn.bad { border-right-color: var(--bad); } html.is-rtl .warn.ok { border-right-color: var(--accent-2); }
+html.is-rtl .ch-tile.ok { border-right-color: #34d399; } html.is-rtl .ch-tile.warn { border-right-color: #fbbf24; } html.is-rtl .ch-tile.bad { border-right-color: #f87171; }
+html.is-rtl .fps-val, html.is-rtl .spec-row span:last-child, html.is-rtl .db-val, html.is-rtl .pl-facts dd, html.is-rtl .hb-row .hb-num { text-align: left; }
+html.is-rtl .ux-chip, html.is-rtl .mk-table th, html.is-rtl .hb-table th, html.is-rtl .lab-table th, html.is-rtl .lab-table td, html.is-rtl .gen-card button { text-align: right; }
+html.is-rtl .mn-price, html.is-rtl .gm-fav, html.is-rtl .pl-kind { margin-left: 0; margin-right: auto; }
+html.is-rtl .h-sub, html.is-rtl .hist-badge { margin-left: 0; margin-right: 6px; }
+html.is-rtl .al-list li strong { margin-right: 0; margin-left: 10px; }
+html.is-rtl .hb-list { padding-left: 0; padding-right: 18px; }
+html.is-rtl select { background-position: left 12px center; padding-left: 34px; padding-right: 12px; }
+html.is-rtl .sidebar > .search-wrap, html.is-rtl .tab-btn { text-align: right; }
+html.is-rtl select, html.is-rtl option { direction: ltr; text-align: left; }
