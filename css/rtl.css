@@ -30,3 +30,7 @@ html.is-rtl .hb-list { padding-left: 0; padding-right: 18px; }
 html.is-rtl select { background-position: left 12px center; padding-left: 34px; padding-right: 12px; }
 html.is-rtl .sidebar > .search-wrap, html.is-rtl .tab-btn { text-align: right; }
 html.is-rtl select, html.is-rtl option { direction: ltr; text-align: left; }
+/* charts and SVG internals stay LTR so anchors and bars do not flip off-canvas */
+.is-rtl svg { direction: ltr; }
+.is-rtl .hb-table { display: block; max-width: 100%; overflow-x: auto; }
+.is-rtl .lab-scroll:has(> svg), .is-rtl .lab-scroll:has(> .chart) { direction: ltr; }

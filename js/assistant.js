@@ -117,7 +117,7 @@
       "Answer questions about the user's current build selection. Be concise, practical, and honest. " +
       "If something is uncertain or depends on information you do not have, say so instead of guessing. " +
       "FPS figures and prices in the app are estimates, not measured benchmarks or live quotes. " +
-      "Do not invent specific prices or product models beyond the context. Keep answers under 150 words unless the user asks for detail.";
+      "Do not invent specific prices or product models beyond the context. Keep answers under 150 words unless the user asks for detail." + (window.I18N && I18N.active ? " Answer in Arabic (Modern Standard, simple), keeping part names, model numbers and units in Latin script." : "");
     if (!ctx) return base;
     return base + "\n\nCurrent build selection (live app state):\n" +
       "CPU: " + ctx.cpu + "\n" +

@@ -949,7 +949,7 @@ I18N.frag({
   "Time to finish on the reference machine (minutes)": "زمن المهمة على الجهاز المرجعي (دقيقة)"
 });
 I18N.frag({
-  " (your build)": " (تجميعتك)", " (yours)": " (تجميعتك)", "-class tower": " برج بفئة مماثلة", "-class low-profile": " منخفض الارتفاع بفئة مماثلة", " class": " فئة", " (air)": " (هوائي)",
+  " (your build)": " (تجميعتك)", " (yours)": " (تجميعتك)", "-class tower": " برج بفئة مماثلة", "-class low-profile": " منخفض الارتفاع بفئة مماثلة", "Storage class": "فئة التخزين", " (air)": " (هوائي)",
   "Class price: ": "سعر الفئة: ", ". Cheapest: ": ". الأرخص: ", ". Not this exact part, so treat it as a floor price.": ". ليست هذه القطعة بعينها، فاعتبره سعرًا أدنى.",
   "Price data: ": "بيانات الأسعار: ", " at ": " عند ", " bottleneck": " عنق الزجاجة"
 });
@@ -1014,3 +1014,14 @@ I18N.frag({
  "\" cannot be undone from here.": "\" لا يمكن التراجع عنه من هنا.", " fps avg - ": " إطار/ث متوسط - ", "Show ": "عرض ", "Export &amp; share": "التصدير والمشاركة", "Power &amp; thermals.": "الطاقة والحرارة.", "Data sources &amp; methodology": "مصادر البيانات والمنهجية",
  "Request failed: ": "فشل الطلب: ", "Markdown": "Markdown", "Excel (.xls)": "Excel (.xls)"
 });
+I18N.frag({
+ "Paste lines from Task Manager, System Information, dxdiag or a spec sheet, for example: Processor AMD Ryzen 5 5600X and NVIDIA GeForce RTX 3070. Matching runs here in your browser; nothing is sent anywhere.": "الصق أسطرًا من إدارة المهام أو معلومات النظام أو dxdiag أو ورقة مواصفات، مثل: Processor AMD Ryzen 5 5600X وNVIDIA GeForce RTX 3070. تتم المطابقة هنا في متصفحك ولا يُرسل شيء إلى أي مكان.",
+ " budget, ranked by the same engine metric as the upgrades above. ": " مرتبًا بنفس مقياس المحرك المستخدم في الترقيات أعلاه. ",
+ "That is the healthy case for gaming: the GPU is working at full tilt.": "هذه هي الحالة الصحية للألعاب: كرت الشاشة يعمل بكامل طاقته.", " or the code": " أو الرمز", "Class price: popular boards, this chipset and size.": "سعر الفئة: لوحات شائعة بنفس الشريحة والحجم."
+});
+I18N.add({"Bottleneck": "عنق الزجاجة", "Storage": "التخزين"});
+I18N.frag({"That is the healthy case for gaming: the GPU is working at full tilt.": "هذه هي الحالة الصحية للألعاب: كرت الشاشة يعمل بكامل طاقته.", "That is the healthy case for gaming: the GPU is working ": "هذه هي الحالة الصحية للألعاب: كرت الشاشة يعمل ", "full tilt.": "بكامل طاقته."});
+I18N.add({"That is the healthy case for gaming: the GPU is working at full tilt.": "هذه هي الحالة الصحية للألعاب: كرت الشاشة يعمل بكامل طاقته.", "A higher resolution or heavier settings would shift work to the GPU and shrink the gap.": "دقة أعلى أو إعدادات أثقل ستنقل العمل إلى كرت الشاشة وتقلص الفجوة.",
+ "Class price": "سعر الفئة", "RTX 4090 + 9950X class": "فئة RTX 4090 + 9950X"});
+I18N.add({"popular boards, this chipset and size": "لوحات شائعة بنفس الشريحة والحجم"});
+I18N.pat([["^Class price: (.*?)\\. Cheapest: (.*?)\\. Not this exact part, so treat it as a floor price\\.$", "سعر الفئة: $1. الأرخص: $2. ليست هذه القطعة بعينها، فاعتبره سعرًا أدنى."]]);

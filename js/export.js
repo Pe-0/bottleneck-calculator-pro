@@ -9,7 +9,7 @@
   var eng = BCP.engine;
   var $ = function (sel) { return document.querySelector(sel); };
   function fmtUsd(n) { return "$" + n.toLocaleString("en-US"); }
-  function esc(s) { return '"' + String(s).replace(/"/g, '""') + '"'; }
+  function esc(s) { s = (window.I18N && I18N.active) ? I18N.t(String(s)) : s; return '"' + String(s).replace(/"/g, '""') + '"'; }
 
   var RES_LABEL = { p1080: "1080p", p1440: "1440p", p2160: "4K" };
 
@@ -85,7 +85,7 @@
     var sel = BCP.getSelection();
     var el = $("#printHeader");
     if (!el) return;
-    el.textContent = "Bottleneck Calculator Pro - " + sel.cpu.name + " + " + sel.gpu.name +
+    el.textContent = (window.I18N && I18N.active ? I18N.t("Bottleneck Calculator Pro - ") : "Bottleneck Calculator Pro - ") + sel.cpu.name + " + " + sel.gpu.name +
       " - generated " + new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
   }
 
