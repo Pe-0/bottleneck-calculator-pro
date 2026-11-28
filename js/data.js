@@ -179,6 +179,24 @@
     showImports();
   }
 
+
+  function derived(box) {
+    var P = ui.panel("Derived specs", "computed from catalog data and platform rules, not scraped"); box.appendChild(P);
+    var kind = ui.get("data.dk", "cpu"), rer = function () { box.innerHTML = ""; derived(box); };
+    P.appendChild(ui.field("Part type", ui.select([["cpu", "Processors"], ["gpu", "Graphics cards"], ["ram", "Memory kits"], ["psu", "Power supplies"]], kind, function (v) { ui.set("data.dk", v); rer(); })));
+    var q = el("input"); q.type = "search"; q.placeholder = "Filter by name"; var out = el("div"); P.appendChild(ui.field("Filter", q)); P.appendChild(out);
+    var cp = BCP.compat, sk = cp.sockets || {};
+    function rowsFor() {
+      if (kind === "cpu") return { head: ["Processor", "Socket", "Memory it supports", "Typical memory range", "Gaming per 100 W", "Cores / threads"], rows: itemsOf("cpus").filter(function (c) { return !c.mobile; }).map(function (c) { var mg = (cp.memGuidance || {})[c.socket] || {}, b = BCP.benchmarks.cpu[c.id]; return [c.name, c.socket, (sk[c.socket] ? sk[c.socket].ram.join(" / ") : "?"), mg.low ? mg.low + " to " + mg.high + " MT/s" : "-", b ? (b.gaming / c.tdpW * 100).toFixed(0) : "-", c.cores + " / " + c.threads]; }) };
+      if (kind === "gpu") return { head: ["Graphics card", "VRAM", "Board power", "Recommended PSU", "Score per 100 W", "VRAM class"], rows: itemsOf("gpus").filter(function (g) { return !g.mobile; }).map(function (g) { var sc = BCP.benchmarks.gpu[g.id]; return [g.name, g.vramGB + " GB", g.tdpW + " W", BCP.engine.recommendedPsuW(120, g.tdpW) + " W (with a 120 W CPU)", sc ? (sc / g.tdpW * 100).toFixed(1) : "-", g.vramGB >= 16 ? "high (4K, AI)" : g.vramGB >= 12 ? "good (1440p)" : g.vramGB >= 8 ? "fine (1080p)" : "low"]; }) };
+      if (kind === "ram") return { head: ["Memory kit", "Type", "Speed", "Channel mode", "Per stick", "BIOS profile"], rows: itemsOf("memoryKits").map(function (k) { var base = k.type === "DDR5" ? 4800 : k.type === "DDR4" ? 2666 : 1600; return [k.name, k.type, k.speedMTs + " MT/s", k.modules === 1 ? "Single channel" : k.modules === 2 ? "Dual channel" : k.modules === 4 ? "Quad-stick (dual channel on consumer boards)" : k.modules + " sticks", Math.round(k.capacityGB / k.modules) + " GB", k.speedMTs > base ? "XMP / EXPO needed above " + base : "Runs at base speed"]; }) };
+      return { head: ["Power supply", "Wattage", "Efficiency", "ATX 3.1", "Heat lost at 50% load"], rows: itemsOf("psus").map(function (p) { var e = { white: 80, bronze: 85, silver: 88, gold: 90, platinum: 92, titanium: 94 }[String(p.efficiency).toLowerCase()]; return [p.name, p.wattageW + " W", p.efficiency, p.atx31 ? "yes" : "no", e ? Math.round(p.wattageW * 0.5 / (e / 100) - p.wattageW * 0.5) + " W" : "-"]; }) };
+    }
+    function draw() { out.innerHTML = ""; var d = rowsFor(), s = q.value.toLowerCase(), r = d.rows.filter(function (x) { return !s || x[0].toLowerCase().indexOf(s) >= 0; }); tableOf2(out, d.head, r.slice(0, 40)); out.appendChild(ui.note(r.length + " rows" + (r.length > 40 ? " (first 40 shown, use the filter)" : "") + ". These values are calculated from stored specs and published platform rules, so they carry the same dates and confidence as their source layers. Fields the catalog does not hold (memory bus, voltages, NAND type, fan data) are not shown or guessed.")); }
+    q.addEventListener("input", draw); draw();
+  }
+  function tableOf2(P, head, rows) { var t = el("table", "cmp-table lab-table"), h = el("tr"); head.forEach(function (x) { h.appendChild(el("th", null, x)); }); t.appendChild(h); rows.forEach(function (r) { var tr = el("tr"); r.forEach(function (c, i) { tr.appendChild(el(i ? "td" : "th", null, String(c))); }); t.appendChild(tr); }); var w = el("div", "lab-scroll"); w.appendChild(t); P.appendChild(w); }
+
   function backup(box) {
     var P = ui.panel("Backup and restore", "your saved builds, settings and alerts"); box.appendChild(P);
     function mine() { var o = {}; for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); if (k && k.indexOf("bcp") === 0 && k !== "bcp." + ERR_KEY) o[k] = localStorage.getItem(k); } return o; }
@@ -268,6 +286,6 @@
   document.addEventListener("DOMContentLoaded", function () {
     try { track(); } catch (e) { logErr("track", e.message); }
     BCP.addHub({ key: "data", label: "Data", before: "dash", title: "Trust the numbers.", intro: "See how fresh and complete every data layer is, export the database, back up your saved builds, and check the engine against itself.",
-      subs: [{ id: "health", label: "Data health", render: health }, { id: "explore", label: "Explorer and import", render: explore }, { id: "backup", label: "Backup and history", render: backup }, { id: "system", label: "System and tests", render: system }] });
+      subs: [{ id: "health", label: "Data health", render: health }, { id: "explore", label: "Explorer and import", render: explore }, { id: "derived", label: "Derived specs", render: derived }, { id: "backup", label: "Backup and history", render: backup }, { id: "system", label: "System and tests", render: system }] });
   });
 })();

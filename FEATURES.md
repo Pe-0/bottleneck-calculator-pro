@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 576 live · 🚧 102 in progress · ⏳ 3567 not started**
+**4245 features total: ✅ 581 live · 🚧 106 in progress · ⏳ 3558 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -237,7 +237,7 @@ _Full power stage live in the Power tab: per-part draws, idle/gaming/peak, headr
 - ✅ CPU TDP
 - ✅ CPU Socket
 - ⏳ CPU Integrated Graphics
-- ⏳ CPU Memory Support
+- ✅ CPU Memory Support
 - ⏳ CPU PCIe Support
 - ✅ CPU Benchmark Scores
 - ✅ CPU Release Date
@@ -258,7 +258,7 @@ _Full power stage live in the Power tab: per-part draws, idle/gaming/peak, headr
 - ⏳ GPU Clock Speeds
 - ✅ GPU Power Consumption
 - ✅ GPU TDP
-- ⏳ GPU Recommended PSU
+- ✅ GPU Recommended PSU
 - ✅ GPU Dimensions
 - ⏳ GPU PCIe Interface
 - ⏳ GPU Ray Tracing Performance
@@ -298,11 +298,11 @@ _Full power stage live in the Power tab: per-part draws, idle/gaming/peak, headr
 - ✅ CAS Latency
 - ⏳ Voltage
 - ✅ Memory Kit Configuration
-- ⏳ Single Channel
-- ⏳ Dual Channel
-- ⏳ Quad Channel
-- ⏳ XMP Profiles
-- ⏳ EXPO Profiles
+- ✅ Single Channel
+- ✅ Dual Channel
+- 🚧 Quad Channel
+- 🚧 XMP Profiles
+- 🚧 EXPO Profiles
 - 🚧 RAM Compatibility Database
 - 🚧 RAM Price History
 
@@ -327,7 +327,7 @@ _Full power stage live in the Power tab: per-part draws, idle/gaming/peak, headr
 - ✅ PSU Catalog
 - ✅ PSU Wattage
 - ✅ PSU Efficiency
-- 🚧 80 PLUS Certification
+- ✅ 80 PLUS Certification
 - 🚧 ATX Version
 - ✅ Modular Type
 - 🚧 Connector Database
@@ -620,7 +620,7 @@ _Dashboard live: per-build cost/radar/bottleneck/power charts plus database-wide
 - ✅ Hardware Ranking Charts
 - ✅ Build Comparison Charts
 - 🚧 Interactive Data Visualization
-- ⏳ Personalized Recommendations
+- 🚧 Personalized Recommendations
 - ✅ Dashboard Customization
 
 ## 17. Community & Social Features
@@ -906,7 +906,7 @@ _Static site: server-side items don't apply yet; client-side items are listed._
 - ✅ AI Build Improvement Suggestions
 - ✅ AI Natural Language Search
 - ✅ AI Hardware Q&A
-- ⏳ AI Personalized Recommendations
+- 🚧 AI Personalized Recommendations
 - ✅ AI Build Troubleshooting
 
 ## 26. Gaming Ecosystem

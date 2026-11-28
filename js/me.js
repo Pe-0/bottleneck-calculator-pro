@@ -74,6 +74,22 @@
     C.appendChild(el("p", null, have + " of " + parts.length + " parts chosen (" + pct + "%)." + (have < parts.length ? " Missing: " + parts.filter(function (p) { return !p[1]; }).map(function (p) { return p[0]; }).join(", ") + "." : " Every slot is filled.")));
   }
 
+
+  function foryou(box) {
+    var sel = BCP.getSelection(), P = ui.panel("Picks for your build", "rule-based, from your current build and favorites"); box.appendChild(P);
+    var cur = BCP.benchmarks.gpu[sel.gpu.id], cp = BCP.prices.gpu[sel.gpu.id] || 0, cb = BCP.benchmarks.cpu[sel.cpu.id], opts = [];
+    BCP.gpus.items.forEach(function (g) { var sc = BCP.benchmarks.gpu[g.id], pr = BCP.prices.gpu[g.id]; if (g.legacy || g.mobile || !sc || !pr || sc < cur * 1.2) return; var b = eng.bottleneck(cb, sc, sel.res, sel.workload, sel.cpu); if (b.pct > 25) return; opts.push([g, pr - cp, sc / cur - 1, b]); });
+    opts.sort(function (a, b) { return (b[2] / Math.max(60, b[1])) - (a[2] / Math.max(60, a[1])); });
+    P.appendChild(el("h3", "an-sub", "GPU upgrades that suit your CPU"));
+    if (!opts.length) P.appendChild(ui.note("Your GPU is already near the top of what this CPU can feed, or no priced upgrade is 20% faster.")); else table(P, ["Upgrade", "Extra cost", "Faster by", "Bottleneck after"], opts.slice(0, 4).map(function (o) { return [o[0].name, o[1] >= 0 ? "+" + ui.usd(o[1]) : "-" + ui.usd(-o[1]), Math.round(o[2] * 100) + "%", o[3].pct + "% " + o[3].limiter]; }));
+    var fv = ui.get("me.favs", []).filter(function (x) { return x.k === "gpu" || x.k === "cpu"; });
+    P.appendChild(el("h3", "an-sub", "Your favorites against your build"));
+    if (!fv.length) P.appendChild(ui.note("Favorite a GPU or CPU on the Favorite parts tab and it is compared here.")); else table(P, ["Favorite", "Score vs yours", "Price", "Verdict"], fv.slice(0, 6).map(function (x) { var sc = x.k === "gpu" ? BCP.benchmarks.gpu[x.id] : (BCP.benchmarks.cpu[x.id] || {}).gaming, base = x.k === "gpu" ? cur : cb.gaming, pr = x.k === "gpu" ? BCP.prices.gpu[x.id] : BCP.prices.cpu[x.id]; var d = sc && base ? Math.round((sc / base - 1) * 100) : null; return [nameOf(x.k, x.id) || x.id, d == null ? "-" : (d >= 0 ? "+" : "") + d + "%", pr ? ui.usd(pr) : "-", d == null ? "no score" : d > 15 ? "Clear upgrade" : d > -5 ? "Similar to what you have" : "Slower than yours"]; }));
+    var rc = ui.get("me.recent", []).filter(function (x) { return x.k === "gpu"; }).slice(0, 3);
+    if (rc.length) { P.appendChild(el("h3", "an-sub", "Since you looked at these")); table(P, ["Part you viewed", "Score vs yours", "Price"], rc.map(function (x) { var sc = BCP.benchmarks.gpu[x.id], pr = BCP.prices.gpu[x.id]; return [nameOf("gpu", x.id) || x.id, sc ? Math.round((sc / cur - 1) * 100) + "%" : "-", pr ? ui.usd(pr) : "-"]; })); }
+    P.appendChild(ui.note("These are rules, not a model that learns your taste. They use your current Calculator build, your favorites and recent picks on this device. Curated prices."));
+  }
+
   function wizard(box) {
     var W = ui.get("me.wiz", { step: 0, use: "gaming", res: "p1440", budget: 1300 }), rer = function () { ui.set("me.wiz", W); box.innerHTML = ""; wizard(box); };
     var P = ui.panel("Build wizard", "step " + (W.step + 1) + " of 4"); box.appendChild(P);
@@ -93,6 +109,6 @@
   document.addEventListener("DOMContentLoaded", function () {
     trackParts();
     BCP.addHub({ key: "me", label: "My space", before: "dash", title: "Your space.", intro: "Your overview, recently viewed and favorite parts, activity, build import and duplication, and a guided wizard. All stored on this device.",
-      subs: [{ id: "dash", label: "Overview", render: dash }, { id: "favs", label: "Favorite parts", render: favs }, { id: "builds", label: "Import and copy", render: mybuilds }, { id: "wiz", label: "Build wizard", render: wizard }] });
+      subs: [{ id: "dash", label: "Overview", render: dash }, { id: "favs", label: "Favorite parts", render: favs }, { id: "builds", label: "Import and copy", render: mybuilds }, { id: "you", label: "Picks for you", render: foryou }, { id: "wiz", label: "Build wizard", render: wizard }] });
   });
 })();
