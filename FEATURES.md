@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 572 live · 🚧 93 in progress · ⏳ 3580 not started**
+**4245 features total: ✅ 576 live · 🚧 102 in progress · ⏳ 3567 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -396,7 +396,7 @@ _Full power stage live in the Power tab: per-part draws, idle/gaming/peak, headr
 - ✅ Performance Per Watt Comparison
 - ✅ Value Score Comparison
 - ✅ Price-to-Performance Ranking
-- 🚧 Generation Comparison
+- ✅ Generation Comparison
 - 🚧 Upgrade Comparison
 - ✅ Comparison Charts
 - ✅ Comparison History
@@ -940,11 +940,11 @@ _Monitor planner is stage S18; peripheral catalogs later._
 - ⏳ Response Time Comparison
 - ✅ Panel Type Comparison
 - ⏳ HDR Analysis
-- ⏳ G-SYNC Compatibility
-- ⏳ FreeSync Compatibility
-- ⏳ DisplayPort Compatibility
-- ⏳ HDMI Compatibility
-- ⏳ Multi-Monitor Planner
+- 🚧 G-SYNC Compatibility
+- 🚧 FreeSync Compatibility
+- ✅ DisplayPort Compatibility
+- ✅ HDMI Compatibility
+- ✅ Multi-Monitor Planner
 - ✅ Monitor GPU Requirements
 - ⏳ Keyboard Database
 - ⏳ Mouse Database
@@ -972,7 +972,7 @@ _PWA + data transparency page are stage S20. Live price APIs are parked with the
 - ⏳ Live Price API Integration
 - ⏳ Live Stock API Integration
 - ⏳ Hardware News Feed
-- ⏳ Hardware Release Calendar
+- 🚧 Hardware Release Calendar
 - ⏳ Upcoming Hardware Tracker
 - ⏳ Hardware Roadmap
 - ⏳ Price Prediction Engine
@@ -981,15 +981,15 @@ _PWA + data transparency page are stage S20. Live price APIs are parked with the
 - ⏳ GPU Availability Tracker
 - ⏳ CPU Availability Tracker
 - ⏳ Used Hardware Marketplace
-- ⏳ Second-Hand Price Estimator
-- ⏳ Hardware Resale Value Estimator
-- ⏳ PC Build Scanner
-- ⏳ QR Build Scanner
-- ⏳ Hardware Identification
+- 🚧 Second-Hand Price Estimator
+- 🚧 Hardware Resale Value Estimator
+- 🚧 PC Build Scanner
+- 🚧 QR Build Scanner
+- 🚧 Hardware Identification
 - ⏳ Benchmark Submission System
 - ⏳ Community Benchmark Verification
-- ⏳ Automated Build Validation
-- ⏳ Smart Build Ranking Engine
+- 🚧 Automated Build Validation
+- 🚧 Smart Build Ranking Engine
 
 ## 29. Professional UX/UI
 - ✅ Responsive Design
