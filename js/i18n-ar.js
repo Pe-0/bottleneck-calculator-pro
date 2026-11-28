@@ -1100,3 +1100,10 @@ I18N.frag({"board-specific checks skipped": "تم تخطي فحوص اللوحة
  "-class silicon without an iGPU at a lower used price - a discrete GPU is required.": " رقاقة بمستوى هذه الفئة بلا رسوميات مدمجة وبسعر مستعمل أقل - يلزم كرت شاشة منفصل.", "Xeon: ": "Xeon: ", " per month": " شهريًا"});
 I18N.add({"PSU upgrade": "ترقية مزود الطاقة", "Cooler upgrade": "ترقية المبرّد", "Motherboard upgrade": "ترقية اللوحة الأم"});
 I18N.pat([["^(\\d+)\\. (.+ upgrade)$", "$1. $2"]]);
+I18N.add({"Throttling risk": "خطر الخنق الحراري", "Comfortable": "مريح", "Warm, still boosting": "دافئ، ولا يزال يرفع التردد", "Boost-limited": "التعزيز محدود",
+ "Ready for PC VR - medium to high settings; the heaviest titles may need reprojection.": "جاهز للواقع الافتراضي على الحاسب - إعدادات متوسطة إلى عالية؛ وأثقل الألعاب قد تحتاج إعادة إسقاط.", "no cooler selected": "لم يُحدد مبرّد", "Cezanne": "Cezanne"});
+I18N.frag({"noticeable cpu bottleneck": "عنق زجاجة ملحوظ في المعالج", "mild cpu bottleneck": "عنق زجاجة خفيف في المعالج", "severe cpu bottleneck": "عنق زجاجة شديد في المعالج", "moderate cpu bottleneck": "عنق زجاجة متوسط في المعالج",
+ "Cooling headroom": "هامش التبريد", "rated ": "مصنّف ", "W CPU": "W للمعالج", " - the CPU will pull back clocks to stay within its thermal limit.": " - سيخفض المعالج ترددات للبقاء ضمن حده الحراري.", "Throttling risk ": "خطر الخنق الحراري ", " of peak": " من الذروة",
+ " under sustained all-core load": " تحت حمل مستمر على كل الأنوية", "(idle ~": "(الخمول ~", "PSU fix": "إصلاح مزود الطاقة", "Cooling fix": "إصلاح التبريد", "Cooling - worth upgrading": "التبريد - يستحق الترقية", "PSU - worth upgrading": "مزود الطاقة - يستحق الترقية",
+ "covers ": "يغطي ", "W recommended with headroom": "W الموصى بها مع هامش", ", ATX 3.1 for modern GPUs": "، وATX 3.1 لكروت الشاشة الحديثة", " through a ": " عبر موصل ", " connector - prefer an ATX 3.x PSU with the native cable over adapters.": " - فضّل مزود طاقة ATX 3.x بالكابل الأصلي بدل المحوّلات.",
+ "EXPO (XMP kits often work but are not guaranteed)": "EXPO (أطقم XMP غالبًا تعمل لكن دون ضمان)", "CPU, board, RAM": "المعالج، اللوحة، الذاكرة", "CPU, board": "المعالج، اللوحة", " of peak": " من الذروة"});
