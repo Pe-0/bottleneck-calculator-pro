@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 518 live · 🚧 103 in progress · ⏳ 3624 not started**
+**4245 features total: ✅ 544 live · 🚧 95 in progress · ⏳ 3606 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -485,41 +485,41 @@ _Parked with the marketplace (depends on live price/stock APIs)._
 
 ## 12. Prebuilt PC Recommendations
 - ⏳ Prebuilt PC Database
-- 🚧 Budget-Based PC Recommendations
-- 🚧 Gaming PC Recommendations
-- 🚧 Workstation PC Recommendations
-- ⏳ Content Creation PC Recommendations
-- 🚧 Streaming PC Recommendations
-- ⏳ Programming PC Recommendations
-- ⏳ AI Workstation Recommendations
-- 🚧 Entry-Level PC Builds
-- 🚧 Mid-Range PC Builds
-- 🚧 High-End PC Builds
-- ⏳ Enthusiast PC Builds
-- ⏳ Flagship PC Builds
-- 🚧 Best PC Builds Under Budget
-- ⏳ Best PC Builds for Specific Games
-- ⏳ Best PC Builds for Specific Software
-- ⏳ Best PC Builds by Resolution
-- 🚧 Best PC Builds by Performance
-- 🚧 Best PC Builds by Value
-- ⏳ Best PC Builds by Upgradeability
-- ⏳ Best PC Builds by Power Efficiency
-- ⏳ Best PC Builds by Price-to-Performance
+- ✅ Budget-Based PC Recommendations
+- ✅ Gaming PC Recommendations
+- ✅ Workstation PC Recommendations
+- ✅ Content Creation PC Recommendations
+- ✅ Streaming PC Recommendations
+- ✅ Programming PC Recommendations
+- ✅ AI Workstation Recommendations
+- ✅ Entry-Level PC Builds
+- ✅ Mid-Range PC Builds
+- ✅ High-End PC Builds
+- ✅ Enthusiast PC Builds
+- 🚧 Flagship PC Builds
+- ✅ Best PC Builds Under Budget
+- ✅ Best PC Builds for Specific Games
+- ✅ Best PC Builds for Specific Software
+- ✅ Best PC Builds by Resolution
+- ✅ Best PC Builds by Performance
+- ✅ Best PC Builds by Value
+- ✅ Best PC Builds by Upgradeability
+- ✅ Best PC Builds by Power Efficiency
+- ✅ Best PC Builds by Price-to-Performance
 - ⏳ Recommended Builds of the Month
 - ⏳ Editor's Choice Builds
 - ⏳ Community Recommended Builds
-- ⏳ Build Rating System
-- ⏳ Build Performance Rating
-- ⏳ Build Value Rating
-- 🚧 Build Compatibility Rating
+- ✅ Build Rating System
+- ✅ Build Performance Rating
+- ✅ Build Value Rating
+- ✅ Build Compatibility Rating
 - ✅ Build Price Breakdown
 - ✅ Build Component Breakdown
-- ⏳ Build Benchmark Results
-- ⏳ Build Alternatives
-- ⏳ Build Customization
+- 🚧 Build Benchmark Results
+- ✅ Build Alternatives
+- ✅ Build Customization
 - ✅ Prebuilt Build Comparison
-- ⏳ Prebuilt Build Price Tracking
+- 🚧 Prebuilt Build Price Tracking
 
 ## 13. Budget & Financial Tools
 - ✅ Budget Calculator
