@@ -2,7 +2,7 @@
 
 Live app: https://bcalc.mooo.com/
 
-**4245 features total: ✅ 544 live · 🚧 95 in progress · ⏳ 3606 not started**
+**4245 features total: ✅ 547 live · 🚧 95 in progress · ⏳ 3603 not started**
 Legend: ✅ live · 🚧 in progress / partially live · ⏳ not started
 
 Last updated: 2026-11-25 - accounts + cloud saves (Supabase), email confirmation via custom SMTP (Brevo), custom domain bcalc.mooo.com, expanded hardware databases. Updated with every shipped stage.
@@ -376,7 +376,7 @@ _Full power stage live in the Power tab: per-part draws, idle/gaming/peak, headr
 - ⏳ HDD Comparison
 - ✅ PSU Comparison
 - ✅ CPU Cooler Comparison
-- ⏳ Case Comparison
+- ✅ Case Comparison
 - ⏳ Fan Comparison
 - ✅ Monitor Comparison
 - ⏳ Keyboard Comparison
@@ -399,8 +399,8 @@ _Full power stage live in the Power tab: per-part draws, idle/gaming/peak, headr
 - 🚧 Generation Comparison
 - 🚧 Upgrade Comparison
 - ✅ Comparison Charts
-- ⏳ Comparison History
-- ⏳ Comparison Export
+- ✅ Comparison History
+- ✅ Comparison Export
 
 ## 10. PC Component Store
 

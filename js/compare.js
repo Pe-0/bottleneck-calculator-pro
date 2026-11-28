@@ -124,6 +124,16 @@
                 ["Price per TB",  { v: Math.round(s.priceUSD / (s.capacityGB / 1000)), t: fmtUsd(Math.round(s.priceUSD / (s.capacityGB / 1000))) + "/TB", betterHigh: false }]
               ];
             }, price: function (s) { return s.priceUSD; } },
+    case_:  { label: "Cases",          items: function () { return BCP.cases.items; },        rows: function (c) {
+              return [
+                ["Price (USD)",      { v: c.priceUSD, t: fmtUsd(c.priceUSD), betterHigh: false }],
+                ["Motherboard sizes", { v: null, t: c.fits.join(", ") }],
+                ["Max GPU length",   { v: c.maxGpuLengthMM, t: c.maxGpuLengthMM + " mm" }],
+                ["Max cooler height", { v: c.maxCoolerHeightMM, t: c.maxCoolerHeightMM + " mm" }],
+                ["Max radiator",     { v: c.maxRadiatorMM, t: c.maxRadiatorMM + " mm" }],
+                ["Largest board",    { v: null, t: c.fits[0] }]
+              ];
+            }, price: function (c) { return c.priceUSD; } },
     cooler: { label: "CPU coolers",    items: function () { return BCP.coolers.items; },      rows: function (c) {
               return [
                 ["Price (USD)",      { v: c.priceUSD, t: c.priceUSD ? fmtUsd(c.priceUSD) : "$0", betterHigh: false }],
@@ -390,6 +400,21 @@
         persistCmp();
       });
     });
+
+
+    // Export the current comparison as CSV or Markdown (built from the rows on screen).
+    function cmpExport(kind) {
+      var cat = CATEGORIES[cmpState.cat], items = cat.items(), ch = cmpState.picks.map(function (id) { return id ? hw(items, id) : null; }).filter(Boolean);
+      if (ch.length < 2) { alert("Pick at least two items first."); return; }
+      var sets = ch.map(function (it) { return cat.rows(it); }), head = ["Spec"].concat(ch.map(function (it) { return it.name; })), rows = sets[0].map(function (r, i) { return [r[0]].concat(sets.map(function (st) { return st[i] ? String(st[i][1].t) : ""; })); });
+      var meta = "Bottleneck Calculator Pro comparison, " + new Date().toISOString().slice(0, 10) + ". Scores and prices are estimates from the app's curated data.";
+      var text, name = "comparison-" + cmpState.cat + (kind === "csv" ? ".csv" : ".md"), type = kind === "csv" ? "text/csv;charset=utf-8" : "text/markdown";
+      if (kind === "csv") { var q = function (v) { v = String(v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }; text = "\uFEFF" + [head].concat(rows).concat([[], [meta]]).map(function (r) { return r.map(q).join(","); }).join("\r\n"); }
+      else text = "# " + head.slice(1).join(" vs ") + "\n\n_" + meta + "_\n\n| " + head.join(" | ") + " |\n|" + head.map(function () { return "---"; }).join("|") + "|\n" + rows.map(function (r) { return "| " + r.join(" | ") + " |"; }).join("\n") + "\n";
+      var a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], { type: type })); a.download = name; document.body.appendChild(a); a.click(); a.remove();
+    }
+    var shareBtn0 = $("#cmpShare");
+    if (shareBtn0) [["Export comparison (CSV)", "csv"], ["Export comparison (Markdown)", "md"]].forEach(function (b) { var x = document.createElement("button"); x.type = "button"; x.className = "gen-load"; x.textContent = b[0]; x.addEventListener("click", function () { cmpExport(b[1]); }); shareBtn0.parentNode.appendChild(x); });
 
     // Shareable comparison link: #c=<cat>,<id1>,<id2>[,<id3>]
     var shareBtn = $("#cmpShare");
