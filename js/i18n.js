@@ -30,10 +30,10 @@
         if (m) { var r = I18N.pats[i][1].replace(/\$(\d)/g, function (_, d) { return tr(m[+d] || ""); }); return lead + r + trail; }
       }
       var g = /^([^:]{2,40}): (.+)$/.exec(core);
-      if (g) { var a = tr(g[1]), b2 = tr(g[2]); if (a !== g[1] || b2 !== g[2]) return lead + a + ": " + b2 + trail; }
+      if (g) { var a = tr(g[1]), b2 = tr(g[2]); if ((a !== g[1] || b2 !== g[2]) && !/\b[a-z]{4,}\b/.test((a + " " + b2).replace(/[\u0600-\u06FF]+/g, " ").replace(/\b(https?|www)\S*/g, ""))) return lead + a + ": " + b2 + trail; }
       var out2 = core, hit = false;
       for (var f = 0; f < I18N.frags.length; f++) { if (out2.indexOf(I18N.frags[f][0]) >= 0) { out2 = out2.split(I18N.frags[f][0]).join(I18N.frags[f][1]); hit = true; } }
-      if (hit) return lead + out2 + trail;
+      if (hit) return lead + out2.replace(/(\d) to (\d)/g, "$1 إلى $2").replace(/(\d)x (\d)/g, "$1x $2") + trail;
       return s;
     }
     return lead + fill(t, n.nums) + trail;
