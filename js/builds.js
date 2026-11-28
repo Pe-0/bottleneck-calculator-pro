@@ -101,8 +101,8 @@
     var rer = function () { save(); box.innerHTML = ""; byGame(box); };
     var f = el("div", "hb-form"); f.appendChild(ui.field("Game", ui.select(BCP.games.items.map(function (g) { return [g.id, g.name]; }), S.game || BCP.games.items[0].id, function (v) { S.game = v; rer(); })));
     f.appendChild(ui.field("Resolution", ui.select([["p1080", "1080p"], ["p1440", "1440p"], ["p2160", "4K"]], S.res, function (v) { S.res = v; rer(); })));
-    f.appendChild(ui.field("Target FPS", ui.select([["60", "60"], ["100", "100"], ["144", "144"]], String(S.fps || 100), function (v) { S.fps = +v; rer(); }))); P.appendChild(f);
-    var g = BCP.games.items.filter(function (x) { return x.id === (S.game || BCP.games.items[0].id); })[0], tgt = S.fps || 100, rows = [];
+    f.appendChild(ui.field("Target FPS", ui.select([["60", "60"], ["90", "90"], ["120", "120"], ["144", "144"]], String(S.fps || 60), function (v) { S.fps = +v; rer(); }))); P.appendChild(f);
+    var g = BCP.games.items.filter(function (x) { return x.id === (S.game || BCP.games.items[0].id); })[0], tgt = S.fps || 60, rows = [];
     TIERS.forEach(function (T) { cands(T[2], "gaming", S.res).forEach(function (b) { b.fps = fpsFor(b, g, S.res, "gaming"); b.tier = T[1]; rows.push(b); }); });
     var seen = {}; var ok = rows.filter(function (b) { return b.fps >= tgt; }).sort(function (a, b) { return a.total - b.total; }).filter(function (b) { var k = b.cpu.id + b.gpu.id; if (seen[k]) return false; seen[k] = 1; return true; }).slice(0, 6);
     var R = ui.panel("Cheapest builds that reach " + tgt + " fps", g.name + " at " + RES[S.res]); box.appendChild(R);
