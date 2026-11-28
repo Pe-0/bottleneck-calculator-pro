@@ -16,7 +16,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
   <link rel="apple-touch-icon" href="icons/icon-180.png" />
   <meta name="theme-color" content="#f5f3fc" />
-  <link rel="stylesheet" href="css/styles.css?v=20261127y" />
+  <link rel="stylesheet" href="css/styles.css?v=20261128b" />
   <script>
     // Apply the saved theme before first paint to avoid a flash.
     try {
@@ -28,6 +28,7 @@
   <p id="printHeader" class="print-only"></p>
   <button id="navToggle" class="nav-toggle" type="button" aria-label="Open menu">☰</button>
   <div class="nav-overlay" id="navOverlay"></div>
+  <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top" title="Back to top">↑</button>
   <aside class="sidebar" id="sidebar">
     <div class="brand">
       <span class="brand-mark" aria-hidden="true">
@@ -841,6 +842,60 @@
           location.reload();
         });
       }
+    })();
+  </script>
+  <script>
+    // Scroll & navigation polish: menu button that tucks away while reading,
+    // a back-to-top button on long pages, and keeping the active tab visible
+    // in the sidebar list.
+    (function () {
+      var navToggle = document.getElementById("navToggle");
+      var toTop = document.getElementById("backToTop");
+      var nav = document.querySelector(".tab-nav");
+      var lastY = window.pageYOffset;
+
+      function revealActiveTab() {
+        if (!nav) return;
+        var act = nav.querySelector(".tab-btn.active");
+        if (!act) return;
+        var nr = nav.getBoundingClientRect(), ar = act.getBoundingClientRect();
+        if (ar.top < nr.top + 4 || ar.bottom > nr.bottom - 4) {
+          nav.scrollTop += (ar.top - nr.top) - (nav.clientHeight - ar.height) / 2;
+        }
+      }
+
+      function onScroll() {
+        var y = window.pageYOffset;
+        var open = document.body.classList.contains("nav-open");
+        if (toTop) toTop.classList.toggle("show", y > 700);
+        if (navToggle) {
+          if (open) navToggle.classList.remove("tucked");
+          else if (y > 160 && y > lastY + 6) navToggle.classList.add("tucked");
+          else if (y < lastY - 6 || y <= 160) navToggle.classList.remove("tucked");
+        }
+        lastY = y;
+      }
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      if (toTop) toTop.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        var hero = document.querySelector(".view:not(.hidden) .hero h1");
+        if (hero) { hero.setAttribute("tabindex", "-1"); hero.focus({ preventScroll: true }); }
+      });
+      if (nav) {
+        nav.addEventListener("click", function () { setTimeout(revealActiveTab, 30); });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "ArrowDown" || e.key === "ArrowUp") setTimeout(revealActiveTab, 30);
+        });
+      }
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && document.body.classList.contains("nav-open")) {
+          document.body.classList.remove("nav-open");
+          if (navToggle) navToggle.textContent = "☰";
+        }
+      });
+      window.addEventListener("load", function () { revealActiveTab(); onScroll(); });
+      setTimeout(revealActiveTab, 400);
     })();
   </script>
 </body>

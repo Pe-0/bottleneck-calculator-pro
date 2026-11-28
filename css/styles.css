@@ -782,3 +782,109 @@ button, input, select, a { transition-timing-function: cubic-bezier(0.22, 1, 0.3
 .hb-body > *, .hb-body .panel { min-width: 0; max-width: 100%; }
 .lab-scroll { max-width: 100%; overflow-x: auto; }
 .dh-row .hb-field input, .dh-row .hb-field select { max-width: 100%; }
+
+/* ============================================================
+ * SCROLL & NAVIGATION POLISH (Nov 28)
+ * - the tab list scrolls on its own; brand, search and footer stay put
+ * - scrollbars are thin, violet and actually visible in both themes
+ * - the mobile drawer locks the page behind it
+ * - the menu button tucks away while reading, and a back-to-top
+ *   button appears on long pages
+ * ============================================================ */
+
+/* Scrollbars (page, sidebar, tables, help drawer) */
+html { scrollbar-width: thin; scrollbar-color: rgba(139, 92, 246, 0.5) transparent; }
+body[data-theme="light"] { scrollbar-color: rgba(124, 58, 237, 0.42) transparent; }
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background-color: rgba(139, 92, 246, 0.45);
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover { background-color: rgba(139, 92, 246, 0.78); background-clip: content-box; }
+body[data-theme="light"] ::-webkit-scrollbar-thumb { background-color: rgba(124, 58, 237, 0.34); background-clip: content-box; }
+body[data-theme="light"] ::-webkit-scrollbar-thumb:hover { background-color: rgba(124, 58, 237, 0.62); background-clip: content-box; }
+
+/* Sidebar: only the tab list scrolls */
+.sidebar { overflow: hidden; }
+.sidebar > .brand, .sidebar > .auth-nav-btn, .sidebar > .search-wrap, .sidebar > .sidebar-foot { flex: 0 0 auto; }
+.tab-nav {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 4px;
+  padding-bottom: 4px;
+}
+.tab-nav .tab-btn { flex: 0 0 auto; }
+.tab-nav::-webkit-scrollbar { width: 9px; }
+.tab-nav::-webkit-scrollbar-thumb { border-width: 2px; }
+
+/* Keep in-page jumps clear of the floating menu button on small screens */
+@media (max-width: 900px) {
+  main.container, .panel, .view > .hero { scroll-margin-top: 78px; }
+}
+
+/* Mobile drawer: stop the page scrolling behind the overlay */
+body.nav-open { overflow: hidden; }
+body.nav-open .sidebar { overscroll-behavior: contain; }
+
+/* Floating menu button: frosted, and it tucks away while you read */
+.nav-toggle {
+  display: none;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(24, 12, 48, 0.18);
+  transition: transform 0.22s ease, opacity 0.22s ease;
+}
+@media (max-width: 900px) {
+  .nav-toggle {
+    display: grid;
+    place-items: center;
+    width: 40px; height: 40px;
+    background: color-mix(in srgb, var(--panel) 88%, transparent);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+  .nav-toggle.tucked { transform: translateY(-76px); opacity: 0; pointer-events: none; }
+}
+
+/* Back to top */
+.back-to-top {
+  position: fixed; right: 20px; bottom: 20px; z-index: 55;
+  display: grid; place-items: center;
+  width: 44px; height: 44px; border-radius: 50%; border: none;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #fff; font-size: 1rem; line-height: 1; cursor: pointer;
+  box-shadow: 0 10px 24px rgba(76, 36, 158, 0.34);
+  opacity: 0; transform: translateY(14px) scale(0.9); pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+}
+.back-to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.back-to-top:hover { box-shadow: 0 14px 30px rgba(76, 36, 158, 0.45); transform: translateY(-2px); }
+body.nav-open .back-to-top { opacity: 0; pointer-events: none; }
+@media (max-width: 900px) { .back-to-top { right: 14px; bottom: 16px; width: 42px; height: 42px; } }
+@media print { .back-to-top { display: none !important; } }
+[tabindex="-1"]:focus { outline: none; }
+
+/* Narrow phones: the AI key/ask rows and long control rows wrap instead of
+ * pushing the page sideways (they forced a horizontal scroll below ~360px). */
+@media (max-width: 420px) {
+  .ai-key-row, .ai-ask-row { flex-wrap: wrap; }
+  .ai-key-row input, .ai-ask-row input { flex: 1 1 100%; min-width: 0; }
+  .ai-key-row button, .ai-ask-row button { flex: 0 0 auto; }
+  .ai-remember { white-space: normal; }
+}
+
+/* Very narrow phones: grid columns and form controls shrink instead of
+ * forcing a sideways scroll (the CPU select's intrinsic width was setting
+ * the grid column to 336px on a 320px screen). */
+select, input, textarea { max-width: 100%; }
+@media (max-width: 1200px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+}
+.results { grid-template-columns: minmax(0, 1fr); }
+/* Segmented controls: let the buttons shrink so three options fit a 320px screen */
+.segmented { grid-auto-columns: minmax(0, 1fr); }
+.segmented button { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
